@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>springweb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+<!-- 
+# 스프링의 front 컨트롤러 설정.
+1. 스프링에서 사용하는 front controller DispatcherServlet 선언.
+	1) urlpattern 기준  마지막에 @@@.do할 때, 스프링을 
+		사용하겠습니다.
+		- 웹 server 호출 처리 proc
+		
+		1) url 호출 
+			http://localhost:5080/springweb/start.do
+		2) web.xml 호출..
+		3) web.xml에 설정한 내용 처리..
+			- front 컨트롤러인 DispatcherServlet(스프링 프레임웍api) 호출
+			- 컨테이너를 통해서 controller를 비롯한 여러 클래스와 내부 메서드을
+				url pattern 방식으로 호출 처리하게 한다.
+			- 컨테이너 설정 부분을 호출..
+				<url-pattern>*.do</url-pattern> 마지막 *.do 끝나면
+				front 컨트롤러 DispatcherServlet 호출하고,
+				이 컨트롤러에서 선언한 container 선언 방식인 
+				dispatcher-servlet.xml을 호출하여 처리한다.
+		4) dispatcher-servlet.xml
+			- 스프링 컨테이너
+			- 사용하고자 하는 객체를 class로 선언하고,
+			- xml형식으로 was(web application server)를 수행할 때,
+				선언된 class을 객체로 메모리에 올려지게 한다.
+			- 객체들을 특정 url pattern에 의해서 정의된 controller호출하고,
+				model, view(return으로 jsp등을 호출)을 사용할 수 있게 한다.
+		5) 사용자 정의 controller
+			- 지정된 url에 맞는 /start.do과 mapping되는 controller와 메서드를
+				호출하게 한다.	
+			- 메서드의 매개변수를 통해서 요청값 처리
+				/start.do?name=홍길동
+				ex) public String start(@RequestParam("name") String name)
+			- 메서드의 매개변수를 통해서 Model 데이터를 등록할 수 있게 처리.
+				ex) public String start(Model d)
+					  d.addAttribute("show","안녕하세요")
+					  모델명으로 show, 할당된 값으로 "안녕하세요"
+			- 화면단(view)를 return 값으로 선언하여 처리
+				ex) public String start(){
+						return ""WEB-INF\\views\\a01_basic\\a01_start.jsp";
+					}		  		
+		6) 화면단 구성(View)
+			- 웹화면을 처리하고, 컨트롤러에서 넘겨 온 모델 데이터를 처리한다.
+				<h2>${show}</h2> 컨트롤러에 show라는 이름으로 모델 데이터			
+		
+-->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+<!-- 
+2. 한글 post방식 전달될 때, 자동 encoding filter 클래스 선언.
+	1) 요청값에 대한 한글 encoding 처리를 통합적으로 하게 한다.
+		Servlet Controller에서 선언된 부분을 공통으로 처리. 
+		request.setCharacterEncoding("utf-8");
+	 
+ -->	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+</web-app>
+
+
+
+
+
+
+
