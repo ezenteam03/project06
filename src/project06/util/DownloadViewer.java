@@ -86,6 +86,5 @@ public class DownloadViewer extends AbstractView {
 		InputStream(읽어오는 객체) ==> OupStream(보내는 객체)
 		FileInputStream(파일 객체)
 		FileCopyUtils.copy(inputstream, outstream)
-		outstream의 flush를 통해서 자원을 해제
-		
+		outstream의 flush를 통해서 자원을 해제		
 */
