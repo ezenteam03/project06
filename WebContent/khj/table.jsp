@@ -26,6 +26,7 @@
 </script>
 </head>
 <body>
+	
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Navbar</a>
@@ -49,12 +50,25 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+<!-- 구분 셀렉박스 -->
+	  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+	    <button type="button" class="btn btn-info">구분</button>
+	    <div class="btn-group" role="group">
+	      <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+	      <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+	        <a class="dropdown-item" href="#">일반사원</a>
+	        <a class="dropdown-item" href="#">PMS사용자</a>
+	      </div>
+	    </div>
+	  </div>
+<!-- 검색 -->
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
 
+<!--  리스트 테이블 -->
 <table class="table table-hover" style="height:600px;">
 
   <thead>
@@ -163,16 +177,32 @@
   </tbody>
   
 </table>
-<div> 
-	<ul class="pagination justify-content-center" style="margin:20px 0">
-	    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
 
-		  <li class="page-item ${bsch.curPage==cnt?'active':''}">
-		  
-		  	<a class="page-link" href="javascript:goPage(${cnt})">1234</a></li>
-
-		<li class="page-item"><a class="page-link" href="#">Next</a></li>
-	</ul>  
+<!-- pagination -->
+<div style="align:center;">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
 </div>
 <div>
 
