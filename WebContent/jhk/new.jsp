@@ -19,7 +19,7 @@
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/jquery-ui.js"></script>
-	
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
@@ -40,45 +40,17 @@
 					alert("버튼클릭!");
 				}
 			}
-		});
-		
-/*		swal({
-		     title: "로그인 성공",	// 큰 문자열   (title:"", 문자열 생략 가능)
-		     text: "성공했어요",	// 작은 문자열
-		     icon: "success"	// seccess, info, error	
-		}).then((value) => {
-		    if(value){
-		    	// 확인 버튼 클릭시 수행 코드
-		    	// ex) submit같은 거
-		    	$("[name=proc]").val("main");
-		    	$("#loginForm").submit();
-		    }
-		});*/
-		
+		});	
+		<%--
+		사용방법은 이곳을 참고해주세요
+		https://sweetalert2.github.io/#examples
+		--%>
 		Swal.fire({
-		     title:"로그아웃",				// 큰 문자열
-		     text: "로그아웃 하시겠습니까?",	// 작은 문자열
-		     icon: "info", 				// seccess, info, error
-		     buttons: ["No", "Yes"],
-		}).then((value) => {
-		    if(value){
-		    	// Yes 버튼 클릭시 수행 코드
-		    	$("[name=proc]").val("logout");
-		    	$("#logout").submit();
-		    }else{
-		    	// No 버튼 클릭시 수행 코드
-		    	history.back();
-		    }
-		});
-		/*Swal.fire({
-			  title: 'Error!',
-			  html: '<p>You can use <b>bold text</b>, ' +
-				    '<a href="//sweetalert2.github.io">links</a> ' +
-				    'and other HTML tags</p>' +
-				    '<p>this is second line</p>',
-			  icon: 'error',
-			  confirmButtonText: 'Cool'
-			})*/
+		  icon: 'success',
+		  title: '시작합니다.',
+		  text: '작업을 시작합니다.',
+		  footer: '<a href="https://sweetalert2.github.io/#examples">사용법은 여기를 참고하세요</a>'
+		});		
 	});
 </script>
 </head>

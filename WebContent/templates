@@ -18,8 +18,11 @@
 <link rel="stylesheet" href="$${path}/a00_com/jquery-ui.css" >
 <script src="$${path}/a00_com/jquery.min.js"></script>
 <script src="$${path}/a00_com/popper.min.js"></script>
-<script src="$${path}/a00_com/bootstrap.min.js"></script>
 <script src="$${path}/a00_com/jquery-ui.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
 <script type="text/javascript">
 	$$(document).ready(function(){
 		<%-- 
@@ -37,7 +40,17 @@
 					alert("버튼클릭!");
 				}
 			}
-		});			
+		});	
+		<%--
+		사용방법은 이곳을 참고해주세요
+		https://sweetalert2.github.io/#examples
+		--%>
+		Swal.fire({
+		  icon: 'success',
+		  title: '시작합니다.',
+		  text: '작업을 시작합니다.',
+		  footer: '<a href="https://sweetalert2.github.io/#examples">사용법은 여기를 참고하세요</a>'
+		});		
 	});
 </script>
 </head>
