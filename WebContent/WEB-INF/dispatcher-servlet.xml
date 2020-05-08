@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+  		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-4.0.xsd
+   		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+		
+	<context:annotation-config/><!-- annotation으로 autowiring 선언 -->
+	<!-- 
+	Annotation으로 설정된 클래스는 자동으로 등록되게 처리한다.
+	 -->	
+	<context:component-scan base-package="project06">
+		<context:include-filter type="annotation" 
+			expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" 
+			expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" 
+			expression="org.springframework.stereotype.Repository"/>				
+	</context:component-scan>	
+	<!-- 공통 정보 파일 로딩 -->
+	<context:property-placeholder location="classpath:/resource/properties/info"/>
+	<!-- 
+	# mybatis를 통해서 DB 처리
+	1. DB connection
+	2. sql
+	3. 결과값 처리.
+	# DB 연결하는 bean 객체 생성.
+	1. BasicDataSource
+		1) driverClass
+		2) url
+		3) username
+		4) password
+	2. SqlSessionFatoryBean
+		1) BasicDataSource 객체와 연결 처리.
+		2) mybatis형태 xml 설정파일 연결..
+	3. MapperScannerConfigurer
+		1) 소스가 자동으로 generation되는 인터페이스 패키지 선언.
+	# DB 처리 순서.
+	1. container(xml)에 DB모듈 설정.
+	2. mybatis 설정파일 : 공통, sql파일  설정.
+	3. Repository단 interface 선언 (DAO 연결 처리.)
+		1) body{}가 없고  return 객체, 메서드 입력객체만 선언.
+		2) 해당 패키지는 mybatis 공통 모듈에 의해서 자동으로 생성된다.
+	4. service단 구현.
+	5. controller단과 화면구성.. 	
+	 -->
+	<!-- DB 연결 처리 객체.. 
+	1. 드라이버
+	2. url
+	3. 계정 : username, password
+	driver=oracle.jdbc.driver.OracleDriver
+	url=jdbc:oracle:thin:@localhost:1521:xe
+	user=scott
+	pass=tiger
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${pass}"/>
+	</bean>
+	<!-- Mybatis 모듈 사용..
+	1. 연결정보 dataSource 처리
+	2. 공통 mybatis 설정 xml 선언..
+	 -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" 
+			value="classpath:/resource/mybatis/spring.xml"/>
+	</bean>
+	<!-- Repository단 interface의 패키지 위치 선언.
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" 
+			value="project06.repository"></property>
+	</bean> 
+	<!-- 
+	bean ViewResolver를 등록 가능하게 처리..
+	- controller단에 return "뷰";
+	1. 객체로 view등록 : 파일업로드, 파일 다운로드, json..
+	2. jsp 호출 : 특정명으로 jsp
+	식별기준 일단, container에 bean이름으로 등록되어있으면
+		그것을 view로 처리한다.
+	container에 확인상 없을 때, jsp로 해당 위치에서 화면 로딩처리 한다.
+	 -->
+	<!-- bean id로 등록된 view 처리에 관련 설정.
+	우선 순위 설정. order="0" 0순위 설정.-->
+	<bean id="btnViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>	 
+	<!-- jsp를 view로 호출하는 view Resolver -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 
+		접두어 매핑
+		접미어 매핑
+		<property name="prefix" value="WEB-INF/views/a03_mvc/"/> 
+		<property name="suffix" value=".jsp"/> 
+		-->
+		<property name="order" value="1"/>
+	</bean>
+	<!-- 
+	# 파일 업로드를 위한 viewResolver
+	 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>	 
+	 <!-- 다운로드 viewer -->
+	 <bean id="download" class="project06.util.DownloadViewer" />
+	 
+</beans>       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       

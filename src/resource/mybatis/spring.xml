@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--	<typeAliases>-->
+		<!-- XXXMapper.xml에서 간편하게 사용하기 위해서 선언.. -->
+		<!-- <typeAlias alias="dept" type="springweb.a03_mvc.a04_vo.Dept"/> -->
+<!--	</typeAliases>-->
+<!--	<mappers>-->
+		<!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. -->
+		<!-- <mapper resource="resource/mybatis/deptMapper.xml"/> -->
+<!--	</mappers>-->
+</configuration>

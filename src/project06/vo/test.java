@@ -1,4 +1,4 @@
-package personal.jhk;
+package project06.vo;
 
 public class test {
 
