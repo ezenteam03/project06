@@ -20,6 +20,7 @@
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/jquery-ui.js"></script>
 	
+<script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
@@ -43,7 +44,7 @@
 			}
 		});
 		
-/*		swal({
+/*		Swal.fire({
 		     title: "로그인 성공",	// 큰 문자열   (title:"", 문자열 생략 가능)
 		     text: "성공했어요",	// 작은 문자열
 		     icon: "success"	// seccess, info, error	
@@ -54,9 +55,9 @@
 		    	$("[name=proc]").val("main");
 		    	$("#loginForm").submit();
 		    }
-		});*/
-		
-/*		swal({
+		});
+*/		
+/*		Swal.fire({
 		     title:"로그아웃",				// 큰 문자열
 		     text: "로그아웃 하시겠습니까?",	// 작은 문자열
 		     text: "ㅇㅇ",
