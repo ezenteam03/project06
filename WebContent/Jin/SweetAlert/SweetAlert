@@ -1,0 +1,48 @@
+1. script 복사 붙여넣기
+
+	<script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+2. 사용방법
+
+	1) 확인버튼만 있는 팝업 창
+	
+	swal({
+		     title: "로그인 성공",	// 큰 문자열   (title:"", 문자열 생략 가능)
+		     text: "성공했어요",	// 작은 문자열
+		     icon: "success"	// seccess, info, error	
+		}).then((value) => {
+		    if(value){
+		    	// 확인 버튼 클릭시 수행 코드
+		    	// ex) submit같은 거
+		    	$("[name=proc]").val("main");
+		    	$("#loginForm").submit();
+		    }
+		});
+		
+	2) yes/no 팝업 창
+	
+	swal({
+	     title:"로그아웃",				// 큰 문자열
+	     text: "로그아웃 하시겠습니까?",	// 작은 문자열
+	     icon: "info", 				// seccess, info, error
+	     buttons: ["No", "Yes"],
+	}).then((value) => {
+	    if(value){
+	    	// Yes 버튼 클릭시 수행 코드
+	    	$("[name=proc]").val("logout");
+	    	$("#logout").submit();
+	    }else{
+	    	// No 버튼 클릭시 수행 코드
+	    	history.back();
+	    }
+	});
+
+
+
+
+
+
+
+
+
+
