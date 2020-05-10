@@ -12,4 +12,10 @@ public class springtest {
 	public String mainp(Model d) {
 		return "WEB-INF\\views\\main\\main.jsp";
 	}
+	
+	//http://localhost:6080/project06_git/springtest.do?method=index
+	@RequestMapping(params="method=index")
+	public String index(Model d) {
+		return "WEB-INF\\views\\main\\index.jsp";
+	}
 }

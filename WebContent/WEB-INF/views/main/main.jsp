@@ -6,10 +6,6 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
-<%--
-
-
- --%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -45,6 +41,9 @@
 <body>
 <div class="container">
     <h2 align='center'></h2>
+    <h3>${path}</h3>
+    <h3>${path}/a00_com/bootstrap.min.css</h3>
+    <h4><a href="${path}/a00_com/jquery-ui.css">css</a></h4>
 </div>
 <div id="dialog" title="Basic dialog">
   <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
