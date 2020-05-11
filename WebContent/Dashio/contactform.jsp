@@ -104,7 +104,27 @@
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
-    <!--footer start-->
+    
+  </section>
+  
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
+  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="${path}/Dashio/lib/common-scripts.js"></script>
+  <!--script for this page-->
+  <script src="${path}/Dashio/lib/jquery-ui-1.9.2.custom.min.js"></script>
+  <!--custom switch-->
+  <script src="${path}/Dashio/lib/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="${path}/Dashio/lib/jquery.tagsinput.js"></script>
+
+  <!--Contactform Validation-->
+  <script src="${path}/Dashio/lib/php-mail-form/validate.js"></script>
+	<!--footer start-->
     <footer class="site-footer">
       <div class="text-center">
         <p>
@@ -125,25 +145,6 @@
       </div>
     </footer>
     <!--footer end-->
-  </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
-  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--common script for all pages-->
-  <script src="${path}/Dashio/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script src="${path}/Dashio/lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <!--custom switch-->
-  <script src="${path}/Dashio/lib/bootstrap-switch.js"></script>
-  <!--custom tagsinput-->
-  <script src="${path}/Dashio/lib/jquery.tagsinput.js"></script>
-
-  <!--Contactform Validation-->
-  <script src="${path}/Dashio/lib/php-mail-form/validate.js"></script>
-
 </body>
 
 </html>
