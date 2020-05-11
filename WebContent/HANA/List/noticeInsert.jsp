@@ -73,19 +73,15 @@
                 </tbody>
               </table>
             </div>
-           
           </div>
-          
           <!-- /col-md-12 -->
         </div>
         <!-- row -->
         
-        <br>
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
         
-     
         
-   </section>
+        
+      </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
