@@ -58,7 +58,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="${path}/Dashio/index.jsp" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="${path}/Dashio/index.jsp" class="logo"><b>Project<span>프로젝트명</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->

@@ -80,10 +80,12 @@
         </div>
         <!-- row -->
         
-        <br><br>
-          <button type="button" class="btn btn-theme"><i class="fa fa-check"></i> 2</button>
+        <br>
+          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
         
-
+     
+        
+   </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
