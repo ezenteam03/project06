@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class springtest {
 	//http://localhost:6080/project06_git/springtest.do?method=main
 	@RequestMapping(params="method=main")
-	public String mainp(Model d) {
+	public String mainp() {
 		return "WEB-INF\\views\\main\\main.jsp";
+	}
+	
+	@RequestMapping(params="method=index")
+	public String index() {	
+		return "WEB-INF\\views\\dashiosample\\index.jsp";
 	}
 }
