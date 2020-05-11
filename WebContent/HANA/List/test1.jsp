@@ -1,29 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="java.util.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
-<%--
-
-
- --%>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.css" >
-<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<script src="${path}/a00_com/jquery.min.js"></script>
-<script src="${path}/a00_com/popper.min.js"></script>
-<script src="${path}/a00_com/bootstrap.min.js"></script>
-<script src="${path}/a00_com/jquery-ui.js"></script>
- <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -38,100 +24,175 @@
   <link href="${path}/Dashio/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="${path}/Dashio/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href="${path}/Dashio/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  <link href="${path}/Dashio/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${path}/Dashio/lib/advanced-datatable/css/DT_bootstrap.css" />
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$("#regBtn").click(function(){
-			
-				$(location).attr("href","${path}/risk.do?method=insForm");
-			
-		});
-	});
-	function go(rno){
-		$(location).attr("href","${path}/risk.do?method=detail&rno="+rno);
-	}
-	function goPage(no){
-		$("#curPage").val(no);
-		$("form").submit();
-	}
-</script>
-<style>
-.jumbotron{background-color:#22D6B2; }
-.pagination{margin-left:70%;float:left; }
-</style>
+
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
 </head>
 
 <body>
-<div class="jumbotron text-center">
-  <h1>공지사항</h1>
-</div>
-<div class="container">
- <form:form class="form" commandName="rsch" method="post" >
- <form:hidden path="curPage"/>
- 
- <div class="input-group mb-3">
-	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-	
-			<form:option value="5">5</form:option>
-			<form:option value="10">10</form:option>
-			<form:option value="20">20</form:option>		
-			 </form:select>			
-		</div>
-		
-		     <button class="btn btn-success" type="submit">Search</button>
-	</div>  
-<div class="col-md-12 mt">
+  <section id="container">
+	<jsp:include page="top.jsp"/>
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+         <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
             <div class="content-panel">
-   <table class="table table-hover">
-    <thead>
-      <tr class="table-secondary text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      <tr class="text-center">
-        <td>ㅁㅁ</td>
-        <td class="text-left">ㅁㅁ</td>
-        <td class="text-center">ㅁㅁ</td>
-        <td>ㅁㅁ</td>
-      </tr>
-     
-    </tbody>
-  </table>  
-</div></div>
-<!-- 페이징 -->
-	<div align="center">
-	 <ul class="pagination" >
-	  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-	  <c:forEach var="cnt" begin="1" end="${rsch.pageCount }">
-	  <li class="page-item ${rsch.curPage==cnt?'active':''}">
-	  	<a class="page-link" href="javascript:goPage(${cnt })">${cnt }</a></li>
-	  </c:forEach>
-	  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-	</ul>
-    <button  class="btn btn-info" id="regBtn" type="button">작성</button>
-	</div>
+              <table class="table table-hover">
+                <h4><i class="fa fa-angle-right"></i> 공지사항 </h4>
+                <hr>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Simon</td>
+                    <td>Mosa</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /col-md-12 -->
+        </div>
+        <!-- row -->
+        
+        
+        
+        
+      </section>
+      <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+        </div>
+        <a href="${path}/Dashio/advanced_table.jsp#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
+  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
+  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="${path}/Dashio/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+  <!--common script for all pages-->
+  <script src="${path}/Dashio/lib/common-scripts.js"></script>
+  <!--script for this page-->
+  <script type="text/javascript">
+    /* Formating function for row details */
+    function fnFormatDetails(oTable, nTr) {
+      var aData = oTable.fnGetData(nTr);
+      var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+      sOut += '<tr><td>Rendering engine:</td><td>' + aData[1] + ' ' + aData[4] + '</td></tr>';
+      sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
+      sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+      sOut += '</table>';
 
-  
-<div>
- 
-</div>
-  
-  
-   </form:form>
-</div>
+      return sOut;
+    }
+
+    $(document).ready(function() {
+      /*
+       * Insert a 'details' column to the table
+       */
+      var nCloneTh = document.createElement('th');
+      var nCloneTd = document.createElement('td');
+      nCloneTd.innerHTML = '<img src="${path}/Dashio/lib/advanced-datatable/images/details_open.png">';
+      nCloneTd.className = "center";
+
+      $('#hidden-table-info thead tr').each(function() {
+        this.insertBefore(nCloneTh, this.childNodes[0]);
+      });
+
+      $('#hidden-table-info tbody tr').each(function() {
+        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
+      });
+
+      /*
+       * Initialse DataTables, with no sorting on the 'details' column
+       */
+      var oTable = $('#hidden-table-info').dataTable({
+        "aoColumnDefs": [{
+          "bSortable": false,
+          "aTargets": [0]
+        }],
+        "aaSorting": [
+          [1, 'asc']
+        ]
+      });
+
+      /* Add event listener for opening and closing details
+       * Note that the indicator for showing which row is open is not controlled by DataTables,
+       * rather it is done here
+       */
+      $('#hidden-table-info tbody td img').live('click', function() {
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          this.src = "lib/advanced-datatable/media/images/details_open.png";
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          this.src = "lib/advanced-datatable/images/details_close.png";
+          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+        }
+      });
+    });
+  </script>
 </body>
-<script type="text/javascript">
 
-</script>
 </html>
