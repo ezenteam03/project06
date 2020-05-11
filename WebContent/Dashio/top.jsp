@@ -274,9 +274,9 @@
               <span>UI Elements</span>
               </a>
             <ul class="sub">
-              <li><a href="${path}/Dashio/general.jsp">General</a></li>
-              <li><a href="${path}/Dashio/buttons.jsp">Buttons</a></li>
-              <li><a href="${path}/Dashio/panels.jsp">Panels</a></li>
+              <li><a href="${path}/Dashio/general.jsp">테스트01</a></li>
+              <li><a href="${path}/Dashio/buttons.jsp">테스트02</a></li>
+              <li><a href="${path}/Dashio/panels.jsp">테스트03</a></li>
               <li><a href="${path}/Dashio/font_awesome.jsp">Font Awesome</a></li>
             </ul>
           </li>
