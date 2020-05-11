@@ -37,6 +37,14 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+		<%-- 
+		
+		--%>
+	});
+  </script>
 </head>
 
 <body>
