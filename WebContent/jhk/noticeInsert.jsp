@@ -48,50 +48,61 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <div class="row">
-         <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-              <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 공지사항 </h4>
-                <hr>
-                <thead>
-                  <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                </tbody>
-              </table>
+         <!-- FORM VALIDATION -->
+        <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> Form Validations</h4>
+            <div class="form-panel">
+              <div class=" form">
+                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+                  <div class="form-group ">
+                    <label for="cname" class="control-label col-lg-2">Name (required)</label>
+                    <div class="col-lg-10">
+                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="cemail" class="control-label col-lg-2">E-Mail (required)</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="cemail" type="email" name="email" required />
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="curl" class="control-label col-lg-2">URL (optional)</label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="curl" type="url" name="url" />
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="ccomment" class="control-label col-lg-2">Your Comment (required)</label>
+                    <div class="col-lg-10">
+                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme" type="submit">Save</button>
+                      <button class="btn btn-theme04" type="button">Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-           
+            <!-- /form-panel -->
           </div>
-          
-          <!-- /col-md-12 -->
+          <!-- /col-lg-12 -->
         </div>
-        <!-- row -->
+        <!-- /row -->
         
-        <br>
-        <!-- c:if 어쩌고-->
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
         
-     
         
-   </section>
+        
+      </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
-    <!--footer start-->
+   	    <!--footer start-->
     <footer class="site-footer">
       <div class="text-center">
         <p>
