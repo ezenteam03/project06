@@ -216,7 +216,7 @@
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h1>@@@사원</h1>
+         <h1>@@@ 사원</h1>
          </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">
