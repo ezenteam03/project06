@@ -81,6 +81,7 @@
         <!-- row -->
         
         <br>
+        <!-- c:if 어쩌고-->
           <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
         
      
