@@ -261,7 +261,7 @@
               </a>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-desktop"></i>
               <span>UI Elements</span>
               </a>
@@ -273,7 +273,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-cogs"></i>
               <span>Components</span>
               </a>
@@ -288,7 +288,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-book"></i>
               <span>Extra Pages</span>
               </a>
@@ -305,7 +305,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-tasks"></i>
               <span>Forms</span>
               </a>
@@ -317,7 +317,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-th"></i>
               <span>Data Tables</span>
               </a>
@@ -335,7 +335,7 @@
               </a>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class=" fa fa-bar-chart-o"></i>
               <span>Charts</span>
               </a>
@@ -347,7 +347,7 @@
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="${path}/Dashio/javascript:;">
+            <a href="#">
               <i class="fa fa-comments-o"></i>
               <span>Chat Room</span>
               </a>
@@ -367,24 +367,7 @@
       </div>
     </aside>
     <!--sidebar end-->
-
   </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-
-  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
-  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="${path}/Dashio/lib/jquery.sparkline.js"></script>
-  <!--common script for all pages-->
-  <script src="${path}/Dashio/lib/common-scripts.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/gritter-conf.js"></script>
-  <!--script for this page-->
-  <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
-  <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
-	
 </body>
 
 </html>
