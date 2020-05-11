@@ -73,17 +73,15 @@
                 </tbody>
               </table>
             </div>
-           
           </div>
-          
           <!-- /col-md-12 -->
         </div>
         <!-- row -->
         
-        <br><br>
-          <button type="button" class="btn btn-theme"><i class="fa fa-check"></i> 2</button>
         
-
+        
+        
+      </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
