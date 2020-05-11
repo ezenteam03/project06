@@ -38,13 +38,146 @@
     License: https://templatemag.com/license/
   ======================================================= -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript">
+<style>
+.popup_btn a {
+  display: inline-block;
+  padding: 20px;
+  background: darkred;
+  color: #fff;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 900;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  position: fixed;
+  width: 60%;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+  /* "delay" the visibility transition */
+  -webkit-transition: opacity .5s, visibility 0s linear .5s;
+  transition: opacity .5s, visibility 0s linear .5s;
+  z-index: 1;
+}
+
+.popup:target {
+  visibility: visible;
+  opacity: 1;
+  /* cancel visibility transition delay */
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.popup-close {
+  position: absolute;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+}
+
+.popup .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 5px;
+  color: #000;
+  transition: color .3s;
+  font-size: 2em;
+  line-height: .6em;
+  font-weight: bold;
+}
+
+.popup .close:hover {
+  color: #00E5EE;
+}
+</style>
+
+<script type="text/javascript">
 	$(document).ready(function(){
-		<%-- 
+	
+		$("#btn").click(function(){
+			$(location).attr('href','#pop02');
+		});
 		
-		--%>
+		$("#pass01").keyup(function(){
+			var num = checkPW($(this).val());
+			if(num == 1){
+				$("#txtOut").text("8~20자리로 적어주세요");
+			}else if(num == 2){
+				$("#txtOut").text("공백은 사용이 불가능합니다");
+			}else if(num == 3){
+				$("#txtOut").text("숫자,영문,특수문자로 조합하세요");
+			}else{
+				$("#txtOut").text("사용 가능한 비밀번호입니다");
+			}
+			
+		});
+		
+		$("#pass02").keyup(function(){
+			if($("#pass01").val() == $(this).val()){
+				$("#txtOut").text("비밀번호가 일치합니다.");
+			}else{
+				$("#txtOut").text("비밀번호가 일치하지 않습니다.");
+			}
+		});
+		
+		$("[name=ck]").click(function(){
+			var ckPhone = $("#ckPhone").is(":checked");
+			var ckMail = $("#ckMail").is(":checked");
+			if(ckPhone){
+				var txt = $("#phone").val();
+				$("#con").val(txt);
+			}else if(ckMail){
+				var txt = $("#mail").val();
+				$("#con").val(txt);
+			}
+		});
+
 	});
-  </script>
+	
+	function checkPW(pass){
+		var pass01 = pass;
+		var num = pass01.search(/[0-9]/g);
+		var eng = pass01.search(/[a-z]/ig);
+		var spe = pass01.search(/[`~!@#$%^&*;:\/?]/gi);
+		
+		if(pass01.length < 8 || pass01.length > 20){ // 8~20
+			return 1;
+		}else if(pass01.search(/\s/) != -1){	// 공백
+			return 2;
+		}else if(num < 0 || eng < 0 || spe < 0) {	// 숫자영문특수문자
+			return 3;
+		}else{
+			return 0;
+		}
+	}
+
+</script>
+
 </head>
 
 <body>
@@ -64,7 +197,10 @@
       
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="${path}/Dashio/login.jsp">Logout</a></li>
+          <li><a class="logout" href="#pop01">개인정보</a></li>
+          <li><a class="logout" href="#">참여인원 @@명</a></li>
+          <li><a class="logout" href="#">Logout</a></li>
+
         </ul>
       </div>
     </header>
@@ -77,121 +213,150 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="${path}/Dashio/profile.jsp"><img src="${path}/Dashio/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+         <li>
+         <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
+         <br>
+         <h1>@@@사원</h1>
+         </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">
               <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
+              <span>대시보드</span>
               </a>
           </li>
           <li class="sub-menu">
             <a href="#">
               <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
+              <span>업무관리</span>
               </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/general.jsp">테스트01</a></li>
-              <li><a href="${path}/Dashio/buttons.jsp">테스트02</a></li>
-              <li><a href="${path}/Dashio/panels.jsp">테스트03</a></li>
-              <li><a href="${path}/Dashio/font_awesome.jsp">Font Awesome</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="#">
               <i class="fa fa-cogs"></i>
-              <span>Components</span>
+              <span>일정관리</span>
               </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/grids.jsp">Grids</a></li>
-              <li><a href="${path}/Dashio/calendar.jsp">Calendar</a></li>
-              <li><a href="${path}/Dashio/gallery.jsp">Gallery</a></li>
-              <li><a href="${path}/Dashio/todo_list.jsp">Todo List</a></li>
-              <li><a href="${path}/Dashio/dropzone.jsp">Dropzone File Upload</a></li>
-              <li><a href="${path}/Dashio/inline_editor.jsp">Inline Editor</a></li>
-              <li><a href="${path}/Dashio/file_upload.jsp">Multiple File Upload</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="#">
               <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
+              <span>공지사항</span>
               </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/blank.jsp">Blank Page</a></li>
-              <li><a href="${path}/Dashio/login.jsp">Login</a></li>
-              <li><a href="${path}/Dashio/lock_screen.jsp">Lock Screen</a></li>
-              <li><a href="${path}/Dashio/profile.jsp">Profile</a></li>
-              <li><a href="${path}/Dashio/invoice.jsp">Invoice</a></li>
-              <li><a href="${path}/Dashio/pricing_table.jsp">Pricing Table</a></li>
-              <li><a href="${path}/Dashio/faq.jsp">FAQ</a></li>
-              <li><a href="${path}/Dashio/404.jsp">404 Error</a></li>
-              <li><a href="${path}/Dashio/500.jsp">500 Error</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="#">
               <i class="fa fa-tasks"></i>
-              <span>Forms</span>
+              <span>회의록</span>
               </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/form_component.jsp">Form Components</a></li>
-              <li><a href="${path}/Dashio/advanced_form_components.jsp">Advanced Components</a></li>
-              <li><a href="${path}/Dashio/form_validation.jsp">Form Validation</a></li>
-              <li><a href="${path}/Dashio/contactform.jsp">Contact Form</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="#">
               <i class="fa fa-th"></i>
-              <span>Data Tables</span>
+              <span>이슈리스트</span>
               </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/basic_table.jsp">Basic Table</a></li>
-              <li><a href="${path}/Dashio/responsive_table.jsp">Responsive Table</a></li>
-              <li><a href="${path}/Dashio/advanced_table.jsp">Advanced Table</a></li>
-            </ul>
           </li>
           <li>
             <a href="${path}/Dashio/inbox.jsp">
               <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
+              <span>인적자원관리(팀원 비활성화) </span>
               </a>
-          </li>
-          <li class="sub-menu">
-            <a href="#">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/morris.jsp">Morris</a></li>
-              <li><a href="${path}/Dashio/chartjs.jsp">Chartjs</a></li>
-              <li><a href="${path}/Dashio/flot_chart.jsp">Flot Charts</a></li>
-              <li><a href="${path}/Dashio/xchart.jsp">xChart</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="#">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="${path}/Dashio/lobby.jsp">Lobby</a></li>
-              <li><a href="${path}/Dashio/chat_room.jsp"> Chat Room</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="${path}/Dashio/google_maps.jsp">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
-          </li>
+          </li>        
         </ul>
         <!-- sidebar menu end-->
       </div>
     </aside>
     <!--sidebar end-->
+    
+    <div id="pop01" class="overlay">
+	<div class="popup">
+		<a href="#none" class="close">&times;</a>
+	
+		<form class="form-login" action="#" style="background-color:#e0e0e0;margin-top:0%">
+	
+		<h2 class="form-login-heading">INFORMATION</h2>
+	
+		<div class="login-wrap">
+			<label>사원번호</label>
+			<input type="text" class="form-control" placeholder="사원번호 출력할 곳" readonly="readonly">
+			
+			<br>
+			
+			<label>새 비밀번호</label>
+				<input type="password" class="form-control" placeholder="비밀번호를 입력하세요" autofocus>
+		
+			<button class="btn btn-theme btn-block" type="button" id="btn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
+								
+		</div>
+			
+		</form>
+	</div>
+</div>
+
+<div id="pop02" class="overlay">
+	<div class="popup" style="margin-top:30px;">
+		<a href="#none" class="close">&times;</a>
+	
+		<form class="form-login" action="#" style="background-color:#e0e0e0;margin-top:0%">
+	
+		<h2 class="form-login-heading">INFORMATION</h2>
+	
+		<div class="login-wrap">
+		
+			<label>사원번호</label>
+			<input type="text" class="form-control" placeholder="사원번호 출력할 곳" readonly="readonly">
+			
+			<br>
+			
+			<label>이름</label>
+			<input type="text" class="form-control" placeholder="이름 출력할 곳" readonly="readonly">
+			
+			<br>
+			
+			<label>직책</label>
+			<input type="text" class="form-control" placeholder="직책 출력할 곳" readonly="readonly">
+			
+			<br>
+			
+			<label>부서</label>
+			<input type="text" class="form-control" placeholder="부서 출력할 곳" readonly="readonly">
+			
+		</div>
+		
+		<div class="login-wrap">
+		
+			<label>전화번호</label>
+			<input type="text" class="form-control" placeholder="전화번호 출력할 곳" id="phone" value="010-1234-1234" readonly="readonly">
+			
+			<br>
+			
+			<label>이메일</label>
+			<input type="text" class="form-control" placeholder="이메일 출력할 곳" id="mail" value="qweasd@naver.com" readonly="readonly">
+			
+			<br>
+			
+			<label>새 비밀번호</label>
+				<input type="password" class="form-control" id="pass01" placeholder="비밀번호를 입력하세요" autofocus>
+				<input type="password" class="form-control" id="pass02" placeholder="비밀번호를 입력하세요">
+			<div id="txtOut"></div>
+			
+			<br>
+				
+			<label>희망 연락처</label>
+				<input type="text" class="form-control" id="con" placeholder="희망 연락처 입력하세요">
+			<div>
+				<input type="radio" value="remember-me" name="ck" id="ckPhone" style="margin-left:1%;">전화번호&nbsp;
+				<input type="radio" value="remember-me" name="ck" id="ckMail" style="margin-left:1%;">이메일
+			</div>	
+
+		</div>
+		
+		<div>
+			<button class="btn btn-theme btn-block" type="button" id="btn02" style="margin-top:5%;"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
+		</div>
+			
+		</form>
+	</div>
+</div>
+
   </section>
 </body>
 
