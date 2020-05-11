@@ -14,7 +14,7 @@ public class springtest {
 	}
 	
 	@RequestMapping(params="method=index")
-	public String index() {
+	public String index() {	
 		return "WEB-INF\\views\\dashiosample\\index.jsp";
 	}
 }
