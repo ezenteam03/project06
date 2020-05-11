@@ -57,10 +57,10 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -69,18 +69,6 @@
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
                   </tr>
                 </tbody>
               </table>
