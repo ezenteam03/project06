@@ -3323,6 +3323,9 @@ ul.chat-available-user li a:hover {
     background: #4ECDC4;
     color: #fff;
     padding: 15px 0;
+    position:absolute;
+    bottom:0px;
+    width:100%;
 }
 
 .site-footer p {
