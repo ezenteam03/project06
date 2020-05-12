@@ -62,8 +62,7 @@
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right" style="padding-left:15px;"> 프로젝트 추가</i></h4>
-            <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
+	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
@@ -99,17 +98,6 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-                    <div class="btn-group" style="padding-left:15px;">
-	                	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							선택
-	                  	  <span class="caret"></span>
-	                  	  </button>
-		                  <ul class="dropdown-menu">
-		                    <li><a href="#">홍길동 과장</a></li>
-		                    <li><a href="#">신길동 부장</a></li>
-		                    <li><a href="#">고길동 대리</a></li>
-		                  </ul>
-	                </div>
                     <select class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
                     	<option>홍길동 과장</option>
                     	<option>신길동 부장</option>
