@@ -1,3 +1,14 @@
+DROP SEQUENCE pmsemp_seq;
+DROP SEQUENCE pmslog_seq;
+DROP SEQUENCE pmsproject_seq;
+DROP SEQUENCE pmstask_seq;
+DROP SEQUENCE pmstfile_seq;
+DROP SEQUENCE pmsnotice_seq;
+DROP SEQUENCE pmsissue_seq; 
+DROP SEQUENCE pmsreply_seq; 
+DROP SEQUENCE pmsmeeting_seq; 
+DROP SEQUENCE pmsbfile_seq; 
+
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY
@@ -84,6 +95,10 @@ ALTER TABLE PMSEMP
 		PRIMARY KEY (
 			eno
 		);
+	
+CREATE SEQUENCE pmsemp_seq
+START WITH 10000001
+INCREMENT BY 1;
 		
 ALTER TABLE PMSMEMBER
 	DROP
@@ -229,6 +244,10 @@ ALTER TABLE pmsproject
 		CONSTRAINT pmsproject_pdiv_ck
 		CHECK(pdiv IN(11,12,13,14));
 	
+CREATE SEQUENCE pmsproject_seq
+START WITH 1001
+INCREMENT BY 1;
+	
 ALTER TABLE PMSMEMBER
 	ADD
 		CONSTRAINT FK_PMSPROJECT_TO_PMSMEMBER
@@ -304,6 +323,10 @@ ALTER TABLE pmslog
 		CONSTRAINT pmslog_state_ck
 		CHECK(state IN(0,1));
 	
+CREATE SEQUENCE pmslog_seq
+START WITH 1
+INCREMENT BY 1;
+	
 ALTER TABLE PMSTASK
 	DROP
 		CONSTRAINT FK_PMSPROJECT_TO_PMSTASK
@@ -332,6 +355,7 @@ CREATE TABLE PMSTASK (
 	pno NUMBER NOT NULL, /* 프로젝트번호 */
 	refno NUMBER NOT NULL, /* 부모업무번호 */
 	tname VARCHAR2(100) NOT NULL, /* 업무명 */
+	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
 	sdate DATE NOT NULL, /* 시작일자 */
 	edate DATE NOT NULL, /* 종료일자 */
 	prog NUMBER NOT NULL, /* 진행율 */
@@ -350,6 +374,8 @@ COMMENT ON COLUMN PMSTASK.pno IS '프로젝트번호';
 COMMENT ON COLUMN PMSTASK.refno IS '부모업무번호';
 
 COMMENT ON COLUMN PMSTASK.tname IS '업무명';
+
+COMMENT ON COLUMN PMSTASK.detail IS '업무내용';
 
 COMMENT ON COLUMN PMSTASK.sdate IS '시작일자';
 
@@ -395,12 +421,16 @@ ALTER TABLE PMSTASK
 		)
 		REFERENCES PMSMEMBER (
 			mno
-		);	
+		);
 	
 ALTER TABLE pmstask
 	ADD
 		CONSTRAINT pmstask_tdiv_ck
 		CHECK(tdiv IN(21,22,23,24));
+	
+CREATE SEQUENCE pmstask_seq
+START WITH 1001
+INCREMENT BY 1;
 	
 ALTER TABLE PMSTFILE
 	DROP
@@ -458,6 +488,10 @@ ALTER TABLE PMSTFILE
 		REFERENCES PMSTASK (
 			tno
 		);
+	
+CREATE SEQUENCE pmstfile_seq
+START WITH 1
+INCREMENT BY 1;
 	
 ALTER TABLE PMSNOTICE
 	DROP
@@ -542,6 +576,10 @@ ALTER TABLE PMSNOTICE
 		REFERENCES PMSMEMBER (
 			mno
 		);
+	
+CREATE SEQUENCE pmsnotice_seq
+START WITH 1
+INCREMENT BY 1;
 	
 ALTER TABLE PMSMEETING
 	DROP
@@ -650,6 +688,10 @@ ALTER TABLE pmsmeeting
 		CONSTRAINT pmmeeting_mndiv_ck
 		CHECK(mndiv IN(31,32,33,34));
 	
+CREATE SEQUENCE pmsmeeting_seq
+START WITH 1
+INCREMENT BY 1;
+	
 ALTER TABLE PMSISSUE
 	DROP
 		CONSTRAINT FK_PMSPROJECT_TO_PMSISSUE
@@ -740,6 +782,10 @@ ALTER TABLE PMSISSUE
 			mno
 		);
 	
+CREATE SEQUENCE pmsissue_seq
+START WITH 1
+INCREMENT BY 1;
+	
 ALTER TABLE PMSREPLY
 	DROP
 		CONSTRAINT FK_PMSMEMBER_TO_PMSREPLY
@@ -818,6 +864,10 @@ ALTER TABLE PMSREPLY
 			ino
 		);
 	
+CREATE SEQUENCE pmsreply_seq
+START WITH 1
+INCREMENT BY 1;
+	
 ALTER TABLE PMSBFILE
 	DROP
 		CONSTRAINT FK_PMSMEETING_TO_PMSBFILE
@@ -893,6 +943,10 @@ ALTER TABLE PMSBFILE
 			ino
 		);
 	
+CREATE SEQUENCE pmsbfile_seq
+START WITH 1
+INCREMENT BY 1;
+	
 INSERT INTO pmscodes values(1,0,'사원권한');
 INSERT INTO pmscodes values(2,1,'CEO');
 INSERT INTO pmscodes values(3,1,'CTO');
@@ -914,3 +968,86 @@ INSERT INTO pmscodes values(31,30,'작성중');
 INSERT INTO pmscodes values(32,30,'결재신청');
 INSERT INTO pmscodes values(33,30,'반려');
 INSERT INTO pmscodes values(34,30,'결재완료');
+
+insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'CEO','010-8270-6064','Moon2017@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'CTO','010-0224-1025','MB2008@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'노무현',null,'상무','010-8586-8894','MH2003@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'김대중','개발1팀','부장','010-2175-9239','DJ1998@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'김영삼','개발2팀','부장','010-5762-1972','YS1993@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'노태우','개발3팀','부장','010-4127-6585','TW1988@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'전두환','개발3팀','차장','010-7714-8058','Tank1980@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'최규하','개발3팀','과장','010-6078-9450','Choi1979@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'박정희','개발3팀','대리','010-9665-6200','Yusin1963@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'윤보선','개발2팀','차장','010-3255-8985','Yoon1960@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'이승만','개발2팀','과장','010-1619-1914','FirstLee@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'김문수','개발3팀','대리','010-5206-7975','Imoonsu@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'유승민','개발3팀','사원','010-3570-8717','seongmin@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'추미애','개발1팀','차장','010-2415-2920','miae58@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'오세훈','개발1팀','과장','010-6002-7753','sehu61@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'안희정','개발1팀','대리','010-9589-3836','heejung65@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'나경원','개발2팀','대리','010-7954-1705','nabe28@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'박영선','개발1팀','대리','010-1543-2532','pys60@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'고승덕','개발3팀','사원','010-9905-5718','Sorry79@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'이은재','개발2팀','대리','010-7082-0084','Stepdown@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'정은경','개발1팀','사원','010-5446-3704','Corona44@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'홍준표','개발1팀','사원','010-9033-2939','RedJun54@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'김무성','개발1팀','사원','010-7397-9015','Moosung@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'이재명','개발2팀','사원','010-0987-9761','Gyeonggi11@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'심상정','개발1팀','사원','010-4574-7345','Justice3@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'안철수','개발3팀','사원','010-2936-6952','VirusAnn@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'문희상','개발2팀','사원','010-2378-8963','Mhs45@gmail.com');
+
+INSERT INTO pmsmember values(10000001,'1234qwer!',2,'010-8270-6064',null);
+INSERT INTO pmsmember values(10000003,'qwer1234!',3,'010-0224-1025',null);
+INSERT INTO pmsmember values(10000005,'1q2w3e4r!',4,'010-2175-9239',null);
+INSERT INTO pmsproject values(pmsproject_seq.nextval,to_date('2020-05-04','yyyy-mm-dd'),to_date('2020-06-08','yyyy-mm-dd'),'PMS시스템 개발','PMS 시스템을 개발하시오',NULL,11,10000005);
+INSERT INTO pmsmember values(10000007,'q1w2e3r4!',6,'010-4127-6585',null);
+INSERT INTO pmsmember values(10000008,'1q2w3e4r!',6,'010-7714-8058',null);
+INSERT INTO pmsmember values(10000010,'1q2w3e4r!',6,'010-9665-6200',null);
+INSERT INTO pmsmember values(10000013,'1q2w3e4r!',6,'010-5206-7975',null);
+INSERT INTO pmsmember values(10000015,'1q2w3e4r!',5,'010-2415-2920',1001);
+INSERT INTO pmsmember values(10000016,'1q2w3e4r!',5,'010-6002-7753',1001);
+INSERT INTO pmsmember values(10000017,'1q2w3e4r!',5,'010-9589-3836',1001);
+INSERT INTO pmsmember values(10000019,'1q2w3e4r!',5,'010-1543-2532',1001);
+INSERT INTO pmsmember values(10000020,'1q2w3e4r!',6,'010-9905-5718',null);
+INSERT INTO pmsmember values(10000021,'1q2w3e4r!',6,'010-7082-0084',null);
+INSERT INTO pmsmember values(10000022,'1q2w3e4r!',5,'010-5446-3704',1001);
+INSERT INTO pmsmember values(10000023,'1q2w3e4r!',5,'010-9033-2939',1001);
+INSERT INTO pmsmember values(10000024,'1q2w3e4r!',5,'010-7397-9015',1001);
+INSERT INTO pmsmember values(10000025,'1q2w3e4r!',6,'010-0987-9761',null);
+INSERT INTO pmsmember values(10000026,'1q2w3e4r!',6,'010-4574-7345',null);
+INSERT INTO pmsmember values(10000027,'1q2w3e4r!',6,'010-2936-6952',null);
+INSERT INTO pmsmember values(10000028,'1q2w3e4r!',6,'010-2378-8963',null);
+UPDATE pmsmember SET pno=1001 WHERE mno=10000005;
+
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000005);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085332','yyyymmddhh24miss'),to_date('20200503202532','yyyymmddhh24miss'),10000015);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085432','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000016);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085532','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000017);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085632','yyyymmddhh24miss'),to_date('20200503202132','yyyymmddhh24miss'),10000019);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000022);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085832','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000023);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000024);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085232','yyyymmddhh24miss'),null,10000005);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085332','yyyymmddhh24miss'),null,10000015);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085432','yyyymmddhh24miss'),null,10000016);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085532','yyyymmddhh24miss'),null,10000017);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmddhh24miss'),null,10000019);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
+
+insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
+insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트에 활용할 bootstrap template 투표','카카오톡 단체채팅방에 올라온 템플릿 후보 중 하나를 선택해 주세요. ',to_date('2020-05-04','yyyy-mm-dd'),null,20,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 6일 오후 1시 30분, 507호 강의실에서 ERD설계에 관한 회의가 있을 예정입니다. 회의 전까지 각자 맡은 파트에 대한 요구사항 정의서를 구글 스프레드 시트에 작성해주세요.',to_date('2020-05-04','yyyy-mm-dd'),null,25,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'5월5일 휴일 과제 공지','Git에 업로드된 PPT템플릿을 다운받아 화면설계서를 작성하시고, 각자 자기 폴더에 업로드 해주세요. ',to_date('2020-05-04','yyyy-mm-dd'),null,20,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'1주차 발표에 대한 피드백 회의 공지','5월 8일 오후 3시, 507호 강의실에서 1주차 발표에 대한 피드백이 있겠습니다.',to_date('2020-05-07','yyyy-mm-dd'),null,10,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'주말 과제 공지','피드백을 반영하여 PPT 파트 수정 후 GIT에 업로드하기. PMS에 대해 공부해오기(면접 대비)',to_date('2020-05-08','yyyy-mm-dd'),null,15,1001,10000005);
+insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 11일 오후 1시 30분, 507호 강의실에서 ERD 설계에 대한 회의가 있을 예정입니다.',to_date('2020-05-11','yyyy-mm-dd'),null,10,1001,10000005);
+
+
+SELECT * FROM pmsnotice;
