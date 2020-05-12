@@ -30,6 +30,9 @@
   <!-- Custom styles for this template 
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">-->
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
+  
+  <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 
   <!-- =======================================================
     Template Name: Dashio
@@ -38,7 +41,17 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 </head>
+<style>
+/* 글작성 */
+.ck.ck-editor{
+	min-width: 1000px;
+	
+}
+.ck-editor__editable{
+	min-height: 500px;
+}
 
+</style>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -65,7 +78,7 @@
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">내용</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                      <textarea class="form-control " id="editor" name="comment" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">
@@ -115,6 +128,13 @@
     <!--footer end-->
    
   </section>
+  <script>
+ClassicEditor
+.create( document.querySelector( '#editor' ) )
+.catch( error => {
+    console.error( error );
+} );
+</script>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
