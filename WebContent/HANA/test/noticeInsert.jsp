@@ -27,8 +27,8 @@
   <link href="${path}/Dashio/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
   <link href="${path}/Dashio/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
   <link rel="stylesheet" href="${path}/Dashio/lib/advanced-datatable/css/DT_bootstrap.css" />
-  <!-- Custom styles for this template -->
-  <link href="${path}/Dashio/css/style.css" rel="stylesheet">
+  <!-- Custom styles for this template 
+  <link href="${path}/Dashio/css/style.css" rel="stylesheet">-->
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
 
   <!-- =======================================================
