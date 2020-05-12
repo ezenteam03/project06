@@ -946,7 +946,7 @@ ALTER TABLE PMSBFILE
 CREATE SEQUENCE pmsbfile_seq
 START WITH 1
 INCREMENT BY 1;
-	
+--코드성 데이터	
 INSERT INTO pmscodes values(1,0,'사원권한');
 INSERT INTO pmscodes values(2,1,'CEO');
 INSERT INTO pmscodes values(3,1,'CTO');
@@ -968,7 +968,7 @@ INSERT INTO pmscodes values(31,30,'작성중');
 INSERT INTO pmscodes values(32,30,'결재신청');
 INSERT INTO pmscodes values(33,30,'반려');
 INSERT INTO pmscodes values(34,30,'결재완료');
-
+--사원정보
 insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'CEO','010-8270-6064','Moon2017@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'CTO','010-0224-1025','MB2008@naver.com');
@@ -997,7 +997,7 @@ insert into pmsemp values(pmsemp_seq.nextval,'이재명','개발2팀','사원','
 insert into pmsemp values(pmsemp_seq.nextval,'심상정','개발1팀','사원','010-4574-7345','Justice3@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'안철수','개발3팀','사원','010-2936-6952','VirusAnn@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'문희상','개발2팀','사원','010-2378-8963','Mhs45@gmail.com');
-
+--사용자정보(중간에 추가되는건 프로젝트 정보)
 INSERT INTO pmsmember values(10000001,'1234qwer!',2,'010-8270-6064',null);
 INSERT INTO pmsmember values(10000003,'qwer1234!',3,'010-0224-1025',null);
 INSERT INTO pmsmember values(10000005,'1q2w3e4r!',4,'010-2175-9239',null);
@@ -1020,7 +1020,7 @@ INSERT INTO pmsmember values(10000026,'1q2w3e4r!',6,'010-4574-7345',null);
 INSERT INTO pmsmember values(10000027,'1q2w3e4r!',6,'010-2936-6952',null);
 INSERT INTO pmsmember values(10000028,'1q2w3e4r!',6,'010-2378-8963',null);
 UPDATE pmsmember SET pno=1001 WHERE mno=10000005;
-
+--로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000005);
@@ -1039,7 +1039,7 @@ INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmd
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
-
+--공지사항 정보
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트에 활용할 bootstrap template 투표','카카오톡 단체채팅방에 올라온 템플릿 후보 중 하나를 선택해 주세요. ',to_date('2020-05-04','yyyy-mm-dd'),null,20,1001,10000005);
