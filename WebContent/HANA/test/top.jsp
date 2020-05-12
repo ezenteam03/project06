@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
@@ -379,6 +378,7 @@
 </body>
 
 </html>
+<<<<<<< HEAD
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -762,3 +762,5 @@
 
 </html>
 >>>>>>> 77473e0d39def6073786f5f7365fb20551f25e96
+=======
+>>>>>>> c6df7da7075b6d580b5790728ca6cae2d53caa89
