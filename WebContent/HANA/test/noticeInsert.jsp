@@ -51,30 +51,19 @@
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> Form Validations</h4>
+            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
                   <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-2">Name (required)</label>
+                    <label for="cname" class="control-label col-lg-2">제목</label>
                     <div class="col-lg-10">
                       <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
                     </div>
                   </div>
+                  
                   <div class="form-group ">
-                    <label for="cemail" class="control-label col-lg-2">E-Mail (required)</label>
-                    <div class="col-lg-10">
-                      <input class="form-control " id="cemail" type="email" name="email" required />
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <label for="curl" class="control-label col-lg-2">URL (optional)</label>
-                    <div class="col-lg-10">
-                      <input class="form-control " id="curl" type="url" name="url" />
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <label for="ccomment" class="control-label col-lg-2">Your Comment (required)</label>
+                    <label for="ccomment" class="control-label col-lg-2">내용</label>
                     <div class="col-lg-10">
                       <textarea class="form-control " id="ccomment" name="comment" required></textarea>
                     </div>
@@ -102,6 +91,28 @@
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
+    
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+        </div>
+        <a href="${path}/Dashio/form_validation.jsp#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->
    
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
