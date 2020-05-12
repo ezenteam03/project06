@@ -96,7 +96,7 @@
           </div>
         </div>
         <!-- /row -->
-
+		
 
         <!-- /row -->
       </section>
@@ -126,6 +126,7 @@
     </footer>
     <!--footer end-->
   </section>
+  
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -143,7 +144,7 @@
 
   <!--Contactform Validation-->
   <script src="${path}/Dashio/lib/php-mail-form/validate.js"></script>
-
+	
 </body>
 
 </html>
