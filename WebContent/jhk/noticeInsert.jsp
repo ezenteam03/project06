@@ -44,6 +44,9 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style>
+  	.control-label{font-size:1.3em;}
+  </style>
 </head>
 
 <body>
@@ -59,6 +62,7 @@
         <div class="row mt">
           <div class="col-lg-12">
             <h4><i class="fa fa-angle-right" style="padding-left:15px;"> 프로젝트 추가</i></h4>
+            <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
@@ -105,6 +109,11 @@
 		                    <li><a href="#">고길동 대리</a></li>
 		                  </ul>
 	                </div>
+                    <select class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
+                    	<option>홍길동 과장</option>
+                    	<option>신길동 부장</option>
+                    	<option>고길동 대리</option>
+                    </select>
                   </div>
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">프로젝트 개요</label>
@@ -135,6 +144,27 @@
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
+        <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+        </div>
+        <a href="${path}/Dashio/advanced_form_components.jsp#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
