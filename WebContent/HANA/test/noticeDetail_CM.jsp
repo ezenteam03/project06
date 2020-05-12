@@ -31,6 +31,8 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">-->
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   
+  <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 
   <!-- =======================================================
     Template Name: Dashio
@@ -40,7 +42,10 @@
   ======================================================= -->
 </head>
 <style>
-
+#sep{
+	float:left;}
+#sep1{
+	float:right;}
 </style>
 <body>
   <section id="container">
@@ -51,6 +56,144 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
+      
+      
+      <!-- FORM VALIDATION -->
+        <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
+            <div class="form-panel">
+              <div class=" form">
+                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+                  
+                  <div class="form-group ">
+                    <label for="cname" class="control-label col-lg-1">제목</label>
+                    <div class="col-lg-7">
+                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                    </div>
+                  </div>
+                  
+                    <div class="form-group ">
+                    <label for="cname" class="control-label col-lg-1">작성일</label>
+                    <div class="col-lg-7">
+                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                    </div>
+                  </div>
+                  
+                    <div class="form-group ">
+                    <label for="cname" class="control-label col-lg-1">내용</label>
+                    <div class="col-lg-7">
+                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                    </div>
+                  </div>
+                  
+                 
+                  
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme" type="submit">Save</button>
+                      <button class="btn btn-theme04" type="button">Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- /row -->
+      
+      
+      
+      
+      
+       <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
+            <br>
+            
+            <tr>
+            	<td><label class="control-label col-lg">제목1</label><input  class=" form-control1" id="cname" name="name" type="text" />11</td>
+            	<td><input class=" form-control1" id="cname" name="name" minlength="2" type="text" required />22</td>
+            </tr>
+            	
+            <tr>
+            	<td></td>
+            	<td></td>
+            </tr>
+            
+            
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- /row -->
+      
+      
+      
+
+ <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
+            <div class="form-panel">
+              <div class=" form">
+                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+                  
+                 <div id="ha"> 
+                  <div id="sep">
+	                  <div class="form-group ">
+	                    <label for="cname" class="control-label col-lg-2">제목1</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+	                    </div>
+	                  </div>
+	              </div>   
+	                
+	              <div id="sep1">   
+	                  <div class="form-group ">
+	                    <label for="cname" class="control-label col-lg-2">제목2</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+	                    </div>
+	                  </div>
+                  </div>
+                 </div>
+                  
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme" type="submit">수정</button>
+                      <button class="btn btn-theme04" type="button">삭제</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- /row -->
+
+<div class="row mt">
+          <div class="col-lg-12">
+            <div class="form-panel">
+              <h4 class="mb"><i class="fa fa-angle-right"></i> 공지사항</h4>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label for="cname" class="control-label col-lg-2">제목2</label>
+                  <input type="" class="form-control" id="" >
+                </div>
+                <div class="form-group">
+                  <label for="cname" class="control-label col-lg-2">제목2</label>
+                  <input type="" class="form-control" id="">
+                </div>
+              
+              </form>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
         
         
         
@@ -84,7 +227,13 @@
     <!--footer end-->
    
   </section>
-
+  <script>
+ClassicEditor
+.create( document.querySelector( '#editor' ) )
+.catch( error => {
+    console.error( error );
+} );
+</script>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>

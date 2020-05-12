@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -36,12 +37,21 @@
   <script src="${path}/a00_com/bootstrap.min.js"></script>
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
-  $(document).ready(function(){
-	  
-	 $("#regBtn").click(function(){		 
-		$(location).attr("href","${path}/PMSemp.do?method=insEmp") 
-	 }); 
-  });
+	  $(document).ready(function(){
+		  
+			 $("#regBtn").click(function(){		 
+				$(location).attr("href","${path}/PMSemp.do?method=insEmp") 
+			 }); 
+			 $("#pageSize").change(function(){
+				$("#curPage").val(1);
+				$("form").submit();
+			 });
+	  });
+	 function goPage(no){
+		 $("#curPage").val(no);
+		 $("form").submit();
+	 }
+
   </script>
 </head>
 
@@ -56,13 +66,18 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <table class="table table-hover">
+              <form:form class="form" commandName="bsch" method="post" >
+              <form:hidden path="curPage"/>
+              <form:hidden path="pageSize" value="15"/>
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>PMS사용자 목록</span>
+                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
+                					PMS사용자 목록  총 : ${bsch.count} 명</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
                 	</span>
                 </div>
+              </form:form>
               	<colgroup>
 					<col style="width:200px;"/>
 					<col style="width:200px;"/>
@@ -86,14 +101,20 @@
                   </tr>
                 </thead>
                 <tbody>
+         <!--   //	eno NUMBER NOT NULL, /* 사원번호 */
+				//	name VARCHAR2(30) NOT NULL, /* 이름 */
+				//	dept VARCHAR2(50), /* 부서명 */
+				//	grade VARCHAR2(50) NOT NULL, /* 직책 */
+				//	phone VARCHAR2(50) NOT NULL, /* 핸드폰 */
+				//	email VARCHAR2(50) NOT NULL /* 이메일 */ -->
                   <c:forEach var="emp" items="${elist}">
                   <tr>
-                    <td>${emp.PMSempno}</td>
-                    <td>${emp.PMSename}</td>
-                    <td>${emp.PMSmgr}</td>
-                    <td>${emp.PMSdept}</td>
-                    <td>${emp.PMSemail}</td>
-                    <td>${emp.PMStel}</td>
+                    <td>${emp.eno}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.grade}</td>
+                    <td>${emp.dept}</td>
+                    <td>${emp.email}</td>
+                    <td>${emp.phone}</td>
                     <td></td>
                     <td><input type="radio" name="select_user" id="" /></td>
                   </tr>
@@ -104,13 +125,16 @@
 	          <div align="center">
 			    <ul class="pagination pagination-sm">
 			      <li class="page-item disabled">
-			        <a class="page-link" href="#">&laquo;</a>
+			        <a class="page-link" href="javascript:goPage(${bsch.startBlock-1});">&laquo;</a>
 			      </li>
-			      <li class="page-item active">
-			        <a class="page-link" href="#">1</a>
-			      </li>
+			      <c:forEach var="cnt" begin="${bsch.startBlock}" end="${bsch.endBlock }">
+				      <li class="page-item active ${bsch.curPage==cnt?'active':''}">
+				        <a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a>
+				      </li>
+			      </c:forEach>
 			      <li class="page-item">
-			        <a class="page-link" href="#">&raquo;</a>
+			        <a class="page-link" href="javascript:goPage(${(bsch.endBlock==bsch.pageCount)?
+									bsch.endBlock:bsch.endBlock+1});">&raquo;</a>
 			      </li>
 			    </ul>
 			  </div>   

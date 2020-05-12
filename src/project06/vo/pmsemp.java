@@ -1,59 +1,61 @@
 package project06.vo;
 
 
-/*
-PMSempno NUMBER			NOT NULL,
-PMSename varchar2(40)	NULL,
-PMSdept  varchar2(40)	NULL,
-PMSmgr 	 varchar2(40)	NULL,
-PMStel	 varchar2(60)	NULL,
-PMSemail varchar2(100)	NULL
-);*/
+
+//	eno NUMBER NOT NULL, /* 사원번호 */
+//	name VARCHAR2(30) NOT NULL, /* 이름 */
+//	dept VARCHAR2(50), /* 부서명 */
+//	grade VARCHAR2(50) NOT NULL, /* 직책 */
+//	phone VARCHAR2(50) NOT NULL, /* 핸드폰 */
+//	email VARCHAR2(50) NOT NULL /* 이메일 */
+
 
 public class pmsemp {
-		private int PMSempno;
-		private String PMSename;
-		private String PMSdept;
-		private String PMSmgr;
-		private String PMStel;
-		private String PMSemail;
+		private int eno;
+		private String name;
+		private String dept;
+		private String grade;
+		private String phone;
+		private String email;
 		
-		public int getPMSempno() {
-			return PMSempno;
+		public int getEno() {
+			return eno;
 		}
-		public void setPMSempno(int pMSempno) {
-			PMSempno = pMSempno;
+		public void setEno(int eno) {
+			this.eno = eno;
 		}
-		public String getPMSename() {
-			return PMSename;
+		public String getName() {
+			return name;
 		}
-		public void setPMSename(String pMSename) {
-			PMSename = pMSename;
+		public void setName(String name) {
+			this.name = name;
 		}
-		public String getPMSdept() {
-			return PMSdept;
+		public String getDept() {
+			return dept;
 		}
-		public void setPMSdept(String pMSdept) {
-			PMSdept = pMSdept;
+		public void setDept(String dept) {
+			this.dept = dept;
 		}
-		public String getPMSmgr() {
-			return PMSmgr;
+		public String getGrade() {
+			return grade;
 		}
-		public void setPMSmgr(String pMSmgr) {
-			PMSmgr = pMSmgr;
+		public void setGrade(String grade) {
+			this.grade = grade;
 		}
-		public String getPMStel() {
-			return PMStel;
+		public String getPhone() {
+			return phone;
 		}
-		public void setPMStel(String pMStel) {
-			PMStel = pMStel;
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
-		public String getPMSemail() {
-			return PMSemail;
+		public String getEmail() {
+			return email;
 		}
-		public void setPMSemail(String pMSemail) {
-			PMSemail = pMSemail;
+		public void setEmail(String email) {
+			this.email = email;
 		}
+		
+
 		
 		
 }

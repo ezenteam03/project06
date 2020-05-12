@@ -2,8 +2,11 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
-<mapper namespace="project06\repository\pmsempRep.java">
+<mapper namespace="project06.repository.pmsempRep">
 <!-- 
+
+project06.repository.pmsempRep.pmsempList
+
 	// empMapper.xml과 연결 
 	// EmpRep ==> namspace명
 	// ArrayList<Emp> ==> ResultMap
@@ -22,12 +25,6 @@
 		SELECT *
 		FROM pmsemp
 		WHERE 1=1
-		<!-- <if test="ename !=null and ename != ''">
-		AND ename LIKE '%'||#{ename}||'%'
-		</if>
-		<if test="job !=null and job != ''">
-		AND job LIKE '%'||#{job}||'%'	
-		</if> -->
  	</select>
 
 </mapper>	
