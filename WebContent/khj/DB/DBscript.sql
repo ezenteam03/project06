@@ -1,12 +1,13 @@
 CREATE TABLE PMSemp (
-PMSemp	 NUMBER			NOT NULL,
+PMSempno NUMBER			NOT NULL,
 PMSename varchar2(40)	NULL,
 PMSdept  varchar2(40)	NULL,
 PMSmgr 	 varchar2(40)	NULL,
-PMSphone varchar2(60)	NULL,
+PMStel	 varchar2(60)	NULL,
 PMSemail varchar2(100)	NULL
 );
-SELECT * FROM PMSemp;
+SELECT * FROM PMSemp
+WHERE 1=1;
 
 CREATE SEQUENCE PMSemp_seq
 INCREMENT BY 1
