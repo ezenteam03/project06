@@ -256,7 +256,7 @@
           </li>
           <li>
             <a href="${path}/Dashio/inbox.jsp">
-              <i class="fa fa-envelope"></i>
+              <i class="fa fa-group"></i>
               <span>인적자원관리(팀원 비활성화) </span>
               </a>
           </li>        
