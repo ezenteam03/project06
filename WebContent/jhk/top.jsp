@@ -48,6 +48,7 @@
 </head>
 
 <body>
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -57,7 +58,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="${path}/Dashio/index.jsp" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="${path}/Dashio/index.jsp" class="logo"><b>Project<span>프로젝트명</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -273,9 +274,9 @@
               <span>UI Elements</span>
               </a>
             <ul class="sub">
-              <li><a href="${path}/Dashio/general.jsp">테스트01</a></li>
-              <li><a href="${path}/Dashio/buttons.jsp">테스트02</a></li>
-              <li><a href="${path}/Dashio/panels.jsp">테스트03</a></li>
+              <li><a href="${path}/Dashio/general.jsp">General</a></li>
+              <li><a href="${path}/Dashio/buttons.jsp">Buttons</a></li>
+              <li><a href="${path}/Dashio/panels.jsp">Panels</a></li>
               <li><a href="${path}/Dashio/font_awesome.jsp">Font Awesome</a></li>
             </ul>
           </li>
@@ -374,7 +375,7 @@
       </div>
     </aside>
     <!--sidebar end-->
-
+  </section>
 </body>
 
 </html>

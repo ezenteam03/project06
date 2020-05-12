@@ -51,6 +51,7 @@
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 입력</h4>
               <form class="form-horizontal style-form" method="get">
+              <!-- 사원번호 HIDDEN처리 (sequence처리 -->
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">사원번호</label>
                   <div class="col-sm-10">
@@ -85,24 +86,6 @@
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control">
-                  </div>
-                </div>
-				<div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">비밀번호</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="focusedInput" type="text" value="" placeholder="*PMS등록 시 입력">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">희망 연락처</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="focusedInput" type="text" value="" placeholder="*PMS등록 시 입력">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">프로젝트번호</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="focusedInput" type="text" value="" placeholder="*PMS등록 시 입력">
                   </div>
                 </div>
 	            <div class="" style="text-align:right;">
