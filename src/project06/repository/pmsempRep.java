@@ -1,4 +1,4 @@
-package project06.repository.khj;
+package project06.repository;
 
 import java.util.ArrayList;
 

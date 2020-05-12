@@ -1,11 +1,11 @@
-package project06.controller.khj;
+package project06.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import project06.service.khj.pmsempService;
+import project06.service.pmsempService;
 import project06.vo.pmsemp;
 
 @Controller
