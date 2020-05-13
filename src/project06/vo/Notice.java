@@ -1,5 +1,6 @@
 package project06.vo;
 
+import java.util.Date;
 
 //nno NUMBER NOT NULL, /* 공지번호 */
 //title VARCHAR2(100) NOT NULL, /* 제목 */
@@ -14,12 +15,11 @@ public class Notice {
 	private int nno;
 	private String title;
 	private String detail;
-	private String date;
-	private String modi;
-	private int view;
-	private int prono;
-	private int wrino;
-	
+	private Date wdate;
+	private Date chdate;
+	private int views;
+	private int pno;
+	private int mno;
 	public int getNno() {
 		return nno;
 	}
@@ -38,40 +38,35 @@ public class Notice {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public String getDate() {
-		return date;
+	public Date getWdate() {
+		return wdate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setWdate(Date wdate) {
+		this.wdate = wdate;
 	}
-	public String getModi() {
-		return modi;
+	public Date getChdate() {
+		return chdate;
 	}
-	public void setModi(String modi) {
-		this.modi = modi;
+	public void setChdate(Date chdate) {
+		this.chdate = chdate;
 	}
-	public int getView() {
-		return view;
+	public int getViews() {
+		return views;
 	}
-	public void setView(int view) {
-		this.view = view;
+	public void setViews(int views) {
+		this.views = views;
 	}
-	public int getProno() {
-		return prono;
+	public int getPno() {
+		return pno;
 	}
-	public void setProno(int prono) {
-		this.prono = prono;
+	public void setPno(int pno) {
+		this.pno = pno;
 	}
-	public int getWrino() {
-		return wrino;
+	public int getMno() {
+		return mno;
 	}
-	public void setWrino(int wrino) {
-		this.wrino = wrino;
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 	
-	
-	
-	
-	
-
 }
