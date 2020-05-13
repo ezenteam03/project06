@@ -44,16 +44,35 @@
   ======================================================= -->
 </head>
 <style>
-
-.test1{
+/* 테이블  */
+	
+#all{
+	padding-left:8%;
+	align: center;
+}	
+	
+table td {
+	padding: 20px;
+	vertical-align: center;
+	border-bottom: 1px solid #ccc;
+}
+	
+table{
 	border-collapse:collapse;
-	padding: 100px;
+	width: 90%;
+	height: 300px
 }
 
-#sep{
-	float:left;}
-#sep1{
-	float:right;}
+table th{
+	background-color:#D0EEEC;
+	width: 10%;
+	font-weight: bold;
+	text-align: center;
+	padding:20px;
+}
+	
+
+
 </style>
 <body>
   <section id="container">
@@ -65,54 +84,34 @@
     <section id="main-content">
       <section class="wrapper">
   
-         <!-- FORM VALIDATION -->
-        <div class="row mt">
-          <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
-            <br>
-            <div class="form-panel">
-              <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="">
-                  
-                  <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-1">제목</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="" name="" minlength="2" type="text" required />
-                    </div>
-                  </div>
-                  
-                  <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-1">작성일</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="" name="" type="text" required />
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                 	<label for="cname" class="control-label col-lg-1">내용</label>
-                 	<div class="col-lg-10">
-                		<textarea class="form-control" name="" rows="10" ></textarea>
-                 	</div>
-               	  </div>
-                  
-                  <div class="form-group">
+  <div id="all">
+  	<br>
+  	<h4><i class="fa fa-angle-right"></i> 공지사항</h4>
+     <br><br>
+		<table border>
+			<tr>
+				<th>제목</th>
+				<td id="n_title" colspan="3">123</td>
+			</tr>
+			<tr>
+				<th>작성일</th>
+				<td id="n_view">123</td>
+				<th>조회수</th>
+				<td id="n_date">123</td>
+			</tr>			
+			<tr>
+				<th rowspan="10">상세내용</th>
+				<td id="" rowspan="10" colspan="3">123</td>
+			</tr>			
+		</table>
+		<br><br>
+		<div class="form-group">
                     <div class="col-lg-offset-5 col-lg-5">
-                      <button class="btn btn-theme" type="submit">수정</button>
-                      <button class="btn btn-theme04" type="button">삭제</button>
+                      <button class="btn btn-theme  " type="submit">수정</button>
+                      <button class="btn btn-theme04 " type="button">삭제</button>
                     </div>
                   </div>
-                </form>
-              </div>
-            </div>
-            <!-- /form-panel -->
-          </div>
-          <!-- /col-lg-12 -->
-        </div>
-        <!-- /row -->
-      
-      
-  
-      
+</div>
     
       </section>
       <!-- /wrapper -->
