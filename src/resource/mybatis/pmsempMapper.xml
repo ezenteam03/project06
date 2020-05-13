@@ -5,9 +5,9 @@
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT *
-		FROM pmsemp
-		WHERE 1=1
+	SELECT * FROM pmsemp
+	WHERE NOT grade LIKE '%'||'CEO'||'%'
+	AND NOT grade LIKE '%'||'CTO'||'%'
  	</select>
  	
 <!-- 	<select id="totCnt" resultType="int" parameterType="bsch">
@@ -28,4 +28,17 @@
 		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
 		 					#{grade},#{phone},#{email})
 	</insert>
+	
+	<update id="updatepmsemp1" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=3
+		WHERE mno=#{eno}
+	</update>
+	
+	<update id="updatepmsemp2" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=6
+		WHERE mdiv=3
+	</update>
+	
 </mapper>	

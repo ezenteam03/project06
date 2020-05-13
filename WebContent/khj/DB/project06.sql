@@ -69,11 +69,7 @@ CREATE TABLE PMSEMP (
 	phone VARCHAR2(50) NOT NULL, /* 핸드폰 */
 	email VARCHAR2(50) NOT NULL /* 이메일 */
 );
-
-SELECT * FROM pmsemp
-WHERE NOT grade LIKE '%'||'CEO'||'%'
-AND NOT grade LIKE '%'||'CTO'||'%';
-
+SELECT * FROM pmsemp;
 
 COMMENT ON TABLE PMSEMP IS '사원정보';
 
@@ -974,9 +970,9 @@ INSERT INTO pmscodes values(32,30,'결재신청');
 INSERT INTO pmscodes values(33,30,'반려');
 INSERT INTO pmscodes values(34,30,'결재완료');
 --사원정보
-insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'CEO','010-8270-6064','Moon2017@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','Moon2017@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
-insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'CTO','010-0224-1025','MB2008@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'기술이사','010-0224-1025','MB2008@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'노무현',null,'상무','010-8586-8894','MH2003@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'김대중','개발1팀','부장','010-2175-9239','DJ1998@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'김영삼','개발2팀','부장','010-5762-1972','YS1993@naver.com');
@@ -1024,9 +1020,18 @@ INSERT INTO pmsmember values(10000025,'1q2w3e4r!',6,'010-0987-9761',null);
 INSERT INTO pmsmember values(10000026,'1q2w3e4r!',6,'010-4574-7345',null);
 INSERT INTO pmsmember values(10000027,'1q2w3e4r!',6,'010-2936-6952',null);
 INSERT INTO pmsmember values(10000028,'1q2w3e4r!',6,'010-2378-8963',null);
-UPDATE pmsmember 
-SET mdiv=3 
-WHERE mno=10000005;
+UPDATE pmsmember SET pno=1001 WHERE mno=10000005;
+SELECT * FROM pmsmember;
+-- ceo2, cto3, pm4, 팀원5, 구분없음6
+UPDATE pmsmember
+SET mdiv=3
+WHERE mno=10000003;
+
+UPDATE pmsmember
+SET mdiv=6
+WHERE mdiv=3;
+
+SELECT * FROM pmsemp;
 --로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
@@ -1055,6 +1060,12 @@ insert into pmsnotice values(pmsnotice_seq.nextval,'5월5일 휴일 과제 공�
 insert into pmsnotice values(pmsnotice_seq.nextval,'1주차 발표에 대한 피드백 회의 공지','5월 8일 오후 3시, 507호 강의실에서 1주차 발표에 대한 피드백이 있겠습니다.',to_date('2020-05-07','yyyy-mm-dd'),null,10,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'주말 과제 공지','피드백을 반영하여 PPT 파트 수정 후 GIT에 업로드하기. PMS에 대해 공부해오기(면접 대비)',to_date('2020-05-08','yyyy-mm-dd'),null,15,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 11일 오후 1시 30분, 507호 강의실에서 ERD 설계에 대한 회의가 있을 예정입니다.',to_date('2020-05-11','yyyy-mm-dd'),null,10,1001,10000005);
-
+-- 회의록 입력
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'프로젝트 주제 선정','pms와 다른 주제들 중 이번 프로젝트로 진행할 주제 선정','나이키 등 의류 쇼핑몰&지점관리 시스템',null,15,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표,김무성',34,10000005,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'프로젝트 역할 분담','프로젝트에서 각자 담당할 part 역할 분담 및 백업/협업 계획 수립','역할 분담 완료',null,20,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표,김무성',34,10000015,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'bootstrap template 결정','프로젝트에 활용할 bootstrap template 비교/논의 및 결정','선정완료',null,15,to_date('2020-05-05','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표',34,10000017,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','요구사항정의서와 화면 설계를 바탕으로 ERD 설계','러프한 ERD 개요 설계',null,20,to_date('2020-05-06','yyyy-mm-dd'),null,to_date('2020-05-06','yyyy-mm-dd'),'507호','김대중,추미애,안희정,박영선,정은경,김무성',32,10000016,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 개선방안논의','발표에 대한 피드백 확인 및 자체 회의를 통한 프로젝트 개선방향 및 추가로 프로젝트에 필요한 기능 논의','주말을 활용하여 결정된 사안에 대해 각자 업무 처리 후 월요일에 다시 논의',null,17,to_date('2020-05-09','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정',32,10000015,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
 
 SELECT * FROM pmsnotice;
