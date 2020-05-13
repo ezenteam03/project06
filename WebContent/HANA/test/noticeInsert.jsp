@@ -60,7 +60,7 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper">
+      <section class="wrapper">	
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
