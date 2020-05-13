@@ -9,7 +9,8 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
+ 
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -34,6 +35,7 @@
   <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script> 
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 
+
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -42,6 +44,12 @@
   ======================================================= -->
 </head>
 <style>
+
+.test1{
+	border-collapse:collapse;
+	padding: 100px;
+}
+
 #sep{
 	float:left;}
 #sep1{
@@ -56,6 +64,108 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
+      
+      <br>
+      <form id="" method="post" align="">
+
+	<table class="test1">
+		<tr>
+			<th width="10%" style="text-align:center;">제목</th>
+			<td id="id" colspan="4" style="text-align:left;">111</td>
+		</tr>
+		
+		<tr>
+			<th style="text-align:center;">작성일</th>
+			<td id="id" style="text-align:left;">222</td>
+			
+			<th style="text-align:center;">조회수</th>
+			<td id="id" style="text-align:left;">333</td>
+		</tr>			
+			
+		<tr>
+			<th style="text-align:center;">상세내용</th>
+			<td id="id" colspan="4" style="text-align:left;">444</td>
+		</tr>			
+	</table>
+	
+<br>
+	<input type="hidden" name="bproc"/>
+	<input type="hidden" name="num"/>
+	
+</form>
+      
+      
+      
+      
+      <div class="ha">
+		<form method="post">
+			<div>	
+		      <div class="input-group-prepend ">
+			   <span class="input-group-text ">글번호</span>
+		      </div>
+		         <input name="no" class="form-control" value=""/>	
+		<div class="input-group-prepend">
+			<span class="input-group-text">상위글번호</span>
+		</div>
+		<input name="refno" class="form-control" 
+			 value="" />	
+	</div>	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="input-group-text">작 성 자</span>
+		</div>
+		<input name="writer" class="form-control" 
+			value="" 
+			placeholder="작성자입력하세요" />	
+		<div class="input-group-prepend">
+			<span class="input-group-text">조회수</span>
+		</div>
+		<input  class="form-control" 
+			 value="" />	
+	</div>		
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">제 목</span>
+		</div>
+		<input name="title" class="form-control"
+			value=""  
+			placeholder="제목입력하세요" />	
+		 
+	</div>  	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="input-group-text">등록일</span>
+		</div>
+		<input class="form-control" 
+			value=""/>	
+		<div class="input-group-prepend">
+			<span class="input-group-text">수정일</span>
+		</div>
+		<input class="form-control" 
+			value="" />	
+	</div>			
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">내 용</span>
+		</div>
+		<textarea name="content" rows="10" 
+			class="form-control" 
+			placeholder="내용입력하세요" >${board.content}</textarea>		 
+	</div> 
+
+	<div style="text-align:right;">
+		<input type="button" class="btn btn-info"
+			value="수정" id="uptBtn"/>
+		<input type="button" class="btn btn-danger"
+			value="삭제" id="delBtn"/>		
+		<input type="button" class="btn btn-warning"
+			value="답글" id="reBtn"/>					
+		<input type="button" class="btn btn-success"
+			value="조회 화면으로" id="goMain"/>
+	</div>
+	</form>
+</div>	
+      
       
       
       <!-- FORM VALIDATION -->
@@ -227,13 +337,12 @@
     <!--footer end-->
    
   </section>
+  
   <script>
-ClassicEditor
-.create( document.querySelector( '#editor' ) )
-.catch( error => {
-    console.error( error );
-} );
+
+
 </script>
+ 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
