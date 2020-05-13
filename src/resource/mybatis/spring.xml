@@ -6,9 +6,11 @@
 		 <!-- XXXMapper.xml에서 간편하게 사용하기 위해서 선언..  -->
 		 <!-- 사원리스트 불러오기 -->
 		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/> 
+		 <typeAlias alias="chart" type="project06.vo.Chart"/> 
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
 		 <mapper resource="resource/mybatis/pmsempMapper.xml"/> 
+		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 	</mappers>
 </configuration>
