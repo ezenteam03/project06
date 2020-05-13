@@ -38,6 +38,18 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 </head>
+<style>
+#all{
+	padding:2%;
+}
+
+.num {width:15%;}
+.title {width:60%;}
+.date {width:15%;}
+.cnt {width:10%;}
+
+
+</style>
 
 <body>
   <section id="container">
@@ -48,6 +60,8 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
+        
+       <div id="all">
         <div class="row">
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
@@ -57,10 +71,10 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
+                    <th class="num">번호</th>
+                    <th class="title">제목</th>
+                    <th class="date">작성일</th>
+                    <th class="cnt">조회수</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,7 +97,7 @@
         <br>
         <!-- c:if 어쩌고-->
           <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
-        
+    </div>
      
         
    </section>
