@@ -40,7 +40,7 @@
 	  $(document).ready(function(){
 		  
 			 $("#regBtn").click(function(){		 
-				$(location).attr("href","${path}/PMSemp.do?method=insEmp") 
+				$(location).attr("href","${path}/PMSemp.do?method=insForm") 
 			 }); 
 			 $("#pageSize").change(function(){
 				$("#curPage").val(1);
@@ -66,18 +66,16 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <table class="table table-hover">
-              <form:form class="form" commandName="bsch" method="post" >
-              <form:hidden path="curPage"/>
-              <form:hidden path="pageSize" value="15"/>
+              <form method="post">
                 <div>
                 	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
                 					PMS사용자 목록  총 : ${bsch.count} 명</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
-	                	<input type="button" class="sch-btn" value="Search" />
+	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
                 </div>
-              </form:form>
+              </form>
               	<colgroup>
 					<col style="width:200px;"/>
 					<col style="width:200px;"/>
@@ -101,12 +99,6 @@
                   </tr>
                 </thead>
                 <tbody>
-         <!--   //	eno NUMBER NOT NULL, /* 사원번호 */
-				//	name VARCHAR2(30) NOT NULL, /* 이름 */
-				//	dept VARCHAR2(50), /* 부서명 */
-				//	grade VARCHAR2(50) NOT NULL, /* 직책 */
-				//	phone VARCHAR2(50) NOT NULL, /* 핸드폰 */
-				//	email VARCHAR2(50) NOT NULL /* 이메일 */ -->
                   <c:forEach var="emp" items="${elist}">
                   <tr>
                     <td>${emp.eno}</td>
@@ -127,11 +119,9 @@
 			      <li class="page-item disabled">
 			        <a class="page-link" href="javascript:goPage(${bsch.startBlock-1});">&laquo;</a>
 			      </li>
-			      <c:forEach var="cnt" begin="${bsch.startBlock}" end="${bsch.endBlock }">
 				      <li class="page-item active ${bsch.curPage==cnt?'active':''}">
-				        <a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a>
+				        <a class="page-link" href="javascript:goPage(${cnt})">1</a>
 				      </li>
-			      </c:forEach>
 			      <li class="page-item">
 			        <a class="page-link" href="javascript:goPage(${(bsch.endBlock==bsch.pageCount)?
 									bsch.endBlock:bsch.endBlock+1});">&raquo;</a>

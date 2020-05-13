@@ -17,13 +17,20 @@ public class pmsempCtrl {
 	
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
 	// http://localhost:5080/project06_git/PMSemp.do?method=insEmp
+	// 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("bsch") pmsemp sch, Model d) {
+	public String list(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
-	@RequestMapping(params="method=insEmp")
+	// 사원추가 이동
+	@RequestMapping(params="method=insForm")
 	public String insertForm() {
+		return "WEB-INF\\views\\main\\empReg.jsp";
+	}
+	@RequestMapping(params="method=insert")
+	public String insert(pmsemp insert) {
+		service.insert(insert);
 		return "WEB-INF\\views\\main\\empReg.jsp";
 	}
 }
