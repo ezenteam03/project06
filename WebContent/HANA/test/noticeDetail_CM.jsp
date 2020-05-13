@@ -82,7 +82,7 @@
                   
                     <div class="form-group ">
                     <label for="cname" class="control-label col-lg-1">내용</label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7">                                                                                                                                                                                                                                                                                                                                   
                       <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
                     </div>
                   </div>
