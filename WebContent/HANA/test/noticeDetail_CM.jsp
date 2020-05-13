@@ -65,106 +65,12 @@
     <section id="main-content">
       <section class="wrapper">
       
-      <br>
-      <form id="" method="post" align="">
 
-	<table class="test1">
-		<tr>
-			<th width="10%" style="text-align:center;">제목</th>
-			<td id="id" colspan="4" style="text-align:left;">111</td>
-		</tr>
-		
-		<tr>
-			<th style="text-align:center;">작성일</th>
-			<td id="id" style="text-align:left;">222</td>
-			
-			<th style="text-align:center;">조회수</th>
-			<td id="id" style="text-align:left;">333</td>
-		</tr>			
-			
-		<tr>
-			<th style="text-align:center;">상세내용</th>
-			<td id="id" colspan="4" style="text-align:left;">444</td>
-		</tr>			
-	</table>
-	
-<br>
-	<input type="hidden" name="bproc"/>
-	<input type="hidden" name="num"/>
-	
-</form>
       
       
       
       
-      <div class="ha">
-		<form method="post">
-			<div>	
-		      <div class="input-group-prepend ">
-			   <span class="input-group-text ">글번호</span>
-		      </div>
-		         <input name="no" class="form-control" value=""/>	
-		<div class="input-group-prepend">
-			<span class="input-group-text">상위글번호</span>
-		</div>
-		<input name="refno" class="form-control" 
-			 value="" />	
-	</div>	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend">
-			<span class="input-group-text">작 성 자</span>
-		</div>
-		<input name="writer" class="form-control" 
-			value="" 
-			placeholder="작성자입력하세요" />	
-		<div class="input-group-prepend">
-			<span class="input-group-text">조회수</span>
-		</div>
-		<input  class="form-control" 
-			 value="" />	
-	</div>		
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">제 목</span>
-		</div>
-		<input name="title" class="form-control"
-			value=""  
-			placeholder="제목입력하세요" />	
-		 
-	</div>  	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend">
-			<span class="input-group-text">등록일</span>
-		</div>
-		<input class="form-control" 
-			value=""/>	
-		<div class="input-group-prepend">
-			<span class="input-group-text">수정일</span>
-		</div>
-		<input class="form-control" 
-			value="" />	
-	</div>			
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">내 용</span>
-		</div>
-		<textarea name="content" rows="10" 
-			class="form-control" 
-			placeholder="내용입력하세요" >${board.content}</textarea>		 
-	</div> 
-
-	<div style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="수정" id="uptBtn"/>
-		<input type="button" class="btn btn-danger"
-			value="삭제" id="delBtn"/>		
-		<input type="button" class="btn btn-warning"
-			value="답글" id="reBtn"/>					
-		<input type="button" class="btn btn-success"
-			value="조회 화면으로" id="goMain"/>
-	</div>
-	</form>
-</div>	
+  
       
       
       
@@ -172,32 +78,36 @@
         <div class="row mt">
           <div class="col-lg-12">
             <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
+            <br>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
                   
                   <div class="form-group ">
                     <label for="cname" class="control-label col-lg-1">제목</label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-5">
                       <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
                     </div>
                   </div>
                   
-                    <div class="form-group ">
+                    
+                  
+                  <div class="form-group ">
                     <label for="cname" class="control-label col-lg-1">작성일</label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-5">
                       <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
                     </div>
                   </div>
                   
-                    <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-1">내용</label>
-                    <div class="col-lg-7">                                                                                                                                                                                                                                                                                                                                   
-                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
-                    </div>
-                  </div>
+                   
                   
-                 
+                 <div class="form-group">
+                 <label for="cname" class="control-label col-lg-1">내용</label>
+                 <div class="col-lg-5">
+                	<textarea class="form-control" name="message" rows="10" ></textarea>
+                 </div>
+               	 <div class="validate"></div>
+              	</div>
                   
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
@@ -218,93 +128,7 @@
       
       
       
-       <div class="row mt">
-          <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
-            <br>
-            
-            <tr>
-            	<td><label class="control-label col-lg">제목1</label><input  class=" form-control1" id="cname" name="name" type="text" />11</td>
-            	<td><input class=" form-control1" id="cname" name="name" minlength="2" type="text" required />22</td>
-            </tr>
-            	
-            <tr>
-            	<td></td>
-            	<td></td>
-            </tr>
-            
-            
-          </div>
-          <!-- /col-lg-12 -->
-        </div>
-        <!-- /row -->
-      
-      
-      
-
- <div class="row mt">
-          <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> 공지사항</h4>
-            <div class="form-panel">
-              <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
-                  
-                 <div id="ha"> 
-                  <div id="sep">
-	                  <div class="form-group ">
-	                    <label for="cname" class="control-label col-lg-2">제목1</label>
-	                    <div class="col-lg-10">
-	                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
-	                    </div>
-	                  </div>
-	              </div>   
-	                
-	              <div id="sep1">   
-	                  <div class="form-group ">
-	                    <label for="cname" class="control-label col-lg-2">제목2</label>
-	                    <div class="col-lg-10">
-	                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
-	                    </div>
-	                  </div>
-                  </div>
-                 </div>
-                  
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">수정</button>
-                      <button class="btn btn-theme04" type="button">삭제</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- /form-panel -->
-          </div>
-          <!-- /col-lg-12 -->
-        </div>
-        <!-- /row -->
-
-<div class="row mt">
-          <div class="col-lg-12">
-            <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> 공지사항</h4>
-              <form class="form-inline" role="form">
-                <div class="form-group">
-                  <label for="cname" class="control-label col-lg-2">제목2</label>
-                  <input type="" class="form-control" id="" >
-                </div>
-                <div class="form-group">
-                  <label for="cname" class="control-label col-lg-2">제목2</label>
-                  <input type="" class="form-control" id="">
-                </div>
-              
-              </form>
-            </div>
-            <!-- /form-panel -->
-          </div>
-          <!-- /col-lg-12 -->
-        </div>
-        
+     
         
         
         
