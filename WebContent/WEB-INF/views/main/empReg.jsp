@@ -38,7 +38,20 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-	  
+	 var isReg="${param.name}";
+	 // name이 공백이 아닐 때
+	 if(isReg!=""){
+		 if(!confirm("등록 완료하였습니다\n계속 등록하시겠습니까?")){
+			 $(location).attr("href","${path}/PMSemp.do?method=list")
+		 }
+	 }
+	 // 등록 버튼
+	 $("#regBtn").click(function(){
+		if(confirm("등록합니다")){
+			$("form").submit();
+		} 
+	 });
+	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
 		$(location).attr("href","${path}/PMSemp.do?method=list") 
 	 }); 
@@ -62,47 +75,50 @@
           <div class="col-lg-12">
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 입력</h4>
-              <form class="form-horizontal style-form" method="get">
+              <form class="form-horizontal style-form" 
+              method="post" action="${path}/PMSemp.do?method=insert">
               <!-- 사원번호 HIDDEN처리 (sequence처리 -->
-                <div class="form-group">
+<%--                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">사원번호</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" value="${pmsemp.eno}" class="form-control">
                   </div>
-                </div>
+                </div> --%>
+
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="name" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="dept" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="grade" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">핸드폰</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="phone" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="email" class="form-control">
                   </div>
                 </div>
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
-			           <button type="button" class="btn btn-success" style="margin-right:20px;">등록</button>
+			           <button type="button" class="btn btn-success" id="regBtn" 
+			           			style="margin-right:20px;">등록</button>
 			           <button type="button" class="btn btn-warning" id="preBtn"
 			           			style="margin-right:20px;">취소</button>
 		           </div>

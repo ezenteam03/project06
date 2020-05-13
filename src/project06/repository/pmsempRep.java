@@ -11,7 +11,5 @@ import project06.vo.pmsempSch;
 public interface pmsempRep {
 	public ArrayList<pmsemp> pmsempList(pmsemp sch);
 	
-	public int totCnt(pmsempSch sch);
-	
-	public ArrayList<pmsempSch> pageList(pmsempSch sch);
+	public void insert(pmsemp ins);
 }
