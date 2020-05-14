@@ -17,15 +17,15 @@ public class pmsemp {
 		private String grade;
 		private String phone;
 		private String email;
-		private int mdiv;
 		private String cname;
+		private int pno;
 		
-
-		public int getMdiv() {
-			return mdiv;
+		
+		public int getPno() {
+			return pno;
 		}
-		public void setMdiv(int mdiv) {
-			this.mdiv = mdiv;
+		public void setPno(int pno) {
+			this.pno = pno;
 		}
 		public String getCname() {
 			return cname;

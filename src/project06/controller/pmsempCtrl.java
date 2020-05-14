@@ -17,12 +17,18 @@ public class pmsempCtrl {
 	
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
 	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
+	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
 	public String list(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
+	}
+	@RequestMapping(params="method=delForm")
+	public String pmlist(pmsemp sch, Model d) {
+		d.addAttribute("pmdlist", service.pmempList(sch));
+		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
 	// 사원추가 이동
 	@RequestMapping(params="method=insForm")
