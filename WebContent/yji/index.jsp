@@ -57,17 +57,17 @@
             </div>
             <div class="custom-bar-chart" style="height:180px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>PM 김대중</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                   <span class="sr-only">40% Complete (success)</span>
                 </div>
               </div>
             	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-06-08 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
             </div>
             <div class="border-head">
               <h3>세부 업무 현황</h3>
@@ -78,13 +78,13 @@
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                   <span class="sr-only">100% Complete (success)</span>
                 </div>
               </div>
               	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-08 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
               <br>
               <br>
               <br>
@@ -93,13 +93,13 @@
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                   <span class="sr-only">100% Complete (warning)</span>
                 </div>
               </div>
               	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-12 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-12 마감</h4></div>
               <br>
               <br>
               <br>
@@ -108,13 +108,13 @@
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
                   <span class="sr-only">50% Complete (warning)</span>
                 </div>
               </div>
               	<div width="49%" style="float:left;margin-left:50px;"><h4>50% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-08 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
               <br>
               <br>
               <br>
@@ -123,13 +123,13 @@
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
                   <span class="sr-only">100% Complete (warning)</span>
                 </div>
               </div>
               <div width="49%" style="float:left;margin-left:50px;"><h4>10% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-22 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-22 마감</h4></div>
               <br>
               <br>
               <br>
@@ -138,13 +138,13 @@
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;">
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                   <span class="sr-only">100% Complete (warning)</span>
                 </div>
               </div>
               	<div width="49%" style="float:left;margin-left:50px;"><h4>시작 전</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4>2020-06-08 마감</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
               <br>
               <br>
               <br>
@@ -156,157 +156,135 @@
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
-          	<h4><i class="fa fa-angle-right"></i> Basic Table</h4>
+          	<h4><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>제목</th>
+                    <th style="width:70px;">작성자</th>
+                    <th style="width:70px;">작성일</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>8</td>
+                    <td>회의공지</td>
+                    <td>김대중</td>
+                    <td>3일전</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>주말 과제 공지</td>
+                    <td>김대중</td>
+                    <td>6일전</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>1주차 발표에 대한 피드백 회의 공지</td>
+                    <td>김대중</td>
+                    <td>7일전</td>
+                  </tr>
+                </tbody>
+              </table><br><br><br>
+              <h4><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
+              <hr>
+          	<table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>제목</th>
+                    <th style="width:70px;">작성자</th>
+                    <th style="width:70px;">작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3</td>
+                    <td>bootstrap template 결정</td>
+                    <td>안희정</td>
+                    <td>9일전</td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>프로젝트 역할 분담</td>
+                    <td>추미애</td>
+                    <td>10일전</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>프로젝트 주제 선정</td>
+                    <td>김대중</td>
+                    <td>10일전</td>
+                  </tr>
+                </tbody>
+              </table><br><br><br>
+              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
+              <hr>
+          	<table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>해결여부</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4</td>
+                    <td>미해결</td>
+                    <td>안희정</td>
+                    <td>오늘</td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td>해결완료</td>
+                    <td>추미애</td>
+                    <td>3일전</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>해결완료</td>
+                    <td>오세훈</td>
+                    <td>3일전</td>
                   </tr>
                 </tbody>
-              </table>
+              </table><br><br><br>
+              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
+              <hr>
+          	<table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>원글 작성자</th>
+                    <th>댓글 작성자</th>
+                    <th>작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5</td>
+                    <td>안희정</td>
+                    <td>김무성</td>
+                    <td>오늘</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>안희정</td>
+                    <td>이명박</td>
+                    <td>오늘</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>오세훈</td>
+                    <td>안희정</td>
+                    <td>어제</td>
+                  </tr>
+                </tbody>
+              </table><br>
           
-            <!-- RECENT ACTIVITIES SECTION -->
-            <h4 class="centered mt">RECENT ACTIVITY</h4>
-            <!-- First Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>Just Now</muted>
-                  <br/>
-                  <a href="${path}/Dashio/#">Paul Rudd</a> purchased an item.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Second Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>2 Minutes Ago</muted>
-                  <br/>
-                  <a href="${path}/Dashio/#">James Brown</a> subscribed to your newsletter.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Third Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>3 Hours Ago</muted>
-                  <br/>
-                  <a href="${path}/Dashio/#">Diana Kennedy</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>7 Hours Ago</muted>
-                  <br/>
-                  <a href="${path}/Dashio/#">Brando Page</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- USERS ONLINE SECTION -->
-            <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-            <!-- First Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="${path}/Dashio/img/ui-divya.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="${path}/Dashio/#">DIVYA MANIAN</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Second Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="${path}/Dashio/img/ui-sherman.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="${path}/Dashio/#">DJ SHERMAN</a><br/>
-                  <muted>I am Busy</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Third Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="${path}/Dashio/img/ui-danro.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="${path}/Dashio/#">DAN ROGERS</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="${path}/Dashio/img/ui-zac.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="${path}/Dashio/#">Zac Sniders</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
-            </div>
-            <!-- CALENDAR-->
-            <div id="calendar" class="mb">
-              <div class="panel green-panel no-margin">
-                <div class="panel-body">
-                  <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                    <div class="arrow"></div>
-                    <h3 class="popover-title" style="disadding: none;"></h3>
-                    <div id="date-popover-content" class="popover-content"></div>
-                  </div>
-                  <div id="my-calendar"></div>
-                </div>
-              </div>
-            </div>
-            <!-- / calendar -->
           </div>
           <!-- /col-lg-3 -->
         </div>

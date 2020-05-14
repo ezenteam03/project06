@@ -1057,7 +1057,6 @@ insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 �
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
 
 SELECT * FROM pmsnotice;
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, (select nvl(b.MDIV,0) from pmsmember b where a.eno=b.mno), (select nvl(c.CNAME,'등록안됨') from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno)  
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
 	FROM pmsemp a 
-	WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
-	AND NOT a.grade LIKE '%'||'전무'||'%';
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
