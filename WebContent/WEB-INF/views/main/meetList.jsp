@@ -43,9 +43,10 @@
 	padding:2%;
 }
 
-.num {width:15%;}
-.title {width:60%;}
+.num {width:10%;}
+.title {width:50%;}
 .date {width:15%;}
+.writer{width:15%;}
 .cnt {width:10%;}
 
 
@@ -67,23 +68,25 @@
           <div class="col-md-12 mt">
             <div class="content-panel">
               <table class="table table-hover">
-                <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
-                <hr>
+                <h4><i class="fa fa-bullhorn"></i>&ensp;  희의록 </h4>
+                
                 <thead>
                   <tr>
                     <th class="num">번호</th>
                     <th class="title">제목</th>
                     <th class="date">작성일</th>
+                    <th class="writer">작성자</th>
                     <th class="cnt">조회수</th>
                   </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="notice" items="${nlist}">
+                <c:forEach var="meet" items="${mlist}">
                   <tr>
-                    <td>${notice.nno}</td>
-                    <td>${notice.title}</td>
-                    <td><fmt:formatDate value="${notice.wdate}" type="date"/></td>
-                    <td>${notice.views}</td>
+                    <td>${meet.mnno}</td>
+                    <td>${meet.topic}</td>
+                    <td><fmt:formatDate value="${meet.wdate}" type="date"/></td>
+                    <td>${meet.mno}</td>
+                    <td>${meet.views}</td>
                   </tr>
                  </c:forEach>
                 </tbody>
