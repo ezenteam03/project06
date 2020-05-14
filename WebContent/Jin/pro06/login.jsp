@@ -44,23 +44,23 @@
 		$(document).ready(function(){
 			
 		var key = getCookie("key");
-	    $("#empno").val(key);
+	    $("#mno").val(key);
 	     
-	    if($("#empno").val() != ""){ 
+	    if($("#mno").val() != ""){ 
 	        $("#ckSave").attr("checked", true); 
 	    }
 	     
 	    $("#ckSave").change(function(){ 	
 	        if($("#ckSave").is(":checked")){ 	
-	            setCookie("key", $("#empno").val(), 1);
+	            setCookie("key", $("#mno").val(), 1);
 	        }else{ // ID 저장하기 체크 해제 시,
 	            deleteCookie("key");			
 	        }
 	    });
 	     
-	    $("#empno").keyup(function(){ 
+	    $("#mno").keyup(function(){ 
 	        if($("#ckSave").is(":checked")){ 
-	            setCookie("key", $("#empno").val(), 1); 
+	            setCookie("key", $("#mno").val(), 1); 
 	        }
 	    });
 	    
@@ -106,11 +106,11 @@
 			<h2 class="form-login-heading">LOGIN</h2>
 			
 			<div class="login-wrap">
-				<input type="text" class="form-control" id="empno" placeholder="사원번호를 입력하세요" autofocus>
+				<input type="text" class="form-control" id="mno" placeholder="사원번호를 입력하세요" autofocus>
 				
 				<br>
 				
-				<input type="password" class="form-control" placeholder="비밀번호를 입력하세요.">
+				<input type="password" class="form-control" id="pass" placeholder="비밀번호를 입력하세요.">
 				
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me" id="ckSave" style="margin-left:1%;"><label>사원번호 저장</label>

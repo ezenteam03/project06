@@ -28,5 +28,27 @@ public class pmsempService {
 			rep.updatepmsemp1(update);
 			
 		}
+		
+
+		// Jin
+		public int empEno(pmsemp emp) {
+			System.out.println("empEno 실행");
+			
+			System.out.println("입력한 이름 : " + emp.getName());
+			System.out.println("입력한 이메일 : " + emp.getEmail());
+			
+			int count = rep.pmsEmpCounter(emp);
+			System.out.println("사원번호 count : " + count);
+			
+			int eno = 0;
+			System.out.println("초기 eno : " + eno);
+			
+			if(count != 0) {
+				eno = rep.pmsEmpEno(emp);
+				System.out.println("sql 결과 eno : " + eno);
+			}
+			
+			return eno;
+		}
 
 }

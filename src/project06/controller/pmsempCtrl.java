@@ -27,6 +27,7 @@ public class pmsempCtrl {
 	}
 	@RequestMapping(params="method=delForm")
 	public String pmlist(pmsemp sch, Model d) {
+		sch.setPno(1001);
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
@@ -53,4 +54,31 @@ public class pmsempCtrl {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
+	
+	// Jin 사원번호 찾기
+	@RequestMapping(params="method=findEnoFirst")
+	public String findEnoFirst() {
+		System.out.println("사원번호 찾기 초기 화면");
+		return "WEB-INF\\views\\main\\findEmpno.jsp";
+	}
+
+	@RequestMapping(params="method=findEno")
+	public String findEno(pmsemp emp, Model m) {
+		System.out.println("pmsempCtrl method=findEno 실행");
+		
+		int eno = service.empEno(emp);
+		System.out.println("Ctrl eno : " + eno);
+		
+		if(eno!=0) {
+			m.addAttribute("eno", eno);
+			return "WEB-INF\\views\\main\\findEmpno02.jsp";
+		}else {
+			int ck = 1;
+			m.addAttribute("ck",ck);
+			return "WEB-INF\\views\\main\\findEmpno.jsp";
+		}
+	}
+	
+
+	
 }

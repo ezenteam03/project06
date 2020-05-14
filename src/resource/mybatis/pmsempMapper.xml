@@ -13,15 +13,11 @@
  	
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		(select c.CNAME 
-		from pmsmember b, pmscodes c 
-		where a.eno=b.mno 
-		and b.mdiv=c.cno) cname,
-		b.pno
-		FROM pmsemp a, pmsmember b
-		WHERE a.eno = b.mno
-		AND NOT b.pno LIKE '%'||'null'||'%'
-		AND NOT b.mdiv LIKE '%'||4||'%'
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND b.pno=#{pno}
+		AND b.mdiv=5
  	</select>
  	
  	
@@ -41,5 +37,16 @@
 		SET mdiv=6
 		WHERE mdiv=3
 	</update>
+	
+	
+<!-- Jin -->
+	<resultMap type="int" id="pmsEmpEnoResult"/>
+	<select id="pmsEmpCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsemp WHERE name=#{name} AND email=#{email}
+ 	</select>
+ 	
+	<select id="pmsEmpEno" resultMap="pmsEmpEnoResult" parameterType="int">
+		SELECT eno FROM pmsemp WHERE name=#{name} AND email=#{email}
+	</select>
 	
 </mapper>	

@@ -16,4 +16,8 @@ public interface pmsempRep {
 	
 	public void updatepmsemp1(pmsemp upt);
 	public void updatepmsemp2();
+	
+	// Jin
+	public int pmsEmpCounter(pmsemp emp);
+	public int pmsEmpEno(pmsemp emp);
 }
