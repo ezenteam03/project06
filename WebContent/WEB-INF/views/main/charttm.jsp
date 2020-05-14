@@ -362,7 +362,7 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper" style="height:300px;">
+      <section class="wrapper" style="height:300px; margin-top:0;" >
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">

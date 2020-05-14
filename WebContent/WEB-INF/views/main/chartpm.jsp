@@ -74,9 +74,6 @@
 			data: $("form").serialize(),
 			dataType:"json",
 			success:function(data){
-				// data.모델명
-				var clist = data.chartlist;
-				var clist2 = [];
 				
 				var today = new Date(2020, 4, 4); 
 			    day = 1000 * 60 * 60 * 24;
@@ -87,7 +84,118 @@
 				today.setUTCMilliseconds(0);
 				today = today.getTime();
 				
-				console.log(clist);
+				// data.모델명
+				var clist = data.chartlist;
+				var clist2 = [];
+				var clist3 = {
+					    series: [{
+					        name: 'PMS',
+					        data: [{
+					            name: '총괄진행',	
+					            id: 'pms_rogress',
+					            owner: '유재인'
+					        }, {
+					            name: '요구사항 정의서',
+					            id: 'requirement_specification',
+					            parent: 'pms_rogress',
+					            start: today,
+					            end: today + (5 * day),
+					            completed: {
+					                amount: 0.2
+					            },
+					            owner: '유재인'
+					        }, {
+					            name: '화면설계',
+					            id: 'story_board',
+					            parent: 'pms_rogress',
+					            start: today + 5 * day,
+					            end: today + 11 * day,
+					            owner: '유재인'
+					        }, {
+					            name: '데이터베이스 설계',
+					            id: 'db_design',
+					            parent: 'pms_rogress',
+					            start: today + 11 * day,
+					            end: today + 17 * day,
+					            owner: '유재인'
+					        }, {
+					            name: '데이터베이스 생성',
+					            id: 'db_create',
+					            parent: 'pms_rogress',
+					            start: today + 17 * day,
+					            end: today + 23 * day,
+					            owner: '유재인'
+					        }, {
+					            name: '웹 구현',
+					            id: 'screen_web',
+					            parent: 'pms_rogress',
+					            start: today + 23 * day,
+					            end: today + 29 * day,
+					            owner: '유재인'
+					        }, {
+					            name: '앱 구현',
+					            id: 'screen_app',
+					            parent: 'pms_rogress',
+					            start: today + 29 * day,
+					            end: today + 35 * day,
+					            owner: '유재인'
+					        }, ]
+					    }],
+					    tooltip: {
+					        pointFormatter: function () {
+					            var point = this,
+					                format = '%e. %b',
+					                options = point.options,
+					                completed = options.completed,
+					                amount = isObject(completed) ? completed.amount : completed,
+					                status = ((amount || 0) * 100) + '%',
+					                lines;
+				
+					            lines = [{
+					                value: point.name,
+					                style: 'font-weight: bold;'
+					            }, {
+					                title: '시작',
+					                value: dateFormat(format, point.start)
+					            }, {
+					                visible: !options.milestone,
+					                title: '끝',
+					                value: dateFormat(format, point.end)
+					            }, {
+					                title: '진행도',
+					                value: status
+					            }, {
+					                title: '담당자',
+					                value: options.owner || 'unassigned'
+					            }];
+				
+					            return reduce(lines, function (str, line) {
+					                var s = '',
+					                    style = (
+					                        defined(line.style) ? line.style : 'font-size: 0.8em;'
+					                    );
+					                if (line.visible !== false) {
+					                    s = (
+					                        '<span style="' + style + '">' +
+					                        (defined(line.title) ? line.title + ': ' : '') +
+					                        (defined(line.value) ? line.value : '') +
+					                        '</span><br/>'
+					                    );
+					                }
+					                return str + s;
+					            }, '');
+					        }
+					    },
+					    title: {
+					        text: 'PMS 진행사항'
+					    },
+					    xAxis: {
+					        currentDateIndicator: true,
+					        min: today + 1 * day,
+					        max: today + 35 * day
+					    }
+					};
+				
 				$.each(clist,function(idx, chart){
 					clist2.push({
 						name: chart.tname, 
@@ -99,120 +207,15 @@
 						owner : ""+chart.name+""
 						});
 				});
+				console.log(clist);
 				console.log(clist2);
+				console.log(clist3);
 			    dateFormat = Highcharts.dateFormat,
 			    defined = Highcharts.defined,
 			    isObject = Highcharts.isObject,
 			    reduce = Highcharts.reduce;
-
-				Highcharts.ganttChart('container2', {
-				    series: [{
-				        name: 'PMS',
-				        data: [{
-				            name: '총괄진행',	
-				            id: 'pms_rogress',
-				            owner: '유재인'
-				        }, {
-				            name: '요구사항 정의서',
-				            id: 'requirement_specification',
-				            parent: 'pms_rogress',
-				            start: today,
-				            end: today + (5 * day),
-				            completed: {
-				                amount: 0.2
-				            },
-				            owner: '유재인'
-				        }, {
-				            name: '화면설계',
-				            id: 'story_board',
-				            parent: 'pms_rogress',
-				            start: today + 5 * day,
-				            end: today + 11 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '데이터베이스 설계',
-				            id: 'db_design',
-				            parent: 'pms_rogress',
-				            start: today + 11 * day,
-				            end: today + 17 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '데이터베이스 생성',
-				            id: 'db_create',
-				            parent: 'pms_rogress',
-				            start: today + 17 * day,
-				            end: today + 23 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '웹 구현',
-				            id: 'screen_web',
-				            parent: 'pms_rogress',
-				            start: today + 23 * day,
-				            end: today + 29 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '앱 구현',
-				            id: 'screen_app',
-				            parent: 'pms_rogress',
-				            start: today + 29 * day,
-				            end: today + 35 * day,
-				            owner: '유재인'
-				        }, ]
-				    }],
-				    tooltip: {
-				        pointFormatter: function () {
-				            var point = this,
-				                format = '%e. %b',
-				                options = point.options,
-				                completed = options.completed,
-				                amount = isObject(completed) ? completed.amount : completed,
-				                status = ((amount || 0) * 100) + '%',
-				                lines;
-			
-				            lines = [{
-				                value: point.name,
-				                style: 'font-weight: bold;'
-				            }, {
-				                title: '시작',
-				                value: dateFormat(format, point.start)
-				            }, {
-				                visible: !options.milestone,
-				                title: '끝',
-				                value: dateFormat(format, point.end)
-				            }, {
-				                title: '진행도',
-				                value: status
-				            }, {
-				                title: '담당자',
-				                value: options.owner || 'unassigned'
-				            }];
-			
-				            return reduce(lines, function (str, line) {
-				                var s = '',
-				                    style = (
-				                        defined(line.style) ? line.style : 'font-size: 0.8em;'
-				                    );
-				                if (line.visible !== false) {
-				                    s = (
-				                        '<span style="' + style + '">' +
-				                        (defined(line.title) ? line.title + ': ' : '') +
-				                        (defined(line.value) ? line.value : '') +
-				                        '</span><br/>'
-				                    );
-				                }
-				                return str + s;
-				            }, '');
-				        }
-				    },
-				    title: {
-				        text: 'PMS 진행사항'
-				    },
-				    xAxis: {
-				        currentDateIndicator: true,
-				        min: today + 1 * day,
-				        max: today + 35 * day
-				    }
-				});
+				
+				//Highcharts.ganttChart('chartpm2', clist3);
 			},
 			error:function(err){
 				console.log("ajax처리 에러");
@@ -362,13 +365,14 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper" style="height:300px;">
+      <section class="wrapper" style="height:300px; margin-top:0;">
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(PM)</i></h4>
             <div class="form-panel">
               <div id="chartpm"></div>
+              <div id="chartpm2"></div>
             </div>
             <!-- /form-panel -->
           </div>
