@@ -80,12 +80,13 @@
 
 //$.backstretch("img/back1.png");
 
-$.backstretch(["img/back1.png", "img/back2.png", "img/back3.png", "img/back4.png"], {
-	duration: 3000, fade: 10
-});
-
+	$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
+		duration: 3000, fade: 10
+	});
+	
 </script>
   
 </body>
+
 
 </html>

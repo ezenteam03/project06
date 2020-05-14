@@ -28,9 +28,12 @@
   <link href="${path}/Dashio/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
   <link href="${path}/Dashio/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
   <link rel="stylesheet" href="${path}/Dashio/lib/advanced-datatable/css/DT_bootstrap.css" />
-  <!-- Custom styles for this template -->
-  <link href="${path}/Dashio/css/style.css" rel="stylesheet">
+  <!-- Custom styles for this template 
+  <link href="${path}/Dashio/css/style.css" rel="stylesheet">-->
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
+  
+  <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 
   <!-- =======================================================
     Template Name: Dashio
@@ -39,7 +42,17 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 </head>
+<style>
+/* 글작성 */
+.ck.ck-editor{
+	min-width: 1000px;
+	
+}
+.ck-editor__editable{
+	min-height: 500px;
+}
 
+</style>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -48,7 +61,7 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper">
+      <section class="wrapper">	
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
@@ -66,7 +79,7 @@
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">내용</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                      <textarea class="form-control " id="editor" name="comment" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">
@@ -116,6 +129,13 @@
     <!--footer end-->
    
   </section>
+  <script>
+ClassicEditor
+.create( document.querySelector( '#editor' ) )
+.catch( error => {
+    console.error( error );
+} );
+</script>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
@@ -190,7 +210,6 @@
     });
   </script>
 </body>
-
 </html>
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -405,4 +424,4 @@ ClassicEditor
   </script>
 </body>
 </html>
->>>>>>> d438c3df1a19ef5977a1ebf180501d28f36b9050
+>>>>>>> 464e7e7c54f8dc7657aa038afd90e4a686277f3f

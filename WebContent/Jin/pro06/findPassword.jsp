@@ -71,7 +71,7 @@
 				<label>이메일</label>
 				<input type="email" class="form-control" placeholder="이메일을 입력하세요">
 				
-				<div style="margin-left:18%;">
+				<div>
 					<div class="form-inline">
 						<input type="email" class="form-control" placeholder="인증번호">
 						&nbsp;
@@ -94,9 +94,9 @@
 
 //$.backstretch("img/back1.png");
 
-$.backstretch(["img/back1.png", "img/back2.png", "img/back3.png", "img/back4.png"], {
-	duration: 3000, fade: 10
-});
+	$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
+		duration: 3000, fade: 10
+	});
 
 </script>
   

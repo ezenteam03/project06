@@ -1,4 +1,4 @@
--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -114,10 +114,57 @@
 .popup .close:hover {
   color: #00E5EE;
 }
+
+.popup03 {
+  position: fixed;
+  width: 60%;
+  padding: 10px;
+  max-width: 800px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+  /* "delay" the visibility transition */
+  -webkit-transition: opacity .5s, visibility 0s linear .5s;
+  transition: opacity .5s, visibility 0s linear .5s;
+  z-index: 1;
+}
+
+.form-login01 {
+	max-width: 700px;
+	margin-left:5%;
+	background: #fff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.form-login01 h2.form-login01-heading {
+	margin: 0;
+	padding: 25px 20px;
+	text-align: center;
+	background: #4ecdc4;
+	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	color: #fff;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+
+th{text-align:center;}
+.name{width:20%}
+.post{width:15%}
+.contact{width:40%}
+.status{width:25%}
+					
 </style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		$("#btn01").click(function(){
+			$(location).attr('href','#none');
+		});
 	
 		$("#btn").click(function(){
 			$(location).attr('href','#pop02');
@@ -198,7 +245,7 @@
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="#pop01">개인정보</a></li>
-          <li><a class="logout" href="#">참여인원 @@명</a></li>
+          <li><a class="logout" href="#pop03">참여인원 @@명</a></li>
           <li><a class="logout" href="#">Logout</a></li>
 
         </ul>
@@ -210,13 +257,13 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-      <div id="sidebar" class="nav-collapse ">
+      <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h1>@@@ 사원</h1>
+         <h2 style="margin-left:10px;color:white">@@@ 사원</h2>
          </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">
@@ -266,7 +313,7 @@
     </aside>
     <!--sidebar end-->
     
-    <div id="pop01" class="overlay">
+<div id="pop01" class="overlay">
 	<div class="popup">
 		<a href="#none" class="close">&times;</a>
 	
@@ -283,7 +330,7 @@
 			<label>새 비밀번호</label>
 				<input type="password" class="form-control" placeholder="비밀번호를 입력하세요" autofocus>
 		
-			<button class="btn btn-theme btn-block" type="button" id="btn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
+			<button class="btn btn-theme btn-block" type="button" id="btn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
 								
 		</div>
 			
@@ -292,7 +339,7 @@
 </div>
 
 <div id="pop02" class="overlay">
-	<div class="popup" style="margin-top:30px;">
+	<div class="popup" style="margin-top:40px;">
 		<a href="#none" class="close">&times;</a>
 	
 		<form class="form-login" action="#" style="background-color:#e0e0e0;margin-top:0%">
@@ -318,11 +365,9 @@
 			
 			<label>부서</label>
 			<input type="text" class="form-control" placeholder="부서 출력할 곳" readonly="readonly">
+		
+			<br>
 			
-		</div>
-		
-		<div class="login-wrap">
-		
 			<label>전화번호</label>
 			<input type="text" class="form-control" placeholder="전화번호 출력할 곳" id="phone" value="010-1234-1234" readonly="readonly">
 			
@@ -350,8 +395,57 @@
 		</div>
 		
 		<div>
-			<button class="btn btn-theme btn-block" type="button" id="btn02" style="margin-top:5%;"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
+			<button class="btn btn-theme btn-block" type="button" id="btn02"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
 		</div>
+			
+		</form>
+	</div>
+</div>
+
+<div id="pop03" class="overlay">
+	<div class="popup03">
+		<a href="#" id="btn01" class="close">&times;</a>
+	
+		<form class="form-login01" action="#" style="background-color:#e0e0e0;margin-top:0%">
+	
+		<h2 class="form-login01-heading">PARTICIPANTS</h2>
+		
+		<div style="width:700px;margin-top:-30px;">
+			<div class="row">
+			<div class="col-md-12 mt">
+			<div class="content-panel">
+			
+			<div align="right" style="margin-right:20px;">
+				<div class="form-inline">
+					<input type="email" class="form-control" placeholder="사원 이름">
+					&nbsp;
+					<button type="button" class="btn btn-theme">Search</button>
+				</div>
+			</div>
+			
+			<br>
+			
+			<table class="table table-hover">
+				<tr>
+					<th class="name">이름</th>
+					<th class="post">직책</th>
+					<th class="contact">희망 연락처</th>
+					<th class="status">상태</th>
+				</tr>
+				
+				<tr><td>코코아</td><td>대리</td><td>010-1234-1234</td><td>로그인</td></tr>
+				<tr><td>코코아</td><td>대리</td><td>cocoa@naver.com</td><td>로그인</td></tr>
+				<tr><td>코코아</td><td>대리</td><td>010-1234-1234</td><td>로그아웃</td></tr>
+			</table>
+			
+			<div>페이징 처리</div>
+			
+			</div>	
+			</div>
+			</div>
+		</div>
+		
+		
 			
 		</form>
 	</div>
