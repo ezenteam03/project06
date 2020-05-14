@@ -69,7 +69,6 @@ CREATE TABLE PMSEMP (
 	phone VARCHAR2(50) NOT NULL, /* 핸드폰 */
 	email VARCHAR2(50) NOT NULL /* 이메일 */
 );
-SELECT * FROM pmsemp;
 
 COMMENT ON TABLE PMSEMP IS '사원정보';
 
@@ -275,6 +274,29 @@ DROP INDEX PK_PMSLOG;
 /* 로그인히스토리 */
 DROP TABLE PMSLOG 
 	CASCADE CONSTRAINTS;
+
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
+	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname
+	FROM pmsemp a
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
+
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		(select c.CNAME 
+		from pmsmember b, pmscodes c 
+		where a.eno=b.mno 
+		and b.mdiv=c.cno) cname,
+		b.pno
+		FROM pmsemp a, pmsmember b
+		WHERE a.eno = b.mno
+		AND NOT b.pno LIKE '%'||'null'||'%'
+		AND NOT b.mdiv LIKE '%'||4||'%';
+		
+
+
+	
+	SELECT * FROM pmsmember;
+
+
 
 /* 로그인히스토리 */
 CREATE TABLE PMSLOG (
@@ -1021,17 +1043,6 @@ INSERT INTO pmsmember values(10000026,'1q2w3e4r!',6,'010-4574-7345',null);
 INSERT INTO pmsmember values(10000027,'1q2w3e4r!',6,'010-2936-6952',null);
 INSERT INTO pmsmember values(10000028,'1q2w3e4r!',6,'010-2378-8963',null);
 UPDATE pmsmember SET pno=1001 WHERE mno=10000005;
-SELECT * FROM pmsmember;
--- ceo2, cto3, pm4, 팀원5, 구분없음6
-UPDATE pmsmember
-SET mdiv=3
-WHERE mno=10000003;
-
-UPDATE pmsmember
-SET mdiv=6
-WHERE mdiv=3;
-
-SELECT * FROM pmsemp;
 --로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);

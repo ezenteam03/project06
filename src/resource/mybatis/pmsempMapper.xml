@@ -5,30 +5,26 @@
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
-<!-- 	SELECT * FROM pmsemp
-	WHERE NOT grade LIKE '%'||'CEO'||'%'
-	AND NOT grade LIKE '%'||'CTO'||'%' -->
-	
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, (select nvl(b.MDIV,0) from pmsmember b where a.eno=b.mno), (select nvl(c.CNAME,'등록안됨') from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno)  
-	FROM pmsemp a 
-	WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
-	AND NOT a.grade LIKE '%'||'전무'||'%'
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
+		FROM pmsemp a 
+		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
  	</select>
  	
-<!-- 	<select id="totCnt" resultType="int" parameterType="bsch">
-		select count(*)
-		from pmsemp
-		where 1=1
-		<if test="name!=null and name!=''">
-		and name like '%'||#{name}||'%'
-		</if>
-		<if test="dept!=null and dept!=''">
-		and dept like '%'||#{dept}||'%'
-		</if>
-		<if test="grade!=null and grade!=''">
-		and grade like '%'||#{grade}||'%'
-		</if>
-	</select> -->
+ 	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		(select c.CNAME 
+		from pmsmember b, pmscodes c 
+		where a.eno=b.mno 
+		and b.mdiv=c.cno) cname,
+		b.pno
+		FROM pmsemp a, pmsmember b
+		WHERE a.eno = b.mno
+		AND NOT b.pno LIKE '%'||'null'||'%'
+		AND NOT b.mdiv LIKE '%'||4||'%'
+ 	</select>
+ 	
+ 	
 	<insert id="insert" parameterType="pmsemp">
 		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
 		 					#{grade},#{phone},#{email})
@@ -45,5 +41,16 @@
 		SET mdiv=6
 		WHERE mdiv=3
 	</update>
+	
+	
+<!-- Jin -->
+	<resultMap type="int" id="pmsEmpEnoResult"/>
+	<select id="pmsEmpCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsemp WHERE name=#{name} AND email=#{email}
+ 	</select>
+ 	
+	<select id="pmsEmpEno" resultMap="pmsEmpEnoResult" parameterType="int">
+		SELECT eno FROM pmsemp WHERE name=#{name} AND email=#{email}
+	</select>
 	
 </mapper>	
