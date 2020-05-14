@@ -20,5 +20,10 @@ public class pmsempService {
 		public void insert(pmsemp ins) {
 			rep.insert(ins);
 		}
+		public void update(pmsemp update) {
+			rep.updatepmsemp2();
+			rep.updatepmsemp1(update);
+			
+		}
 
 }

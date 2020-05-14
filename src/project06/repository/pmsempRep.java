@@ -12,4 +12,7 @@ public interface pmsempRep {
 	public ArrayList<pmsemp> pmsempList(pmsemp sch);
 	
 	public void insert(pmsemp ins);
+	
+	public void updatepmsemp1(pmsemp upt);
+	public void updatepmsemp2();
 }
