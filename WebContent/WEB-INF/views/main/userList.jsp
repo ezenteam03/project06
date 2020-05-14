@@ -60,7 +60,7 @@
 </head>
 
 <body>
-	<jsp:include page="../../../Dashio/top.jsp"/>
+	<jsp:include page="../main/top.jsp"/>
 
     <!--main content start-->
     <section id="main-content">
@@ -111,7 +111,7 @@
                     <td>${emp.dept}</td>
                     <td>${emp.email}</td>
                     <td>${emp.phone}</td>
-                    <td></td>
+                    <td>${emp.cname}</td>
                     <td><input type="radio" name="eno" value="${emp.eno}" id="" /></td>
                   </tr>
                   </c:forEach> 
