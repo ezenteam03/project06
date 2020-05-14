@@ -24,6 +24,6 @@
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
 		WHERE pe.eno = pm.mno) pem
 		WHERE pp.pno = pt.pno AND
-		pp.mno = pem.mno
+		pt.mno = pem.mno
  	</select>
 </mapper>	
