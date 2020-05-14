@@ -5,9 +5,14 @@
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
-	SELECT * FROM pmsemp
+<!-- 	SELECT * FROM pmsemp
 	WHERE NOT grade LIKE '%'||'CEO'||'%'
-	AND NOT grade LIKE '%'||'CTO'||'%'
+	AND NOT grade LIKE '%'||'CTO'||'%' -->
+	
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, (select nvl(b.MDIV,0) from pmsmember b where a.eno=b.mno), (select nvl(c.CNAME,'등록안됨') from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno)  
+	FROM pmsemp a 
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
+	AND NOT a.grade LIKE '%'||'전무'||'%'
  	</select>
  	
 <!-- 	<select id="totCnt" resultType="int" parameterType="bsch">
