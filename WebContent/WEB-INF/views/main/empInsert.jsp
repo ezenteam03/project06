@@ -37,7 +37,7 @@
 </head>
 
 <body>
-	<jsp:include page="../../../Dashio/top.jsp"/>
+	<jsp:include page="../main/top.jsp"/>
 
     <!--main content start-->
     <section id="main-content">
