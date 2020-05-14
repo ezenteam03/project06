@@ -68,8 +68,8 @@
           <div class="col-md-12 mt">
             <div class="content-panel">
               <table class="table table-hover">
-                <h4><i class="fa fa-bullhorn"></i>&ensp;  희의록 </h4>
-                
+                <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
+                <hr>
                 <thead>
                   <tr>
                     <th class="num">번호</th>
@@ -82,11 +82,11 @@
                 <tbody>
                 <c:forEach var="meet" items="${mlist}">
                   <tr>
-                    <td>${meet.mnno}</td>
-                    <td>${meet.topic}</td>
-                    <td><fmt:formatDate value="${meet.wdate}" type="date"/></td>
-                    <td>${meet.writer}</td>
-                    <td>${meet.views}</td>
+                    <td style="text-align: center;">${meet.mnno}</td>
+                    <td style="padding-left:70px;">${meet.topic}</td>
+                    <td style="text-align: center;"><fmt:formatDate value="${meet.wdate}" type="date"/></td>
+                    <td style="text-align: center;">${meet.writer}</td>
+                    <td style="text-align: right;padding-right:70px;">${meet.views}</td>
                   </tr>
                  </c:forEach>
                 </tbody>
