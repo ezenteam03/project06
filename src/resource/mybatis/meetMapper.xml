@@ -7,7 +7,7 @@
 	<resultMap type="meet" id="meetResult"/>
  	<select id="list" resultMap="meetResult" parameterType="meet">
 		SELECT *
-		FROM pmsmeet
+		FROM pmsmeeting
 		WHERE 1=1
  	</select>
 </mapper>	

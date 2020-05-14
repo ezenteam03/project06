@@ -69,7 +69,7 @@
             <div class="content-panel">
               <table class="table table-hover">
                 <h4><i class="fa fa-bullhorn"></i>&ensp;  희의록 </h4>
-                <hr>
+                
                 <thead>
                   <tr>
                     <th class="num">번호</th>
@@ -80,7 +80,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="notice" items="${mlist}">
+                <c:forEach var="meet" items="${mlist}">
                   <tr>
                     <td>${meet.mnno}</td>
                     <td>${meet.topic}</td>
