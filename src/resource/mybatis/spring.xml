@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -16,23 +15,5 @@
 		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
 	</mappers>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-	<typeAliases>
-		 <!-- XXXMapper.xml에서 간편하게 사용하기 위해서 선언..  -->
-		 <!-- 사원리스트 불러오기 -->
-		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/> 
-		 <typeAlias alias="chart" type="project06.vo.Chart"/> 
-		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
-	</typeAliases>
-	<mappers>
-		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
-		 <mapper resource="resource/mybatis/pmsempMapper.xml"/> 
-		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
-		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
-	</mappers>
->>>>>>> 464e7e7c54f8dc7657aa038afd90e4a686277f3f
+
 </configuration>
