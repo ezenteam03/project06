@@ -1055,6 +1055,31 @@ insert into pmsmeeting values(pmsmeeting_seq.nextval,'bootstrap template 결정'
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','요구사항정의서와 화면 설계를 바탕으로 ERD 설계','러프한 ERD 개요 설계',null,20,to_date('2020-05-06','yyyy-mm-dd'),null,to_date('2020-05-06','yyyy-mm-dd'),'507호','김대중,추미애,안희정,박영선,정은경,김무성',32,10000016,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 개선방안논의','발표에 대한 피드백 확인 및 자체 회의를 통한 프로젝트 개선방향 및 추가로 프로젝트에 필요한 기능 논의','주말을 활용하여 결정된 사안에 대해 각자 업무 처리 후 월요일에 다시 논의',null,17,to_date('2020-05-09','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정',32,10000015,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
+-- 이슈리스트
+insert into PMSISSUE values(pmsissue_seq.nextval,'ERD설계','ERD설계에 있어 게시판 통합의 문제 사용자 번호와 사원 번호 중복의 문제 테이블간 연결시 식별/비식별 구분 문제 등',0,null,to_date('2020-05-04','YYYY-MM-DD'),null,null,1001,10000005);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'파일작업','파일 작업 순서를 모르겠습니다.',0,null,to_date('2020-05-06','YYYY-MM-DD'),null,null,1001,10000015);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','오늘 배운 controller 어렵습니다.',0,null,to_date('2020-05-06','YYYY-MM-DD'),null,null,1001,10000016);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','하나의 controller 안에서 request 내용이 계속 유지됨 다른 페이지에서 불러오기 싫은 parameter값이 불러와짐',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000017);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'code table','code table을 하나로 작성하는 방법을 적용하는 문제',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000019);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','controller거친 이후 img 가 화면출력 안됨',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'jquery','main에서 slider jquery 안돌아가는 경우 발생',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'servlet에서 페이지 이동 안됨','href를 사용하여 페이지 이동 중에 controller단으로 넘어가면 다른 페이지로 이동 안됨',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'div(분류)에 맞는 공연 검색이 안됨','main페이지에서 controller로 보낼때 div를 보내야 하는데 ?key=value 로도 안보내지고 session으로 주고받기도 안됨',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'페이지 이동문제','한번 controller로 넘어간 이후 div parameter가 고정되어 변경된 값을 입력해도 적용이 안됨',0,null,to_date('2020-05-09','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'데이터베이스 연결','데이터베이스 연결이 끊김',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'파일 통합','화면 구현 내용 통합시 파일 경로문제 및 겹치는 파일로인하여 team update 후 동작이 안되는 문제 발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000019);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'이미지 경로','화면구현 통합(연결) 이미지 경로 설정',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000017);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'update','결재상세 페이지 update과정에서 VO를 통해서 int 값을 받는 중 오버로딩 과정에서 변수의 수가 같아 int값을넘기지 못하는 문제 발생',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000016);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'insert','결제 정보를 insert한 뒤 포인트 적립이나 차감을 할 때 방금 결제된 결제번호가 필요한데 결제번호를 못 넘기는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000015);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-29','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-29','YYYY-MM-DD'),null,null,1001,10000023);		
+-- 이슈리스트 댓글
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰 코드의번호를 획득 한뒤 새로운 쿠폰을 등록해야 할거 같습니다.',sysdate,10000023,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,1,'그뒤 제약조건을 삭제하고 다시 생성한 뒤 일반회원 리스트 작성해야 할것 같습니다.',sysdate,10000023,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysdate,10000022,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 
 SELECT * FROM pmsnotice;
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
