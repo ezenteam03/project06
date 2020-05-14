@@ -9,10 +9,9 @@
 	WHERE NOT grade LIKE '%'||'CEO'||'%'
 	AND NOT grade LIKE '%'||'CTO'||'%' -->
 	
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.MDIV, c.CNAME 
-	FROM pmsemp a, pmsmember b, PMSCODES c 
-	WHERE a.eno=b.mno AND b.mdiv=c.cno
-	AND NOT a.grade LIKE '%'||'대표이사'||'%'
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, (select nvl(b.MDIV,0) from pmsmember b where a.eno=b.mno), (select nvl(c.CNAME,'등록안됨') from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno)  
+	FROM pmsemp a 
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
 	AND NOT a.grade LIKE '%'||'전무'||'%'
  	</select>
  	
