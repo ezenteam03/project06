@@ -9,6 +9,23 @@ DROP SEQUENCE pmsreply_seq;
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
 
+
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, c.CNAME
+	FROM pmsemp a, pmsmember b, pmscodes c
+	WHERE a.eno = b.mno 
+	and b.mdiv=c.cno;
+	AND b.pno IS NULL;
+	AND c.cname = '구분없음';
+
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
+	FROM pmsemp a 
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';	
+	
+	SELECT * FROM PMSPROJECT;
+	SELECT * FROM 
+
+
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY
@@ -976,6 +993,7 @@ CREATE SEQUENCE pmsbfile_seq
 START WITH 1
 INCREMENT BY 1;
 --코드성 데이터	
+--1=사원권한, 2=CEO, 3=CTO, 4=PM, 5=팀원, 6=구분없음
 INSERT INTO pmscodes values(1,0,'사원권한');
 INSERT INTO pmscodes values(2,1,'CEO');
 INSERT INTO pmscodes values(3,1,'CTO');
