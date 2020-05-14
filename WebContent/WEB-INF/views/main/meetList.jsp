@@ -85,7 +85,7 @@
                     <td>${meet.mnno}</td>
                     <td>${meet.topic}</td>
                     <td><fmt:formatDate value="${meet.wdate}" type="date"/></td>
-                    <td>${meet.mno}</td>
+                    <td>${meet.writer}</td>
                     <td>${meet.views}</td>
                   </tr>
                  </c:forEach>

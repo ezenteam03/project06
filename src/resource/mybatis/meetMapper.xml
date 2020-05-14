@@ -6,8 +6,10 @@
 
 	<resultMap type="meet" id="meetResult"/>
  	<select id="list" resultMap="meetResult" parameterType="meet">
-		SELECT *
-		FROM pmsmeeting
-		WHERE 1=1
+		SELECT mnno,topic,detail,result,etc,views,wdate,chdate,mdate,loc,people,
+		mndiv,m.name writer,pno
+		FROM pmsmeeting a, pmsemp m
+		WHERE 1=1 and a.mno=m.eno
+		order by mnno desc
  	</select>
 </mapper>	

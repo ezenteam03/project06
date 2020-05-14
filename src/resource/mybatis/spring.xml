@@ -8,6 +8,8 @@
 		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/> 
 		 <typeAlias alias="chart" type="project06.vo.Chart"/> 
 		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
+		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
+		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
 	</typeAliases>
@@ -16,6 +18,7 @@
 		 <mapper resource="resource/mybatis/pmsempMapper.xml"/> 
 		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
+		 <mapper resource="resource/mybatis/meetMapper.xml"/> 
 		 <!-- Jin -->
 		 <mapper resource="resource/mybatis/pmsMemberMapper.xml"/> 
 	</mappers>

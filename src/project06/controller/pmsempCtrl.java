@@ -27,6 +27,7 @@ public class pmsempCtrl {
 	}
 	@RequestMapping(params="method=delForm")
 	public String pmlist(pmsemp sch, Model d) {
+		sch.setPno(1001);
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
