@@ -30,6 +30,9 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
   <!-- =======================================================
     Template Name: Dashio
@@ -64,6 +67,33 @@
 	        }
 	    });
 	    
+	    $("#loginBtn").click(function(){
+	    	if($("#mno").val() == ""){
+				Swal.fire(
+					'사원번호',
+					'사원번호를 입력하세요',
+					'error'
+				);
+	    	}else if($("#pass").val() == ""){
+	    		Swal.fire(
+					'비밀번호',
+					'비밀번호를 입력하세요',
+					'error'
+				);
+	    	}else{
+	    		$("#loginForm").submit();
+	    	}
+	    });
+	    
+	    var ck = "${ck}";
+	    if(ck == 1){
+	    	Swal.fire(
+				'로그인 실패',
+				'사원번호/비밀번호를 확인하세요',
+				'error'
+			);
+	    }
+    
 
 	});
 		
@@ -93,6 +123,11 @@
 	    }
 	    return unescape(cookieValue);
 	}
+	
+	function goFind(){
+		$(location).attr("href","${path}/PMSemp.do?method=findEnoFirst");
+	}
+	
 
 </script>
 </head>
@@ -101,29 +136,29 @@
 
 <div id="login-page">
 	<div class="container">
-		<form class="form-login" action="#" style="margin-top:25%;background-color:#e0e0e0;">
+		<form class="form-login" id="loginForm" action="${path}/PmsMember.do?method=login" method="post" style="margin-top:25%;background-color:#e0e0e0;">
 		
 			<h2 class="form-login-heading">LOGIN</h2>
 			
 			<div class="login-wrap">
-				<input type="text" class="form-control" id="mno" placeholder="사원번호를 입력하세요" autofocus>
+				<input type="text" class="form-control" id="mno" name="mno" placeholder="사원번호를 입력하세요" autofocus>
 				
 				<br>
 				
-				<input type="password" class="form-control" id="pass" placeholder="비밀번호를 입력하세요.">
+				<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호를 입력하세요.">
 				
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me" id="ckSave" style="margin-left:1%;"><label>사원번호 저장</label>
 				</label>
 				
 					<span class="pull-left">
-						<a data-toggle="modal" href="#">사원번호 찾기</a>
+						<a data-toggle="modal" href="javascript:goFind();">사원번호 찾기</a>
 					</span>
 					<span class="pull-right">
 						<a data-toggle="modal" href="#">비밀번호 찾기</a>
 					</span>
 				
-				<button class="btn btn-theme btn-block" type="submit" style="margin-top:15%;"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
+				<button class="btn btn-theme btn-block" type="button" id="loginBtn" style="margin-top:15%;"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
 							
 			</div>
 			
@@ -137,11 +172,11 @@
 <script type="text/javascript" src="${path}/Dashio/lib/jquery.backstretch.min.js"></script>
 <script>
 
- $.backstretch("${path}/Jin/img/bye.jpg");
+// $.backstretch("${path}/Jin/img/bye.jpg");
 
-//	$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
-//		duration: 3000, fade: 10
-//	});
+	$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
+		duration: 3000, fade: 10
+	});
 
 </script>
   
