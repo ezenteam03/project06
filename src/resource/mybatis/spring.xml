@@ -10,6 +10,8 @@
 		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
 		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
 		 
+		 <!-- Jin -->
+		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
@@ -17,6 +19,8 @@
 		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
 		 <mapper resource="resource/mybatis/meetMapper.xml"/> 
+		 <!-- Jin -->
+		 <mapper resource="resource/mybatis/pmsMemberMapper.xml"/> 
 	</mappers>
 
 </configuration>
