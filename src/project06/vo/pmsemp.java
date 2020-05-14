@@ -17,7 +17,22 @@ public class pmsemp {
 		private String grade;
 		private String phone;
 		private String email;
+		private int mdiv;
+		private String cname;
 		
+
+		public int getMdiv() {
+			return mdiv;
+		}
+		public void setMdiv(int mdiv) {
+			this.mdiv = mdiv;
+		}
+		public String getCname() {
+			return cname;
+		}
+		public void setCname(String cname) {
+			this.cname = cname;
+		}
 		public int getEno() {
 			return eno;
 		}
