@@ -23,10 +23,13 @@ public class pmsempService {
 		public void insert(pmsemp ins) {
 			rep.insert(ins);
 		}
+		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void update(pmsemp update) {
 			rep.updatepmsemp2();
 			rep.updatepmsemp1(update);
-			
+		}
+		public void delete(pmsemp delete) {
+			rep.delemp(delete);
 		}
 		
 

@@ -290,6 +290,12 @@ SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,
 		WHERE a.eno = b.mno
 		AND NOT b.pno LIKE '%'||'null'||'%'
 		AND NOT b.mdiv LIKE '%'||4||'%';
+
+UPDATE pmsmember
+	SET pno = null
+	WHERE mno =10000024;
+	
+
 		
 
 
