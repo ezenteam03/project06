@@ -67,7 +67,7 @@
           <div class="col-md-12 mt">
             <div class="content-panel">
               <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 공지사항 </h4>
+                <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
                 <thead>
                   <tr>
