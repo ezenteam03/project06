@@ -13,16 +13,23 @@ public class ChartCtrl {
 	@Autowired(required=false)
 	private ChartService service;
 	
-	// http://localhost:6080/project06_git/chart.do?method=main
-	@RequestMapping(params="method=main")
-	public String list(Model d) {
+	// http://localhost:6080/project06_git/chart.do?method=pm
+	@RequestMapping(params="method=pm")
+	public String chartpm(Model d) {
 		d.addAttribute("chartlist", service.chartList());
-		return "WEB-INF\\views\\main\\chart.jsp";
+		return "WEB-INF\\views\\main\\chartpm.jsp";
+	}
+	
+	// http://localhost:6080/project06_git/chart.do?method=tm
+	@RequestMapping(params="method=tm")
+	public String charttm(Model d) {
+		d.addAttribute("chartlist", service.chartList());
+		return "WEB-INF\\views\\main\\charttm.jsp";
 	}
 	
 	// http://localhost:6080/project06_git/chart.do?method=ajaxdata
 	@RequestMapping(params="method=ajaxdata")
-	public String calData(Model d) {
+	public String chtData(Model d) {
 		d.addAttribute("chartlist", service.chartList());
 		return "pageJsonReport";
 	}

@@ -30,7 +30,7 @@ public class Meet {
 	private String loc;
 	private String people;
 	private int mndiv;
-	private int mno;
+	private String writer;
 	private int pno;
 	public int getMnno() {
 		return mnno;
@@ -104,11 +104,12 @@ public class Meet {
 	public void setMndiv(int mndiv) {
 		this.mndiv = mndiv;
 	}
-	public int getMno() {
-		return mno;
+	
+	public String getWriter() {
+		return writer;
 	}
-	public void setMno(int mno) {
-		this.mno = mno;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public int getPno() {
 		return pno;

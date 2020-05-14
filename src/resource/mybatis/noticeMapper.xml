@@ -21,5 +21,7 @@
 		SELECT *
 		FROM pmsnotice
 		WHERE 1=1
+		order by nno desc
  	</select>
 </mapper>	
+
