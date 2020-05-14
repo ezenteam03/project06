@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
+ 	
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
@@ -11,6 +12,7 @@
 		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
  	</select>
  	
+ 	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		c.CNAME,b.pno
@@ -26,17 +28,26 @@
 		 					#{grade},#{phone},#{email})
 	</insert>
 	
+	<!-- CTO설정 -->
 	<update id="updatepmsemp1" parameterType="pmsemp">
 		UPDATE pmsmember
 		SET mdiv=3
 		WHERE mno=#{eno}
 	</update>
-	
+	<!-- 기존 CTO 권한변경 -->
 	<update id="updatepmsemp2" parameterType="pmsemp">
 		UPDATE pmsmember
 		SET mdiv=6
 		WHERE mdiv=3
 	</update>
+	<!-- pno -> null로 변경 -->
+	<update id="delemp" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET pno = null
+		WHERE mno =#{eno}
+	</update>
+	
+	
 	
 	
 <!-- Jin -->
