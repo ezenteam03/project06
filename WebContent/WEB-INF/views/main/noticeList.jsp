@@ -43,8 +43,8 @@
 	padding:2%;
 }
 
-.num {width:15%;}
-.title {width:60%;}
+.num {width:10%;}
+.title {width:65%;}
 .date {width:15%;}
 .cnt {width:10%;}
 
@@ -80,10 +80,10 @@
                 <tbody>
                 <c:forEach var="notice" items="${nlist}">
                   <tr>
-                    <td>${notice.nno}</td>
-                    <td>${notice.title}</td>
-                    <td><fmt:formatDate value="${notice.wdate}" type="date"/></td>
-                    <td>${notice.views}</td>
+                    <td style="text-align: center;">${notice.nno}</td>
+                    <td style="padding-left:70px;">${notice.title}</td>
+                    <td style="padding-left:80px;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
+                    <td style="text-align: right;padding-right:70px;">${notice.views}</td>
                   </tr>
                  </c:forEach>
                 </tbody>
