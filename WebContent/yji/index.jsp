@@ -41,267 +41,115 @@
 
 <body>
   <section id="container">
-	<jsp:include page="${path}/top.jsp"/>
+	<jsp:include page="top.jsp"/>
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper">
+      <section class="wrapper" style="margin-top:0;">
         <div class="row">
           <div class="col-lg-9 main-chart">
             <!--CUSTOM CHART START -->
             <div class="border-head">
+              
               <h3>내 프로젝트 현황</h3>
             </div>
-            <div class="custom-bar-chart">
-            	<div width="49%" style="float:left;"><h4>PMS 시스템 개발</h4></div>
+            <div class="custom-bar-chart" style="height:180px;">
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
             	<div width="49%" style="text-align:right;float:right;"><h4>PM 김대중</h4></div>
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped">
+              <div class="progress progress-striped" style="margin-left:50px;">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                   <span class="sr-only">40% Complete (success)</span>
                 </div>
               </div>
-              <br>
-              <h4 style="text-align:right;">40% 진행중</h4>
-              <br>
+            	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-06-08 마감</h4></div>
             </div>
             <div class="border-head">
               <h3>세부 업무 현황</h3>
             </div>
-            <div class="custom-bar-chart">
-            	<div width="49%" style="float:left;"><h4>요구사항 정의서 작성</h4></div>
+            <div class="custom-bar-chart" style="height:800px;">
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>요구사항 정의서 작성</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
+            	<br>            		
+            	<br>
+            	<br>            		
+              <div class="progress progress-striped" style="margin-left:50px;">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                  <span class="sr-only">100% Complete (success)</span>
+                </div>
+              </div>
+              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-08 마감</h4></div>
+              <br>
+              <br>
+              <br>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>데이터베이스 설계 및 생성</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
+            	<br>            		
+            	<br>
+            	<br>            		
+              <div class="progress progress-striped" style="margin-left:50px;">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                  <span class="sr-only">100% Complete (warning)</span>
+                </div>
+              </div>
+              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-12 마감</h4></div>
+              <br>
+              <br>
+              <br>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 설계</h4></div>
             	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
             	<br>            		
             	<br>
             	<br>            		
               <div class="progress progress-striped">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">100% Complete (success)</span>
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                  <span class="sr-only">50% Complete (warning)</span>
                 </div>
               </div>
+              	<div width="49%" style="float:left;"><h4>50% 진행중</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-08 마감</h4></div>
               <br>
-              <h4 style="text-align:right;">100% 완료</h4>
+              <br>
+              <br>
+            	<div width="49%" style="float:left;"><h4>화면 구현</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
+            	<br>            		
+            	<br>
+            	<br>            		
+              <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                  <span class="sr-only">100% Complete (warning)</span>
+                </div>
+              </div>
+              <div width="49%" style="float:left;"><h4>10% 진행중</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-05-22 마감</h4></div>
+              <br>
+              <br>
+              <br>
+            	<div width="49%" style="float:left;"><h4>테스트</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
+            	<br>            		
+            	<br>
+            	<br>            		
+              <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                  <span class="sr-only">100% Complete (warning)</span>
+                </div>
+              </div>
+              	<div width="49%" style="float:left;"><h4>시작 전</h4></div>
+            	<div width="49%" style="text-align:right;float:right;"><h4>2020-06-08 마감</h4></div>
+              <br>
+              <br>
               <br>
             </div>
             <!--custom chart end-->
-            <div class="row mt">
-              <!-- SERVER STATUS PANELS -->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="grey-panel pn donut-chart">
-                  <div class="grey-header">
-                    <h5>SERVER LOAD</h5>
-                  </div>
-                  <canvas id="serverstatus01" height="120" width="120"></canvas>
-                  <script>
-                    var doughnutData = [{
-                        value: 70,
-                        color: "#FF6B6B"
-                      },
-                      {
-                        value: 30,
-                        color: "#fdfdfd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                      <p>Usage<br/>Increase:</p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                      <h2>21%</h2>
-                    </div>
-                  </div>
-                </div>
-                <!-- /grey-panel -->
-              </div>
-              <!-- /col-md-4-->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="darkblue-panel pn">
-                  <div class="darkblue-header">
-                    <h5>DROPBOX STATICS</h5>
-                  </div>
-                  <canvas id="serverstatus02" height="120" width="120"></canvas>
-                  <script>
-                    var doughnutData = [{
-                        value: 60,
-                        color: "#1c9ca7"
-                      },
-                      {
-                        value: 40,
-                        color: "#f68275"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <p>April 17, 2014</p>
-                  <footer>
-                    <div class="pull-left">
-                      <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-                    </div>
-                    <div class="pull-right">
-                      <h5>60% Used</h5>
-                    </div>
-                  </footer>
-                </div>
-                <!--  /darkblue panel -->
-              </div>
-              <!-- /col-md-4 -->
-              <div class="col-md-4 col-sm-4 mb">
-                <!-- REVENUE PANEL -->
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>REVENUE</h5>
-                  </div>
-                  <div class="chart mt">
-                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-                  </div>
-                  <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-            </div>
-            <!-- /row -->
-            <div class="row">
-              <!-- WEATHER PANEL -->
-              <div class="col-md-4 mb">
-                <div class="weather pn">
-                  <i class="fa fa-cloud fa-4x"></i>
-                  <h2>11Âº C</h2>
-                  <h4>BUDAPEST</h4>
-                </div>
-              </div>
-              <!-- /col-md-4-->
-              <!-- DIRECT MESSAGE PANEL -->
-              <div class="col-md-8 mb">
-                <div class="message-p pn">
-                  <div class="message-header">
-                    <h5>DIRECT MESSAGE</h5>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 centered hidden-sm hidden-xs">
-                      <img src="${path}/Dashio/img/ui-danro.jpg" class="img-circle" width="65">
-                    </div>
-                    <div class="col-md-9">
-                      <p>
-                        <name>Dan Rogers</name>
-                        sent you a message.
-                      </p>
-                      <p class="small">3 hours ago</p>
-                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                      <form class="form-inline" role="form">
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputText" placeholder="Reply Dan">
-                        </div>
-                        <button type="submit" class="btn btn-default">Send</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <!-- /Message Panel-->
-              </div>
-              <!-- /col-md-8  -->
-            </div>
-            <div class="row">
-              <!-- TWITTER PANEL -->
-              <div class="col-md-4 mb">
-                <div class="twitter-panel pn">
-                  <i class="fa fa-twitter fa-4x"></i>
-                  <p>Dashio is here! Take a look and enjoy this new Bootstrap Dashboard theme.</p>
-                  <p class="user">@Alvrz_is</p>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-              <div class="col-md-4 mb">
-                <!-- WHITE PANEL - TOP USER -->
-                <div class="white-panel pn">
-                  <div class="white-header">
-                    <h5>TOP USER</h5>
-                  </div>
-                  <p><img src="${path}/Dashio/img/ui-zac.jpg" class="img-circle" width="50"></p>
-                  <p><b>Zac Snider</b></p>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p class="small mt">MEMBER SINCE</p>
-                      <p>2012</p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="small mt">TOTAL SPEND</p>
-                      <p>$ 47,60</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-              <div class="col-md-4 mb">
-                <!-- INSTAGRAM PANEL -->
-                <div class="instagram-panel pn">
-                  <i class="fa fa-instagram fa-4x"></i>
-                  <p>@THISISYOU<br/> 5 min. ago
-                  </p>
-                  <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-            </div>
-            <!-- /row -->
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="product-panel-2 pn">
-                  <div class="badge badge-hot">HOT</div>
-                  <img src="${path}/Dashio/img/product.jpg" width="200" alt="">
-                  <h5 class="mt">Flat Pack Heritage</h5>
-                  <h6>TOTAL SALES: 1388</h6>
-                  <button class="btn btn-small btn-theme04">FULL REPORT</button>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-              <!--  PROFILE 02 PANEL -->
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="content-panel pn">
-                  <div id="profile-02">
-                    <div class="user">
-                      <img src="${path}/Dashio/img/friends/fr-06.jpg" class="img-circle" width="80">
-                      <h4>DJ SHERMAN</h4>
-                    </div>
-                  </div>
-                  <div class="pr2-social centered">
-                    <a href="${path}/Dashio/#"><i class="fa fa-twitter"></i></a>
-                    <a href="${path}/Dashio/#"><i class="fa fa-facebook"></i></a>
-                    <a href="${path}/Dashio/#"><i class="fa fa-dribbble"></i></a>
-                  </div>
-                </div>
-                <!-- /panel -->
-              </div>
-              <!--/ col-md-4 -->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>DISK SPACE</h5>
-                  </div>
-                  <canvas id="serverstatus03" height="120" width="120"></canvas>
-                  <script>
-                    var doughnutData = [{
-                        value: 60,
-                        color: "#2b2b2b"
-                      },
-                      {
-                        value: 40,
-                        color: "#fffffd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <h3>60% USED</h3>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-            </div>
-            <!-- /row -->
           </div>
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
