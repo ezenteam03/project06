@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"resources":{"WebContent/khj/DB/DBscript.sql":{"default-schema":"SCOTT","sql-editor-data-source-id":"oracle_thin-170e12bd3a6-6c6815f5fd12924"},"WebContent/project06.sql":{"default-schema":"SCOTT","sql-editor-data-source-id":"oracle_thin-170e125011b-3aa7f098b1aa0986"}}}
+=======
+{"resources":{"WebContent/khj/DB/DBscript.sql":{"default-schema":"SCOTT","sql-editor-data-source-id":"oracle_thin-170e12bd3a6-6c6815f5fd12924"},"WebContent/project06.sql":{"sql-editor-data-source-id":"oracle_thin-170e125011b-3aa7f098b1aa0986","default-schema":"SCOTT"}}}
+>>>>>>> 7e9d946eee728f59ceec20cb4f4fb85ee8a30a10

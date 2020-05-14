@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+-<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -181,6 +181,7 @@
 </head>
 
 <body>
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -255,7 +256,7 @@
           </li>
           <li>
             <a href="${path}/Dashio/inbox.jsp">
-              <i class="fa fa-envelope"></i>
+              <i class="fa fa-group"></i>
               <span>인적자원관리(팀원 비활성화) </span>
               </a>
           </li>        
@@ -356,7 +357,7 @@
 	</div>
 </div>
 
-
+  </section>
 </body>
 
 </html>
