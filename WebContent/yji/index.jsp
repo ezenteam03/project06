@@ -156,37 +156,39 @@
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
-            <!--COMPLETED ACTIONS DONUTS CHART-->
-            <div class="donut-main">
-              <h4>COMPLETED ACTIONS & PROGRESS</h4>
-              <canvas id="newchart" height="130" width="130"></canvas>
-              <script>
-                var doughnutData = [{
-                    value: 70,
-                    color: "#4ECDC4"
-                  },
-                  {
-                    value: 30,
-                    color: "#fdfdfd"
-                  }
-                ];
-                var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
-              </script>
-            </div>
-            <!--NEW EARNING STATS -->
-            <div class="panel terques-chart">
-              <div class="panel-body">
-                <div class="chart">
-                  <div class="centered">
-                    <span>TODAY EARNINGS</span>
-                    <strong>$ 890,00 | 15%</strong>
-                  </div>
-                  <br>
-                  <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
-                </div>
-              </div>
-            </div>
-            <!--new earning end-->
+          	<h4><i class="fa fa-angle-right"></i> Basic Table</h4>
+              <hr>
+          	<table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+          
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt">RECENT ACTIVITY</h4>
             <!-- First Activity -->
