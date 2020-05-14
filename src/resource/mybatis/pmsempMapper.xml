@@ -43,7 +43,7 @@
 	<!-- pno -> null로 변경 -->
 	<update id="delemp" parameterType="pmsemp">
 		UPDATE pmsmember
-		SET pno = null
+		SET pno=null, mdiv=6
 		WHERE mno =#{eno}
 	</update>
 	
