@@ -11,4 +11,5 @@ public class MainCtrl {
 		System.out.println("main 페이지(login) 실행");
 		return "WEB-INF\\views\\main\\login.jsp";
 	}
+	
 }
