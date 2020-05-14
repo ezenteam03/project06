@@ -16,8 +16,9 @@ public class pmsempCtrl {
 	private pmsempService service;
 	
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
-	// http://localhost:5080/project06_git/PMSemp.do?method=insEmp
-	// 사원 리스트 불러오기
+	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
+	// http://localhost:5080/project06_git/PMSemp.do?method=empList
+	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
 	public String list(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
@@ -28,9 +29,22 @@ public class pmsempCtrl {
 	public String insertForm() {
 		return "WEB-INF\\views\\main\\empReg.jsp";
 	}
+	// CEO, CTO 사원 추가
 	@RequestMapping(params="method=insert")
 	public String insert(pmsemp insert) {
 		service.insert(insert);
 		return "WEB-INF\\views\\main\\empReg.jsp";
+	}
+	// CEO, CTO 권한 설정
+	@RequestMapping(params="method=update")
+	public String update(pmsemp upt) {
+		service.update(upt);
+		return "forward:/PMSemp.do?method=list";
+	}
+	// PM 팀원추가 사원 리스트 불러오기
+	@RequestMapping(params="method=empList")
+	public String empList(pmsemp sch, Model d) {
+		d.addAttribute("elist", service.pmsempList(sch));
+		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 }
