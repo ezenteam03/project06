@@ -42,4 +42,15 @@
 		WHERE mdiv=3
 	</update>
 	
+	
+<!-- Jin -->
+	<resultMap type="int" id="pmsEmpEnoResult"/>
+	<select id="pmsEmpCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsemp WHERE name=#{name} AND email=#{email}
+ 	</select>
+ 	
+	<select id="pmsEmpEno" resultMap="pmsEmpEnoResult" parameterType="int">
+		SELECT eno FROM pmsemp WHERE name=#{name} AND email=#{email}
+	</select>
+	
 </mapper>	
