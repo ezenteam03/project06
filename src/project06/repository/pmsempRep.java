@@ -10,9 +10,14 @@ import project06.vo.pmsempSch;
 @Repository
 public interface pmsempRep {
 	public ArrayList<pmsemp> pmsempList(pmsemp sch);
+	public ArrayList<pmsemp> pmempList(pmsemp sch);
 	
 	public void insert(pmsemp ins);
 	
 	public void updatepmsemp1(pmsemp upt);
 	public void updatepmsemp2();
+	
+	// Jin
+	public int pmsEmpCounter(pmsemp emp);
+	public int pmsEmpEno(pmsemp emp);
 }
