@@ -17,6 +17,9 @@ public class pmsempService {
 		public ArrayList<pmsemp> pmsempList(pmsemp sch){
 			return rep.pmsempList(sch);
 		}
+		public ArrayList<pmsemp> pmempList(pmsemp sch){
+			return rep.pmempList(sch);
+		}
 		public void insert(pmsemp ins) {
 			rep.insert(ins);
 		}
