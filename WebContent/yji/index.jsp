@@ -38,7 +38,11 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 </head>
-
+<script type="text/javascript">
+function goNoti() {
+	$(location).attr("href","${path}/notice.do?method=list");
+}
+</script>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -156,7 +160,7 @@
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
-          	<h4><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
+          	<h4 onclick="goNoti()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
