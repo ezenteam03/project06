@@ -19,4 +19,6 @@ public class ChartService {
 		public ArrayList<Chart> chartList(){
 			return dao.chartList();
 		}
+		
+		
 }

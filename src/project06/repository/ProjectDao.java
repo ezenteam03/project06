@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
-import project06.vo.Chart;
+import project06.vo.Project;
 
 @Repository
-public interface ChartDao {
-	public ArrayList<Chart> chartList();
+public interface ProjectDao{
+	public ArrayList<Project> projectList();
+	
 }
+
+
