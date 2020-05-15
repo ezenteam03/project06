@@ -13,7 +13,7 @@
 			WHERE mno=#{mno} AND pass=#{pass}
 	</select>
 	
-	<select id="pmsEmpInfor" resultType="pmsEmp" parameterType="int">
+	<select id="pmsEmpInfor" resultType="pmsemp" parameterType="int">
 		SELECT * FROM pmsemp WHERE eno=#{mno}
 	</select>
 	

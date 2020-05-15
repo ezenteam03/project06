@@ -19,7 +19,7 @@ public interface PmsMemberDao {
 	public pmsemp pmsInfor(int mno);
 	public void pmsMemberUpdateInfor(PmsMember member);
 	
-	public int projectCount(int mno);
-	public String projectName(int mno);
+//	public int projectCount(int mno);
+//	public String projectName(int mno);
 
 }
