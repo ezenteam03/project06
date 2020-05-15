@@ -69,25 +69,60 @@
               <table class="table table-hover">
                 <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
-                <thead>
-                  <tr>
-                    <th class="num">번호</th>
-                    <th class="title">제목</th>
-                    <th class="date">작성일</th>
-                    <th class="cnt">조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="notice" items="${nlist}">
-                  <tr>
-                    <td style="text-align: center;">${notice.nno}</td>
-                    <td style="padding-left:70px;">${notice.title}</td>
-                    <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
-                    <td style="text-align: right;padding-right:70px;">${notice.views}</td>
-                  </tr>
-                 </c:forEach>
-                </tbody>
-              </table>
+                
+<form:form class="form" commandName="bsch" method="post" >
+ 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 
+ 	<br>
+ 	
+<div class="input-group lb-3">	
+	<div class="input-group-append">
+		<span class="input-group-text">페이지 크기:</span>
+		<form:select path="pageSize" class="form-control">
+			<form:option value="3">3</form:option >
+			<form:option value="5">5</form:option >
+			<form:option value="10">10</form:option >
+			<form:option value="20">30</form:option >
+			<form:option value="30">50</form:option >
+		</form:select> 
+	</div>
+</div>  
+</form:form>
+  
+  
+       <thead>
+          <tr>
+            <th class="num">번호</th>
+            <th class="title">제목</th>
+            <th class="date">작성일</th>
+            <th class="cnt">조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="notice" items="${nlist}">
+          <tr>
+            <td style="text-align: center;">${notice.nno}</td>
+            <td style="padding-left:70px;">${notice.title}</td>
+            <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
+            <td style="text-align: right;padding-right:70px;">${notice.views}</td>
+          </tr>
+         </c:forEach>
+        </tbody>
+      </table>
+              
+      <ul class="pagination justify-content-center" style="margin:20px 0">
+      	<li class="page-item">
+	   		<a class="page-link" href="javascript:goPage(${bsch.startBlock-1});">Previous</a></li>
+	   	<c:forEach var="cnt" begin="${bsch.startBlock }" end="${bsch.endBlock}">
+	  		<li class="page-item ${bsch.curPage==cnt?'active':''}">
+	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+		</c:forEach>
+			<li class="page-item">
+			<a class="page-link" href="javascript:goPage(${(bsch.endBlock==bsch.pageCount)?bsch.endBlock:bsch.endBlock+1});">Next</a></li>
+	  </ul>  
+            
+            
+            
             </div>
            
           </div>
