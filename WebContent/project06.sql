@@ -356,6 +356,7 @@ CREATE TABLE PMSTASK (
 	refno NUMBER NOT NULL, /* 부모업무번호 */
 	tname VARCHAR2(100) NOT NULL, /* 업무명 */
 	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
+	updetail VARCHAR2(2000), /* 업무진행내용 */
 	sdate DATE NOT NULL, /* 시작일자 */
 	edate DATE NOT NULL, /* 종료일자 */
 	prog NUMBER NOT NULL, /* 진행율 */
@@ -376,6 +377,8 @@ COMMENT ON COLUMN PMSTASK.refno IS '부모업무번호';
 COMMENT ON COLUMN PMSTASK.tname IS '업무명';
 
 COMMENT ON COLUMN PMSTASK.detail IS '업무내용';
+
+COMMENT ON COLUMN PMSTASK.updetail IS '업무진행내용';
 
 COMMENT ON COLUMN PMSTASK.sdate IS '시작일자';
 
