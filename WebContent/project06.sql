@@ -1084,7 +1084,7 @@ insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysd
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 
-SELECT * FROM pmsnotice;
+SELECT * FROM pmsmember;
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
 	FROM pmsemp a 
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
