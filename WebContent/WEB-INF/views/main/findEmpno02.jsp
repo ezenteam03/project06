@@ -68,7 +68,7 @@
 			
 			<div class="login-wrap">
 				<label>사원번호</label>
-				<input type="text" class="form-control" placeholder="${eno}" readonly="readonly">
+				<input type="text" class="form-control" value="${eno}" readonly="readonly">
 				
 				<button class="btn btn-theme btn-block" type="button" id="loginBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;&nbsp;LOGIN</button>
 				<button class="btn btn-theme btn-block" type="button" id="findPassBtn" style="margin-top:5%;"><i class="fa fa-search"></i>&nbsp;FIND PASSWORD</button>
