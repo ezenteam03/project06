@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project06.service.PmsMemberService;
 import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 
 @Controller											  // 세션 이름 - 정보
-@SessionAttributes({"mno","emp","infor_M","proName"}) // mno-사원번호, emp-사원정보, infor_M-사용자,proName-프로젝트네임
+ // mno-사원번호, emp-사원정보, infor_M-사용자,proName-프로젝트네임
 @RequestMapping("/PmsMember.do")
 public class PmsMemberCtrl {
 	@Autowired(required = false)
@@ -22,7 +21,8 @@ public class PmsMemberCtrl {
 	
 	// http://localhost:5080/project06_git/PmsMember.do?method=login
 	@RequestMapping(params="method=login")
-	public String login(PmsMember member, Model m) {
+	public String login(PmsMember member, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		System.out.println("PmsMemberCtrl method=login 실행");
 		
 		int mno = service.memberInfor(member);
@@ -32,10 +32,10 @@ public class PmsMemberCtrl {
 		String proName = service.projectName(mno);
 		
 		if(mno!=0) {
-			m.addAttribute("mno", mno);
-			m.addAttribute("emp", emp);
-			m.addAttribute("infor_M", infor_M);
-			m.addAttribute("proName", proName);
+			session.setAttribute("mno", mno);
+			session.setAttribute("emp", emp);
+			session.setAttribute("infor_M", infor_M);
+			session.setAttribute("proName", proName);
 			return "WEB-INF\\views\\main\\top.jsp";
 		}else {
 			int ck = 1;
