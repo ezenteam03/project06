@@ -15,8 +15,6 @@ public interface PmsMemberDao {
 	
 	public void pmsMemberChangePass(PmsMember member);
 	
-	public int pmsInforCounter(int mno);
-	public pmsemp pmsInfor(int mno);
 	public void pmsMemberUpdateInfor(PmsMember member);
 	
 	public int projectCount(int mno);
