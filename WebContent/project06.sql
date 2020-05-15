@@ -168,7 +168,7 @@ ALTER TABLE PMSMEMBER
 ALTER TABLE pmsmember
 	ADD
 		CONSTRAINT pmsmember_mdiv_ck
-		CHECK(mdiv IN(2,3,4,5,6));
+		CHECK(mdiv IN(2,3,4,5,6,7,8,9));
 	
 ALTER TABLE PMSPROJECT
 	DROP
@@ -356,6 +356,7 @@ CREATE TABLE PMSTASK (
 	refno NUMBER NOT NULL, /* 부모업무번호 */
 	tname VARCHAR2(100) NOT NULL, /* 업무명 */
 	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
+	updetail VARCHAR2(2000), /* 업무진행내용 */
 	sdate DATE NOT NULL, /* 시작일자 */
 	edate DATE NOT NULL, /* 종료일자 */
 	prog NUMBER NOT NULL, /* 진행율 */
@@ -376,6 +377,8 @@ COMMENT ON COLUMN PMSTASK.refno IS '부모업무번호';
 COMMENT ON COLUMN PMSTASK.tname IS '업무명';
 
 COMMENT ON COLUMN PMSTASK.detail IS '업무내용';
+
+COMMENT ON COLUMN PMSTASK.updetail IS '업무진행내용';
 
 COMMENT ON COLUMN PMSTASK.sdate IS '시작일자';
 
@@ -1084,7 +1087,7 @@ insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysd
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 
-SELECT * FROM pmsnotice;
+SELECT * FROM pmsmember;
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
 	FROM pmsemp a 
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';

@@ -260,6 +260,18 @@ th{text-align:center;}
 			return 0;
 		}
 	}
+	function logOut(){
+		Swal.fire({
+			  title:'로그아웃 ',
+			  text:"로그아웃 하시겠습니까?",
+			  icon: 'info',
+			  showCancelButton: true
+			}).then((result) => {
+				if (result.value) {
+					$(location).attr("href","${path}/PmsMember.do?method=logout");
+				}
+			})
+	}
 
 </script>
 
@@ -272,7 +284,7 @@ th{text-align:center;}
         *********************************************************************************************************************************************************** -->
     <!--header start-->
     <header class="header black-bg">
-    
+
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
@@ -284,7 +296,7 @@ th{text-align:center;}
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="#pop01">개인정보</a></li>
           <li><a class="logout" href="#pop03">참여인원 @@명</a></li>
-          <li><a class="logout" href="#">Logout</a></li>
+          <li><a class="logout" href="javascript:logOut();">LogOut</a></li>
 
         </ul>
       </div>
@@ -301,7 +313,7 @@ th{text-align:center;}
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h3 style="color:white" align="center">${emp.getName()} ${emp.getGrade() }</h3>
+         <h3 style="color:white" align="center">${emp.name} ${emp.grade}</h3>
          </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">
@@ -392,27 +404,27 @@ th{text-align:center;}
 			<br>
 			
 			<label>이름</label>
-			<input type="text" class="form-control" value="${emp.getName() }" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.name }" readonly="readonly">
 			
 			<br>
 			
 			<label>직책</label>
-			<input type="text" class="form-control" value="${emp.getGrade() }" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.grade }" readonly="readonly">
 			
 			<br>
 			
 			<label>부서</label>
-			<input type="text" class="form-control" value="${emp.getDept() }" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.dept }" readonly="readonly">
 		
 			<br>
 			
 			<label>전화번호</label>
-			<input type="text" class="form-control" value="${emp.getPhone() }" id="phone" value="010-1234-1234" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.phone }" id="phone" value="010-1234-1234" readonly="readonly">
 			
 			<br>
 			
 			<label>이메일</label>
-			<input type="text" class="form-control" value="${emp.getEmail() }" id="mail" value="qweasd@naver.com" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.email }" id="mail" value="qweasd@naver.com" readonly="readonly">
 			
 			<br>
 			

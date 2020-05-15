@@ -1,11 +1,13 @@
 package project06.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import javax.servlet.http.*;
 
-import project06.service.MeetService;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
+
+import project06.service.*;
 
 @Controller
 @RequestMapping("/meet.do")
@@ -15,10 +17,18 @@ public class MeetCtrl {
 	
 	//http://localhost:5080/project06_git/meet.do?method=list
 	@RequestMapping(params="method=list")
-	public String list(Model d) {
+	public String list(Model d, HttpServletRequest request) {
+		String page = "WEB-INF\\views\\main\\meetList.jsp";
 		d.addAttribute("mlist", service.list());
-		return "WEB-INF\\views\\main\\meetList.jsp";
+		return isLogin(page, request);
 		
 	}
-
+	
+	public String isLogin(String page, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		} 
+		return page;
+	}
 }
