@@ -18,13 +18,22 @@
  	 -->
 <mapper namespace="project06.repository.NoticeDao">
  	<resultMap type="notice" id="noticeResult"/>
- 	
- 
- 	<select id="list" resultMap="noticeResult" parameterType="notice">
-		SELECT *
-		FROM pmsnotice
-		WHERE 1=1
-		order by nno desc
+
+ 		
+ 	<select id="totCnt" resultType="int" parameterType="nsch" >
+			select count(*) 
+			from pmsnotice 
+			where 1=1
  	</select>
+ 	<select id="list" resultMap="noticeResult" parameterType="nsch" >
+		SELECT *
+ 		FROM(
+			select rownum cnt, p.* 
+		FROM pmsnotice p
+		WHERE 1=1
+		ORDER BY nno DESC )
+		WHERE cnt BETWEEN #{start} AND #{end}
+ 	</select>
+ 	
 </mapper>	
 

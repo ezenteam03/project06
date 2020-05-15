@@ -19,7 +19,7 @@ public class NoticeCtrl {
 	
 	
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("bsch") NoticeSch sch, Model d) {
+	public String list(@ModelAttribute("nsch") NoticeSch sch, Model d) {
 		d.addAttribute("nlist", service.list(sch));
 		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}
