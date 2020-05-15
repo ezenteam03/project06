@@ -82,8 +82,8 @@
 			<form:option value="3">3</form:option >
 			<form:option value="5">5</form:option >
 			<form:option value="10">10</form:option >
-			<form:option value="20">20</form:option >
-			<form:option value="30">30</form:option >
+			<form:option value="20">30</form:option >
+			<form:option value="30">50</form:option >
 		</form:select> 
 	</div>
 </div>  

@@ -1,15 +1,9 @@
 package project06.vo;
 
 public class NoticeSch {
-	private String title;
+	
 	
 	private int count; // 총데이터 건수.
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	private int pageSize; // 한번에 보여줄 페이지 크기..
 	private int pageCount; // 총 페이지 수. count/pageSize
 	private int curPage; // 클릭한 현재 페이지번호
