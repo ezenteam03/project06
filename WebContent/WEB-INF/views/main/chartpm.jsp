@@ -103,7 +103,8 @@
 						start: today+(chart.sdate * day), 
 						end: today+(chart.edate * day),
 						completed : { amount : chart.prog },
-						owner : ""+chart.name+""
+						owner : ""+chart.name+"",
+						collapsed : true,
 						});
 				});
 				var seriesInfo = [{
