@@ -70,24 +70,7 @@
                 <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
                 
-<form:form class="form" commandName="bsch" method="post" >
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
- 
- 	<br>
- 	
-<div class="input-group lb-3">	
-	<div class="input-group-append">
-		<span class="input-group-text">페이지 크기:</span>
-		<form:select path="pageSize" class="form-control">
-			<form:option value="3">3</form:option >
-			<form:option value="5">5</form:option >
-			<form:option value="10">10</form:option >
-			<form:option value="20">30</form:option >
-			<form:option value="30">50</form:option >
-		</form:select> 
-	</div>
-</div>  
-</form:form>
+
   
   
        <thead>
@@ -109,6 +92,29 @@
          </c:forEach>
         </tbody>
       </table>
+      
+      <form:form class="form" commandName="bsch" method="post" >
+ 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 
+ 	<br>
+ 	
+<div class="input-group lb-3">	
+		<div class="input-group-prepend ">
+			<span class="input-group-text "> 총 : ${bsch.count} 건</span>
+		</div>
+		<input class="form-control" />	
+		<div class="input-group-append">
+			<span class="input-group-text">페이지 크기:</span>
+			<form:select path="pageSize" class="form-control">
+				<form:option value="3">3</form:option >
+				<form:option value="5">5</form:option >
+				<form:option value="10">10</form:option >
+				<form:option value="20">20</form:option >
+				<form:option value="30">30</form:option >
+			</form:select> 
+		</div>
+	</div>  
+  </form:form>
               
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
