@@ -10,7 +10,6 @@ import project06.vo.NoticeSch;
 @Repository
 public interface NoticeDao{
 	
-	public int totCnt(NoticeSch sch);
 	public ArrayList<Notice> list(NoticeSch sch);
 	
 	
