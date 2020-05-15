@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="pmsMemberInforAll" resultType="pmsMember" parameterType="int">
-		SELECT * FROM pmsmember WHERE mno=#{mno};
+		SELECT * FROM pmsmember WHERE mno=#{mno}
 	</select>
 
 	<update id="pmsMemberChangePass" parameterType="pmsMember">
@@ -40,14 +40,14 @@
 		</if>
 		WHERE mno=#{mno}
  	</update> 
- <!-- 
+
  	<select id="projectCount" resultType="int" parameterType="int">
  		SELECT count(*) FROM pmsmember m, pmsproject p WHERE m.pno=p.pno AND m.mno=#{mno}
  	</select>
  	<select id="projectName" resultType="String" parameterType="int">
 		SELECT p.pname FROM pmsmember m, pmsproject p WHERE m.pno=p.pno AND m.mno=#{mno}
 	</select>
--->
+
 		
 	
 </mapper>	
