@@ -76,21 +76,16 @@
  	<br>
  	
 <div class="input-group lb-3">	
-	<div class="input-group-prepend ">
-		<span class="input-group-text "> 총 : ${bsch.count} 건</span>
+	<div class="input-group-append">
+		<span class="input-group-text">페이지 크기:</span>
+		<form:select path="pageSize" class="form-control">
+			<form:option value="3">3</form:option >
+			<form:option value="5">5</form:option >
+			<form:option value="10">10</form:option >
+			<form:option value="20">20</form:option >
+			<form:option value="30">30</form:option >
+		</form:select> 
 	</div>
-	
-	<input class="form-control" />	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
 </div>  
 </form:form>
   

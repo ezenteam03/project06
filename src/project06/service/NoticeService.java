@@ -15,8 +15,7 @@ public class NoticeService {
 	private NoticeDao dao;
 	
 	public ArrayList<Notice> list(NoticeSch sch){
-		// 1. 데이터 총건수
-		sch.setCount(dao.totCnt(sch));
+		
 		// 2. 화면에 한번에 보여줄 데이터 건수 초기값 5
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
