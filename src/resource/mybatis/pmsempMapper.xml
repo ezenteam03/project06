@@ -46,6 +46,31 @@
 		SET pno=null, mdiv=6
 		WHERE mno =#{eno}
 	</update>
+	<!-- 사원정보 수정 -->
+	<update id="udtdept" parameterType="pmsemp">
+	UPDATE pmsemp
+		SET dept =#{dept}
+		WHERE detp =#{dept}
+	</update>
+	<update id="udtgrade" parameterType="pmsemp">	
+	UPDATE pmsemp
+		SET grade =#{grade}
+		WHERE grade =#{grade}
+	</update>	
+	
+	<!-- 페이지네이션 !-->
+ 	<select id="list" resultMap="taskResult" parameterType="pmsempSch" >
+		SELECT *
+ 		FROM(
+			select rownum cnt, b.* 
+			from sch b
+			where 1=1
+			<if test="eno!=null and eno!=''">
+			and eno like '%'||#{eno}||'%'
+			</if>
+			ORDER BY tno desc )
+		WHERE cnt BETWEEN #{start} AND #{end}	
+ 	</select>
 	
 	
 	
