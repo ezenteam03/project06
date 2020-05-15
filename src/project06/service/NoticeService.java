@@ -37,9 +37,11 @@ public class NoticeService {
 				//int totPage = (int)(Math.ceil(sch.getCount()/(double)sch.getPageSize()));
 				sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
 				//  4. 현재 클릭한 페이지 초기값.
+				System.out.println("curpage값:"+sch.getCurPage());
 				if(sch.getCurPage()==0) {
 					sch.setCurPage(1);
 				}
+				System.out.println("curpage값(수정):"+sch.getCurPage());
 				/*
 				현재 페이지 번호, 1
 				페이지당 보일 데이터 건수 5
