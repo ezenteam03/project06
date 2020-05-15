@@ -36,6 +36,24 @@ public class PmsMemberService {
 		return mno;
 	}
 	
+	public pmsemp empInfor(int mno) {
+		System.out.println("PmsMemberDao empInfor 실행");
+		return dao.pmsEmpInfor(mno);
+	}
+	public PmsMember memberInforAll(int mno) {
+		System.out.println("PmsMemberDao memberInforAll 실행");
+		return dao.pmsMemberInforAll(mno);
+	}
+/*	public String projectName(int mno) {
+		System.out.println("PmsMemberDao projectName 실행");
+		int count = dao.projectCount(mno);
+		String proName = "";
+		if(count != 0) {
+			proName = dao.projectName(mno);
+		}
+		return proName;
+	}
+*/	
 	public int changePass(PmsMember member) {
 		System.out.println("PmsMemberDao changePass 실행");
 		
@@ -66,6 +84,8 @@ public class PmsMemberService {
 		System.out.println("updateInfor sql 실행");
 		
 	}
+	
+
 	
 	
 	

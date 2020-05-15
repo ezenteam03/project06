@@ -277,7 +277,7 @@ th{text-align:center;}
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="${path}/Dashio/index.jsp" class="logo"><img src="${path}/Jin/img/logo1-1.png" style="width:35px;height:35px;margin-top:-5px;">&nbsp;&nbsp;&nbsp;<b>Project<span>&nbsp;&nbsp;&nbsp;프로젝트 명</span></b></a>
+      <a href="${path}/Dashio/index.jsp" class="logo"><img src="${path}/Jin/img/logo1-1.png" style="width:35px;height:35px;margin-top:-5px;">&nbsp;&nbsp;&nbsp;<b>Project<span>&nbsp;&nbsp;&nbsp;${proName }</span></b></a>
       <!--logo end-->
       
       <div class="top-menu">
@@ -301,7 +301,7 @@ th{text-align:center;}
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h2 style="margin-left:10px;color:white">@@@ 사원</h2>
+         <h3 style="margin-left:10px;color:white">${emp.getName()} ${emp.getGrade() }</h3>
          </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">
