@@ -168,7 +168,7 @@ ALTER TABLE PMSMEMBER
 ALTER TABLE pmsmember
 	ADD
 		CONSTRAINT pmsmember_mdiv_ck
-		CHECK(mdiv IN(2,3,4,5,6));
+		CHECK(mdiv IN(2,3,4,5,6,7,8,9));
 	
 ALTER TABLE PMSPROJECT
 	DROP
