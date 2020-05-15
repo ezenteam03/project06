@@ -5,9 +5,10 @@
 	<typeAliases>
 		 <!-- XXXMapper.xml에서 간편하게 사용하기 위해서 선언..  -->
 		 <!-- 사원리스트 불러오기 -->
-		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/> 
+		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/>  
 		 <typeAlias alias="chart" type="project06.vo.Chart"/> 
 		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
+		 <typeAlias alias="nsch" type="project06.vo.NoticeSch"/> 
 		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
 		 
 		 <!-- Jin -->

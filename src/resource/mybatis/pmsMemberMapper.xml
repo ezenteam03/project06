@@ -3,19 +3,43 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.PmsMemberDao">
- 	<resultMap type="pmsmember" id="pmsMemberResult"/> 	
+ 	<resultMap type="pmsMember" id="pmsMemberResult"/> 	
  	<select id="pmsMemberCounter" resultType="int" parameterType="int">
  		SELECT count(*) FROM pmsmember WHERE mno=#{mno} AND pass=#{pass}
  	</select>
  	
-	<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsmember">
+	<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsMember">
 		SELECT * FROM pmsmember 
 			WHERE mno=#{mno} AND pass=#{pass}
 	</select>
+	
+	<select id="pmsEmpInfor" resultType="pmsemp" parameterType="int">
+		SELECT * FROM pmsemp WHERE eno=#{mno}
+	</select>
+	
+	<select id="pmsMemberInforAll" resultType="pmsMember" parameterType="int">
+		SELECT * FROM pmsmember WHERE mno=#{mno}
+	</select>
 
-	<update id="pmsMemberChangePass" parameterType="pmsmember">
+	<update id="pmsMemberChangePass" parameterType="pmsMember">
 		UPDATE pmsmember SET pass=#{pass} WHERE mno=#{mno}
  	</update> 
+	
+	<update id="pmsMemberUpdateInfor" parameterType="pmsMember">
+		UPDATE pmsmember SET pass=#{pass}
+		<if test="wcon!=null and wcon!=''">
+		, wcon=#{wcon} 
+		</if>
+		WHERE mno=#{mno}
+ 	</update> 
+
+ 	<select id="projectCount" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsmember m, pmsproject p WHERE m.pno=p.pno AND m.mno=#{mno}
+ 	</select>
+ 	<select id="projectName" resultType="String" parameterType="int">
+		SELECT p.pname FROM pmsmember m, pmsproject p WHERE m.pno=p.pno AND m.mno=#{mno}
+	</select>
+
 		
 	
 </mapper>	

@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -10,6 +11,15 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+  <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+  <style type="text/css">
+	.sch{width:25%;}
+  </style>
+ 	<script src="${path}/a00_com/jquery.min.js"></script>
+	<script src="${path}/a00_com/popper.min.js"></script>
+	<script src="${path}/a00_com/bootstrap.min.js"></script>
+	<script src="${path}/a00_com/jquery-ui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -50,7 +60,14 @@
 
 
 </style>
+<script type="text/javascript">
 
+function goPage(no){
+	alert("이동 번호:"+no);
+	$("#curPage").val(no);
+	$("form").submit();
+}
+</script>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -69,25 +86,85 @@
               <table class="table table-hover">
                 <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
-                <thead>
-                  <tr>
-                    <th class="num">번호</th>
-                    <th class="title">제목</th>
-                    <th class="date">작성일</th>
-                    <th class="cnt">조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="notice" items="${nlist}">
-                  <tr>
-                    <td style="text-align: center;">${notice.nno}</td>
-                    <td style="padding-left:70px;">${notice.title}</td>
-                    <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
-                    <td style="text-align: right;padding-right:70px;">${notice.views}</td>
-                  </tr>
-                 </c:forEach>
-                </tbody>
-              </table>
+                
+<form:form class="form" commandName="nsch" method="post" >
+ 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 
+ 	<br>
+ 	
+<div class="input-group lb-3">	
+	<div class="input-group-append">
+		<span class="input-group-text">페이지 크기:</span>
+		<form:select path="pageSize" class="form-control">
+			<form:option value="3">3</form:option >
+			<form:option value="5">5</form:option >
+			<form:option value="10">10</form:option >
+			<form:option value="20">30</form:option >
+			<form:option value="30">50</form:option >
+		</form:select> 
+	</div>
+</div>  
+</form:form>
+  
+  
+       <thead>
+          <tr>
+            <th class="num">번호</th>
+            <th class="title">제목</th>
+            <th class="date">작성일</th>
+            <th class="cnt">조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="notice" items="${nlist}">
+          <tr>
+            <td style="text-align: center;">${notice.nno}</td>
+            <td style="padding-left:70px;">${notice.title}</td>
+            <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
+            <td style="text-align: right;padding-right:70px;">${notice.views}</td>
+          </tr>
+         </c:forEach>
+        </tbody>
+      </table>
+
+     
+   <form:form class="form" commandName="nsch" method="post" >
+ 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 
+ 	<br>
+ 	
+<div class="input-group lb-3">	
+		<div class="input-group-prepend ">
+			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
+		</div>
+		<input class="form-control" />	
+		<div class="input-group-append">
+			<span class="input-group-text">페이지 크기:</span>
+			<form:select path="pageSize" class="form-control">
+				<form:option value="3">3</form:option >
+				<form:option value="5">5</form:option >
+				<form:option value="10">10</form:option >
+				<form:option value="20">20</form:option >
+				<form:option value="30">30</form:option >
+			</form:select> 
+		</div>
+	</div>  
+  </form:form>
+
+              
+      <ul class="pagination justify-content-center" style="margin:20px 0">
+      	<li class="page-item">
+	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
+	   	<c:forEach var="cnt" begin="${nsch.startBlock }" end="${nsch.endBlock}">
+	  		<li class="page-item ${nsch.curPage==cnt?'active':''}">
+	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+		</c:forEach>
+			<li class="page-item">
+			<a class="page-link" href="javascript:goPage(${(nsch.endBlock==nsch.pageCount)?nsch.endBlock:nsch.endBlock+1});">Next</a></li>
+	  </ul>  
+            
+            
+            
             </div>
            
           </div>

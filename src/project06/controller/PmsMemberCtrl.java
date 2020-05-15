@@ -1,5 +1,6 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project06.service.PmsMemberService;
 import project06.vo.PmsMember;
+import project06.vo.pmsemp;
 
-@Controller
-@SessionAttributes("mno")
+@Controller											  // 세션 이름 - 정보
+@SessionAttributes({"mno","emp","infor_M","proName"}) // mno-사원번호, emp-사원정보, infor_M-사용자,proName-프로젝트네임
 @RequestMapping("/PmsMember.do")
 public class PmsMemberCtrl {
 	@Autowired(required = false)
@@ -24,11 +26,16 @@ public class PmsMemberCtrl {
 		System.out.println("PmsMemberCtrl method=login 실행");
 		
 		int mno = service.memberInfor(member);
-		
 		System.out.println("mno : " + mno);
+		pmsemp emp = service.empInfor(mno);
+		PmsMember infor_M = service.memberInforAll(mno);
+		String proName = service.projectName(mno);
 		
 		if(mno!=0) {
 			m.addAttribute("mno", mno);
+			m.addAttribute("emp", emp);
+			m.addAttribute("infor_M", infor_M);
+			m.addAttribute("proName", proName);
 			return "WEB-INF\\views\\main\\top.jsp";
 		}else {
 			int ck = 1;
@@ -47,6 +54,49 @@ public class PmsMemberCtrl {
 		
 		return "WEB-INF\\views\\main\\findPassword02.jsp";
 	}
+	
+	@RequestMapping(params="method=information")
+	public String inforCheck(PmsMember member, Model m) {
+		System.out.println("PmsMemberCtrl method=information 실행");
+		
+		int mno = service.memberInfor(member);
+		
+		int ck = 0;
+		
+		if(mno!=0) {
+			ck = 1;
+			m.addAttribute("ck",ck);
+			return "WEB-INF\\views\\main\\top.jsp";
+		}else {
+			ck = 2;
+			m.addAttribute("ck",ck);
+			return "WEB-INF\\views\\main\\top.jsp";
+		}
+	}
+	
+	@RequestMapping(params="method=updateInfor")
+	public String inforUpdate(PmsMember member, Model m) {
+		System.out.println("PmsMemberCtrl method=updateInfor 실행");
+		
+		service.updateInfor(member);
+
+		int ck = 3;
+		m.addAttribute("ck",ck);
+
+		return "WEB-INF\\views\\main\\top.jsp";
+	}
+	
+	@RequestMapping(params="method=logout")
+	public String logOut(HttpServletRequest request) {
+		System.out.println("logOut 로그아웃");
+		
+		HttpSession session = request.getSession();
+        session.invalidate();
+		
+		return "WEB-INF\\views\\main\\login.jsp";
+	}
+	
+
 	
 	
 }

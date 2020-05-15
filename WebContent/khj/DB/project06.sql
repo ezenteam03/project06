@@ -23,7 +23,12 @@ DROP SEQUENCE pmsbfile_seq;
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';	
 	
 	SELECT * FROM PMSPROJECT;
-	SELECT * FROM 
+	UPDATE pmsemp
+		SET dept = ''
+		WHERE detp ='';
+	UPDATE pmsemp
+		SET grade =''
+		WHERE grade ='';
 
 
 ALTER TABLE PMSCODES
