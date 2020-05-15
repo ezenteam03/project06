@@ -11,8 +11,3 @@
 6. 입력/상세 화면에 UI 디자인 검토.
 7. 게시판  - 필수 검색 항목 검토
 8. Gantt 차트 항목(왼쪽) 개선 검토..
-
-SELECT LEVEL, p.tNO , p.REFNO , p.TNAME, p.SDATE, p.EDATE 
-FROM pmstask p
-START WITH p.refno=0
-CONNECT BY PRIOR tno = refno; 
