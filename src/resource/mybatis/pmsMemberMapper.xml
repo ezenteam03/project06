@@ -16,6 +16,22 @@
 	<update id="pmsMemberChangePass" parameterType="pmsmember">
 		UPDATE pmsmember SET pass=#{pass} WHERE mno=#{mno}
  	</update> 
+ 	
+	<resultMap type="pmsemp" id="pmsEmpInforResult"/>
+	<select id="pmsInforCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsemp WHERE eno=#{mno}
+ 	</select>
+	<select id="pmsInfor" resultType="pmsemp" parameterType="int">
+		SELECT * FROM pmsemp WHERE eno=#{mno}
+	</select>
+	
+	<update id="pmsMemberUpdateInfor" parameterType="pmsmember">
+		UPDATE pmsmember SET pass=#{pass}
+		<if test="wcon!=null and wcon!=''">
+		, wcon=#{wcon} 
+		</if>
+		WHERE mno=#{mno}
+ 	</update> 
 		
 	
 </mapper>	

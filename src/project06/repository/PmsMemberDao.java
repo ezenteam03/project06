@@ -3,6 +3,7 @@ package project06.repository;
 import org.springframework.stereotype.Repository;
 
 import project06.vo.PmsMember;
+import project06.vo.pmsemp;
 
 @Repository
 public interface PmsMemberDao {
@@ -11,5 +12,9 @@ public interface PmsMemberDao {
 	public PmsMember pmsMemberInfor(PmsMember member);
 	
 	public void pmsMemberChangePass(PmsMember member);
+	
+	public int pmsInforCounter(int mno);
+	public pmsemp pmsInfor(int mno);
+	public void pmsMemberUpdateInfor(PmsMember member);
 
 }

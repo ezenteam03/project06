@@ -30,6 +30,9 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
   <!-- =======================================================
     Template Name: Dashio
@@ -162,14 +165,7 @@ th{text-align:center;}
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		$("#btn01").click(function(){
-			$(location).attr('href','#none');
-		});
-	
-		$("#btn").click(function(){
-			$(location).attr('href','#pop02');
-		});
-		
+		var check01=0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
 			if(num == 1){
@@ -179,18 +175,62 @@ th{text-align:center;}
 			}else if(num == 3){
 				$("#txtOut").text("숫자,영문,특수문자로 조합하세요");
 			}else{
+				check01=1;
 				$("#txtOut").text("사용 가능한 비밀번호입니다");
 			}
 			
 		});
 		
+		var check02=0;
 		$("#pass02").keyup(function(){
 			if($("#pass01").val() == $(this).val()){
+				check02=1;
 				$("#txtOut").text("비밀번호가 일치합니다.");
 			}else{
 				$("#txtOut").text("비밀번호가 일치하지 않습니다.");
 			}
 		});
+		
+		$("#btn01").click(function(){
+			$(location).attr('href','#none');
+		});
+
+		$("#inforBtn").click(function(){
+			if($("#pop01Pass").val() != ""){
+				$("#inforCheckForm").submit();
+			}
+		});
+		
+		$("#updateBtn").click(function(){
+			if(check01 == 1 && check02 == 1){
+				$("#updateInforForm").submit();
+			}
+		});
+		
+		var ck = "${ck}";
+		if(ck == 1){
+			$(location).attr('href','#pop02');
+		}else if(ck == 2){
+			Swal.fire({
+				  title:'비밀번호',
+				  text:"비밀번호를 확인하세요",
+				  icon: 'error'
+				}).then((result) => {
+					if (result.value) {
+						$(location).attr('href','#pop01');
+					}
+				})
+		}else if(ck == 3){
+			Swal.fire({
+				  title:'정보 수정',
+				  text:"정보 수정 완료",
+				  icon: 'success'
+				}).then((result) => {
+					if (result.value) {
+						$(location).attr('class','close');
+					}
+				})
+		}
 		
 		$("[name=ck]").click(function(){
 			var ckPhone = $("#ckPhone").is(":checked");
@@ -317,20 +357,20 @@ th{text-align:center;}
 	<div class="popup">
 		<a href="#none" class="close">&times;</a>
 	
-		<form class="form-login" action="#" style="background-color:#e0e0e0;margin-top:0%">
-	
+		<form class="form-login" id="inforCheckForm" action="${path}/PmsMember.do?method=information" method="post" style="background-color:#e0e0e0;margin-top:0%">
+
 		<h2 class="form-login-heading">INFORMATION</h2>
 	
 		<div class="login-wrap">
 			<label>사원번호</label>
-			<input type="text" class="form-control" placeholder="사원번호 출력할 곳" readonly="readonly">
+			<input type="text" class="form-control" value="${mno}" name="mno" readonly="readonly">
 			
 			<br>
 			
-			<label>새 비밀번호</label>
-				<input type="password" class="form-control" placeholder="비밀번호를 입력하세요" autofocus>
+			<label>비밀번호</label>
+				<input type="password" class="form-control" name="pass" id="pop01Pass" placeholder="비밀번호를 입력하세요" autofocus>
 		
-			<button class="btn btn-theme btn-block" type="button" id="btn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
+			<button class="btn btn-theme btn-block" type="button" id="inforBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
 								
 		</div>
 			
@@ -342,51 +382,51 @@ th{text-align:center;}
 	<div class="popup" style="margin-top:40px;">
 		<a href="#none" class="close">&times;</a>
 	
-		<form class="form-login" action="#" style="background-color:#e0e0e0;margin-top:0%">
+		<form class="form-login" id="updateInforForm" action="${path}/PmsMember.do?method=updateInfor" method="post" style="background-color:#e0e0e0;margin-top:0%">
 	
 		<h2 class="form-login-heading">INFORMATION</h2>
 	
 		<div class="login-wrap">
 		
 			<label>사원번호</label>
-			<input type="text" class="form-control" placeholder="사원번호 출력할 곳" readonly="readonly">
+			<input type="text" class="form-control" name="mno" value="${mno}" readonly="readonly">
 			
 			<br>
 			
 			<label>이름</label>
-			<input type="text" class="form-control" placeholder="이름 출력할 곳" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.getName() }" readonly="readonly">
 			
 			<br>
 			
 			<label>직책</label>
-			<input type="text" class="form-control" placeholder="직책 출력할 곳" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.getGrade() }" readonly="readonly">
 			
 			<br>
 			
 			<label>부서</label>
-			<input type="text" class="form-control" placeholder="부서 출력할 곳" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.getDept() }" readonly="readonly">
 		
 			<br>
 			
 			<label>전화번호</label>
-			<input type="text" class="form-control" placeholder="전화번호 출력할 곳" id="phone" value="010-1234-1234" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.getPhone() }" id="phone" value="010-1234-1234" readonly="readonly">
 			
 			<br>
 			
 			<label>이메일</label>
-			<input type="text" class="form-control" placeholder="이메일 출력할 곳" id="mail" value="qweasd@naver.com" readonly="readonly">
+			<input type="text" class="form-control" value="${emp.getEmail() }" id="mail" value="qweasd@naver.com" readonly="readonly">
 			
 			<br>
 			
 			<label>새 비밀번호</label>
-				<input type="password" class="form-control" id="pass01" placeholder="비밀번호를 입력하세요" autofocus>
-				<input type="password" class="form-control" id="pass02" placeholder="비밀번호를 입력하세요">
+				<input type="password" class="form-control" id="pass01" placeholder="새 비밀번호를 입력하세요" autofocus>
+				<input type="password" class="form-control" id="pass02" name="pass" placeholder="비밀번호를 다시 입력하세요">
 			<div id="txtOut"></div>
 			
 			<br>
 				
 			<label>희망 연락처</label>
-				<input type="text" class="form-control" id="con" placeholder="희망 연락처 입력하세요">
+				<input type="text" class="form-control" id="con" name="wcon" placeholder="희망 연락처 입력하세요">
 			<div>
 				<input type="radio" value="remember-me" name="ck" id="ckPhone" style="margin-left:1%;">전화번호&nbsp;
 				<input type="radio" value="remember-me" name="ck" id="ckMail" style="margin-left:1%;">이메일
@@ -395,7 +435,7 @@ th{text-align:center;}
 		</div>
 		
 		<div>
-			<button class="btn btn-theme btn-block" type="button" id="btn02"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
+			<button class="btn btn-theme btn-block" type="button" id="updateBtn"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
 		</div>
 			
 		</form>

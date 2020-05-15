@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project06.service.PmsMemberService;
 import project06.vo.PmsMember;
+import project06.vo.pmsemp;
 
 @Controller
 @SessionAttributes("mno")
@@ -24,7 +25,6 @@ public class PmsMemberCtrl {
 		System.out.println("PmsMemberCtrl method=login 실행");
 		
 		int mno = service.memberInfor(member);
-		
 		System.out.println("mno : " + mno);
 		
 		if(mno!=0) {
@@ -46,6 +46,42 @@ public class PmsMemberCtrl {
 		m.addAttribute("ck", ck);
 		
 		return "WEB-INF\\views\\main\\findPassword02.jsp";
+	}
+	
+	@RequestMapping(params="method=information")
+	public String inforCheck(PmsMember member, Model m) {
+		System.out.println("PmsMemberCtrl method=information 실행");
+		
+		int mno = service.memberInfor(member);
+		pmsemp e = service.outInfor(mno);
+		System.out.println("이메일 : "+ e.getEmail());
+		System.out.println("이름 : "+ e.getName());
+		System.out.println("부서 : "+ e.getDept());
+		
+		int ck = 0;
+		
+		if(mno!=0) {
+			ck = 1;
+			m.addAttribute("ck",ck);
+			m.addAttribute("emp", e);
+			return "WEB-INF\\views\\main\\top.jsp";
+		}else {
+			ck = 2;
+			m.addAttribute("ck",ck);
+			return "WEB-INF\\views\\main\\top.jsp";
+		}
+	}
+	
+	@RequestMapping(params="method=updateInfor")
+	public String inforUpdate(PmsMember member, Model m) {
+		System.out.println("PmsMemberCtrl method=updateInfor 실행");
+		
+		service.updateInfor(member);
+		
+		int ck = 3;
+		m.addAttribute("ck",ck);
+		
+		return "WEB-INF\\views\\main\\top.jsp";
 	}
 	
 	
