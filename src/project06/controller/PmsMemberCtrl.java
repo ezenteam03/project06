@@ -37,5 +37,16 @@ public class PmsMemberCtrl {
 		}
 	}
 	
+	@RequestMapping(params="method=changePass")
+	public String changePass(PmsMember member, Model m) {
+		System.out.println("PmsMemberCtrl method=changePass 실행");
+		
+		int ck = service.changePass(member);
+		
+		m.addAttribute("ck", ck);
+		
+		return "WEB-INF\\views\\main\\findPassword02.jsp";
+	}
+	
 	
 }

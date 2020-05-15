@@ -94,7 +94,7 @@
                     <th>${emp.phone}</th>
                     <th style="width:150px;">${emp.cname}</th>
                     <th>${emp.pno}</th>
-                    <th><input type="checkbox" name="eno" value="${emp.eno}" id="" /></th>
+                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
                   </tr>
                   </c:forEach> 
                 </tbody>

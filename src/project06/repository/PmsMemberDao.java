@@ -9,5 +9,7 @@ public interface PmsMemberDao {
 
 	public int pmsMemberCounter(PmsMember member);
 	public PmsMember pmsMemberInfor(PmsMember member);
+	
+	public void pmsMemberChangePass(PmsMember member);
 
 }

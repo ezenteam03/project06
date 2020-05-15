@@ -3,17 +3,19 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.PmsMemberDao">
- 	<resultMap type="pmsmember" id="pmsMemberResult"/>
+ 	<resultMap type="pmsmember" id="pmsMemberResult"/> 	
+ 	<select id="pmsMemberCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsmember WHERE mno=#{mno} AND pass=#{pass}
+ 	</select>
  	
-	 	<select id="pmsMemberCounter" resultType="int" parameterType="int">
-	 		SELECT count(*) FROM pmsmember WHERE mno=#{mno} AND pass=#{pass}
-	 	</select>
-	 	
-		<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsmember">
-			SELECT * FROM pmsmember 
-				WHERE mno=#{mno} AND pass=#{pass}
-		</select>
+	<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsmember">
+		SELECT * FROM pmsmember 
+			WHERE mno=#{mno} AND pass=#{pass}
+	</select>
 
+	<update id="pmsMemberChangePass" parameterType="pmsmember">
+		UPDATE pmsmember SET pass=#{pass} WHERE mno=#{mno}
+ 	</update> 
 		
 	
 </mapper>	

@@ -128,6 +128,9 @@
 	function goFind(){
 		$(location).attr("href","${path}/PMSemp.do?method=findEnoFirst");
 	}
+	function goFindPass(){
+		$(location).attr("href","${path}/PMSemp.do?method=findPassFirst");
+	}
 	
 
 </script>
@@ -156,7 +159,7 @@
 						<a data-toggle="modal" href="javascript:goFind();">사원번호 찾기</a>
 					</span>
 					<span class="pull-right">
-						<a data-toggle="modal" href="#">비밀번호 찾기</a>
+						<a data-toggle="modal" href="javascript:goFindPass();">비밀번호 찾기</a>
 					</span>
 				
 				<button class="btn btn-theme btn-block" type="button" id="loginBtn" style="margin-top:15%;"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
