@@ -63,7 +63,7 @@
 <script type="text/javascript">
 
 function goPage(no){
-	//alert("이동 번호:"+no);
+	alert("이동 번호:"+no);
 	$("#curPage").val(no);
 	$("form").submit();
 }
@@ -87,7 +87,7 @@ function goPage(no){
                 <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
                 
-<form:form class="form" commandName="bsch" method="post" >
+<form:form class="form" commandName="nsch" method="post" >
  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
  
  	<br>
@@ -135,7 +135,7 @@ function goPage(no){
  	
 <div class="input-group lb-3">	
 		<div class="input-group-prepend ">
-			<span class="input-group-text "> 총 : ${bsch.count} 건</span>
+			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
 		</div>
 		<input class="form-control" />	
 		<div class="input-group-append">

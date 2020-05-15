@@ -21,7 +21,6 @@
 
  		
  	<select id="totCnt" resultType="int" parameterType="nsch" >
-
 			select count(*) 
 			from pmsnotice 
 			where 1=1
