@@ -12,6 +12,13 @@ import java.util.Date;
 //mno NUMBER NOT NULL /* 작성자번호 */
 
 public class Notice {
+	private int cnt;
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	private int nno;
 	private String title;
 	private String detail;

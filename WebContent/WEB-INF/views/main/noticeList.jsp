@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -10,6 +11,15 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+  <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+  <style type="text/css">
+	.sch{width:25%;}
+  </style>
+ 	<script src="${path}/a00_com/jquery.min.js"></script>
+	<script src="${path}/a00_com/popper.min.js"></script>
+	<script src="${path}/a00_com/bootstrap.min.js"></script>
+	<script src="${path}/a00_com/jquery-ui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -50,7 +60,14 @@
 
 
 </style>
+<script type="text/javascript">
 
+function goPage(no){
+	//alert("이동 번호:"+no);
+	$("#curPage").val(no);
+	$("form").submit();
+}
+</script>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -92,8 +109,8 @@
          </c:forEach>
         </tbody>
       </table>
-      
-      <form:form class="form" commandName="bsch" method="post" >
+     
+   <form:form class="form" commandName="nsch" method="post" >
  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
  
  	<br>
@@ -118,13 +135,13 @@
               
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
-	   		<a class="page-link" href="javascript:goPage(${bsch.startBlock-1});">Previous</a></li>
-	   	<c:forEach var="cnt" begin="${bsch.startBlock }" end="${bsch.endBlock}">
-	  		<li class="page-item ${bsch.curPage==cnt?'active':''}">
+	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
+	   	<c:forEach var="cnt" begin="${nsch.startBlock }" end="${nsch.endBlock}">
+	  		<li class="page-item ${nsch.curPage==cnt?'active':''}">
 	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
 		</c:forEach>
 			<li class="page-item">
-			<a class="page-link" href="javascript:goPage(${(bsch.endBlock==bsch.pageCount)?bsch.endBlock:bsch.endBlock+1});">Next</a></li>
+			<a class="page-link" href="javascript:goPage(${(nsch.endBlock==nsch.pageCount)?nsch.endBlock:nsch.endBlock+1});">Next</a></li>
 	  </ul>  
             
             
