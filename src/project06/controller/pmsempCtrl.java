@@ -1,10 +1,14 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project06.service.pmsempService;
@@ -74,17 +78,19 @@ public class pmsempCtrl {
 	}
 	// 인사 사원정보수정 페이지 이동
 	@RequestMapping(params="method=modForm")
-	public String modlist(pmsemp sch, Model d) {
-		d.addAttribute("mlist", service.pmsempList(sch));
+	public String modlist(@RequestParam("eno") int eno, Model d) {
+		System.out.println(eno);
+		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
+		d.addAttribute("emp", service.getPmsemp(eno));
 		return "WEB-INF\\views\\main\\empModify.jsp";
 	}
 	// 사원정보수정
-	@RequestMapping(params="method=updept")
+	@RequestMapping(params="method=mbtn")
 	public String updept(pmsemp mod) {
 		service.updept(mod);
 		return "forward:/PMSemp.do?method=modForm";
 	}
-	@RequestMapping(params="method=upgrade")
+	@RequestMapping(params="method=mbtn")
 	public String upgrade(pmsemp mod) {
 		service.upgrade(mod);
 		return "forward:/PMSemp.do?method=modForm";
@@ -144,9 +150,21 @@ public class pmsempCtrl {
 			return "WEB-INF\\views\\main\\findPassword.jsp";
 		}
 	}
+	/*
+	  @RequestMapping(params="method=list") 
+	  public String list(Model d, HttpServletRequest request) {  <== HttpServletRequest request추가
+	  String page = "WEB-INF\\views\\main\\meetList.jsp"; 		 <== 추가
+	  d.addAttribute("mlist", service.list()); 
+	  return isLogin(page, request);							 <== 추가
+	  }
+	*/
 	
-	
-	
-	
-	
+	// 로그인 세션값
+	public String isLogin(String page, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		} 
+		return page;
+	}
 }

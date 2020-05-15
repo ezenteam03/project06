@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -40,22 +41,13 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-	 var isReg="${param.name}";
-	 // name이 공백이 아닐 때
-	 if(isReg!=""){
-		 if(!confirm("등록 완료하였습니다\n계속 등록하시겠습니까?")){
-			 $(location).attr("href","${path}/PMSemp.do?method=list")
-		 }
-	 }
-	 // 등록 버튼
-	 $("#regBtn").click(function(){
-		if(confirm("등록합니다")){
-			$("form").submit();
-		} 
+	 // 수정 버튼
+	 $("#modBtn").click(function(){
+		$("form").attr("action","${path}/PMSemp.do?method=mBtn") 
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
-		$(location).attr("href","${path}/PMSemp.do?method=modList") 
+		$(location).attr("href","${path}/PMSemp.do?method=empmList") 
 	 }); 
   });
   </script>
@@ -71,14 +63,14 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 사원정보 수정 </h3>
+        <h3><i class="fa fa-angle-right"></i> 사원정보 </h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보</h4>
+              <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 수정</h4>
               <form class="form-horizontal style-form" 
-              method="post" action="${path}/PMSemp.do?method=insert">
+              method="post">
               <!-- 사원번호 HIDDEN처리 (sequence처리 -->
 <%--                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">사원번호</label>
@@ -86,54 +78,67 @@
                     <input type="text" value="${pmsemp.eno}" class="form-control">
                   </div>
                 </div> --%>
-
+				<input type="hidden" name="eno" value="${emp.eno}" />
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">
-                    <span>홍길동</span>
+                    <span>${emp.name}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
-                  <select class="sel-dept">
-                  	<option name="dept" value="개발1팀">개발1팀</option>
-                  	<option name="dept" value="개발2팀">개발2팀</option>
-                  	<option name="dept" value="개발3팀">개발3팀</option>
-                  	<option name="dept" value="개발4팀">개발4팀</option>
-                  	<option name="dept" value="개발5팀">개발5팀</option>
-                  	<option name="dept" value="개발6팀">개발6팀</option>
-                  	<option name="dept" value="개발7팀">개발7팀</option>
-                  	<option name="dept" value="개발8팀">개발8팀</option>
-                  	<option name="dept" value="개발9팀">개발9팀</option>
-                  	<option name="dept" value="개발10팀">개발10팀</option>
+                  <div class="col-sm-10">
+                    <span>${emp.dept}</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label"></label>
+                  <select class="sel-dept" name="dept">
+                  	<option value="선택">선택</option>
+                  	<option value="개발2팀">개발2팀</option>
+                  	<option value="개발3팀">개발3팀</option>
+                  	<option value="개발4팀">개발4팀</option>
+                  	<option value="개발5팀">개발5팀</option>
+                  	<option value="개발6팀">개발6팀</option>
+                  	<option value="개발7팀">개발7팀</option>
+                  	<option value="개발8팀">개발8팀</option>
+                  	<option value="개발9팀">개발9팀</option>
+                  	<option value="개발10팀">개발10팀</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
-                  <select class="sel-grade">
+                  <div class="col-sm-10">
+                    <span>${emp.grade}</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label"></label>
+                  <select class="sel-grade" name="grade">
                   	<option value="선택">선택</option>
-                  	<option name="grade" value="기술이사">기술이사</option>
-                  	<option name="grade" value="상무">상무</option>
-                  	<option name="grade" value="부장">부장</option>
-                  	<option name="grade" value="차장">차장</option>
-                  	<option name="grade" value="과장">과장</option>
-                  	<option name="grade" value="대리">대리</option>
-                  	<option name="grade" value="사원">사원</option>
-                  	<option name="grade" value="퇴사">퇴사</option>
+                  	<option value="전무">전무</option>
+                  	<option value="기술이사">기술이사</option>
+                  	<option value="상무">상무</option>
+                  	<option value="부장">부장</option>
+                  	<option value="차장">차장</option>
+                  	<option value="과장">과장</option>
+                  	<option value="대리">대리</option>
+                  	<option value="사원">사원</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">핸드폰</label>
                   <div class="col-sm-10">
-                    <span>핸드폰</span>
+                    <span>${emp.phone}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
-                    <span>이메일</span>
+                    <span>${emp.email}</span>
                   </div>
                 </div>
+                </form>
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
 			           <button type="button" class="btn btn-success" id="modBtn" 
@@ -142,7 +147,6 @@
 			           			style="margin-right:20px;">취소</button>
 		           </div>
 		        </div>
-              </form>
             </div>
           </div>
           <!-- col-lg-12-->

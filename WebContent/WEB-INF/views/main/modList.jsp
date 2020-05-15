@@ -46,6 +46,11 @@
 				$(location).attr("href","${path}/PMSemp.do?method=modForm") 
 			 }); 
 	  });
+	  function go(eno){
+		  $(location).attr("href",
+				  //eno다음에 = 추가됨
+				  "${path}/PMSemp.do?method=modForm&eno="+eno);
+	  }
 
 
   </script>
@@ -85,7 +90,7 @@
                 </thead>
                 <tbody>
                   <c:forEach var="emp" items="${elist}">
-                  <tr>
+                  <tr ondblclick="javascript:go(${emp.eno})">
                     <th>${emp.eno}</th>
                     <td style="width:200px;">${emp.name}</td>
                     <td style="width:200px;">${emp.grade}</td>
@@ -123,8 +128,6 @@
                 -->
 		           <button type="button" class="btn btn-warning" id="regBtn" 
 		           			style="margin-right:20px;">사원 등록</button>
-           		   <button type="button" class="btn btn-success" id="modBtn" 
-		           			style="margin-right:20px;">사원 수정</button>
 		           <button type="button" class="btn btn-default">이전</button>
 	           </div>
 	        </div>

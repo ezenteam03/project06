@@ -20,6 +20,8 @@ public interface pmsempRep {
 	public void delemp(pmsemp del);
 	// 인사 사원등록
 	public void insert(pmsemp ins);
+	// 인사 사원정보 수정 페이지
+	public pmsemp getPmsemp(int eno);
 	// 인사 사원정보 수정
 	public void updatedept(pmsemp uptdept);
 	public void updategrade(pmsemp uptgrade);

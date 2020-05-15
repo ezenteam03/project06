@@ -46,16 +46,22 @@
 		SET pno=null, mdiv=6
 		WHERE mno =#{eno}
 	</update>
+	<!-- 인사 사원정보 수정 페이지 -->
+	<select id="getPmsemp" resultType="pmsemp" parameterType="int">
+ 		SELECT *
+ 		FROM pmsemp
+ 		WHERE eno = #{eno}
+ 	</select>
 	<!-- 사원정보 수정 -->
 	<update id="updatedept" parameterType="pmsemp">
 	UPDATE pmsemp
 		SET dept =#{dept}
-		WHERE detp =#{dept}
+		WHERE eno =#{eno}
 	</update>
 	<update id="updategrade" parameterType="pmsemp">	
 	UPDATE pmsemp
 		SET grade =#{grade}
-		WHERE grade =#{grade}
+		WHERE eno =#{eno}
 	</update>	
 	
 	<!-- 페이지네이션 

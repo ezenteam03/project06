@@ -34,6 +34,11 @@ public class pmsempService {
 		public void insert(pmsemp ins) {
 			rep.insert(ins);
 		}
+		// 사원정보 수정 페이지
+		public pmsemp getPmsemp(int eno) {
+			pmsemp d = rep.getPmsemp(eno);
+			return d;
+		}
 		// 인사 사원정보 수정
 		public void updept(pmsemp uptdept) {
 			rep.updatedept(uptdept);
