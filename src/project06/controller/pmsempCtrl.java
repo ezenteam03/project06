@@ -25,12 +25,6 @@ public class pmsempCtrl {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
-	@RequestMapping(params="method=delForm")
-	public String pmlist(pmsemp sch, Model d) {
-		sch.setPno(1001);
-		d.addAttribute("pmdlist", service.pmempList(sch));
-		return "WEB-INF\\views\\main\\empDelete.jsp";
-	}
 	// 사원추가 이동
 	@RequestMapping(params="method=insForm")
 	public String insertForm() {
@@ -53,6 +47,18 @@ public class pmsempCtrl {
 	public String empList(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
+	}
+	// PM 팀원삭제 사원 리스트 불러오기
+	@RequestMapping(params="method=delForm")
+	public String pmlist(pmsemp sch, Model d) {
+		sch.setPno(1001);
+		d.addAttribute("pmdlist", service.pmempList(sch));
+		return "WEB-INF\\views\\main\\empDelete.jsp";
+	}
+	@RequestMapping(params="method=delete")
+	public String delete(pmsemp del) {
+		service.delete(del);
+		return "forward:/PMSemp.do?method=delForm";
 	}
 	
 	// Jin 사원번호 찾기

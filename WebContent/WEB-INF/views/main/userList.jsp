@@ -69,7 +69,7 @@
               <table class="table table-hover">
                 <div>
                 	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
-                					PMS사용자 목록</span>
+                					사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="submit" class="sch-btn" value="Search" />

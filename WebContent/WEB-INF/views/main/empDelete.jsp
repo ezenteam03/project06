@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>사원 리스트 : 프로젝트 인원 삭제</title>
+  <title>사원 리스트 : 프로젝트 팀원 삭제</title>
 	<style type="text/css">
 		.sch-bar{width:450px; height:40px;border-radius:10px; outline:none; border-color:black;
 					padding-left:10px;}
@@ -32,7 +33,20 @@
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
- 
+  <script src="${path}/a00_com/jquery.min.js"></script>
+  <script src="${path}/a00_com/popper.min.js"></script>
+  <script src="${path}/a00_com/bootstrap.min.js"></script>
+  <script src="${path}/a00_com/jquery-ui.js"></script>
+  <script type="text/javascript">
+	  $(document).ready(function(){
+			 $("#delBtn").click(function(){
+				 $("form").attr("action","${path}/PMSemp.do?method=delete");
+				 $("form").submit(); 
+			 });
+	  });
+
+
+  </script> 
 </head>
 
 <body>
@@ -45,9 +59,10 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
+              <form method="post">
               <table class="table table-hover">
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>사원 목록</span>
+                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 삭제</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
@@ -79,11 +94,12 @@
                     <th>${emp.phone}</th>
                     <th style="width:150px;">${emp.cname}</th>
                     <th>${emp.pno}</th>
-                    <th><input type="checkbox" name="eno" value="${emp.eno}" id="" /></th>
+                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
                   </tr>
                   </c:forEach> 
                 </tbody>
               </table>
+              </form>
               <!-- pagination -->
 	          <div align="center">
 			    <ul class="pagination pagination-sm">
