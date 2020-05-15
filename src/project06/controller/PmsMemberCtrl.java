@@ -53,16 +53,16 @@ public class PmsMemberCtrl {
 		System.out.println("PmsMemberCtrl method=information 실행");
 		
 		int mno = service.memberInfor(member);
-		pmsemp e = service.outInfor(mno);
-		System.out.println("이메일 : "+ e.getEmail());
-		System.out.println("이름 : "+ e.getName());
-		System.out.println("부서 : "+ e.getDept());
 		
 		int ck = 0;
 		
 		if(mno!=0) {
 			ck = 1;
 			m.addAttribute("ck",ck);
+			pmsemp e = service.outInfor(mno);
+			System.out.println("이메일 : "+ e.getEmail());
+			System.out.println("이름 : "+ e.getName());
+			System.out.println("부서 : "+ e.getDept());
 			m.addAttribute("emp", e);
 			return "WEB-INF\\views\\main\\top.jsp";
 		}else {

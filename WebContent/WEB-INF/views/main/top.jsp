@@ -196,9 +196,7 @@ th{text-align:center;}
 		});
 
 		$("#inforBtn").click(function(){
-			if($("#pop01Pass").val() != ""){
-				$("#inforCheckForm").submit();
-			}
+			$("#inforCheckForm").submit();
 		});
 		
 		$("#updateBtn").click(function(){
