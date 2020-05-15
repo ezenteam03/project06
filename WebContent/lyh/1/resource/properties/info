@@ -1,0 +1,8 @@
+# 데이터 베이스 정보.
+driver=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@localhost:1521:xe
+user=scott
+pass=tiger
+# 파일 업로드 위치
+upload=C:/a01_javaexp/workspace_web/springweb/WebContent/z01_upload/
+tmpUpload=C:/a01_javaexp/workspace_web/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/springweb/z01_upload/
