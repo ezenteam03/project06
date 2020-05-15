@@ -20,11 +20,22 @@
  	<resultMap type="notice" id="noticeResult"/>
  	
  
- 	<select id="list" resultMap="noticeResult" parameterType="notice">
+ 	<select id="totCnt" resultMap="noticeResult" parameterType="bsch">
 		SELECT *
 		FROM pmsnotice
 		WHERE 1=1
 		order by nno desc
  	</select>
+ 	
+ 	<select id="list" resultMap="int" parameterType="bsch" >
+ 		SELECT *
+ 		FROM(
+			select rownum cnt, b.* 
+			from pmsnotice b
+			where 1=1
+			ORDER BY nno DESC )
+		WHERE cnt BETWEEN #{start} AND #{end}
+ 	</select>
+ 	
 </mapper>	
 
