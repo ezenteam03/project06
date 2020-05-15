@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 import project06.vo.Notice;
+import project06.vo.NoticeSch;
 
 @Repository
 public interface NoticeDao{
-	public ArrayList<Notice> list();
+	public int totCnt(NoticeSch sch);
+	public ArrayList<Notice> list(NoticeSch sch);
 	
 	
 }
