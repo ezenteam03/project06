@@ -3,12 +3,12 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.PmsMemberDao">
- 	<resultMap type="pmsmember" id="pmsMemberResult"/> 	
+ 	<resultMap type="pmsMember" id="pmsMemberResult"/> 	
  	<select id="pmsMemberCounter" resultType="int" parameterType="int">
  		SELECT count(*) FROM pmsmember WHERE mno=#{mno} AND pass=#{pass}
  	</select>
  	
-	<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsmember">
+	<select id="pmsMemberInfor" resultMap="pmsMemberResult" parameterType="pmsMember">
 		SELECT * FROM pmsmember 
 			WHERE mno=#{mno} AND pass=#{pass}
 	</select>
@@ -17,11 +17,11 @@
 		SELECT * FROM pmsemp WHERE eno=#{mno}
 	</select>
 	
-	<select id="pmsMemberInforAll" resultType="pmsmemeber" parameterType="int">
+	<select id="pmsMemberInforAll" resultType="pmsMember" parameterType="int">
 		SELECT * FROM pmsmember WHERE mno=#{mno};
 	</select>
 
-	<update id="pmsMemberChangePass" parameterType="pmsmember">
+	<update id="pmsMemberChangePass" parameterType="pmsMember">
 		UPDATE pmsmember SET pass=#{pass} WHERE mno=#{mno}
  	</update> 
  	
@@ -33,7 +33,7 @@
 		SELECT * FROM pmsemp WHERE eno=#{mno}
 	</select>
 	
-	<update id="pmsMemberUpdateInfor" parameterType="pmsmember">
+	<update id="pmsMemberUpdateInfor" parameterType="pmsMember">
 		UPDATE pmsmember SET pass=#{pass}
 		<if test="wcon!=null and wcon!=''">
 		, wcon=#{wcon} 

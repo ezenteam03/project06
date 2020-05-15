@@ -58,7 +58,7 @@
 		WHERE grade =#{grade}
 	</update>	
 	
-	<!-- 페이지네이션 !-->
+	<!-- 페이지네이션 
  	<select id="list" resultMap="taskResult" parameterType="pmsempSch" >
 		SELECT *
  		FROM(
@@ -70,7 +70,7 @@
 			</if>
 			ORDER BY tno desc )
 		WHERE cnt BETWEEN #{start} AND #{end}	
- 	</select>
+ 	</select>!-->
 	
 	
 	
