@@ -44,7 +44,7 @@ public class PmsMemberService {
 		System.out.println("PmsMemberDao memberInforAll 실행");
 		return dao.pmsMemberInforAll(mno);
 	}
-/*	public String projectName(int mno) {
+	public String projectName(int mno) {
 		System.out.println("PmsMemberDao projectName 실행");
 		int count = dao.projectCount(mno);
 		String proName = "";
@@ -53,7 +53,7 @@ public class PmsMemberService {
 		}
 		return proName;
 	}
-*/	
+	
 	public int changePass(PmsMember member) {
 		System.out.println("PmsMemberDao changePass 실행");
 		

@@ -301,7 +301,7 @@ th{text-align:center;}
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h3 style="margin-left:10px;color:white">${emp.getName()} ${emp.getGrade() }</h3>
+         <h3 style="color:white" align="center">${emp.getName()} ${emp.getGrade() }</h3>
          </li>
           <li class="mt">
             <a class="active" href="${path}/Dashio/index.jsp">

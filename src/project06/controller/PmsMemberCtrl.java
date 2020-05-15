@@ -28,13 +28,13 @@ public class PmsMemberCtrl {
 		System.out.println("mno : " + mno);
 		pmsemp emp = service.empInfor(mno);
 		PmsMember infor_M = service.memberInforAll(mno);
-//		String proName = service.projectName(mno);
+		String proName = service.projectName(mno);
 		
 		if(mno!=0) {
 			m.addAttribute("mno", mno);
 			m.addAttribute("emp", emp);
 			m.addAttribute("infor_M", infor_M);
-//			m.addAttribute("proName", proName);
+			m.addAttribute("proName", proName);
 			return "WEB-INF\\views\\main\\top.jsp";
 		}else {
 			int ck = 1;
