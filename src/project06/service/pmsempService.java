@@ -13,23 +13,33 @@ import project06.vo.pmsempSch;
 public class pmsempService {
 		@Autowired(required=false)
 		private pmsempRep rep;
-		
+		// CEO, CTO 사원리스트
 		public ArrayList<pmsemp> pmsempList(pmsemp sch){
 			return rep.pmsempList(sch);
-		}
-		public ArrayList<pmsemp> pmempList(pmsemp sch){
-			return rep.pmempList(sch);
-		}
-		public void insert(pmsemp ins) {
-			rep.insert(ins);
 		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void update(pmsemp update) {
 			rep.updatepmsemp2();
 			rep.updatepmsemp1(update);
 		}
+		// PM 삭제리스트
+		public ArrayList<pmsemp> pmempList(pmsemp sch){
+			return rep.pmempList(sch);
+		}
+		// PM 팀원 삭제
 		public void delete(pmsemp delete) {
 			rep.delemp(delete);
+		}
+		// 사원등록
+		public void insert(pmsemp ins) {
+			rep.insert(ins);
+		}
+		// 인사 사원정보 수정
+		public void updept(pmsemp uptdept) {
+			rep.updatedept(uptdept);
+		}
+		public void upgrade(pmsemp uptgrade) {
+			rep.updatedept(uptgrade);
 		}
 		
 

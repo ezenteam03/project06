@@ -47,12 +47,12 @@
 		WHERE mno =#{eno}
 	</update>
 	<!-- 사원정보 수정 -->
-	<update id="udtdept" parameterType="pmsemp">
+	<update id="updatedept" parameterType="pmsemp">
 	UPDATE pmsemp
 		SET dept =#{dept}
 		WHERE detp =#{dept}
 	</update>
-	<update id="udtgrade" parameterType="pmsemp">	
+	<update id="updategrade" parameterType="pmsemp">	
 	UPDATE pmsemp
 		SET grade =#{grade}
 		WHERE grade =#{grade}
