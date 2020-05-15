@@ -33,6 +33,22 @@ public class PmsMemberService {
 		}
 		
 		return mno;
-
 	}
+	
+	public int changePass(PmsMember member) {
+		System.out.println("PmsMemberDao changePass 실행");
+		
+		System.out.println("입력한 사원번호 : " + member.getMno());
+		System.out.println("입력한 비밀번호 : " + member.getPass());
+		
+		dao.pmsMemberChangePass(member);
+		System.out.println("비밀번호 update 실행");
+		
+		return 1;
+	}
+	
+	
+	
+	
+	
 }

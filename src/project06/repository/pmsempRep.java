@@ -20,4 +20,8 @@ public interface pmsempRep {
 	// Jin
 	public int pmsEmpCounter(pmsemp emp);
 	public int pmsEmpEno(pmsemp emp);
+	
+	// Jin
+	public int pmsEmpPassCounter(pmsemp emp);
+	public int pmsEmpPass(pmsemp emp);
 }

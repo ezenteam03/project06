@@ -79,6 +79,32 @@ public class pmsempCtrl {
 		}
 	}
 	
-
+	// Jin
+	@RequestMapping(params="method=findPassFirst")
+	public String findPassFirst() {
+		System.out.println("비밀번호 찾기 초기 화면");
+		return "WEB-INF\\views\\main\\findPassword.jsp";
+	}
+	
+	@RequestMapping(params="method=findPass")
+	public String findPass(pmsemp emp, Model m) {
+		System.out.println("pmsempCtrl method=findPass 실행");
+		
+		int eno = service.empPass(emp);
+		System.out.println("Ctrl eno : " + eno);
+		
+		if(eno!=0) {
+			m.addAttribute("eno", eno);
+			return "WEB-INF\\views\\main\\findPassword02.jsp";
+		}else {
+			int ck = 1;
+			m.addAttribute("ck",ck);
+			return "WEB-INF\\views\\main\\findPassword.jsp";
+		}
+	}
+	
+	
+	
+	
 	
 }

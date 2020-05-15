@@ -50,5 +50,27 @@ public class pmsempService {
 			
 			return eno;
 		}
+		
+		//Jin
+		public int empPass(pmsemp emp) {
+			System.out.println("empEnoPass 실행");
+			
+			System.out.println("입력한 사원번호 : " + emp.getEno());
+			System.out.println("입력한 이름 : " + emp.getName());
+			System.out.println("입력한 이메일 : " + emp.getEmail());
+			
+			int count = rep.pmsEmpPassCounter(emp);
+			System.out.println("사원번호Pass count : " + count);
+			
+			int eno = 0;
+			System.out.println("초기 eno : " + eno);
+			
+			if(count != 0) {
+				eno = rep.pmsEmpPass(emp);
+				System.out.println("sql 결과 eno : " + eno);
+			}
+			
+			return eno;
+		}
 
 }

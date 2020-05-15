@@ -42,16 +42,43 @@
   ======================================================= -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   
- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
 		
-		$("#loginBtn").click(function(){
-			$(location).attr("href","${path}/main.do");
+		$("#findPassBtn").click(function(){
+			if($("#eno").val() == ""){
+	    		Swal.fire(
+					'사원번호',
+					'사원번호를 입력하세요',
+					'error'
+				);
+			}else if($("#name").val() == ""){
+				Swal.fire(
+					'이름',
+					'이름을 입력하세요',
+					'error'
+				);
+	    	}else if($("#email").val() == ""){
+	    		Swal.fire(
+					'이메일',
+					'이메일을 입력하세요',
+					'error'
+				);
+	    	}else{
+	    		$("#findPassForm").submit();
+	    	}			
 		});
 		
-		$("#findPassBtn").click(function(){
-			$(location).attr("href","${path}/PMSemp.do?method=findPassFirst");
-		});
+		var ck = "${ck}";
+		if(ck==1){
+			Swal.fire(
+				'사원 정보 없음',
+				'사원번호/이름/이메일을 확인하세요',
+				'error'
+			);
+		}
+
+
 
 	});
 
@@ -62,20 +89,38 @@
 
 <div id="login-page">
 	<div class="container">
-		<form class="form-login" action="#" style="margin-top:25%;background-color:#e0e0e0;;">
-		
-			<h2 class="form-login-heading">FIND EMPNO</h2>
+		<form class="form-login" id="findPassForm" action="${path}/PMSemp.do?method=findPass" method="post" style="margin-top:20%;background-color:#e0e0e0;;">
+
+			<h2 class="form-login-heading">FIND PASSWORD</h2>
 			
 			<div class="login-wrap">
 				<label>사원번호</label>
-				<input type="text" class="form-control" placeholder="${eno}" readonly="readonly">
+				<input type="text" class="form-control" id="eno" name="eno" placeholder="사원번호를 입력하세요" autofocus>
+			
+				<br>
+			
+				<label>이름</label>
+				<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요">
 				
-				<button class="btn btn-theme btn-block" type="button" id="loginBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;&nbsp;LOGIN</button>
-				<button class="btn btn-theme btn-block" type="button" id="findPassBtn" style="margin-top:5%;"><i class="fa fa-search"></i>&nbsp;FIND PASSWORD</button>
+				<br>
+				
+				<label>이메일</label>
+				<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요">
+				
+				<div>
+					<div class="form-inline">
+						<input type="email" class="form-control" placeholder="인증번호">
+						&nbsp;
+						<button type="button" class="btn btn-theme">전송</button>
+					</div>
+				</div>
+				
+				<button class="btn btn-theme btn-block" type="button" id="findPassBtn" style="margin-top:10%;"><i class="fa fa-search"></i>&nbsp;FIND</button>
 			</div>
 		</form>
 	</div>
 </div>
+
 
 
 <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
@@ -83,19 +128,17 @@
 <script type="text/javascript" src="${path}/Dashio/lib/jquery.backstretch.min.js"></script>
 <script>
 
-//$.backstretch("${path}/Jin/img/bye.jpg");
+//$.backstretch("img/back1.png");
 
-$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
-	duration: 3000, fade: 10
-});
+	$.backstretch(["${path}/Jin/img/back1.png", "${path}/Jin/img/back2.png", "${path}/Jin/img/back3.png", "${path}/Jin/img/back4.png"], {
+		duration: 3000, fade: 10
+	});
 
 </script>
   
 </body>
 
 </html>
-
-
 
 
 

@@ -48,5 +48,15 @@
 	<select id="pmsEmpEno" resultMap="pmsEmpEnoResult" parameterType="int">
 		SELECT eno FROM pmsemp WHERE name=#{name} AND email=#{email}
 	</select>
+
+<!-- Jin -->
+	<resultMap type="int" id="pmsEmpPassResult"/>
+	<select id="pmsEmpPassCounter" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmsemp WHERE eno=#{eno} AND name=#{name} AND email=#{email}
+ 	</select>	
+	<select id="pmsEmpPass" resultMap="pmsEmpPassResult" parameterType="int">
+		SELECT eno FROM pmsemp WHERE eno=#{eno} AND name=#{name} AND email=#{email}
+	</select>
+	
 	
 </mapper>	
