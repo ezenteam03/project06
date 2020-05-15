@@ -48,6 +48,9 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(웹)','-
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 추가/종료(웹)','- 프로젝트 추가(팀원이 아닌 사원중 한명 팀장 지정)','2020-05-26','2020-06-01', 0,NULL,NULL,21,10000017);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 추가/종료(웹)','- PM 대시보드 - 프로젝트 완수 결재신청&#10;- CEO / CTO 대시보드 - 프로젝트 완료 결재 / 반려','2020-05-26','2020-06-01', 0,NULL,NULL,21,10000019);
 
+UPDATE pmstask
+SET prog=80
+WHERE tno = 1016;
 
 SELECT * FROM PMSCODES;
 SELECT * FROM PMSMEMBER;
