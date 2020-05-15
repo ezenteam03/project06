@@ -20,22 +20,15 @@ public class pmsempCtrl {
 	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
+	// http://localhost:5080/project06_git/PMSemp.do?method=empmList
+	// http://localhost:5080/project06_git/PMSemp.do?method=modForm
+
+	
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
 	public String list(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
-	}
-	// 사원추가 이동
-	@RequestMapping(params="method=insForm")
-	public String insertForm() {
-		return "WEB-INF\\views\\main\\empReg.jsp";
-	}
-	// CEO, CTO 사원 추가
-	@RequestMapping(params="method=insert")
-	public String insert(pmsemp insert) {
-		service.insert(insert);
-		return "WEB-INF\\views\\main\\empReg.jsp";
 	}
 	// CEO, CTO 권한 설정
 	@RequestMapping(params="method=update")
@@ -56,11 +49,53 @@ public class pmsempCtrl {
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
+	// PM 팀원 삭제
 	@RequestMapping(params="method=delete")
 	public String delete(pmsemp del) {
 		service.delete(del);
 		return "forward:/PMSemp.do?method=delForm";
 	}
+	// 인사 사원리스트 불러오기
+	@RequestMapping(params="method=empmList")
+	public String empmList(pmsemp sch, Model d) {
+		d.addAttribute("elist", service.pmsempList(sch));
+		return "WEB-INF\\views\\main\\modList.jsp";
+	}
+	// 사원등록 페이지 이동
+	@RequestMapping(params="method=insForm")
+	public String insertForm() {
+		return "WEB-INF\\views\\main\\empReg.jsp";
+	}
+	// 인사 사원등록
+	@RequestMapping(params="method=insert")
+	public String insert(pmsemp insert) {
+		service.insert(insert);
+		return "WEB-INF\\views\\main\\empReg.jsp";
+	}
+	// 인사 사원정보수정 페이지 이동
+	@RequestMapping(params="method=modForm")
+	public String modlist(pmsemp sch, Model d) {
+		d.addAttribute("mlist", service.pmsempList(sch));
+		return "WEB-INF\\views\\main\\empModify.jsp";
+	}
+	// 사원정보수정
+	@RequestMapping(params="method=updept")
+	public String updept(pmsemp mod) {
+		service.updept(mod);
+		return "forward:/PMSemp.do?method=modForm";
+	}
+	@RequestMapping(params="method=upgrade")
+	public String upgrade(pmsemp mod) {
+		service.upgrade(mod);
+		return "forward:/PMSemp.do?method=modForm";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// Jin 사원번호 찾기
 	@RequestMapping(params="method=findEnoFirst")
