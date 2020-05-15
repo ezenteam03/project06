@@ -18,6 +18,7 @@
  	 -->
 <mapper namespace="project06.repository.NoticeDao">
  	<resultMap type="notice" id="noticeResult"/>
+
  		
  	<select id="totCnt" resultType="int" parameterType="nsch" >
 
@@ -35,5 +36,12 @@
 		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	
+<select id="list" resultMap="noticeResult" parameterType="notice">
+		SELECT *
+		FROM pmsnotice
+		WHERE 1=1
+		order by nno desc
+ 	</select>
+
 </mapper>	
 
