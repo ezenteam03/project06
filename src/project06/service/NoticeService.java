@@ -13,7 +13,6 @@ import project06.vo.NoticeSch;
 public class NoticeService {
 	@Autowired(required=false)
 	private NoticeDao dao;
-	
 	public ArrayList<Notice> list(NoticeSch sch){
 		
 		// 2. 화면에 한번에 보여줄 데이터 건수 초기값 5
