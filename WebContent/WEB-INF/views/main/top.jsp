@@ -313,10 +313,10 @@ th{text-align:center;}
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
-         <h3 style="color:white" align="center">${emp.name} ${emp.grade}</h3>
+         <h3 style="color:white" align="center">${emp.grade} ${emp.name}</h3>
          </li>
           <li class="mt">
-            <a class="active" href="${path}/Dashio/index.jsp">
+            <a class="active" href="${path }/PmsMember.do?method=goDash">
               <i class="fa fa-dashboard"></i>
               <span>대시보드</span>
               </a>
@@ -328,19 +328,19 @@ th{text-align:center;}
               </a>
           </li>
           <li class="sub-menu">
-            <a href="#">
+            <a href="${path }/chart.do?method=pm2">
               <i class="fa fa-cogs"></i>
               <span>일정관리</span>
               </a>
           </li>
           <li class="sub-menu">
-            <a href="#">
+            <a href="${path}/notice.do?method=list">
               <i class="fa fa-book"></i>
               <span>공지사항</span>
               </a>
           </li>
           <li class="sub-menu">
-            <a href="#">
+            <a href="${path}/meet.do?method=list">
               <i class="fa fa-tasks"></i>
               <span>회의록</span>
               </a>
@@ -352,7 +352,7 @@ th{text-align:center;}
               </a>
           </li>
           <li>
-            <a href="${path}/Dashio/inbox.jsp">
+            <a href="${path}/PMSemp.do?method=list">
               <i class="fa fa-group"></i>
               <span>인적자원관리(팀원 비활성화) </span>
               </a>

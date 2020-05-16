@@ -44,6 +44,11 @@ public class PmsMemberCtrl {
 		}
 	}
 	
+	@RequestMapping(params="method=goDash")
+	public String goDash() {
+		return "WEB-INF\\views\\main\\dashteam.jsp";
+	}
+	
 	@RequestMapping(params="method=changePass")
 	public String changePass(PmsMember member, Model m) {
 		System.out.println("PmsMemberCtrl method=changePass 실행");
