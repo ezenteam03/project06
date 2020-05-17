@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+
+<mapper namespace="project06.repository.DashTeamDao">
+ 	<resultMap type="dashNotice" id="noticeResult"/>
+
+ 	<select id="nlist" resultMap="noticeResult" parameterType="int" >
+		SELECT cnt,nno,title,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsnotice p, pmsemp e
+		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		ORDER BY p.nno DESC )
+		WHERE cnt BETWEEN 1 AND 3
+ 	</select>
+ 	
+</mapper>	

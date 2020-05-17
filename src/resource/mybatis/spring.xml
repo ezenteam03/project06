@@ -11,6 +11,9 @@
 		 <typeAlias alias="nsch" type="project06.vo.NoticeSch"/> 
 		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
 		 
+		 <!-- 대시보드 -->
+		 <typeAlias alias="dashNotice" type="project06.vo.DashNotice"/> 
+		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
 	</typeAliases>
@@ -20,6 +23,7 @@
 		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
 		 <mapper resource="resource/mybatis/meetMapper.xml"/> 
+		 <mapper resource="resource/mybatis/DashTeamMapper.xml"/> 
 		 <!-- Jin -->
 		 <mapper resource="resource/mybatis/pmsMemberMapper.xml"/> 
 	</mappers>

@@ -1087,7 +1087,18 @@ insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysd
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 
-SELECT * FROM pmsmember;
+SELECT * FROM pmsnotice;
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
 	FROM pmsemp a 
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
+SELECT cnt,nno,title,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsnotice p, pmsemp e
+		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		ORDER BY p.nno DESC )
+		WHERE cnt BETWEEN 1 AND 3;
+select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsnotice p, pmsemp e
+		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		ORDER BY p.nno DESC;

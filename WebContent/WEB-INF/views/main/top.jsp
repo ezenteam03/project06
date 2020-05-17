@@ -316,7 +316,7 @@ th{text-align:center;}
          <h3 style="color:white" align="center">${emp.grade} ${emp.name}</h3>
          </li>
           <li class="mt">
-            <a class="active" href="${path }/PmsMember.do?method=goDash">
+            <a class="active" href="${path }/DashTeam.do?method=list">
               <i class="fa fa-dashboard"></i>
               <span>대시보드</span>
               </a>

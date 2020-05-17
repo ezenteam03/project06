@@ -42,6 +42,9 @@
 function goNoti() {
 	$(location).attr("href","${path}/notice.do?method=list");
 }
+function goMeet() {
+	$(location).attr("href","${path}/meet.do?method=list");
+}
 </script>
 <body>
   <section id="container">
@@ -172,27 +175,17 @@ function goNoti() {
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="notice" items="${nlist}">
                   <tr>
-                    <td>8</td>
-                    <td>회의공지</td>
-                    <td>김대중</td>
-                    <td>3일전</td>
+                    <td>${notice.nno }</td>
+                    <td>${notice.title }</td>
+                    <td>${notice.writer }</td>
+                    <td>${notice.wdate }일전</td>
                   </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>주말 과제 공지</td>
-                    <td>김대중</td>
-                    <td>6일전</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>1주차 발표에 대한 피드백 회의 공지</td>
-                    <td>김대중</td>
-                    <td>7일전</td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
+              <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
