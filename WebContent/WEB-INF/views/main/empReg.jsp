@@ -42,7 +42,7 @@
 	 // name이 공백이 아닐 때
 	 if(isReg!=""){
 		 if(!confirm("등록 완료하였습니다\n계속 등록하시겠습니까?")){
-			 $(location).attr("href","${path}/PMSemp.do?method=list")
+			 $(location).attr("href","${path}/PMSemp.do?method=empmList")
 		 }
 	 }
 	 // 등록 버튼
@@ -53,7 +53,7 @@
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
-		$(location).attr("href","${path}/PMSemp.do?method=list") 
+		$(location).attr("href","${path}/PMSemp.do?method=empmList") 
 	 }); 
   });
   </script>

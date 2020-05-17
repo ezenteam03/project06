@@ -9,5 +9,4 @@ import project06.vo.Chart;
 @Repository
 public interface ChartDao {
 	public ArrayList<Chart> chartList();
-	
 }

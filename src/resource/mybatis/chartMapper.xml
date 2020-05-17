@@ -19,11 +19,13 @@
  	<resultMap type="chart" id="chartResult"/>
  	<select id="chartList" resultMap="chartResult" parameterType="chart">
 		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, 
-		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 		FROM PMSPROJECT pp, PMSTASK pt, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
 		WHERE pe.eno = pm.mno) pem
-		WHERE pp.pno = pt.pno AND
-		pt.mno = pem.mno
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		START WITH pt.refno=0
+		CONNECT BY PRIOR pt.tno = pt.refno
  	</select>
 </mapper>	

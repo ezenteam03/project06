@@ -83,16 +83,21 @@ function goPage(no){
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
-                <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <hr>
+                <form method="post">
+					<input type="hidden" name="curPage"/>
+				</form>
+              <table class="table table-hover">
                 
-<form:form class="form" commandName="nsch" method="post" >
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+                
+
+
+<%-- <form:form class="form" commandName="nsch" method="post" > --%>
+ 	<%-- <form:hidden path="curPage"/> --%> <!-- 현재 클릭한 페이지 번호. -->
  
- 	<br>
- 	
-<div class="input-group lb-3">	
+
+<%-- <div class="input-group lb-3">	
 	<div class="input-group-append">
 		<span class="input-group-text">페이지 크기:</span>
 		<form:select path="pageSize" class="form-control">
@@ -103,8 +108,8 @@ function goPage(no){
 			<form:option value="30">50</form:option >
 		</form:select> 
 	</div>
-</div>  
-</form:form>
+</div>   --%>
+<%-- </form:form> --%>
   
   
        <thead>

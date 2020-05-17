@@ -30,13 +30,13 @@ public class PmsMemberCtrl {
 		pmsemp emp = service.empInfor(mno);
 		PmsMember infor_M = service.memberInforAll(mno);
 		String proName = service.projectName(mno);
-		
+		System.out.println("pno : "+infor_M.getPno());
 		if(mno!=0) {
 			session.setAttribute("mno", mno);
 			session.setAttribute("emp", emp);
 			session.setAttribute("infor_M", infor_M);
 			session.setAttribute("proName", proName);
-			return "WEB-INF\\views\\main\\top.jsp";
+			return "forward:/DashTeam.do?method=list";
 		}else {
 			int ck = 1;
 			m.addAttribute("ck",ck);
@@ -66,11 +66,11 @@ public class PmsMemberCtrl {
 		if(mno!=0) {
 			ck = 1;
 			m.addAttribute("ck",ck);
-			return "WEB-INF\\views\\main\\top.jsp";
+			return "WEB-INF\\views\\main\\dashteam.jsp";
 		}else {
 			ck = 2;
 			m.addAttribute("ck",ck);
-			return "WEB-INF\\views\\main\\top.jsp";
+			return "WEB-INF\\views\\main\\dashteam.jsp";
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class PmsMemberCtrl {
 		int ck = 3;
 		m.addAttribute("ck",ck);
 
-		return "WEB-INF\\views\\main\\top.jsp";
+		return "WEB-INF\\views\\main\\dashteam.jsp";
 	}
 	
 	@RequestMapping(params="method=logout")

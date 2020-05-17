@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="springweb.a03_mvc.a03_repository.CalendarDao">
+<!-- 
+// springweb.a03_mvc.a03_repository.CalendarDao
+// ArrayList<Calendar> list() 
+	column  vo prop 속성
+	1. 기본적으로 column명과  vo의 property가 같은 이름으로 할당
+	2. 다를 때는 아래와 같이
+		result property="프로퍼티명" column="조회된 컬럼명"
+	3. column의 데이터 유형이 number(1)  1 ==> boolean true
+									   0  ==> boolean false 	
+-->	
+ 	<resultMap type="calen" id="calResult">
+ 		<result property="start" column="start1"/>
+ 		<result property="end" column="end1"/>
+ 	</resultMap>
+ 	<select id="list" resultMap="calResult" >
+		SELECT * FROM calendar
+ 	</select>
+ 	<insert id="insertCal" parameterType="calen">
+ 		insert into calendar values(cal_seq.nextval)
+ 	</insert>
+</mapper>	

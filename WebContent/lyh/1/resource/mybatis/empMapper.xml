@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="springweb.a03_mvc.a03_repository.EmpRep">
+<!-- 
+	// empMapper.xml과 연결 
+	// EmpRep ==> namspace명
+	// ArrayList<Emp> ==> ResultMap
+	// empList ==> id
+	// Emp ==> parameterType
+	resultMap 객체 선언 단위 객체가 모인 객체 선언
+ -->	
+ 	<!-- resultMap은 배열형태로 결과값을 return할 객체
+ 		 resultType 단일 데이터형태로 결과값을 return할 객체
+ 		 
+ 		 column ==> vo와 연결하여 ArrayList로 처리..
+ 	 -->
+ 	<resultMap type="emp" id="empResult"/>
+ 	<select id="empList" resultMap="empResult" 
+ 		parameterType="emp">
+		SELECT *
+		FROM emp
+		WHERE 1=1
+		<if test="ename !=null and ename != ''">
+		AND ename LIKE '%'||#{ename}||'%'
+		</if>
+		<if test="job !=null and job != ''">
+		AND job LIKE '%'||#{job}||'%'	
+		</if>
+ 	</select>
+
+</mapper>	

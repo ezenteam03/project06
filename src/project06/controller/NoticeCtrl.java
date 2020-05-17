@@ -20,6 +20,7 @@ public class NoticeCtrl {
 	
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("nsch") NoticeSch sch, Model d) {
+		System.out.println("검문소:"+sch.getCurPage());
 		d.addAttribute("nlist", service.list(sch));
 		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}

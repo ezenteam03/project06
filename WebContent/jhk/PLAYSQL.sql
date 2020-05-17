@@ -5,6 +5,14 @@ FROM pmsemp pe, pmsmember pm, PMSCODES pc
 WHERE pe.ENO = pm.MNO 
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
+SELECT * FROM PMSEMP pe, PMSMEMBER pm;
+
+SELECT pp.*, pem.name
+FROM PMSPROJECT pp, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
+WHERE pem.mno = pp.mno;
+AND pp.PNO = 1001;
+
 SELECT * FROM PMSCODES;
 SELECT * FROM PMSTASK;
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계', to_date('2020/05/04','YYYY/MM/DD'),to_date('2020/05/08','YYYY/MM/DD'),0,to_date('2020/05/06','YYYY/MM/DD'),NULL,21,10000005);
@@ -32,5 +40,12 @@ SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname,
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
 WHERE pe.eno = pm.mno) pem
-WHERE pp.pno = pt.pno AND
-pp.mno = pem.mno;
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+START WITH pt.refno=0
+CONNECT BY PRIOR pt.tno = pt.refno;
+
+SELECT LEVEL, p.tNO , p.REFNO , p.TNAME, p.SDATE, p.EDATE 
+FROM pmstask p
+START WITH p.refno=0
+CONNECT BY PRIOR tno = refno; 
