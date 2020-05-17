@@ -13,6 +13,9 @@
 		 
 		 <!-- 대시보드 -->
 		 <typeAlias alias="dashNotice" type="project06.vo.DashNotice"/> 
+		 <typeAlias alias="dashMeet" type="project06.vo.DashMeet"/> 
+		 <typeAlias alias="dashIssue" type="project06.vo.DashIssue"/> 
+		 <typeAlias alias="dashRe" type="project06.vo.DashRe"/> 
 		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 

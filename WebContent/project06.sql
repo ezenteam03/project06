@@ -1077,9 +1077,9 @@ insert into PMSISSUE values(pmsissue_seq.nextval,'파일 통합','화면 구현 
 insert into PMSISSUE values(pmsissue_seq.nextval,'이미지 경로','화면구현 통합(연결) 이미지 경로 설정',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000017);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'update','결재상세 페이지 update과정에서 VO를 통해서 int 값을 받는 중 오버로딩 과정에서 변수의 수가 같아 int값을넘기지 못하는 문제 발생',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000016);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'insert','결제 정보를 insert한 뒤 포인트 적립이나 차감을 할 때 방금 결제된 결제번호가 필요한데 결제번호를 못 넘기는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000015);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000024);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-29','YYYY-MM-DD'),null,null,1001,10000022);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-29','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-15','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000023);		
 -- 이슈리스트 댓글
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰 코드의번호를 획득 한뒤 새로운 쿠폰을 등록해야 할거 같습니다.',sysdate,10000023,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,1,'그뒤 제약조건을 삭제하고 다시 생성한 뒤 일반회원 리스트 작성해야 할것 같습니다.',sysdate,10000023,17);
@@ -1098,7 +1098,17 @@ SELECT cnt,nno,title,writer,wdate
 		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
 		ORDER BY p.nno DESC )
 		WHERE cnt BETWEEN 1 AND 3;
+SELECT nvl2(coment,1,0) FROM pmsissue;
 select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
 		FROM pmsnotice p, pmsemp e
 		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
 		ORDER BY p.nno DESC;
+SELECT rno,ino,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.rno desc) cnt, p.rno,p.ino,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsissue i, pmsemp e, pmsreply p
+		WHERE 1=1 and i.ino=p.ino and p.mno=e.eno and i.pno=1001
+		ORDER BY p.rno DESC )
+		WHERE cnt BETWEEN 1 AND 3;	
+	
+	

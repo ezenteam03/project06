@@ -1,22 +1,21 @@
 package project06.vo;
 
-public class DashNotice {
-	private int nno;
-	private String title;
+public class DashMeet {
+	private int mnno;
+	private String topic;
 	private String writer;
 	private int wdate;
-	
-	public int getNno() {
-		return nno;
+	public int getMnno() {
+		return mnno;
 	}
-	public void setNno(int nno) {
-		this.nno = nno;
+	public void setMnno(int mnno) {
+		this.mnno = mnno;
 	}
-	public String getTitle() {
-		return title;
+	public String getTopic() {
+		return topic;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 	public String getWriter() {
 		return writer;

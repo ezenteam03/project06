@@ -27,6 +27,9 @@ public class DashTeamCtrl {
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
 		d.addAttribute("nlist", service.nlist(emp.getPno()));
+		d.addAttribute("mlist", service.mlist(emp.getPno()));
+		d.addAttribute("ilist", service.ilist(emp.getPno()));
+		d.addAttribute("rlist", service.rlist(emp.getPno()));
 		return "WEB-INF\\views\\main\\dashteam.jsp";
 	}
 	

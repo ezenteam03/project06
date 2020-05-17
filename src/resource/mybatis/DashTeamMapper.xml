@@ -5,14 +5,47 @@
 
 <mapper namespace="project06.repository.DashTeamDao">
  	<resultMap type="dashNotice" id="noticeResult"/>
+ 	<resultMap type="dashMeet" id="meetResult"/>
+ 	<resultMap type="dashIssue" id="issueResult"/>
+ 	<resultMap type="dashRe" id="reResult"/>
 
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
-		SELECT cnt,nno,title,writer,wdate
+		SELECT nno,title,writer,wdate
  		FROM(
 			select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
 		FROM pmsnotice p, pmsemp e
-		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		WHERE 1=1 and p.pno=#{pno} and p.mno=e.eno
 		ORDER BY p.nno DESC )
+		WHERE cnt BETWEEN 1 AND 3
+ 	</select>
+ 	
+ 	<select id="mlist" resultMap="meetResult" parameterType="int" >
+		SELECT mnno,topic,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.mnno desc) cnt, p.mnno,p.topic,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsmeeting p, pmsemp e
+		WHERE 1=1 and p.pno=#{pno} and p.mno=e.eno
+		ORDER BY p.mnno DESC )
+		WHERE cnt BETWEEN 1 AND 3
+ 	</select>
+ 	
+ 	<select id="ilist" resultMap="issueResult" parameterType="int" >
+		SELECT ino,solve,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.ino desc) cnt, p.ino,nvl2(coment,1,0) solve,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsissue p, pmsemp e
+		WHERE 1=1 and p.pno=#{pno} and p.mno=e.eno
+		ORDER BY p.ino DESC )
+		WHERE cnt BETWEEN 1 AND 3
+ 	</select>
+ 	
+ 	<select id="rlist" resultMap="reResult" parameterType="int" >
+		SELECT rno,ino,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.rno desc) cnt, p.rno,p.ino,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsissue i, pmsemp e, pmsreply p
+		WHERE 1=1 and i.ino=p.ino and p.mno=e.eno and i.pno=#{pno}
+		ORDER BY p.rno DESC )
 		WHERE cnt BETWEEN 1 AND 3
  	</select>
  	
