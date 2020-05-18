@@ -1,6 +1,7 @@
 package project06.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,8 +15,8 @@ import project06.vo.TaskSch;
 @Controller
 @RequestMapping("/task.do")
 public class WorkCtrl2 { 
-	// http://localhost:5080/project06_git/task.do?method=list
-
+	// http://localhost:6080/project06_git/task.do?method=list
+ 
 		@Autowired(required=false)
 		private WorkService2 service;
 		

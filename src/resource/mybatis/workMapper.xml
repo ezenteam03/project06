@@ -2,11 +2,8 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
-<mapper namespace="spring.mvc.repository.WorkDao2">
+<mapper namespace="project06.repository.WorkDao2">
  	<resultMap type="task" id="taskResult"/>
- 	<!-- 
- 	int totCnt(BoardSch sch)
- 	 -->
  	 
  	 <!-- 
  	tno NUMBER NOT NULL, /* 업무번호 */

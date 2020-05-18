@@ -23,6 +23,9 @@
 		 <typeAlias alias="risk" type="springweb.a03_mvc.a04_vo.Risk"/>
 		 <typeAlias alias="rsch" type="springweb.a03_mvc.a04_vo.RiskSch"/>
 		 <typeAlias alias="comment" type="springweb.a03_mvc.a04_vo.Comment"/>
+		 <!-- 업무리스트 -->
+		 <typeAlias alias="task" type="project06.vo.Task"/>
+		 <typeAlias alias="tsch" type="project06.vo.TaskSch"/>
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
@@ -36,6 +39,9 @@
 		 <!-- 이슈리스트 -->
 		 <mapper resource="resource/mybatis/riskMapper.xml"/>
 		 <mapper resource="resource/mybatis/commentMapper.xml"/>
+		 
+		 <!-- 업무리스트 -->
+		 <mapper resource="resource/mybatis/workMapper.xml"/>
 	</mappers>
 
 </configuration>
