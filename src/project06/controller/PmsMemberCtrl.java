@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.PmsMemberService;
 import project06.vo.PmsMember;
@@ -88,8 +89,10 @@ public class PmsMemberCtrl {
 	}
 	
 	@RequestMapping(params="method=logout")
-	public String logOut(HttpServletRequest request) {
+	public String logOut(HttpServletRequest request, int mno) {
 		System.out.println("logOut 로그아웃");
+		
+		service.logoutUpdate(mno);
 		
 		HttpSession session = request.getSession();
         session.invalidate();

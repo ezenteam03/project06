@@ -89,6 +89,13 @@ public class PmsMemberService {
 		}
 	}
 	
+	public void logoutUpdate(int mno) {
+		System.out.println("PmsMemberDao logoutUpdate 실행");
+
+		dao.logoutLog(mno);
+
+	}
+	
 	
 	
 	

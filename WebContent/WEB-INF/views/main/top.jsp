@@ -268,7 +268,7 @@ th{text-align:center;}
 			  showCancelButton: true
 			}).then((result) => {
 				if (result.value) {
-					$(location).attr("href","${path}/PmsMember.do?method=logout");
+					$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${mno});
 				}
 			})
 	}
@@ -291,7 +291,6 @@ th{text-align:center;}
       <!--logo start-->
       <a href="#" class="logo"><img src="${path}/Jin/img/logo1-1.png" style="width:35px;height:35px;margin-top:-5px;">&nbsp;&nbsp;&nbsp;<b>Project<span>&nbsp;&nbsp;&nbsp;${proName }</span></b></a>
       <!--logo end-->
-      
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="#pop01">개인정보</a></li>
