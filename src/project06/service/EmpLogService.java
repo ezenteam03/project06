@@ -18,27 +18,29 @@ public class EmpLogService {
 	public ArrayList<EmpLog> logList(EmpLogSch sch){
 		System.out.println("Service logList 실행");
 		
-		sch.setCount(dao.empLogCount(sch));
+		sch.setCount(dao.empLogCount(sch));	// 전체 행 수 = 8
 		
 		if(sch.getPageSize() == 0) {
-			sch.setPageSize(5);
+			sch.setPageSize(5);			// 한번에 나오는 페이지 수 = 5
 		}
-		
+		// 총 페이지 수 = 전체 행 수/한번에 나오는 페이지 수, 2 = ceil(8/5)
 		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
-
+																							
 		if(sch.getCurPage()==0) {
-			sch.setCurPage(1);
+			sch.setCurPage(1);		//클릭한 현재 페이지 번호 = 1
 		}
 		
-		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
-		sch.setEnd(sch.getCurPage()*sch.getPageSize());
+		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);	// ((클릭한 현재 페이지 번호 - 1) * 한번에 나오는 페이지 수 )+1 = ((1-1)*5)+1 = 1
+		sch.setEnd(sch.getCurPage()*sch.getPageSize());	// 클릭한 현재 페이지 번호 * 한번에 나오는 페이지 수 = 1*5 = 5
 		System.out.println("시작번호 : "+sch.getStart());
 		System.out.println("마지막번호 : "+sch.getEnd());
 		
-		sch.setBlocksize(5);
+		sch.setBlocksize(5);	// 블럭 사이즈 = 5
 		
+		// 블럭넘버=ceil(현재 페이지 / 블럭 사이즈), 1 = ceil(1/5)
 		int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());
 		
+		// endBlick = 5;
 		int endBlock = blocknum*sch.getBlocksize();
 		sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);
 		System.out.println("블럭번호 : "+blocknum);

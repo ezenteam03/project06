@@ -78,7 +78,7 @@
 
 			<form:form class="form-login01" commandName="empLogSch" id="empLogForm" action="${path}/logList.do?method=list" method="post" style="background-color:#e0e0e0;margin-top:0%">
  				<form:hidden path="curPage" />
- 				<form:hidden path="pageSize" value="0" />
+ 				<form:hidden path="pageSize" />
 				<form:hidden path="pno" value="${infor_M.pno }"/>	
 			
 				<div align="right" style="margin-right:20px;">
