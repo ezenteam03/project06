@@ -90,7 +90,7 @@
 				var dataInfo = [];
 					
 				dataInfo.push({
-	            	name: '총괄진행(시작일, 종료일, 진행도, 담당자)',	
+	            	name: '총괄진행(시작일, 종료일, 소요일수, 진행도, 담당자)',	
 	            	id: '0',
 	            	owner: '김대중',
 	            	y:0,
@@ -101,7 +101,7 @@
 					var edate = new Date(chart.edateorigin).toISOString().slice(2,10).replace(/-/g,"/");
 					
 					dataInfo.push({
-						name: chart.tname+"("+sdate+",\t"+edate+",\t"+chart.prog*100+"%,\t"+chart.name+")", 
+						name: chart.tname+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")", 
 						id: ""+chart.tno+"", 
 						parent: ""+chart.refno+"", 
 						start: today+(chart.sdate * day), 
