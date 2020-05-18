@@ -4,7 +4,9 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.RiskDao">
 	
-	<resultMap type="comment" id="commentResult"></resultMap>
+	<resultMap type="comment" id="commentResult">
+		<result property="cdetail" column="detail"/>
+	</resultMap>
 
  	<select id="ctotCnt" resultType="int" parameterType="rsch">
 		SELECT count(*)
@@ -23,6 +25,10 @@
 		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},
 		#{cdetail},sysdate,10000023,#{ino})
 	</insert>
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM PMSREPLY
+		 WHERE rno = #{rno}
+ 	</delete> 
 </mapper>	
 
 
