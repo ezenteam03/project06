@@ -19,13 +19,8 @@
 		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
-		 <!-- 이슈리스트 -->
-		 <typeAlias alias="risk" type="project06.vo.Risk"/>
-		 <typeAlias alias="rsch" type="project06.vo.RiskSch"/>
-		 <typeAlias alias="comment" type="project06.vo.Comment"/>
-		 <!-- 업무리스트 -->
-		 <typeAlias alias="task" type="project06.vo.Task"/>
-		 <typeAlias alias="tsch" type="project06.vo.TaskSch"/>
+		 <typeAlias alias="empLog" type="project06.vo.EmpLog"/>
+		 <typeAlias alias="empLogSch" type="project06.vo.EmpLogSch"/> 
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
@@ -36,12 +31,7 @@
 		 <mapper resource="resource/mybatis/DashTeamMapper.xml"/> 
 		 <!-- Jin -->
 		 <mapper resource="resource/mybatis/pmsMemberMapper.xml"/> 
-		 <!-- 이슈리스트 -->
-		 <mapper resource="resource/mybatis/riskMapper.xml"/>
-		 <mapper resource="resource/mybatis/commentMapper.xml"/>
-		 
-		 <!-- 업무리스트 -->
-		 <mapper resource="resource/mybatis/workMapper.xml"/>
+		 <mapper resource="resource/mybatis/empLogMapper.xml"/> 
 	</mappers>
 
 </configuration>
