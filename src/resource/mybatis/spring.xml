@@ -20,9 +20,9 @@
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
 		 <!-- 이슈리스트 -->
-		 <typeAlias alias="risk" type="project06.vo.Risk"/>
-		 <typeAlias alias="rsch" type="project06.vo.RiskSch"/>
-		 <typeAlias alias="comment" type="project06.vo.Comment"/>
+		 <typeAlias alias="risk" type="springweb.a03_mvc.a04_vo.Risk"/>
+		 <typeAlias alias="rsch" type="springweb.a03_mvc.a04_vo.RiskSch"/>
+		 <typeAlias alias="comment" type="springweb.a03_mvc.a04_vo.Comment"/>
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
