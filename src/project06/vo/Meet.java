@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 //mnno NUMBER NOT NULL, /* 회의록번호 */
 //topic VARCHAR2(100) NOT NULL, /* 안건 */
 //detail VARCHAR2(2000) NOT NULL, /* 내용 */
-//result VARCHAR2(200), /* 결정사항 */
+//decision VARCHAR2(200), /* 결정사항 */
 //etc VARCHAR2(200), /* 특이사항 */
 //views NUMBER NOT NULL, /* 조회수 */
 //wdate DATE NOT NULL, /* 작성일 */
