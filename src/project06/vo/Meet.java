@@ -1,6 +1,9 @@
 package project06.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 //mnno NUMBER NOT NULL, /* 회의록번호 */
 //topic VARCHAR2(100) NOT NULL, /* 안건 */
@@ -17,7 +20,16 @@ import java.util.Date;
 //mno NUMBER NOT NULL, /* 작성자번호 */
 //pno NUMBER NOT NULL /* 프로젝트번호 */
 
+//cnt 페이징처리 글번호
+
 public class Meet {
+	private int cnt;
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	private int mnno;
 	private String topic;
 	private String detail;
@@ -32,6 +44,33 @@ public class Meet {
 	private int mndiv;
 	private String writer;
 	private int pno;
+	
+	// 파일 등록 처리 객체
+	private MultipartFile[] report;
+	private ArrayList<String> filenames;
+	// 파일 로딩 정보 가지고 오기
+	private String[] fnames;
+	
+	
+	
+	public MultipartFile[] getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile[] report) {
+		this.report = report;
+	}
+	public ArrayList<String> getFilenames() {
+		return filenames;
+	}
+	public void setFilenames(ArrayList<String> filenames) {
+		this.filenames = filenames;
+	}
+	public String[] getFnames() {
+		return fnames;
+	}
+	public void setFnames(String[] fnames) {
+		this.fnames = fnames;
+	}
 	public int getMnno() {
 		return mnno;
 	}
