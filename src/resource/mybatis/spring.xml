@@ -36,7 +36,6 @@
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
 		 <mapper resource="resource/mybatis/pmsempMapper.xml"/> 
-		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
 		 <mapper resource="resource/mybatis/meetMapper.xml"/> 
 		 <mapper resource="resource/mybatis/DashTeamMapper.xml"/> 
@@ -49,6 +48,10 @@
 		  <!-- 이슈리스트 -->
 		  <mapper resource="resource/mybatis/riskMapper.xml"/>
 		  <mapper resource="resource/mybatis/commentMapper.xml"/>
+		  
+		  <!-- 간트차트 -->
+		  <mapper resource="resource/mybatis/chartMapper.xml"/> 
+		  <mapper resource="resource/mybatis/projectMapper.xml"/> 
 	</mappers>
 
 </configuration>
