@@ -54,9 +54,9 @@
 }
 
 .num {width:10%;}
-.title {width:65%;}
+.title {padding-right:50px; width:25%;}
 .date {width:15%;}
-.cnt {width:10%;}
+.cnt {width:40%;}
 
 
 </style>
@@ -103,6 +103,34 @@ function go(no){
           <div class="col-md-12 mt">
             <div class="content-panel">
              <h4><i class="fa fa-bullhorn"></i>&ensp;  업무현황 </h4>
+             
+    <form:form class="form" commandName="tsch" method="post" >
+  	 <div style="width:300px; float:left;">
+	    <form:input class="form-control mr-sm-2 sch" path="tname" placeholder="업무명 검색" style="width:300px;"/>
+	    
+	    </div>
+	    
+	    <div>
+	    <button class="btn btn-success" type="submit">검색</button>
+	    </div>
+	    
+	    
+ 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 
+ 	<br>
+ 	
+		
+		<div class="input-group-append" style="width:200px;">
+			<span class="input-group-text">페이지 크기:</span>
+			<form:select path="pageSize" class="form-control">
+				<form:option value="3">3</form:option >
+				<form:option value="5">5</form:option >
+				<form:option value="10">10</form:option >
+				<form:option value="20">20</form:option >
+				<form:option value="30">30</form:option >
+			</form:select> 
+		</div>
+  </form:form>
               
                
                 <hr>
@@ -132,52 +160,7 @@ function go(no){
          </c:forEach>
         </tbody>
       </table>
-      
-	
-     	
-   <form:form class="form" commandName="tsch" method="post" >
-   <div>
-  	
-	    <form:input class="form-control mr-sm-2 sch" 
-	    		path="tname" placeholder="업무명 검색" style="width:300px;"/>
-	    <button class="btn btn-success" type="submit">Search</button>
-	    </div>
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
- 
- 	<br>
- 	
-<div class="input-group lb-3">	
-		<div class="input-group-prepend ">
-			
-		</div>
-		
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-	</div>  
-  </form:form>
-
-              
-   <div style="text-align: center;">
-	<ul class="pagination justify-content-center" style="margin:20px 0">
-	    <li class="page-item">
-	    <a class="page-link" href="javascript:goPage(${tsch.startBlock-1})">Previous</a></li>
-	    <c:forEach var="cnt" begin="${tsch.startBlock}" end="${tsch.endBlock}">
-		  <li class="page-item ${tsch.curPage==cnt?'active':''}">
-		  
-		  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
-		</c:forEach>
-		<li class="page-item">
-		<a class="page-link" href="javascript:goPage(${(tsch.endBlock==tsch.pageCount)?tsch.endBlock:tsch.endBlock+1})">Next</a></li>
-	</ul>  
-		</div>
+   
             </div>
            
           </div>
@@ -187,8 +170,22 @@ function go(no){
         <!-- row -->
         
         <br>
-       
+        <div style="text-align:center; float:left; margin-left:600px;">
+		<ul class="pagination justify-content-center" style="margin:20px 0">
+		    <li class="page-item">
+		    <a class="page-link" href="javascript:goPage(${tsch.startBlock-1})">Previous</a></li>
+		    <c:forEach var="cnt" begin="${tsch.startBlock}" end="${tsch.endBlock}">
+			  <li class="page-item ${tsch.curPage==cnt?'active':''}">
+			  
+			  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+			</c:forEach>
+			<li class="page-item">
+			<a class="page-link" href="javascript:goPage(${(tsch.endBlock==tsch.pageCount)?tsch.endBlock:tsch.endBlock+1})">Next</a></li>
+		</ul>  
+	</div>
+       <div>
           <button type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
+         </div>
     </div>
      
         

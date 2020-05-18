@@ -67,6 +67,9 @@ public class WorkService2 {
 	public void coment(Task upt) {
 		dao.coment(upt);
 	}
+	public void prog(Task upt) {
+		dao.prog(upt);
+	}
 	public void insert(Task ins) {
 		System.out.println("등록 제목:"+ins.getTname());
 		dao.insert(ins);

@@ -71,6 +71,11 @@
 		   SET coment = #{coment}
 		 WHERE tno = #{tno}
  	</update>
+ 	<update id="prog" parameterType="tsch">
+		UPDATE PMSTASK
+		   SET prog = #{prog}
+		 WHERE tno = #{tno}
+ 	</update>
  	
  	<!-- 등록 -->
  	<insert id="insert" parameterType="task">

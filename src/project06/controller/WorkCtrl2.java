@@ -37,7 +37,12 @@ public class WorkCtrl2 {
 		public String coment(Task upt) {
 			service.coment(upt);
 			return "forward:/task.do?method=detail"; 
-		}	
+		}
+		@RequestMapping(params="method=prog")
+		public String prog(Task upt) {
+			service.prog(upt);
+			return "forward:/task.do?method=detail"; 
+		}
 		
 		
 		@RequestMapping(params="method=delete")
