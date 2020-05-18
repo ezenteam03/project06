@@ -68,6 +68,21 @@
 			}
 		});	
 		
+		/*
+			private int pno;
+			private Date sdate;
+			private Date deadline;
+			private String pname;
+			private String detail;
+			private Date cdate;
+			private int pdiv;
+			private int mno;
+			private String name;
+		*/
+		
+		console.log("${project.sdate}");
+		console.log("${project.deadline}");
+		
 		$.ajax({
 			type:"post",
 			url:"${path}/chart.do?method=ajaxdata",
@@ -76,7 +91,7 @@
 			success:function(data){
 				
 				var todayOrigin = new Date(2020, 4, 4); 
-				var today = new Date(2020, 4, 4); 
+				var today = new Date('2020/05/04'); 
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -88,11 +103,11 @@
 				// data.모델명
 				var clist = data.chartlist;
 				var dataInfo = [];
-					
+				
 				dataInfo.push({
 	            	name: '총괄진행(시작일, 종료일, 소요일수, 진행도, 담당자)',	
 	            	id: '0',
-	            	owner: '김대중',
+	            	owner: "${project.name}",
 	            	y:0,
 				});
 				
@@ -159,7 +174,7 @@
 				        }
 				    };
 				var titleInfo = {
-				        text: 'PMS 진행사항'
+				        text: "${project.pname}"
 			    };
 				var xAxisInfo = {
 				        currentDateIndicator: true,
@@ -297,7 +312,7 @@
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(PM)</i></h4>
+	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">${project.sdate }간트차트(PM)</i></h4>
             <div class="form-panel">
               <div id="chartpm"></div>
             </div>
