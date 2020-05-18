@@ -54,23 +54,12 @@
 			$("#cform").submit();
 												
 		});	
-		var isReg= "${param.cdetail}";
-		if(isReg!=""){
-			alert("등록이 되었습니다")
-				
-			
-		}
+
 		var ck="${ck}";
 		$("#combt").click(function(){	
 				$(location).attr("href","${path}/risk.do?method=comment");	
 				$("#form").submit();										
 		});	
-		$("#ccombt").click(function(){	
-				$(location).attr("href","${path}/risk.do?method=detail");	
-				$("#form").submit();			
-		});	
-		
-		
 		
 		if(ck == 1){
 			$('#comment').css('display', 'block');
@@ -183,7 +172,6 @@
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 	
 	<input type="button" value="댓글창 열기" id="combt">
-	<input type="button" value="댓글창 닫기" id="ccombt">
 	<!-- 댓글 -->
 	<div id="comment">
 	<div class="input-group mb-3">

@@ -86,6 +86,11 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=comment";
 		}
+		@RequestMapping(params="method=delete")
+		public String delete(@RequestParam("rno") int rno) {
+			service.deleteComment(rno);
+			return "redirect:/risk.do?method=comment";
+		}
 	
 	
 }
