@@ -33,7 +33,7 @@ public class Meet {
 	private int mnno;
 	private String topic;
 	private String detail;
-	private String result;
+	private String decision;
 	private String etc;
 	private int views;
 	private Date wdate;
@@ -90,10 +90,10 @@ public class Meet {
 		this.detail = detail;
 	}
 	public String getResult() {
-		return result;
+		return decision;
 	}
-	public void setResult(String result) {
-		this.result = result;
+	public void setResult(String decision) {
+		this.decision = decision;
 	}
 	public String getEtc() {
 		return etc;
