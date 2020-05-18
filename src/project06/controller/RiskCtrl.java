@@ -19,18 +19,18 @@ import project06.vo.RiskSch;
 @RequestMapping("/risk.do")
 public class RiskCtrl {
 	
-	// http://localhost:5080/PR06/risk.do?method=list
+	// http://localhost:5080/project06_git/risk.do?method=list
 	@Autowired(required=false)
 	private RiskService service;
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("rsch") RiskSch sch, Model d) {
 		d.addAttribute("rlist", service.list(sch));
 			
-		return "WEB-INF\\views\\risk\\riskList.jsp";
+		return "WEB-INF\\views\\main\\riskList.jsp";
 	}
 	@RequestMapping(params="method=insForm")
 	public String insertForm() {
-		return "WEB-INF\\views\\risk\\riskInsert.jsp";
+		return "WEB-INF\\views\\main\\riskInsert.jsp";
 	}
 	
 	@RequestMapping(params="method=insert")
@@ -38,12 +38,12 @@ public class RiskCtrl {
 		
 		service.insert(insert);
 		
-		return "WEB-INF\\views\\risk\\riskInsert.jsp";
+		return "WEB-INF\\views\\main\\riskInsert.jsp";
 	}
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("ino") int ino, Model d) {
 		d.addAttribute("risk", service.getRisk(ino));
-		return "WEB-INF\\views\\risk\\riskDetail.jsp";
+		return "WEB-INF\\views\\main\\riskDetail.jsp";
 	}
 
 	
