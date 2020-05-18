@@ -17,14 +17,7 @@
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
 <script src="${path}/a00_com/jquery-ui.js"></script>
-<style type="text/css">
-	.input-group-text{width:100%;}
-	.input-group-prepend{width:20%;}
-	.input-group-append{width:20%;}
-.num2{width: 12%}
-.num{width: 10%}
-.txt{width: 48%}
-</style>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#goMain").click(function(){
@@ -42,10 +35,7 @@
 				$("#form").submit();
 			}
 		});
-		$("#combt").click(function(){			
-				$(location).attr("href","${path}/risk.do?method=comment");	
-				$("#form").submit();
-		});	
+	
 		$(".custom-file-input").on("change",function(){
 			$(this).next(".custom-file-label").text($(this).val());
 		});	
@@ -70,6 +60,24 @@
 				
 			
 		}
+		var ck="${ck}";
+		$("#combt").click(function(){	
+				$(location).attr("href","${path}/risk.do?method=comment");	
+				$("#form").submit();										
+		});	
+		$("#ccombt").click(function(){	
+				$(location).attr("href","${path}/risk.do?method=detail");	
+				$("#form").submit();			
+		});	
+		
+		
+		
+		if(ck == 1){
+			$('#comment').css('display', 'block');
+		}else{
+			$('#comment').css('display', 'none');
+		}
+		
 	});
 		
 </script>
@@ -77,9 +85,7 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
-<div class="jumbotron text-center">
-  <h1>게시판 상세화면.</h1>
-</div>
+
 <div class="container">
 	<form method="post"  enctype="multipart/form-data" id="form"
 	action="${path}/risk.do?method=comment">
@@ -177,8 +183,9 @@
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 	
 	<input type="button" value="댓글창 열기" id="combt">
+	<input type="button" value="댓글창 닫기" id="ccombt">
 	<!-- 댓글 -->
-	
+	<div id="comment">
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="input-group-text">댓글</span>
@@ -215,12 +222,27 @@
     
   </table>  
 </div></div>
+</div>
 	</form>
 	
 	</div>
 	</section>
 </body>
-<script type="text/javascript">
+<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+<link rel="stylesheet" href="${path}/a00_com/bootstrap.css" >
 
+<style type="text/css">
+	.input-group-text{width:100%;}
+	.input-group-prepend{width:20%;}
+	.input-group-append{width:20%;}
+.num2{width: 12%}
+.num{width: 10%}
+.txt{width: 48%}
+
+</style>
+<script type="text/javascript">
+	
+	
 </script>
 </html>
