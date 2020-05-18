@@ -29,6 +29,15 @@
 		DELETE FROM PMSREPLY
 		 WHERE rno = #{rno}
  	</delete> 
+ 	<!-- 상세 -->
+ 	<select id="getComment" 
+ 		resultType="comment" parameterType="int">
+ 		SELECT *
+ 		FROM PMSISSUE p, PMSEMP pm	
+ 		where 1=1
+ 		and p.mno = pm.ENO 
+ 		and ino = #{ino}
+ 	</select>
 </mapper>	
 
 
