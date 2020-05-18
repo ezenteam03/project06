@@ -1099,7 +1099,7 @@ insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysd
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 -- 업무리스트
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계',null, to_date('2020/05/04','yyyy/mm/dd'), to_date('2020/05/08','yyyy/mm/dd'),0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계',null, '2020/05/04', '2020/05/08',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '데이터베이스', 'DB설계 및 생성',null, '2020/05/04','2020/05/14',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면구현', '설계된 웹/앱 화면 구현',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '테스트', '테스트를 함',null, '2020/06/01','2020/06/08',0,NULL,NULL,21,10000005);
@@ -1152,7 +1152,7 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 0,NULL,NULL,21,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000023);
 
-SELECT * FROM pmstask;
+SELECT * FROM pmsnotice;
 
 	
 	

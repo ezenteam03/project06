@@ -145,8 +145,8 @@ function go(no){
           <tr>
             <th class="num">번호</th>
             <th class="title">업무 명</th>
-            <th class="date">종료일</th>
-            <th class="cnt">결재현황</th>
+            <th class="date"></th>
+            <th class="cnt"></th>
           </tr>
         </thead>
         <tbody>
@@ -154,8 +154,8 @@ function go(no){
           <tr onclick="go(${task.tno})">
             <td style="text-align: center;">${task.tno}</td>
             <td style="padding-left:70px;">${task.tname}</td>
-            <td style="text-align: center;"><fmt:formatDate value="${task.edate }" type="date"/></td>
-            <td style="text-align: right;padding-right:70px;">${task.tdiv}</td>
+            <td style="text-align: center;"><fmt:formatDate value="" type="date"/></td>
+            <td style="text-align: right;padding-right:70px;"></td>
           </tr>
          </c:forEach>
         </tbody>
