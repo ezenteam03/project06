@@ -11,6 +11,14 @@
 		FROM pmsemp a 
 		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
  	</select>
+ 	<!-- 상세페이지 -->
+ 	<select id="getemp" resultType="pmsemp" parameterType="int">
+ 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE b.mdiv=c.cno
+		AND b.mno = #{eno}
+ 	</select>
  	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">

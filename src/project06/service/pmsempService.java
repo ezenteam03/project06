@@ -17,6 +17,11 @@ public class pmsempService {
 		public ArrayList<pmsemp> pmsempList(pmsemp sch){
 			return rep.pmsempList(sch);
 		}
+		// CEO, CTO 상세
+		public pmsemp getemp(int eno) {
+			pmsemp a = rep.getemp(eno);
+			return a;
+		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void update(pmsemp update) {
 			rep.updatepmsemp2();

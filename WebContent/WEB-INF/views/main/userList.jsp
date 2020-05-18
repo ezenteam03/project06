@@ -51,6 +51,10 @@
 		 $("#curPage").val(no);
 		 $("form").submit();
 	 }
+	 function go(eno){
+		 $(location).attr("href",
+				 "${path}/PMSemp.do?method=setForm&eno="+eno);
+	 }
 
   </script>
 </head>
@@ -91,7 +95,7 @@
                 </thead>
                 <tbody>
                   <c:forEach var="emp" items="${elist}">
-                  <tr>
+                  <tr ondblclick="javascript:go(${emp.eno})">
                     <th>${emp.eno}</th>
                     <td>${emp.name}</td>
                     <td>${emp.grade}</td>
