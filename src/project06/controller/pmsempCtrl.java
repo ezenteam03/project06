@@ -86,15 +86,17 @@ public class pmsempCtrl {
 	}
 	// 사원정보수정
 	@RequestMapping(params="method=mbtn")
-	public String updept(pmsemp mod) {
-		service.updept(mod);
+	public String upemp(pmsemp mod) {
+		service.modifyEmp(mod);
 		return "forward:/PMSemp.do?method=modForm";
 	}
-	@RequestMapping(params="method=mbtn")
-	public String upgrade(pmsemp mod) {
-		service.upgrade(mod);
+	// 퇴사 처리
+	@RequestMapping(params="method=dbtn")
+	public String delg(pmsemp del) {
+		service.deleteG(del);
 		return "forward:/PMSemp.do?method=modForm";
 	}
+	
 	
 	
 	
