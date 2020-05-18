@@ -194,6 +194,11 @@ public class RiskService {
 		dao.cinsert(ins);
 			
 	}
+	// 댓글 삭제
+	public void deleteComment(int no) {
+		dao.deleteComment(no);
+	
+	}
 	
 }
 

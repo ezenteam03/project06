@@ -63,9 +63,11 @@
 		
 		if(ck == 1){
 			$('#comment').css('display', 'block');
+			$('#combt').css('display', 'none');
 		}else{
 			$('#comment').css('display', 'none');
 		}
+		
 		
 	});
 		
@@ -170,7 +172,7 @@
 	     <input name="refno" type="hidden"
 			 value="${empty comment.refno?0:comment.refno}" />	 	
 	     <input name="ino" type="hidden"
-			 value="${risk.ino}" />	 	
+			 value="${risk.ino}" />	 		  	
 	<input type="button" value="댓글창 열기" id="combt">
 	<!-- 댓글 -->
 	<div id="comment">
@@ -198,11 +200,11 @@
        <td class="txt" >${comment.cdetail}</td>
         
         <td class="num" ><input type="button" class="btn btn-info"
-			value="삭제" id="delBtn"/>	</td>
+			value="삭제" id="delBtn${comment.rno}"/>	</td>
         <td class="num" ><input type="button" class="btn btn-info"
-			value="수정" id="cUptBtn"/>	</td>
+			value="수정" id="cUptBtn${comment.rno}" onclick="go(${comment.rno})"/>	</td>
         <td class="num"><input type="button" class="btn btn-info"
-			value="댓글" id="cComment"/>	</td>
+			value="댓글" id="cComment${comment.rno}" />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
    
@@ -212,7 +214,16 @@
 </div></div>
 </div>
 	</form>
-	
+<div id="cdetail">
+	<div style="text-align:right;">
+		<input type="button" class="btn btn-info"
+			value="뒤로가기" id="goMain"/>		
+		<input type="button" class="btn btn-warning"
+			value="수정" id="uptBtn"/>					
+		<input type="button" class="btn btn-success"
+			value="해결방안 저장" id="cuptBt"/>
+	</div>
+</div>	
 	</div>
 	</section>
 </body>
@@ -230,7 +241,14 @@
 
 </style>
 <script type="text/javascript">
-	
+var regBtn = document.querySelector("#regBtn");
+var close = document.querySelector("#close");
+function go(ino){
+	cdetail.style.visibility="visible";
+}
+close.onclick=function(){
+	regDiv.style.visibility="hidden";
+}	
 	
 </script>
 </html>
