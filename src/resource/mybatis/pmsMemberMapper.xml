@@ -40,6 +40,15 @@
 		SELECT p.pname FROM pmsmember m, pmsproject p WHERE m.pno=p.pno AND m.mno=#{mno}
 	</select>
 
+	<select id="logCount" resultType="int" parameterType="int">
+ 		SELECT count(*) FROM pmslog WHERE mno=#{mno} AND state=1
+ 	</select>
+	<update id="logoutLog" parameterType="int">
+		UPDATE pmslog SET state=0, logout=sysdate WHERE mno=#{mno} AND state=1
+ 	</update>
+ 	 <insert id="loginLog" parameterType="int"> 
+ 		INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,#{mno})
+	</insert>
 		
 	
 </mapper>	

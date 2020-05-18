@@ -74,7 +74,20 @@ public class PmsMemberService {
 		
 	}
 	
-
+	public void log(int mno) {
+		System.out.println("PmsMemberDao log 실행");
+		
+		int count = dao.logCount(mno);
+		System.out.println("log count : " + count);
+		if(count != 0) {
+			System.out.println("logout up/in 실행");
+			dao.logoutLog(mno);
+			dao.loginLog(mno);
+		}else {
+			System.out.println("login in 실행");
+			dao.loginLog(mno);
+		}
+	}
 	
 	
 	

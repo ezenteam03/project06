@@ -36,6 +36,7 @@ public class PmsMemberCtrl {
 			session.setAttribute("emp", emp);
 			session.setAttribute("infor_M", infor_M);
 			session.setAttribute("proName", proName);
+			service.log(mno);
 			return "forward:/DashTeam.do?method=list";
 		}else {
 			int ck = 1;

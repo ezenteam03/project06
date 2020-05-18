@@ -19,5 +19,10 @@ public interface PmsMemberDao {
 	
 	public int projectCount(int mno);
 	public String projectName(int mno);
+	
+	public int logCount(int mno);
+	public void logoutLog(int mno);
+	public void loginLog(int mno);
+	
 
 }
