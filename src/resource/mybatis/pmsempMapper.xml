@@ -4,22 +4,44 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
- 	
+ 	<!-- CEO, CTO 사원리스트 불러오기 -->
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
 		FROM pmsemp a 
 		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
  	</select>
+ 	
  	<!-- 상세페이지 -->
  	<select id="getemp" resultType="pmsemp" parameterType="int">
 	 	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 			c.CNAME,b.pno
 			FROM pmsemp a, pmsmember b, pmscodes c
-			WHERE b.mdiv=c.cno
-			AND a.eno = b.mno
+			WHERE b.mdiv=c.cno(+)
+			AND a.eno = b.mno(+)
 			AND a.eno = #{eno}
  	</select>
+ 	
+ 	<!-- 기존 CTO 권한변경 -->
+	<update id="updatepmsemp2" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=6
+		WHERE mdiv=3
+	</update>
+ 	<!-- CTO설정 -->
+	<update id="updatepmsemp1" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=3
+		WHERE mno=#{eno}
+	</update>
+	<!-- pmsmemeber null check -->
+	
+	<!-- pmsmember null일 경우 insert -->
+	
+	<!-- pmsmember null이 아닐 경우 update -->
+	
+	<!--  -->
+	
  	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
@@ -30,31 +52,13 @@
 		AND b.pno=#{pno}
 		AND b.mdiv=5
  	</select>
- 	
- 	<!-- 사원등록 -->
-	<insert id="insert" parameterType="pmsemp">
-		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
-		 					#{grade},#{phone},#{email})
-	</insert>
-	
-	<!-- CTO설정 -->
-	<update id="updatepmsemp1" parameterType="pmsemp">
-		UPDATE pmsmember
-		SET mdiv=3
-		WHERE mno=#{eno}
-	</update>
-	<!-- 기존 CTO 권한변경 -->
-	<update id="updatepmsemp2" parameterType="pmsemp">
-		UPDATE pmsmember
-		SET mdiv=6
-		WHERE mdiv=3
-	</update>
-	<!-- pno -> null로 변경 -->
+	<!-- 팀원삭제  pno==>null로 변경 -->
 	<update id="delemp" parameterType="pmsemp">
 		UPDATE pmsmember
 		SET pno=null, mdiv=6
 		WHERE mno =#{eno}
 	</update>
+	
 	<!-- 인사 사원정보 수정 페이지 -->
 	<select id="getPmsemp" resultType="pmsemp" parameterType="int">
  		SELECT *
@@ -68,27 +72,32 @@
 		WHERE eno =#{eno}
 	</update>
 	<!-- 퇴사처리 -->
-	<select id="delCheck" resultType="int" parameterType="pmsemp">
+	<select id="memCheck" resultType="int" parameterType="pmsemp">
 		select count(*) 
 		from pmsmember 
 		where mno=#{eno}
 	</select>
 	<!-- pms등록된 직원 -->
 	<update id="delGrade1" parameterType="pmsemp">
-	UPDATE pmsemp
-		SET grade = '퇴사', dept = null
-		WHERE eno =#{eno}
+		UPDATE pmsemp
+			SET grade = '퇴사', dept = null
+			WHERE eno =#{eno}
 	</update>
 	<update id="delGrade2" parameterType="pmsemp">
-	UPDATE pmsmember
-		SET mdiv = 7 , pno = null
-		WHERE mno =#{eno}
+		UPDATE pmsmember
+			SET mdiv = 7 , pno = null
+			WHERE mno =#{eno}
 	</update>
 	<!-- pms등록 안된 직원 -->
 	<delete id="delGrade3" parameterType="pmsemp">
-	delete from pmsemp
-		WHERE eno =#{eno}
+		delete from pmsemp
+			WHERE eno =#{eno}
 	</delete>
+	<!-- 사원등록 -->
+	<insert id="insert" parameterType="pmsemp">
+		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
+		 					#{grade},#{phone},#{email})
+	</insert>
 	
 	
 	

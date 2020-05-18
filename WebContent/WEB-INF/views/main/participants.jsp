@@ -52,6 +52,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		
 		$("#listSchBtn").click(function(){
 			$("#curPage").val(0);
 			$("#empLogForm").submit();

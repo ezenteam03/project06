@@ -48,7 +48,7 @@ public class pmsempCtrl {
 	@RequestMapping(params="method=update")
 	public String update(pmsemp upt) {
 		service.update(upt);
-		return "forward:/PMSemp.do?method=list";
+		return "forward:/PMSemp.do?method=setForm";
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")

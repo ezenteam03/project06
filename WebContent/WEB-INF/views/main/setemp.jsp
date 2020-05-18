@@ -41,19 +41,19 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-	 // 수정 버튼
-	 $("#modBtn").click(function(){		
-		$("form").attr("action","${path}/PMSemp.do?method=mbtn");
+	 // CTO 버튼
+	 $("#ctoBtn").click(function(){		
+		$("form").attr("action","${path}/PMSemp.do?method=update");
 		$("form").submit();
 	 });
-	 // 퇴사 버튼
+	 // PM 버튼
 	 $("#delBtn").click(function(){
 		$("form").attr("action","${path}/PMSemp.do?method=dbtn");
 		$("form").submit();
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
-		$(location).attr("href","${path}/PMSemp.do?method=empmList") 
+		$(location).attr("href","${path}/PMSemp.do?method=list") 
 	 }); 
   });
   </script>
@@ -87,34 +87,13 @@
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
                   <div class="col-sm-10">
                     <span>${emp.dept}</span>
-                    <select class="sel-dept" name="dept">
-                  	<option value="${emp.dept}">${emp.dept}</option>
-                  	<option value="개발1팀">개발1팀</option>
-                  	<option value="개발2팀">개발2팀</option>
-                  	<option value="개발3팀">개발3팀</option>
-                  	<option value="개발4팀">개발4팀</option>
-                  	<option value="개발5팀">개발5팀</option>
-                  	<option value="개발6팀">개발6팀</option>
-                  	<option value="개발7팀">개발7팀</option>
-                  	<option value="개발8팀">개발8팀</option>
-                  </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
                     <span>${emp.grade}</span>
-                  <select class="sel-grade" name="grade">
-                  	<option value="${emp.grade}">${emp.grade}</option>
-                  	<option value="전무">전무</option>
-                  	<option value="기술이사">기술이사</option>
-                  	<option value="상무">상무</option>
-                  	<option value="부장">부장</option>
-                  	<option value="차장">차장</option>
-                  	<option value="과장">과장</option>
-                  	<option value="대리">대리</option>
-                  	<option value="사원">사원</option>
-                  </select>
+
                   </div>
                 </div>
                 <div class="form-group">
@@ -140,8 +119,7 @@
                   <div class="col-sm-10">
                     <span>${emp.pno}</span>
                     <select class="sel-grade" name="pno">
-                  	<option value="${emp.pno==null?"PMS등록안됨":emp.pno}">
-                  				${emp.pno==null?"PMS등록안됨":emp.pno}</option>
+                  	<option>${emp.pno==null?"PMS등록안됨":emp.pno}</option>
                   	<option value="1001">1001</option>
                   	<option value="1002">1002</option>
                   	<option value="1003">1003</option>
@@ -156,12 +134,12 @@
                 </form>
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
-	             	   <button type="button" class="btn btn-danger" id="delBtn" 
-			           			style="margin-right:20px;">퇴사</button>
-			           <button type="button" class="btn btn-success" id="modBtn" 
-			           			style="margin-right:20px;">수정</button>
-			           <button type="button" class="btn btn-warning" id="preBtn"
-			           			style="margin-right:20px;">이전</button>
+	             	   <button type="button" class="btn btn-primary" 
+		           			id="ctoBtn" style="margin-right:20px;">CTO 설정</button>
+			           <button type="button" class="btn btn-success" 
+			           			id="pmBtn" style="margin-right:20px;">PM 설정</button>
+			           <button type="button" class="btn btn-default"
+			           			id="preBtn">이전</button>
 		           </div>
 		        </div>
             </div>
