@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+	
 <mapper namespace="project06.repository.MeetDao">
 
 	<resultMap type="meet" id="meetResult"/>
@@ -67,7 +68,7 @@
  	</delete> 	
   	
   	
-// 여기서부터 다시 체크
+<!-- 여기서부터 다시 체크 -->
   	<insert id="insertRepo" parameterType="String"> 
  		insert into meetfile values(pmsmeeting_seq.currval, 
  			#{fname}, sysdate, sysdate, '')
@@ -98,25 +99,3 @@
 	</insert>	 	
 </mapper>
 
-
-
-
-
-
-
-
-
-
-
-
-<!--
-	<resultMap type="meet" id="meetResult"/>
- 	<select id="list" resultMap="meetResult" parameterType="meet">
-		SELECT mnno,topic,detail,result,etc,views,wdate,chdate,mdate,loc,people,
-		mndiv,m.name writer,pno
-		FROM pmsmeeting a, pmsemp m
-		WHERE 1=1 and a.mno=m.eno
-		order by mnno desc
- 	</select>
-</mapper>
-  -->		
