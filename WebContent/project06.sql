@@ -1051,6 +1051,12 @@ INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmd
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000006);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000011);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000012);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000021);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000025);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000028);
 --공지사항 정보
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
