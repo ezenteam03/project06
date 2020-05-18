@@ -74,7 +74,7 @@ public class RiskCtrl {
 		@RequestMapping(params="method=comment")
 		public String clist(@ModelAttribute("rsch")RiskSch sch, Model d) {
 			d.addAttribute("clist", service.clist(sch));
-			
+			d.addAttribute("ck", 1);
 			
 			return "forward:/risk.do?method=detail";
 		}

@@ -184,6 +184,8 @@ public class RiskService {
 	// 댓글
 	public ArrayList<Comment> clist(RiskSch sch){
 		sch.setCount(dao.ctotCnt(sch));
+		
+		
 		return dao.clist(sch);
 	}
 	// 댓글 입력
