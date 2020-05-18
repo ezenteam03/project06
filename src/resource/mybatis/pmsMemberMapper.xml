@@ -49,6 +49,7 @@
  	 <insert id="loginLog" parameterType="int"> 
  		INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,#{mno})
 	</insert>
+
 		
 	
 </mapper>	

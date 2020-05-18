@@ -1,10 +1,14 @@
 package project06.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project06.repository.PmsMemberDao;
+import project06.vo.EmpLog;
+import project06.vo.EmpLogSch;
 import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 
@@ -95,6 +99,7 @@ public class PmsMemberService {
 		dao.logoutLog(mno);
 
 	}
+	
 	
 	
 	
