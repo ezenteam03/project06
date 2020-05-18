@@ -15,7 +15,7 @@ import project06.vo.TaskSch;
 @Controller
 @RequestMapping("/task.do")
 public class WorkCtrl2 { 
-	// http://localhost:6080/project06_git/task.do?method=list
+	// http://localhost:5080/project06_git/task.do?method=list
  
 		@Autowired(required=false)
 		private WorkService2 service;
@@ -48,7 +48,7 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=insForm")
 		public String insertForm() {
-			return "WEB-INF\\views\\mvc\\workInsert2.jsp";
+			return "WEB-INF\\views\\main\\workInsert2.jsp";
 		}
 		
 		@RequestMapping(params="method=insert")
@@ -62,6 +62,6 @@ public class WorkCtrl2 {
 			d.addAttribute("task", service.getTask(no));
 
 			
-			return "WEB-INF\\views\\mvc\\workDetail2.jsp";
+			return "WEB-INF\\views\\main\\workDetail2.jsp";
 		}
 }
