@@ -25,9 +25,7 @@ public class MeetCtrl {
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("msch") MeetSch sch, Model d) {
 		d.addAttribute("mlist", service.list(sch));
-		// view resolver로 접두어와 접미어가 생략했을 때 처리..
-		//return "a01_MeetList";
-		return "WEB-INF\\views\\a03_mvc\\a01_MeetList.jsp";
+		return "WEB-INF\\views\\main\\meetList.jsp";
 	}
 	@RequestMapping(params="method=Ajaxlist")
 	public String ajaxlist(MeetSch sch, Model d) {
@@ -36,7 +34,7 @@ public class MeetCtrl {
 	}	
 	@RequestMapping(params="method=insForm")
 	public String insertForm() {
-		return "WEB-INF\\views\\a03_mvc\\a01_MeetInsert.jsp";
+		return "WEB-INF\\views\\main\\MeetInsert.jsp";
 	}
 	@RequestMapping(params="method=insert")
 	public String insert(Meet insert) {
@@ -44,10 +42,9 @@ public class MeetCtrl {
 		System.out.println("파일 로딩:"+
 		insert.getReport()[0].getOriginalFilename());
 		service.insert(insert);
-		insert.setRefmnno(0);
 		insert.setTopic("");
 		insert.setDetail("");
-		return "WEB-INF\\views\\a03_mvc\\a01_MeetInsert.jsp";
+		return "WEB-INF\\views\\main\\MeetInsert.jsp";
 	}
 	@RequestMapping(params="method=update")
 	public String update(Meet upt) {
@@ -63,7 +60,7 @@ public class MeetCtrl {
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("mnno") int mnno, Model d) {
 		d.addAttribute("Meet", service.getMeet(mnno));
-		return "WEB-INF\\views\\a03_mvc\\a01_MeetDetail.jsp";
+		return "WEB-INF\\views\\main\\MeetDetail.jsp";
 	}
 	// 다운로드 처리.
 	@RequestMapping(params="method=download")
