@@ -1,14 +1,8 @@
 package project06.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -97,4 +91,41 @@ public class NoticeService {
 				
 				return dao.list(sch);
 			}
+	
+	public void insert(Notice ins) {
+		/*
+		# 등록시 처리할 부분.
+		1. 물리적 파일을 생성과 특정 위치로 변경.
+		2. 등록 파일 정보 DB 처리.
+		3. 실제 등록 처리..
+		 * */ 
+		dao.insert(ins);
+		
+			
+		
+	}
+	public void update(Notice update) {
+		/*
+		데이터 수정 처리
+		 * */ 
+		dao.updateNotice(update);
+		// 파일 수정 정보 처리
+		
+	}	
+	public void deleteNotice(int no) {
+		dao.deleteNotice(no);
+		
+	}
+	
+	// 상세화면 처리..
+		public Notice getNotice(int no) {
+			// 조회수 카운트업..
+		/* dao.uptViews(no); */
+			
+			Notice n = dao.getNotice(no);
+			
+			return n;
+		}
+		
+	
 }

@@ -65,31 +65,28 @@ $(document).ready(function(){
 	<%-- 
 	
 	--%>
-	$("h2").text("시작");
-	$("#regBtn").click(function(){
-		//if(confirm("등록합니다")){
-		// 등록화면 호출.
-			$(location).attr("href","${path}/notice.do?method=insForm");
-		//}
-	});
-	$("#pageSize").change(function(){
-		$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
-							// 나오게 처리..
-		$("form").submit();
-	});
-});
-function go(nno){
+	$("#goMain").click(function(){
+		$(location).attr("href","${path}/notice.do?method=list");			
+	});	
 	
-	$(location).attr("href",
-			"${path}/notice.do?method=detail&nno="+nno);
-}
+	$("#uptBtn").click(function(){
+		if(confirm("수정하시겠습니까?")){
+			$("form").attr("action","${path}/notice.do?method=update");
+			$("form").submit();
+		}
+	});
+	$(".custom-file-input").on("change",function(){
+		$(this).next(".custom-file-label").text($(this).val());
+	});	
+	$("#delBtn").click(function(){
+		if(confirm("삭제하시겠습니까?")){
+			var nno = $("input[name=nno]").val();
+			$(location).attr("href","${path}/notice.do?method=delete&nno="+nno);					
+		}
+	});
+	
+});
 
-
-function goPage(no){
-	alert("이동 번호:"+no);
-	$("#curPage").val(no);
-	$("form").submit();
-}
 </script>
 <body>
   <section id="container">
@@ -101,140 +98,76 @@ function goPage(no){
     <section id="main-content">
       <section class="wrapper">
         
-       <div id="all">
-        <div class="row">
-         <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
-                <hr>
-                <form method="post">
-					<input type="hidden" name="curPage"/>
-				</form>
-              <table class="table table-hover">
-                
-                
+       
+     <h1>게시판 상세화면.</h1>
 
-
-<%-- <form:form class="form" commandName="nsch" method="post" > --%>
- 	<%-- <form:hidden path="curPage"/> --%> <!-- 현재 클릭한 페이지 번호. -->
- 
-
-<%-- <div class="input-group lb-3">	
-	<div class="input-group-append">
-		<span class="input-group-text">페이지 크기:</span>
-		<form:select path="pageSize" class="form-control">
-			<form:option value="3">3</form:option >
-			<form:option value="5">5</form:option >
-			<form:option value="10">10</form:option >
-			<form:option value="20">30</form:option >
-			<form:option value="30">50</form:option >
-		</form:select> 
+<div class="container">
+	<form method="post"  enctype="multipart/form-data" >
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend ">
+			<span class="input-group-text ">글번호</span>
+		</div>
+		<input name="nno" class="form-control" 
+			value="${notice.nno}"/>	
+		
+	</div>	
+	<div class="input-group mb-3">	
+		
+		
+		<div class="input-group-prepend">
+			<span class="input-group-text">조회수</span>
+		</div>
+		<input  class="form-control" 
+			 value="${notice.views}" />	
+	</div>		
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">제 목</span>
+		</div>
+		<input name="title" class="form-control"
+			value="${notice.title}"  
+			placeholder="제목입력하세요" />	
+		 
+	</div>  	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="input-group-text">등록일</span>
+		</div>
+		<input class="form-control" 
+			value="<fmt:formatDate type='both' value='${notice.wdate }'/>"/>	
+		<div class="input-group-prepend">
+			<span class="input-group-text">수정일</span>
+		</div>
+		<input class="form-control" 
+			value="<fmt:formatDate type='both' value='${notice.chdate }'/>" />	
+	</div>			
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">내 용</span>
+		</div>
+		<textarea name="detail" rows="10" 
+			class="form-control" 
+			placeholder="내용입력하세요" >${notice.detail}</textarea>		 
+	</div> 
+	
+	<div style="text-align:right;">
+		<input type="button" class="btn btn-info"
+			value="수정" id="uptBtn"/>
+		<input type="button" class="btn btn-danger"
+			value="삭제" id="delBtn"/>		
+			
+		<input type="button" class="btn btn-success"
+			value="조회 화면으로" id="goMain"/>
 	</div>
-</div>   --%>
-<%-- </form:form> --%>
-  
-  
-       <thead>
-          <tr>
-            <th class="num">번호</th>
-            <th class="title">제목</th>
-            <th class="date">작성일</th>
-            <th class="cnt">조회수</th>
-          </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="notice" items="${nlist}">
-          <tr ondblclick="javascript:go(${notice.nno})">
-            <td style="text-align: center;">${notice.nno}</td>
-            <td style="padding-left:70px;">${notice.title}</td>
-            <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
-            <td style="text-align: right;padding-right:70px;">${notice.views}</td>
-          </tr>
-         </c:forEach>
-        </tbody>
-      </table>
-
-   <form:form class="form" commandName="nsch" method="post" >
-  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  
-	    <form:input class="form-control mr-sm-2 sch" 
-	    		path="title" placeholder="제목" />
-	    <button class="btn btn-success" type="submit">Search</button>&nbsp;
-	    <button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
-  	</nav>
-  	<br>
- 	<div class="input-group lb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>
-		<input class="form-control" />	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-	</div>  
-  </form:form> 
-    
-    
-   <%-- 
-   <form:form class="form" commandName="nsch" method="post" >
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
- 
- 	<br>
- 	
-<div class="input-group lb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>
-		<input class="form-control" />	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-	</div>  
-  </form:form>
---%>  
-              
-      <ul class="pagination justify-content-center" style="margin:20px 0">
-      	<li class="page-item">
-	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
-	   	<c:forEach var="cnt" begin="${nsch.startBlock }" end="${nsch.endBlock}">
-	  		<li class="page-item ${nsch.curPage==cnt?'active':''}">
-	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
-		</c:forEach>
-			<li class="page-item">
-			<a class="page-link" href="javascript:goPage(${(nsch.endBlock==nsch.pageCount)?nsch.endBlock:nsch.endBlock+1});">Next</a></li>
-	  </ul>  
-            
-            
-            
-            </div>
-           
-          </div>
-          
-          <!-- /col-md-12 -->
-        </div>
-        <!-- row -->
-        
-        <br>
-        <!-- c:if 어쩌고-->
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
-    </div>
-     
+	</form>
+</div>	  
+       
+       
+       
+       
+       
+       
+       
         
    </section>
       <!-- /wrapper -->

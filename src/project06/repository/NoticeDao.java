@@ -13,6 +13,15 @@ public interface NoticeDao{
 	public int totCnt(NoticeSch sch);
 	public ArrayList<Notice> list(NoticeSch sch);
 	
+	public void insert(Notice ins);
+	public void updateNotice(Notice upt);
+	public void deleteNotice(int no);
+	
+	public Notice getNotice(int no);
+	public void uptViews(int nno);
+	
+	
+	
 	
 }
 
