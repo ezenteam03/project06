@@ -103,11 +103,11 @@
                   <canvas id="serverstatus01" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
-                        value: 70,
+                        value: 60,
                         color: "#FF6B6B"
                       },
                       {
-                        value: 30,
+                        value: 40,
                         color: "#fdfdfd"
                       }
                     ];
