@@ -65,6 +65,33 @@
 				$("form").submit();
 			}
 		});
+		
+		$("#progBtn").click(function(){
+			var prog = $('input[name=prog]').val();
+			if(prog > 100 || prog < 1){
+				alert("진행률은 1~100까지만 수정 가능합니다.");
+			}
+			else if(confirm("진행률 수정합니다.")){
+				$("form").attr("action","${path}/task.do?method=prog");
+				$("form").submit();
+			}
+		});
+		$("#divBtn").click(function(){
+			var prog = $('input[name=prog]').val();
+			alert(prog);
+			if(prog == 100){
+				if(confirm("결재 신청 하시겠습니까?")){
+					$("form").attr("action","${path}/task.do?method=upTdiv");
+					$("form").submit();
+				}
+			}
+		});
+		
+		function inNumber(){
+			  if(event.keyCode<48 || event.keyCode>57){
+			     event.returnValue=false;
+			  }
+		}
 	});
 </script>
 </head>
@@ -150,26 +177,29 @@
 		
 	</div> 
 	</c:forEach>	 -->
-	<div class="input-group mb-3">
-			<span class="bg-warning text-white input-group-text" style="width:220px;">결재 여부</span>
+	<div class="input-group mb-3" style="float:left;">
+			<span class="bg-warning text-white input-group-text" style="width:220px; float:left;">결재 여부</span>
 			<c:choose>
 				<c:when test="${task.tdiv==21}">
-				<span class="input-group-text" style="width:330px; background:white;">업무수행중</span>
+				<span class="input-group-text" style="width:330px; background:white; float:left;">업무수행중</span>
 				</c:when>
 				<c:when test="${task.tdiv==22}">
-				<span class="input-group-text" style="width:330px; background:white;">결재신청</span>
+				<span class="input-group-text" style="width:330px; background:white; float:left;">결재신청</span>
 				</c:when>
 				<c:when test="${task.tdiv==23}">
-				반려
+				<span class="input-group-text" style="width:330px; background:white; float:left;">반려</span>
 				</c:when>
 				<c:when test="${task.tdiv==24}">
-				결재완료
+				<span class="input-group-text" style="width:330px; background:white; float:left;">결재완료</span>
 				</c:when>
 			</c:choose>
+			<button class="btn btn-success" id="divBtn">결재신청</button>
 			
 			<div class="input-group-prepend">
 				<span class="bg-warning text-white input-group-text" style="width:220px;">진행률</span>
-				<span class="= input-group-text" style="width:330px; background:white;">${task.prog }</span>
+				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">%
+				<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
+				
 			</div>
 		</div>
 		

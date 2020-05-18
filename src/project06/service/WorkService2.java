@@ -14,7 +14,8 @@ public class WorkService2 {
 	@Autowired(required=false)
 	private WorkDao2 dao;
 	public ArrayList<Task> list(TaskSch sch){
-
+		
+		
 		sch.setCount(dao.totCnt(sch));
 
 		if(sch.getPageSize()==0) {
@@ -46,6 +47,7 @@ public class WorkService2 {
 		sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);
 				
 		System.out.println("시작block : "+sch.getStartBlock());
+		System.out.println("curPage : "+sch.getCurPage());
 		System.out.println("마지막block : "+sch.getEndBlock());
 				
 		
@@ -70,6 +72,10 @@ public class WorkService2 {
 	public void prog(Task upt) {
 		dao.prog(upt);
 	}
+	public void upTdiv(Task upt) {
+		System.out.println("service tdiv 실행");
+		dao.upTdiv(upt);
+	}
 	public void insert(Task ins) {
 		System.out.println("등록 제목:"+ins.getTname());
 		dao.insert(ins);
@@ -77,9 +83,8 @@ public class WorkService2 {
 	public Task getTask(int no) {
 		// 조회수 카운트업..
 		//dao.uptReadCnt(no);
-		
+		Task d =  dao.getTask(no);
 		//System.out.println("파일의 갯수:"+dao.fnames(no).size());
-		Task d = dao.getTask(no);
 		//d.setFilenames(dao.fnames(no));
 		return d;
 	}

@@ -40,7 +40,15 @@ public class WorkCtrl2 {
 		}
 		@RequestMapping(params="method=prog")
 		public String prog(Task upt) {
+			System.out.println("ctrl prog 실행");
 			service.prog(upt);
+			return "forward:/task.do?method=detail"; 
+		}
+		
+		@RequestMapping(params="method=upTdiv")
+		public String upTdiv(Task upt) {
+			System.out.println("ctrl tdiv 실행");
+			service.upTdiv(upt);
 			return "forward:/task.do?method=detail"; 
 		}
 		

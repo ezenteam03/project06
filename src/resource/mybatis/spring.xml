@@ -24,6 +24,7 @@
 		 <!-- 업무 리스트 -->
 		 <typeAlias alias="task" type="project06.vo.Task"/>
 		 <typeAlias alias="tsch" type="project06.vo.TaskSch"/>
+		 
 		 <!-- 이슈리스트 -->
 		 <typeAlias alias="risk" type="project06.vo.Risk"/>
 		 <typeAlias alias="rsch" type="project06.vo.RiskSch"/>
