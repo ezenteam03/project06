@@ -42,8 +42,8 @@
   <script type="text/javascript">
   $(document).ready(function(){
 	 // 수정 버튼
-	 $("#modBtn").click(function(){
-		$("form").attr("action","${path}/PMSemp.do?method=mBtn");
+	 $("#modBtn").click(function(){		
+		$("form").attr("action","${path}/PMSemp.do?method=mbtn");
 		$("form").submit();
 	 });
 	 // 퇴사 버튼
@@ -87,31 +87,24 @@
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
                   <div class="col-sm-10">
                     <span>${emp.dept}</span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label"></label>
-                  <select class="sel-dept" name="dept">
+                    <select class="sel-dept" name="dept">
                   	<option value="${emp.dept}">${emp.dept}</option>
-                  	<option value="개발2팀">개발1팀</option>
-                  	<option value="개발3팀">개발2팀</option>
-                  	<option value="개발4팀">개발3팀</option>
-                  	<option value="개발5팀">개발4팀</option>
-                  	<option value="개발6팀">개발5팀</option>
-                  	<option value="개발7팀">개발6팀</option>
-                  	<option value="개발8팀">개발7팀</option>
-                  	<option value="개발9팀">개발8팀</option>
+                  	<option value="개발1팀">개발1팀</option>
+                  	<option value="개발2팀">개발2팀</option>
+                  	<option value="개발3팀">개발3팀</option>
+                  	<option value="개발4팀">개발4팀</option>
+                  	<option value="개발5팀">개발5팀</option>
+                  	<option value="개발6팀">개발6팀</option>
+                  	<option value="개발7팀">개발7팀</option>
+                  	<option value="개발8팀">개발8팀</option>
                   </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
                     <span>${emp.grade}</span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label"></label>
-                  <select class="sel-grade" name="grade">
+                    <select class="sel-grade" name="grade">
                   	<option value="${emp.grade}">${emp.grade}</option>
                   	<option value="전무">전무</option>
                   	<option value="기술이사">기술이사</option>
@@ -122,6 +115,7 @@
                   	<option value="대리">대리</option>
                   	<option value="사원">사원</option>
                   </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">핸드폰</label>
