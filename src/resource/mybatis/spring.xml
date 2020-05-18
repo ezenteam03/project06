@@ -9,6 +9,7 @@
 		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
 		 <typeAlias alias="nsch" type="project06.vo.NoticeSch"/> 
 		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
+		 <typeAlias alias="msch" type="project06.vo.MeetSch"/> 
 		 
 		 <!-- 대시보드 -->
 		 <typeAlias alias="dashNotice" type="project06.vo.DashNotice"/> 

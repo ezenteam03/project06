@@ -28,7 +28,7 @@ public class Task {
 	private Date sdate;
 	private Date edate;
 	private int prog;
-	private Date pdate;
+	private String pdate;
 	private String coment;
 	private int tdiv;
 	private int mno;
@@ -88,10 +88,10 @@ public class Task {
 	public void setProg(int prog) {
 		this.prog = prog;
 	}
-	public Date getPdate() {
+	public String getPdate() {
 		return pdate;
 	}
-	public void setPdate(Date pdate) {
+	public void setPdate(String pdate) {
 		this.pdate = pdate;
 	}
 	public String getComent() {
