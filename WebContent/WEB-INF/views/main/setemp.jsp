@@ -132,7 +132,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">권한</label>
                   <div class="col-sm-10">
-                    <span>${emp.cname}</span>
+                    <span>${emp.cname==null?"PMS등록안됨":emp.cname}</span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -140,7 +140,8 @@
                   <div class="col-sm-10">
                     <span>${emp.pno}</span>
                     <select class="sel-grade" name="pno">
-                  	<option value="${emp.pno}">${emp.pno}</option>
+                  	<option value="${emp.pno==null?"PMS등록안됨":emp.pno}">
+                  				${emp.pno==null?"PMS등록안됨":emp.pno}</option>
                   	<option value="1001">1001</option>
                   	<option value="1002">1002</option>
                   	<option value="1003">1003</option>

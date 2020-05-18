@@ -21,6 +21,17 @@ DROP SEQUENCE pmsbfile_seq;
 	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
 	FROM pmsemp a 
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';	
+
+	SELECT a.eno, a.name, a.dept, a.grade, a.phone, a.email,
+	(SELECT c.cname FROM pmsmember b, pmscodes c WHERE a.eno=b.mno AND b.mdiv=c.cno) cname;
+	
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE b.mdiv=c.cno
+		AND a.eno = b.mno
+		AND a.eno = 10000003;
+
 	
 	SELECT * FROM PMSPROJECT;
 	UPDATE pmsemp

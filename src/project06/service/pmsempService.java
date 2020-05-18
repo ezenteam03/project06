@@ -19,6 +19,7 @@ public class pmsempService {
 		}
 		// CEO, CTO 상세
 		public pmsemp getemp(int eno) {
+			System.out.println("service eno : "+eno);
 			pmsemp a = rep.getemp(eno);
 			return a;
 		}
