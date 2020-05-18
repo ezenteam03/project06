@@ -51,7 +51,7 @@ public class pmsempService {
 		}
 		// 퇴사 처리
 		public void deleteG(pmsemp deleteG) {
-			int isMem = rep.delCheck(deleteG);
+			int isMem = rep.memCheck(deleteG);
 			if(isMem==0) {
 				rep.delGrade3(deleteG);
 			} else {

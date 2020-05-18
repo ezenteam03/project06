@@ -27,7 +27,7 @@ public interface pmsempRep {
 	// 인사 사원정보 수정
 	public void updateEmp(pmsemp uptemp);
 	// 퇴사 처리
-	public int delCheck(pmsemp ckmem);
+	public int memCheck(pmsemp ckmem);
 	public void delGrade1(pmsemp delG);
 	public void delGrade2(pmsemp delG);
 	public void delGrade3(pmsemp delG);
