@@ -9,43 +9,6 @@ DROP SEQUENCE pmsreply_seq;
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
 
-
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, c.CNAME
-	FROM pmsemp a, pmsmember b, pmscodes c
-	WHERE a.eno = b.mno 
-	and b.mdiv=c.cno;
-	AND b.pno IS NULL;
-	AND c.cname = '구분없음';
-
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-	FROM pmsemp a 
-	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';	
-
-	SELECT a.eno, a.name, a.dept, a.grade, a.phone, a.email,
-	(SELECT c.cname FROM pmsmember b, pmscodes c WHERE a.eno=b.mno AND b.mdiv=c.cno) cname;
-	
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE b.mdiv=c.cno
-		AND a.eno = b.mno
-		AND a.eno = 10000003;
-
-	
-	SELECT * FROM PMSPROJECT;
-	UPDATE pmsemp
-		SET dept = ''
-		WHERE detp ='';
-	UPDATE pmsemp
-		SET grade =''
-		WHERE grade =;
-
-	UPDATE pmsemp
-		SET grade = '퇴사'
-		WHERE eno =10000029;
-	SELECT * FROM PMSMEMBER;
-
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY
@@ -205,7 +168,7 @@ ALTER TABLE PMSMEMBER
 ALTER TABLE pmsmember
 	ADD
 		CONSTRAINT pmsmember_mdiv_ck
-		CHECK(mdiv IN(2,3,4,5,6,7));
+		CHECK(mdiv IN(2,3,4,5,6,7,8,9));
 	
 ALTER TABLE PMSPROJECT
 	DROP
@@ -312,35 +275,6 @@ DROP INDEX PK_PMSLOG;
 DROP TABLE PMSLOG 
 	CASCADE CONSTRAINTS;
 
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
-	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname
-	FROM pmsemp a
-	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
-
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		(select c.CNAME 
-		from pmsmember b, pmscodes c 
-		where a.eno=b.mno 
-		and b.mdiv=c.cno) cname,
-		b.pno
-		FROM pmsemp a, pmsmember b
-		WHERE a.eno = b.mno
-		AND NOT b.pno LIKE '%'||'null'||'%'
-		AND NOT b.mdiv LIKE '%'||4||'%';
-
-UPDATE pmsmember
-	SET pno = null
-	WHERE mno =10000024;
-	
-
-		
-
-
-	
-	SELECT * FROM pmsmember;
-
-
-
 /* 로그인히스토리 */
 CREATE TABLE PMSLOG (
 	lno NUMBER NOT NULL, /* 순번 */
@@ -422,6 +356,7 @@ CREATE TABLE PMSTASK (
 	refno NUMBER NOT NULL, /* 부모업무번호 */
 	tname VARCHAR2(100) NOT NULL, /* 업무명 */
 	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
+	updetail VARCHAR2(2000), /* 업무진행내용 */
 	sdate DATE NOT NULL, /* 시작일자 */
 	edate DATE NOT NULL, /* 종료일자 */
 	prog NUMBER NOT NULL, /* 진행율 */
@@ -442,6 +377,8 @@ COMMENT ON COLUMN PMSTASK.refno IS '부모업무번호';
 COMMENT ON COLUMN PMSTASK.tname IS '업무명';
 
 COMMENT ON COLUMN PMSTASK.detail IS '업무내용';
+
+COMMENT ON COLUMN PMSTASK.updetail IS '업무진행내용';
 
 COMMENT ON COLUMN PMSTASK.sdate IS '시작일자';
 
@@ -1013,14 +950,15 @@ CREATE SEQUENCE pmsbfile_seq
 START WITH 1
 INCREMENT BY 1;
 --코드성 데이터	
---1=사원권한, 2=CEO, 3=CTO, 4=PM, 5=팀원, 6=구분없음
 INSERT INTO pmscodes values(1,0,'사원권한');
 INSERT INTO pmscodes values(2,1,'CEO');
 INSERT INTO pmscodes values(3,1,'CTO');
 INSERT INTO pmscodes values(4,1,'PM');
 INSERT INTO pmscodes values(5,1,'팀원');
-INSERT INTO pmscodes values(6,1,'구분없음');
-INSERT INTO pmscodes values(7,1,'퇴사');
+INSERT INTO pmscodes values(6,1,'ADMIN');
+INSERT INTO pmscodes values(7,1,'인사관리자');
+INSERT INTO pmscodes values(8,1,'퇴사자');
+INSERT INTO pmscodes values(9,1,'구분없음');
 INSERT INTO pmscodes values(10,0,'프로젝트결재');
 INSERT INTO pmscodes values(11,10,'진행중');
 INSERT INTO pmscodes values(12,10,'결재신청');
@@ -1040,7 +978,7 @@ INSERT INTO pmscodes values(34,30,'결재완료');
 insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','Moon2017@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'기술이사','010-0224-1025','MB2008@naver.com');
-insert into pmsemp values(pmsemp_seq.nextval,'노무현',null,'상무','010-8586-8894','MH2003@daum.net');
+insert into pmsemp values(pmsemp_seq.nextval,'노무현','인사과','과장','010-8586-8894','MH2003@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'김대중','개발1팀','부장','010-2175-9239','DJ1998@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'김영삼','개발2팀','부장','010-5762-1972','YS1993@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'노태우','개발3팀','부장','010-4127-6585','TW1988@naver.com');
@@ -1062,32 +1000,38 @@ insert into pmsemp values(pmsemp_seq.nextval,'정은경','개발1팀','사원','
 insert into pmsemp values(pmsemp_seq.nextval,'홍준표','개발1팀','사원','010-9033-2939','RedJun54@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'김무성','개발1팀','사원','010-7397-9015','Moosung@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'이재명','개발2팀','사원','010-0987-9761','Gyeonggi11@gmail.com');
-insert into pmsemp values(pmsemp_seq.nextval,'심상정','개발1팀','사원','010-4574-7345','Justice3@naver.com');
+insert into pmsemp values(pmsemp_seq.nextval,'심상정',null,'퇴사','010-4574-7345','Justice3@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'안철수','개발3팀','사원','010-2936-6952','VirusAnn@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'문희상','개발2팀','사원','010-2378-8963','Mhs45@gmail.com');
 --사용자정보(중간에 추가되는건 프로젝트 정보)
 INSERT INTO pmsmember values(10000001,'1234qwer!',2,'010-8270-6064',null);
 INSERT INTO pmsmember values(10000003,'qwer1234!',3,'010-0224-1025',null);
-INSERT INTO pmsmember values(10000005,'1q2w3e4r!',4,'010-2175-9239',null);
+INSERT INTO pmsmember values(10000004,'qwer1234!',7,'010-8586-8894',null);
+INSERT INTO pmsmember values(10000005,'1234qwer!',4,'010-2175-9239',null);
 INSERT INTO pmsproject values(pmsproject_seq.nextval,to_date('2020-05-04','yyyy-mm-dd'),to_date('2020-06-08','yyyy-mm-dd'),'PMS시스템 개발','PMS 시스템을 개발하시오',NULL,11,10000005);
+INSERT INTO pmsmember values(10000006,'1234qwer!',4,'010-5762-1972',null);
+INSERT INTO pmsproject values(pmsproject_seq.nextval,to_date('2020-05-04','yyyy-mm-dd'),to_date('2020-06-08','yyyy-mm-dd'),'쇼모꼬 개발','문화예술 컨텐츠 사이트 웹/앱 개발',NULL,11,10000006);
 INSERT INTO pmsmember values(10000007,'q1w2e3r4!',6,'010-4127-6585',null);
-INSERT INTO pmsmember values(10000008,'1q2w3e4r!',6,'010-7714-8058',null);
-INSERT INTO pmsmember values(10000010,'1q2w3e4r!',6,'010-9665-6200',null);
-INSERT INTO pmsmember values(10000013,'1q2w3e4r!',6,'010-5206-7975',null);
+INSERT INTO pmsmember values(10000008,'1q2w3e4r!',9,'010-7714-8058',null);
+INSERT INTO pmsmember values(10000010,'1q2w3e4r!',9,'010-9665-6200',null);
+INSERT INTO pmsmember values(10000011,'1q2w3e4r!',5,'010-3255-8985',1002);
+INSERT INTO pmsmember values(10000012,'1q2w3e4r!',5,'010-1619-1914',1002);
+INSERT INTO pmsmember values(10000013,'1q2w3e4r!',9,'010-5206-7975',null);
 INSERT INTO pmsmember values(10000015,'1q2w3e4r!',5,'010-2415-2920',1001);
 INSERT INTO pmsmember values(10000016,'1q2w3e4r!',5,'010-6002-7753',1001);
 INSERT INTO pmsmember values(10000017,'1q2w3e4r!',5,'010-9589-3836',1001);
 INSERT INTO pmsmember values(10000019,'1q2w3e4r!',5,'010-1543-2532',1001);
-INSERT INTO pmsmember values(10000020,'1q2w3e4r!',6,'010-9905-5718',null);
-INSERT INTO pmsmember values(10000021,'1q2w3e4r!',6,'010-7082-0084',null);
+INSERT INTO pmsmember values(10000020,'1q2w3e4r!',9,'010-9905-5718',null);
+INSERT INTO pmsmember values(10000021,'1q2w3e4r!',5,'010-7082-0084',1002);
 INSERT INTO pmsmember values(10000022,'1q2w3e4r!',5,'010-5446-3704',1001);
 INSERT INTO pmsmember values(10000023,'1q2w3e4r!',5,'010-9033-2939',1001);
 INSERT INTO pmsmember values(10000024,'1q2w3e4r!',5,'010-7397-9015',1001);
-INSERT INTO pmsmember values(10000025,'1q2w3e4r!',6,'010-0987-9761',null);
-INSERT INTO pmsmember values(10000026,'1q2w3e4r!',6,'010-4574-7345',null);
-INSERT INTO pmsmember values(10000027,'1q2w3e4r!',6,'010-2936-6952',null);
-INSERT INTO pmsmember values(10000028,'1q2w3e4r!',6,'010-2378-8963',null);
+INSERT INTO pmsmember values(10000025,'1q2w3e4r!',5,'010-0987-9761',1002);
+INSERT INTO pmsmember values(10000026,'1q2w3e4r!',8,'010-4574-7345',null);
+INSERT INTO pmsmember values(10000027,'1q2w3e4r!',9,'010-2936-6952',null);
+INSERT INTO pmsmember values(10000028,'1q2w3e4r!',5,'010-2378-8963',1002);
 UPDATE pmsmember SET pno=1001 WHERE mno=10000005;
+UPDATE pmsmember SET pno=1002 WHERE mno=10000006;
 --로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
@@ -1107,6 +1051,12 @@ INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmd
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
 INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000006);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000011);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000012);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000021);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000025);
+INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000028);
 --공지사항 정보
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
@@ -1123,5 +1073,54 @@ insert into pmsmeeting values(pmsmeeting_seq.nextval,'bootstrap template 결정'
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','요구사항정의서와 화면 설계를 바탕으로 ERD 설계','러프한 ERD 개요 설계',null,20,to_date('2020-05-06','yyyy-mm-dd'),null,to_date('2020-05-06','yyyy-mm-dd'),'507호','김대중,추미애,안희정,박영선,정은경,김무성',32,10000016,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 개선방안논의','발표에 대한 피드백 확인 및 자체 회의를 통한 프로젝트 개선방향 및 추가로 프로젝트에 필요한 기능 논의','주말을 활용하여 결정된 사안에 대해 각자 업무 처리 후 월요일에 다시 논의',null,17,to_date('2020-05-09','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정',32,10000015,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
+-- 이슈리스트
+insert into PMSISSUE values(pmsissue_seq.nextval,'ERD설계','ERD설계에 있어 게시판 통합의 문제 사용자 번호와 사원 번호 중복의 문제 테이블간 연결시 식별/비식별 구분 문제 등',0,null,to_date('2020-05-04','YYYY-MM-DD'),null,null,1001,10000005);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'파일작업','파일 작업 순서를 모르겠습니다.',0,null,to_date('2020-05-06','YYYY-MM-DD'),null,null,1001,10000015);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','오늘 배운 controller 어렵습니다.',0,null,to_date('2020-05-06','YYYY-MM-DD'),null,null,1001,10000016);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','하나의 controller 안에서 request 내용이 계속 유지됨 다른 페이지에서 불러오기 싫은 parameter값이 불러와짐',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000017);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'code table','code table을 하나로 작성하는 방법을 적용하는 문제',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000019);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'controller','controller거친 이후 img 가 화면출력 안됨',0,null,to_date('2020-05-07','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'jquery','main에서 slider jquery 안돌아가는 경우 발생',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'servlet에서 페이지 이동 안됨','href를 사용하여 페이지 이동 중에 controller단으로 넘어가면 다른 페이지로 이동 안됨',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'div(분류)에 맞는 공연 검색이 안됨','main페이지에서 controller로 보낼때 div를 보내야 하는데 ?key=value 로도 안보내지고 session으로 주고받기도 안됨',0,null,to_date('2020-05-08','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'페이지 이동문제','한번 controller로 넘어간 이후 div parameter가 고정되어 변경된 값을 입력해도 적용이 안됨',0,null,to_date('2020-05-09','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'데이터베이스 연결','데이터베이스 연결이 끊김',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'파일 통합','화면 구현 내용 통합시 파일 경로문제 및 겹치는 파일로인하여 team update 후 동작이 안되는 문제 발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000019);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'이미지 경로','화면구현 통합(연결) 이미지 경로 설정',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000017);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'update','결재상세 페이지 update과정에서 VO를 통해서 int 값을 받는 중 오버로딩 과정에서 변수의 수가 같아 int값을넘기지 못하는 문제 발생',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000016);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'insert','결제 정보를 insert한 뒤 포인트 적립이나 차감을 할 때 방금 결제된 결제번호가 필요한데 결제번호를 못 넘기는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000015);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-15','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000023);		
+-- 이슈리스트 댓글
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰 코드의번호를 획득 한뒤 새로운 쿠폰을 등록해야 할거 같습니다.',sysdate,10000023,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,1,'그뒤 제약조건을 삭제하고 다시 생성한 뒤 일반회원 리스트 작성해야 할것 같습니다.',sysdate,10000023,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysdate,10000022,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 
 SELECT * FROM pmsnotice;
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE
+	FROM pmsemp a 
+	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
+SELECT cnt,nno,title,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsnotice p, pmsemp e
+		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		ORDER BY p.nno DESC )
+		WHERE cnt BETWEEN 1 AND 3;
+SELECT nvl2(coment,1,0) FROM pmsissue;
+select ROW_NUMBER() OVER(ORDER BY p.nno desc) cnt, p.nno,p.title,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsnotice p, pmsemp e
+		WHERE 1=1 and p.pno=1001 and p.mno=e.eno
+		ORDER BY p.nno DESC;
+SELECT rno,ino,writer,wdate
+ 		FROM(
+			select ROW_NUMBER() OVER(ORDER BY p.rno desc) cnt, p.rno,p.ino,e.name writer,sysdate-p.wdate wdate 
+		FROM pmsissue i, pmsemp e, pmsreply p
+		WHERE 1=1 and i.ino=p.ino and p.mno=e.eno and i.pno=1001
+		ORDER BY p.rno DESC )
+		WHERE cnt BETWEEN 1 AND 3;	
+	
+	

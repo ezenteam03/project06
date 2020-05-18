@@ -6,12 +6,13 @@ WHERE pe.ENO = pm.MNO
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
 SELECT * FROM PMSEMP pe, PMSMEMBER pm;
-
-SELECT pp.*, pem.name
+--SQL 추가해야함
+SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
+ pem.name
 FROM PMSPROJECT pp, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
-WHERE pem.mno = pp.mno;
-AND pp.PNO = 1001;
+WHERE pem.mno = pp.mno
+AND pem.mno = 10000005;
 
 UPDATE PMSPROJECT
 SET cdate = '2020/05/04'
@@ -53,10 +54,34 @@ AND pt.mno = pem.mno
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
 AND pem.pno = 1001
+--AND pt.tname LIKE '%'||'웹'||'%'
 START WITH pt.refno=1003
+CONNECT BY PRIOR pt.tno = pt.refno;
+--팀원 작업 내역
+SELECT LEVEL, pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+AND pem.eno = 10000016
+AND pem.pno = 1001 
+OR pt.tno = 1008
+OR pt.tno = 1009
+OR pt.tno = 1011
+START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 
 SELECT LEVEL, p.tNO , p.REFNO , p.TNAME, p.SDATE, p.EDATE 
 FROM pmstask p
 START WITH p.refno=0
 CONNECT BY PRIOR tno = refno; 
+
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+c.CNAME,b.pno
+FROM pmsemp a, pmsmember b, pmscodes c
+WHERE c.cno(+)=b.mdiv
+AND a.eno = b.mno(+)
+--AND a.eno = #{eno};
+ORDER BY a.eno ASC;

@@ -41,14 +41,13 @@ public class pmsempCtrl {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		System.out.println("ctrl eno : "+eno);
 		d.addAttribute("emp", service.getemp(eno));
-	
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CEO, CTO 권한 설정
 	@RequestMapping(params="method=update")
 	public String update(pmsemp upt) {
 		service.update(upt);
-		return "forward:/PMSemp.do?method=list";
+		return "forward:/PMSemp.do?method=setForm";
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")

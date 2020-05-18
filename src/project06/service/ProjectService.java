@@ -14,10 +14,10 @@ public class ProjectService {
 	private ProjectDao dao;
 	
 	public ArrayList<Project> projectList(){
-		for(Project p : dao.projectList()) {
-			System.out.println(p.getDetail());
-		}
-		System.out.println();
 		return dao.projectList();
+	}
+	
+	public Project getProject(){
+		return dao.getProject();
 	}
 }
