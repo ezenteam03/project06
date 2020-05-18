@@ -45,6 +45,9 @@ function goNoti() {
 function goMeet() {
 	$(location).attr("href","${path}/meet.do?method=list");
 }
+function goMeet() {
+	$(location).attr("href","${path}/risk.do?method=list");
+}
 </script>
 <body>
   <section id="container">
@@ -207,7 +210,7 @@ function goMeet() {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
+              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>

@@ -345,7 +345,7 @@ th{text-align:center;}
               </a>
           </li>
           <li class="sub-menu">
-            <a href="#">
+            <a href="${path}/risk.do?method=list">
               <i class="fa fa-th"></i>
               <span>이슈리스트</span>
               </a>
