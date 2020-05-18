@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="springweb.a03_mvc.a03_repository.RiskDao">
+	
+	<resultMap type="comment" id="commentResult"></resultMap>
+
+ 	<select id="ctotCnt" resultType="int" parameterType="rsch">
+		SELECT count(*)
+		FROM PMSREPLY			
+	 </select>
+ 	<select id="clist" resultMap="commentResult" parameterType="rsch" >
+ 	SELECT *
+	FROM PMSREPLY
+	WHERE 1=1
+	and ino = #{ino}
+	START WITH refno =0
+	CONNECT BY PRIOR rno = refno
+	ORDER siblings BY rno	
+	</select>
+	<insert id="cinsert" parameterType="comment">
+		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},
+		#{cdetail},sysdate,10000023,#{ino})
+	</insert>
+</mapper>	
+
+
+
+
+
+
+

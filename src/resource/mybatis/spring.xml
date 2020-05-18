@@ -19,6 +19,10 @@
 		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 
+		 <!-- 이슈리스트 -->
+		 <typeAlias alias="risk" type="springweb.a03_mvc.a04_vo.Risk"/>
+		 <typeAlias alias="rsch" type="springweb.a03_mvc.a04_vo.RiskSch"/>
+		 <typeAlias alias="comment" type="springweb.a03_mvc.a04_vo.Comment"/>
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
@@ -29,6 +33,9 @@
 		 <mapper resource="resource/mybatis/DashTeamMapper.xml"/> 
 		 <!-- Jin -->
 		 <mapper resource="resource/mybatis/pmsMemberMapper.xml"/> 
+		 <!-- 이슈리스트 -->
+		 <mapper resource="resource/mybatis/riskMapper.xml"/>
+		 <mapper resource="resource/mybatis/commentMapper.xml"/>
 	</mappers>
 
 </configuration>
