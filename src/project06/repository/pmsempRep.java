@@ -11,6 +11,8 @@ import project06.vo.pmsempSch;
 public interface pmsempRep {
 	// CEO, CTO, PM 리스트
 	public ArrayList<pmsemp> pmsempList(pmsemp sch);
+	// CEO, CTO, PM 상세
+	public pmsemp getemp(int eno);
 	// CEO CTO설정
 	public void updatepmsemp1(pmsemp upt);
 	public void updatepmsemp2();
@@ -23,8 +25,12 @@ public interface pmsempRep {
 	// 인사 사원정보 수정 페이지
 	public pmsemp getPmsemp(int eno);
 	// 인사 사원정보 수정
-	public void updatedept(pmsemp uptdept);
-	public void updategrade(pmsemp uptgrade);
+	public void updateEmp(pmsemp uptemp);
+	// 퇴사 처리
+	public int delCheck(pmsemp ckmem);
+	public void delGrade1(pmsemp delG);
+	public void delGrade2(pmsemp delG);
+	public void delGrade3(pmsemp delG);
 	
 	
 	

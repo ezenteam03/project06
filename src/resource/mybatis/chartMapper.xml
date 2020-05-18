@@ -15,16 +15,20 @@
  		 resultType 단일 데이터형태로 결과값을 return할 객체
  		 
  		 column ==> vo와 연결하여 ArrayList로 처리..
+ 		 
+ 		 AND pt.refno <![CDATA[ <= ]]> 0
+ 		 AND pem.eno = 10000005
  	 -->
  	<resultMap type="chart" id="chartResult"/>
  	<select id="chartList" resultMap="chartResult" parameterType="chart">
-		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, 
+		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 		FROM PMSPROJECT pp, PMSTASK pt, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
 		WHERE pe.eno = pm.mno) pem
 		WHERE pp.pno = pt.pno
 		AND pt.mno = pem.mno
+		AND pem.pno = 1001
 		START WITH pt.refno=0
 		CONNECT BY PRIOR pt.tno = pt.refno
  	</select>

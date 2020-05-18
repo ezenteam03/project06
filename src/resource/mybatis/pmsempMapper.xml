@@ -11,6 +11,15 @@
 		FROM pmsemp a 
 		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
  	</select>
+ 	<!-- 상세페이지 -->
+ 	<select id="getemp" resultType="pmsemp" parameterType="int">
+	 	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+			c.CNAME,b.pno
+			FROM pmsemp a, pmsmember b, pmscodes c
+			WHERE b.mdiv=c.cno
+			AND a.eno = b.mno
+			AND a.eno = #{eno}
+ 	</select>
  	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
@@ -22,7 +31,7 @@
 		AND b.mdiv=5
  	</select>
  	
- 	
+ 	<!-- 사원등록 -->
 	<insert id="insert" parameterType="pmsemp">
 		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
 		 					#{grade},#{phone},#{email})
@@ -53,30 +62,33 @@
  		WHERE eno = #{eno}
  	</select>
 	<!-- 사원정보 수정 -->
-	<update id="updatedept" parameterType="pmsemp">
+	<update id="updateEmp" parameterType="pmsemp">
 	UPDATE pmsemp
-		SET dept =#{dept}
+		SET dept =#{dept}, grade =#{grade}
 		WHERE eno =#{eno}
 	</update>
-	<update id="updategrade" parameterType="pmsemp">	
+	<!-- 퇴사처리 -->
+	<select id="delCheck" resultType="int" parameterType="pmsemp">
+		select count(*) 
+		from pmsmember 
+		where mno=#{eno}
+	</select>
+	<!-- pms등록된 직원 -->
+	<update id="delGrade1" parameterType="pmsemp">
 	UPDATE pmsemp
-		SET grade =#{grade}
+		SET grade = '퇴사', dept = null
 		WHERE eno =#{eno}
-	</update>	
-	
-	<!-- 페이지네이션 
- 	<select id="list" resultMap="taskResult" parameterType="pmsempSch" >
-		SELECT *
- 		FROM(
-			select rownum cnt, b.* 
-			from sch b
-			where 1=1
-			<if test="eno!=null and eno!=''">
-			and eno like '%'||#{eno}||'%'
-			</if>
-			ORDER BY tno desc )
-		WHERE cnt BETWEEN #{start} AND #{end}	
- 	</select>!-->
+	</update>
+	<update id="delGrade2" parameterType="pmsemp">
+	UPDATE pmsmember
+		SET mdiv = 7 , pno = null
+		WHERE mno =#{eno}
+	</update>
+	<!-- pms등록 안된 직원 -->
+	<delete id="delGrade3" parameterType="pmsemp">
+	delete from pmsemp
+		WHERE eno =#{eno}
+	</delete>
 	
 	
 	

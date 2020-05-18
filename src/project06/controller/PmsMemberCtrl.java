@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.PmsMemberService;
+import project06.vo.EmpLogSch;
 import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 
@@ -33,12 +35,19 @@ public class PmsMemberCtrl {
 		String proName = service.projectName(mno);
 		System.out.println("pno : "+infor_M.getPno());
 		if(mno!=0) {
-			session.setAttribute("mno", mno);
-			session.setAttribute("emp", emp);
-			session.setAttribute("infor_M", infor_M);
-			session.setAttribute("proName", proName);
-			service.log(mno);
-			return "forward:/DashTeam.do?method=list";
+			
+			if(infor_M.getMdiv() == 8 || infor_M.getMdiv() == 9) {
+				int ck = 10;
+				m.addAttribute("ck",ck);
+				return "WEB-INF\\views\\main\\login.jsp";
+			}else {
+				session.setAttribute("mno", mno);
+				session.setAttribute("emp", emp);
+				session.setAttribute("infor_M", infor_M);
+				session.setAttribute("proName", proName);
+				service.log(mno);
+				return "forward:/DashTeam.do?method=list";
+			}
 		}else {
 			int ck = 1;
 			m.addAttribute("ck",ck);

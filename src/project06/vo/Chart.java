@@ -1,11 +1,15 @@
 package project06.vo;
 
+import java.util.Date;
+
 public class Chart {
 	private String tname; //업무명
 	private int tno;	//업무번호
 	private int refno;	//부모업무번호
 	private int pno;	//프로젝트번호
 	private String pname;	//프로젝트명
+	private Date sdateorigin;
+	private Date edateorigin;
 	private int sdate;	//업무시작일-프로젝트시작일
 	private int edate;	//업무종료일-프로젝트시작일
 	private double prog;	//진행도/100
@@ -39,6 +43,18 @@ public class Chart {
 	}
 	public void setPname(String pname) {
 		this.pname = pname;
+	}
+	public Date getSdateorigin() {
+		return sdateorigin;
+	}
+	public void setSdateorigin(Date sdateorigin) {
+		this.sdateorigin = sdateorigin;
+	}
+	public Date getEdateorigin() {
+		return edateorigin;
+	}
+	public void setEdateorigin(Date edateorigin) {
+		this.edateorigin = edateorigin;
 	}
 	public int getSdate() {
 		return sdate;

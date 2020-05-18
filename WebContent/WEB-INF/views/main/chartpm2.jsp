@@ -88,17 +88,20 @@
 				// data.모델명
 				var clist = data.chartlist;
 				var dataInfo = [];
-				
+					
 				dataInfo.push({
-	            	name: '총괄진행',	
+	            	name: '총괄진행(시작일, 종료일, 소요일수, 진행도, 담당자)',	
 	            	id: '0',
 	            	owner: '김대중',
 	            	y:0,
 				});
 				
 				$.each(clist,function(idx, chart){
+					var sdate = new Date(chart.sdateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					var edate = new Date(chart.edateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					
 					dataInfo.push({
-						name: chart.tname, 
+						name: chart.tname+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")", 
 						id: ""+chart.tno+"", 
 						parent: ""+chart.refno+"", 
 						start: today+(chart.sdate * day), 
@@ -163,8 +166,7 @@
 				        min: today + 1 * day, //프로젝트 첫날
 				        max: today + 35 * day, //프로젝트 마지막날
 				    };
-				
-				var yAxisInfo = {
+				/*var yAxisInfo = {
 					    type: 'category',
 					    grid: {      
 					      borderColor: '#3a5d96',      
@@ -247,14 +249,13 @@
 						        }
 						      }]
 					    }
-					  };
-				
+					  };*/
 				var cInfo = {
 						series : seriesInfo,
 						tooltip : tooltipInfo,
 						title: titleInfo,
 						xAxis: xAxisInfo,
-						yAxis: yAxisInfo,
+						//yAxis: yAxisInfo,
 				};
 				
 				console.log(todayOrigin);

@@ -17,6 +17,12 @@ public class pmsempService {
 		public ArrayList<pmsemp> pmsempList(pmsemp sch){
 			return rep.pmsempList(sch);
 		}
+		// CEO, CTO 상세
+		public pmsemp getemp(int eno) {
+			System.out.println("service eno : "+eno);
+			pmsemp a = rep.getemp(eno);
+			return a;
+		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void update(pmsemp update) {
 			rep.updatepmsemp2();
@@ -40,12 +46,20 @@ public class pmsempService {
 			return d;
 		}
 		// 인사 사원정보 수정
-		public void updept(pmsemp uptdept) {
-			rep.updatedept(uptdept);
+		public void modifyEmp(pmsemp modify) {
+			rep.updateEmp(modify);	
 		}
-		public void upgrade(pmsemp uptgrade) {
-			rep.updatedept(uptgrade);
+		// 퇴사 처리
+		public void deleteG(pmsemp deleteG) {
+			int isMem = rep.delCheck(deleteG);
+			if(isMem==0) {
+				rep.delGrade3(deleteG);
+			} else {
+				rep.delGrade1(deleteG);
+				rep.delGrade2(deleteG);				
+			}
 		}
+		
 		
 
 		// Jin

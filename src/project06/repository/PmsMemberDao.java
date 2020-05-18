@@ -1,7 +1,11 @@
 package project06.repository;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Repository;
 
+import project06.vo.EmpLog;
+import project06.vo.EmpLogSch;
 import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 
@@ -23,6 +27,8 @@ public interface PmsMemberDao {
 	public int logCount(int mno);
 	public void logoutLog(int mno);
 	public void loginLog(int mno);
+	
+
 	
 
 }

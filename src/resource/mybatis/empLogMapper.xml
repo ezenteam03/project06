@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="project06.repository.EmpLogDao">
+
+	<select id="empLogCount" resultType="int" parameterType="empLogSch">
+		SELECT count(e.name)
+			FROM PMSEMP e, PMSMEMBER m, PMSLOG l WHERE e.eno=m.mno AND m.mno=l.mno
+				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
+				<if test="pno!=null and pno!=''">
+					AND m.pno=#{pno}
+				</if>
+				<if test="name!=null and name!=''">
+					AND e.name like '%'||#{name}||'%'
+				</if>
+	</select>
+ 
+	<resultMap type="empLog" id="EmpLogList"/>
+	<select id="logList" resultMap="EmpLogList" parameterType="empLogSch" >
+		SELECT * FROM (
+		SELECT rownum cnt, e.name, e.grade, m.wcon, CASE WHEN l.state = 0 THEN '로그아웃' ELSE '로그인' END AS state
+			FROM PMSEMP e, PMSMEMBER m, PMSLOG l WHERE e.eno=m.mno AND m.mno=l.mno
+				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
+				<if test="pno!=null and pno!=''">
+					AND m.pno=#{pno}
+				</if>
+				<if test="name!=null and name!=''">
+					AND e.name like '%'||#{name}||'%' 
+				</if>
+				ORDER BY m.mno	
+				)WHERE cnt BETWEEN #{start} AND #{end}
+ 	</select>
+
+
+</mapper>

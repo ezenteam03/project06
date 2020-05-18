@@ -163,8 +163,12 @@ th{text-align:center;}
 </style>
 
 <script type="text/javascript">
+	function popup() { 
+		window.open("http://localhost:5080/project06_git/logList.do?method=list", "participants", "width=780, height=500, left=300, top=100");
+	}
+	
 	$(document).ready(function(){
-		
+	
 		var check01=0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
@@ -205,6 +209,13 @@ th{text-align:center;}
 			}
 		});
 		
+
+		$("#po03").click(function(){
+			popup();
+			//$(location).attr("href","${path}/logList.do?method=list");
+		});
+		
+		
 		var ck = "${ck}";
 		if(ck == 1){
 			$(location).attr('href','#pop02');
@@ -242,6 +253,8 @@ th{text-align:center;}
 			}
 		});
 
+
+
 	});
 	
 	function checkPW(pass){
@@ -260,19 +273,20 @@ th{text-align:center;}
 			return 0;
 		}
 	}
+	
 	function logOut(){
 		Swal.fire({
 			  title:'로그아웃 ',
 			  text:"로그아웃 하시겠습니까?",
 			  icon: 'info',
 			  showCancelButton: true
-			}).then((result) => {
-				if (result.value) {
-					$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${mno});
-				}
-			})
-	}
-
+		}).then((result) => {
+			if (result.value) {
+				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${mno});
+			}
+		});
+	}	
+	
 </script>
 
 </head>
@@ -294,7 +308,8 @@ th{text-align:center;}
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="#pop01">개인정보</a></li>
-          <li><a class="logout" href="#pop03">참여인원</a></li>
+        <!--   <li><a class="logout" href="#pop03">참여인원</a></li>	-->
+          <li><a class="logout" id="po03">참여인원</a></li>
           <li><a class="logout" href="javascript:logOut();">LogOut</a></li>
 
         </ul>
@@ -321,7 +336,7 @@ th{text-align:center;}
               </a>
           </li>
           <li class="sub-menu">
-            <a href="#">
+            <a href="${path }/task.do?method=list">
               <i class="fa fa-desktop"></i>
               <span>업무관리</span>
               </a>
@@ -446,55 +461,6 @@ th{text-align:center;}
 		<div>
 			<button class="btn btn-theme btn-block" type="button" id="updateBtn"><i class="fa fa-repeat"></i>&nbsp;MODIFY</button>								
 		</div>
-			
-		</form>
-	</div>
-</div>
-
-<div id="pop03" class="overlay">
-	<div class="popup03">
-		<a href="#" id="btn01" class="close">&times;</a>
-	
-		<form class="form-login01" action="#" style="background-color:#e0e0e0;margin-top:0%">
-	
-		<h2 class="form-login01-heading">PARTICIPANTS</h2>
-		
-		<div style="width:700px;margin-top:-30px;">
-			<div class="row">
-			<div class="col-md-12 mt">
-			<div class="content-panel">
-			
-			<div align="right" style="margin-right:20px;">
-				<div class="form-inline">
-					<input type="email" class="form-control" placeholder="사원 이름">
-					&nbsp;
-					<button type="button" class="btn btn-theme">Search</button>
-				</div>
-			</div>
-			
-			<br>
-			
-			<table class="table table-hover">
-				<tr>
-					<th class="name">이름</th>
-					<th class="post">직책</th>
-					<th class="contact">희망 연락처</th>
-					<th class="status">상태</th>
-				</tr>
-				
-				<tr><td>코코아</td><td>대리</td><td>010-1234-1234</td><td>로그인</td></tr>
-				<tr><td>코코아</td><td>대리</td><td>cocoa@naver.com</td><td>로그인</td></tr>
-				<tr><td>코코아</td><td>대리</td><td>010-1234-1234</td><td>로그아웃</td></tr>
-			</table>
-			
-			<div>페이징 처리</div>
-			
-			</div>	
-			</div>
-			</div>
-		</div>
-		
-		
 			
 		</form>
 	</div>

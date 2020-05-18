@@ -21,6 +21,17 @@ DROP SEQUENCE pmsbfile_seq;
 	(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
 	FROM pmsemp a 
 	WHERE NOT a.grade LIKE '%'||'대표이사'||'%';	
+
+	SELECT a.eno, a.name, a.dept, a.grade, a.phone, a.email,
+	(SELECT c.cname FROM pmsmember b, pmscodes c WHERE a.eno=b.mno AND b.mdiv=c.cno) cname;
+	
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE b.mdiv=c.cno
+		AND a.eno = b.mno
+		AND a.eno = 10000003;
+
 	
 	SELECT * FROM PMSPROJECT;
 	UPDATE pmsemp
@@ -28,8 +39,12 @@ DROP SEQUENCE pmsbfile_seq;
 		WHERE detp ='';
 	UPDATE pmsemp
 		SET grade =''
-		WHERE grade ='';
+		WHERE grade =;
 
+	UPDATE pmsemp
+		SET grade = '퇴사'
+		WHERE eno =10000029;
+	SELECT * FROM PMSMEMBER;
 
 ALTER TABLE PMSCODES
 	DROP
@@ -190,7 +205,7 @@ ALTER TABLE PMSMEMBER
 ALTER TABLE pmsmember
 	ADD
 		CONSTRAINT pmsmember_mdiv_ck
-		CHECK(mdiv IN(2,3,4,5,6));
+		CHECK(mdiv IN(2,3,4,5,6,7));
 	
 ALTER TABLE PMSPROJECT
 	DROP
@@ -1005,6 +1020,7 @@ INSERT INTO pmscodes values(3,1,'CTO');
 INSERT INTO pmscodes values(4,1,'PM');
 INSERT INTO pmscodes values(5,1,'팀원');
 INSERT INTO pmscodes values(6,1,'구분없음');
+INSERT INTO pmscodes values(7,1,'퇴사');
 INSERT INTO pmscodes values(10,0,'프로젝트결재');
 INSERT INTO pmscodes values(11,10,'진행중');
 INSERT INTO pmscodes values(12,10,'결재신청');

@@ -104,7 +104,7 @@
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
                     <span>${emp.grade}</span>
-                    <select class="sel-grade" name="grade">
+                  <select class="sel-grade" name="grade">
                   	<option value="${emp.grade}">${emp.grade}</option>
                   	<option value="전무">전무</option>
                   	<option value="기술이사">기술이사</option>
@@ -127,6 +127,30 @@
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
                     <span>${emp.email}</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">권한</label>
+                  <div class="col-sm-10">
+                    <span>${emp.cname==null?"PMS등록안됨":emp.cname}</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">프로젝트</label>
+                  <div class="col-sm-10">
+                    <span>${emp.pno}</span>
+                    <select class="sel-grade" name="pno">
+                  	<option value="${emp.pno==null?"PMS등록안됨":emp.pno}">
+                  				${emp.pno==null?"PMS등록안됨":emp.pno}</option>
+                  	<option value="1001">1001</option>
+                  	<option value="1002">1002</option>
+                  	<option value="1003">1003</option>
+                  	<option value="1004">1004</option>
+                  	<option value="1005">1005</option>
+                  	<option value="1006">1006</option>
+                  	<option value="1007">1007</option>
+                  	<option value="1008">1008</option>
+                  </select>
                   </div>
                 </div>
                 </form>

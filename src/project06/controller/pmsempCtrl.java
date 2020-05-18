@@ -21,6 +21,7 @@ public class pmsempCtrl {
 	private pmsempService service;
 	
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
+	// http://localhost:5080/project06_git/PMSemp.do?method=setForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
@@ -33,6 +34,15 @@ public class pmsempCtrl {
 	public String list(pmsemp sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
+	}
+	// 인사 사원정보수정 페이지 이동
+	@RequestMapping(params="method=setForm")
+	public String setemp(@RequestParam("eno") int eno, Model d) {
+		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
+		System.out.println("ctrl eno : "+eno);
+		d.addAttribute("emp", service.getemp(eno));
+	
+		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CEO, CTO 권한 설정
 	@RequestMapping(params="method=update")
@@ -86,15 +96,17 @@ public class pmsempCtrl {
 	}
 	// 사원정보수정
 	@RequestMapping(params="method=mbtn")
-	public String updept(pmsemp mod) {
-		service.updept(mod);
+	public String upemp(pmsemp mod) {
+		service.modifyEmp(mod);
 		return "forward:/PMSemp.do?method=modForm";
 	}
-	@RequestMapping(params="method=mbtn")
-	public String upgrade(pmsemp mod) {
-		service.upgrade(mod);
+	// 퇴사 처리
+	@RequestMapping(params="method=dbtn")
+	public String delg(pmsemp del) {
+		service.deleteG(del);
 		return "forward:/PMSemp.do?method=modForm";
 	}
+	
 	
 	
 	
