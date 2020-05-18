@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import springweb.a03_mvc.a02_service.RiskService;
-import springweb.a03_mvc.a04_vo.Comment;
-import springweb.a03_mvc.a04_vo.Risk;
-import springweb.a03_mvc.a04_vo.RiskSch;
+import project06.service.RiskService;
+import project06.vo.Comment;
+import project06.vo.Risk;
+import project06.vo.RiskSch;
+
+
 
 
 @Controller

@@ -12,11 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import springweb.a03_mvc.a03_repository.RiskDao;
-import springweb.a03_mvc.a04_vo.Board;
-import springweb.a03_mvc.a04_vo.Comment;
-import springweb.a03_mvc.a04_vo.Risk;
-import springweb.a03_mvc.a04_vo.RiskSch;
+import project06.repository.RiskDao;
+import project06.vo.Comment;
+import project06.vo.Risk;
+import project06.vo.RiskSch;
 
 @Service
 public class RiskService {

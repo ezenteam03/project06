@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
-import springweb.a03_mvc.a04_vo.Comment;
-import springweb.a03_mvc.a04_vo.Risk;
-import springweb.a03_mvc.a04_vo.RiskSch;
+import project06.vo.Comment;
+import project06.vo.Risk;
+import project06.vo.RiskSch;
 
 @Repository
 public interface RiskDao {
