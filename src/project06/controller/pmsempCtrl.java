@@ -41,7 +41,6 @@ public class pmsempCtrl {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		System.out.println("ctrl eno : "+eno);
 		d.addAttribute("emp", service.getemp(eno));
-	
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CEO, CTO 권한 설정
