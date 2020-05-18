@@ -168,7 +168,6 @@ th{text-align:center;}
 	}
 	
 	$(document).ready(function(){
-		
 	
 		var check01=0;
 		$("#pass01").keyup(function(){
