@@ -39,13 +39,6 @@
   <script type="text/javascript">
 	  $(document).ready(function(){
 		  
-			 $("#regBtn").click(function(){		 
-				$(location).attr("href","${path}/PMSemp.do?method=insForm") 
-			 }); 
-			 $("#changeBtn").click(function(){
-				 $("form").attr("action","${path}/PMSemp.do?method=update");
-				 $("form").submit(); 
-			 });
 	  });
 	 function goPage(no){
 		 $("#curPage").val(no);
@@ -78,9 +71,7 @@
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
-                </div>
-              
-
+                </div>        
                 <thead>
                   <tr>
                     <th>사원번호</th>
@@ -90,20 +81,18 @@
                     <th>이메일</th>
                     <th>핸드폰</th>
                     <th>권한</th>
-                    <th>선택</th>
                   </tr>
                 </thead>
                 <tbody>
                   <c:forEach var="emp" items="${elist}">
                   <tr ondblclick="javascript:go(${emp.eno})">
-                    <th>${emp.eno}</th>
-                    <td>${emp.name}</td>
-                    <td>${emp.grade}</td>
+                    <th style="width:100px;">${emp.eno}</th>
+                    <th>${emp.name}</th>
+                    <td style="width:100px;">${emp.grade}</td>
                     <th>${emp.dept}</th>
                     <td style="width:200px;">${emp.email}</td>
                     <th>${emp.phone}</th>
-                    <td>${emp.cname==null?"PMS등록안됨":emp.cname}</td>
-                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
+                    <td style="width:200px;">${emp.cname==null?"PMS등록안됨":emp.cname}</td>
                   </tr>
                   </c:forEach> 
                 </tbody>
@@ -125,22 +114,7 @@
 			    </ul>
 			  </div>   
               <!-- end -->
-            </div>
-          <!-- change button -->
-            <div class="showback" style="text-align:right;">
-               <div style="display:inline-block; ">
-               <!-- 
-               c:if로 CEO로그인일 때 모든 버튼이보이고 
-			   CTO로그인일 때 CTO설정을 제외한 모든 버튼 보이도록 
-                -->
-		           <button type="button" class="btn btn-primary" id="changeBtn" style="margin-right:20px;">CTO 설정</button>
-		           <button type="button" class="btn btn-success" style="margin-right:20px;">PM 설정</button>
-		           <button type="button" class="btn btn-warning" id="regBtn" 
-		           			style="margin-right:20px;">사원 추가</button>
-		           <button type="button" class="btn btn-default">이전</button>
-	           </div>
-	        </div>
-	      <!-- end -->	      
+            </div>     
           </div>
           <!-- /col-md-12 -->    
       </section>
