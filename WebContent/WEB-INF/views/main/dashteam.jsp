@@ -45,7 +45,7 @@ function goNoti() {
 function goMeet() {
 	$(location).attr("href","${path}/meet.do?method=list");
 }
-function goMeet() {
+function goIssue() {
 	$(location).attr("href","${path}/risk.do?method=list");
 }
 </script>
