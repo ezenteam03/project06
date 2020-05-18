@@ -28,7 +28,7 @@
 				<if test="name!=null and name!=''">
 					AND e.name like '%'||#{name}||'%' 
 				</if>
-				ORDER BY login	
+				ORDER BY m.mno	
 				)WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
 

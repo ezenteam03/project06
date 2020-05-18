@@ -6,7 +6,6 @@
 		 <!-- XXXMapper.xml에서 간편하게 사용하기 위해서 선언..  -->
 		 <!-- 사원리스트 불러오기 -->
 		 <typeAlias alias="pmsemp" type="project06.vo.pmsemp"/>  
-		 <typeAlias alias="chart" type="project06.vo.Chart"/> 
 		 <typeAlias alias="notice" type="project06.vo.Notice"/> 
 		 <typeAlias alias="nsch" type="project06.vo.NoticeSch"/> 
 		 <typeAlias alias="meet" type="project06.vo.Meet"/> 
@@ -29,11 +28,14 @@
 		 <typeAlias alias="risk" type="project06.vo.Risk"/>
 		 <typeAlias alias="rsch" type="project06.vo.RiskSch"/>
 		 <typeAlias alias="comment" type="project06.vo.Comment"/>
+		 
+		 <!-- 간트 차트 -->
+		 <typeAlias alias="chart" type="project06.vo.Chart"/>
+		 <typeAlias alias="project" type="project06.vo.Project"/>
 	</typeAliases>
 	<mappers>
 		 <!-- 실제 sql을 통해서 객체를 생성할 mapper.xml 선언. --> 
 		 <mapper resource="resource/mybatis/pmsempMapper.xml"/> 
-		 <mapper resource="resource/mybatis/chartMapper.xml"/> 
 		 <mapper resource="resource/mybatis/noticeMapper.xml"/> 
 		 <mapper resource="resource/mybatis/meetMapper.xml"/> 
 		 <mapper resource="resource/mybatis/DashTeamMapper.xml"/> 
@@ -46,6 +48,10 @@
 		  <!-- 이슈리스트 -->
 		  <mapper resource="resource/mybatis/riskMapper.xml"/>
 		  <mapper resource="resource/mybatis/commentMapper.xml"/>
+		  
+		  <!-- 간트차트 -->
+		  <mapper resource="resource/mybatis/chartMapper.xml"/> 
+		  <mapper resource="resource/mybatis/projectMapper.xml"/> 
 	</mappers>
 
 </configuration>

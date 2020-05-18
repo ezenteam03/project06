@@ -28,6 +28,7 @@
 		WHERE pe.eno = pm.mno) pem
 		WHERE pp.pno = pt.pno
 		AND pt.mno = pem.mno
+		AND pem.pno = 1001
 		START WITH pt.refno=0
 		CONNECT BY PRIOR pt.tno = pt.refno
  	</select>
