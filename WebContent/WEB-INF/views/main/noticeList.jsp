@@ -80,8 +80,7 @@ $(document).ready(function(){
 });
 function go(nno){
 	
-	$(location).attr("href",
-			"${path}/notice.do?method=detail&nno="+nno);
+	$(location).attr("href", "${path}/notice.do?method=detail&nno="+nno);
 }
 
 
