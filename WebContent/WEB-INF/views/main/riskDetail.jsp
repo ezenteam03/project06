@@ -201,8 +201,8 @@
         
         <td class="num" ><input type="button" class="btn btn-info"
 			value="삭제" id="delBtn${comment.rno}"/>	</td>
-        <td class="num" ><input type="button" class="btn btn-info"
-			value="수정" id="cUptBtn${comment.rno}" onclick="go(${comment.rno})"/>	</td>
+        <td class="num" ><a href="#pop01"
+			 >수정</a>	</td>
         <td class="num"><input type="button" class="btn btn-info"
 			value="댓글" id="cComment${comment.rno}" />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
@@ -214,16 +214,18 @@
 </div></div>
 </div>
 	</form>
-<div id="cdetail">
-	<div style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="뒤로가기" id="goMain"/>		
-		<input type="button" class="btn btn-warning"
-			value="수정" id="uptBtn"/>					
-		<input type="button" class="btn btn-success"
-			value="해결방안 저장" id="cuptBt"/>
+<div id="pop01" class="overlay">
+	<div class="popup">
+		<a href="#none" class="close">&times;</a>
+	
+		<form class="form-login" id="inforCheckForm" method="post" style="background-color:#e0e0e0;margin-top:0%">
+
+		<h2 class="form-login-heading">INFORMATION</h2>
+	
+			
+		</form>
 	</div>
-</div>	
+</div>
 	</div>
 	</section>
 </body>
