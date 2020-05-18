@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="spring.mvc.repository.WorkDao2">
+ 	<resultMap type="task" id="taskResult"/>
+ 	<!-- 
+ 	int totCnt(BoardSch sch)
+ 	 -->
+ 	 
+ 	 <!-- 
+ 	tno NUMBER NOT NULL, /* 업무번호 */
+	pno NUMBER NOT NULL, /* 프로젝트번호 */
+	refno NUMBER NOT NULL, /* 부모업무번호 */
+	tname VARCHAR2(100) NOT NULL, /* 업무명 */
+	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
+	sdate DATE NOT NULL, /* 시작일자 */
+	edate DATE NOT NULL, /* 종료일자 */
+	prog NUMBER NOT NULL, /* 진행율 */
+	pdate DATE, /* 진행일자 */
+	coment VARCHAR2(200), /* 반려사유 */
+	tdiv NUMBER NOT NULL, /* 결재구분 */
+	mno NUMBER NOT NULL /* 사원번호 */
+ 	 -->
+ 	 <select id="totCnt" resultType="int" parameterType="tsch">
+ 		select count(*) 
+		from pmstask
+		where 1=1
+		<if test="tname!=null and tname!=''">
+		and tname like '%'||#{tname}||'%'
+		</if>	
+ 	</select> 
+ 	 
+ 	 <!-- 페이지네이션 !-->
+ 	<select id="list" resultMap="taskResult" 
+ 		parameterType="tsch" >
+		SELECT *
+ 		FROM(
+			select rownum cnt, b.* 
+			from PMSTASK b
+			where 1=1
+			<if test="tname!=null and tname!=''">
+			and tname like '%'||#{tname}||'%'
+			</if>
+			ORDER BY tno desc )
+		WHERE cnt BETWEEN #{start} AND #{end}	
+ 	</select>
+ 	
+ 	<!-- 상세화면 -->
+ 	<select id="getTask" 
+ 		resultType="task" parameterType="int">
+ 		SELECT *
+ 		FROM PMSTASK
+ 		WHERE tno = #{tno}
+ 	</select>
+ 	
+ 	<!-- 삭제 -->
+ 	<delete id="deleteTask" parameterType="int">
+		DELETE FROM PMSTASK
+		 WHERE tno = #{tno}
+ 	</delete>
+ 	
+ 	<!-- 제목, 내용수정  / 반려사유
+ 	pstart = #{pstart},
+	pend = #{pend}-->
+ 	<update id="updateTask" parameterType="tsch">
+		UPDATE PMSTASK
+		   SET tname = #{tname},
+		   	   detail = #{detail}   
+		 WHERE tno = #{tno}
+ 	</update> 
+ 	<update id="coment" parameterType="tsch">
+		UPDATE PMSTASK
+		   SET coment = #{coment}
+		 WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<!-- 등록 -->
+ 	<insert id="insert" parameterType="task">
+	 	INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, #{tname},#{detail},null,to_date(#{sdate},'yy-mm-dd'),to_date(#{edate},'yy-mm-dd'),
+		0,'','',21,10000001)
+ 	</insert>
+
+ 	
+ 	<!--
+ 	INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, #{tname},#{detail},#{sdate},#{edate},
+		0,'','',21,10000001)
+ 	
+ 	tno NUMBER NOT NULL, /* 업무번호 */
+	pno NUMBER NOT NULL, /* 프로젝트번호 */
+	refno NUMBER NOT NULL, /* 부모업무번호 */
+	tname VARCHAR2(100) NOT NULL, /* 업무명 */
+	detail VARCHAR2(2000) NOT NULL, /* 업무내용 */
+	sdate DATE NOT NULL, /* 시작일자 */
+	edate DATE NOT NULL, /* 종료일자 */
+	prog NUMBER NOT NULL, /* 진행율 */
+	pdate DATE, /* 진행일자 */
+	coment VARCHAR2(200), /* 반려사유 */
+	tdiv NUMBER NOT NULL, /* 결재구분 */
+	mno NUMBER NOT NULL /* 사원번호 */
+ 	 -->
+ 	
+ 	
+</mapper>	
+
+
+
