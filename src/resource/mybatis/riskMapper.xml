@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="project06.repository.RiskDao">
+	
+	<resultMap type="risk" id="riskResult"></resultMap>
+
+	 <select id="totCnt" resultType="int" parameterType="rsch">
+		SELECT count(*)
+		FROM PMSISSUE p, PMSEMP pm	
+		where 1=1	
+		and p.mno = pm.ENO 
+		<if test="title != null and title != ''">
+		and title like '%'||#{title}||'%'
+		</if>		
+		<if test="name != null and name != ''">
+		and name like '%'||#{name}||'%'
+		</if>		
+	 </select>
+	 
+	<select id="list" resultMap="riskResult" parameterType="rsch" >
+	select *
+		from(
+		SELECT rownum cnt,pa.*
+		FROM (SELECT p.*,pm.NAME FROM PMSEMP pm,PMSISSUE p WHERE pm.ENO =p.MNO ORDER BY p.ino ) pa
+		WHERE 1=1 
+		<if test="title != null and title != ''">
+		and title like '%'||#{title}||'%'
+		</if>
+		<if test="name != null and name != ''">
+		and name like '%'||#{name}||'%'
+		</if>
+		ORDER BY ino DESC)
+		where cnt between #{start} and #{end}	
+	</select>
+
+
+	<insert id="insert" parameterType="risk">
+		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,#{title},
+		#{detail},0,null,sysdate,sysdate,null,1,10000001)
+	</insert>
+	
+	<select id="getRisk" 
+ 		resultType="risk" parameterType="int">
+ 		SELECT *
+ 		FROM PMSISSUE p, PMSEMP pm	
+ 		where 1=1
+ 		and p.mno = pm.ENO 
+ 		and ino = #{ino}
+ 	</select>
+	
+ 	 <update id="updateRisk" parameterType="risk">
+		UPDATE pmsissue 
+		   SET title = #{title},
+		   	   detail = #{detail},
+		   	   chdate =sysdate
+		 WHERE ino = #{ino}
+ 	</update> 
+
+		
+ 	 <update id="comupdate" parameterType="risk">
+		UPDATE PMSISSUE
+		   SET coment = #{coment}, 	  
+		   	   cdate =sysdate
+		 WHERE ino = #{ino}
+ 	</update> 
+ 	<!-- 조회수 -->
+ 	<update id="uptReadCnt" parameterType="int">
+ 		UPDATE PMSISSUE
+ 		   SET views = views+1
+ 		 WHERE ino = #{ino}
+ 	</update>	
+	<!-- 파일 업로드	 -->
+	<insert id="insertRepo" parameterType="String"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,pmsissue_seq.currval, 
+ 			#{fname}, sysdate)
+	</insert>
+	<resultMap type="String" id="strMap"/> 
+ 	<select id="fnames" resultMap="strMap" parameterType="int">
+ 		SELECT fname 
+ 		FROM PMSBFILE		
+ 		WHERE ino=#{ino}
+ 	</select> 
+	
+	<update id="uptFileInfo" parameterType="java.util.HashMap">
+		UPDATE PMSBFILE
+			SET fname = #{tar},
+	        upload= sysdate
+	    WHERE ino = ${ino}
+		AND fname = #{org}	    	
+	</update> 	
+ 	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${ino},
+ 			#{tar}, sysdate)
+	</insert>
+	
+</mapper>	
+
+
+
+
+
+
+

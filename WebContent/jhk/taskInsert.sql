@@ -1,3 +1,4 @@
+/*
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, '사원등록 시스템 개발',' - 개인 정보 입력(사원번호/이름/비밀번호/희망연락처)할 수 있는 UI 구현','2020-05-20','2020-05-27',
 0,'','',21,10000008);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, '로그인/로그아웃 시스템 개발',' - DB에 등록되어 있는 사원번호/비밀번호 입력 -> 로그인 성공 / 실패 &#10; - 로그아웃 기능 구현','2020-05-20','2020-05-27',
@@ -14,6 +15,7 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, '게시판 시스템 �
 0,'','',21,10000008);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, '프로젝트 수행',' - 해당 프로젝트 전체 진행률 / 일정 &#10; - 프로젝트 간트차트 페이지&#10; - 업무 리스트 ( 로그인 정보에 해당하는 업무 )  &#10; - 업무 리스트 상세 (진행률 갱신 / 결재 신청) &#10;','2020-05-20','2020-05-27',
 0,'','',21,10000008);
+*/
 
 
 
@@ -51,6 +53,7 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 결재
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 총괄(웹)','- CEO / CTO 대시보드 - 전체 프로젝트 진행률 등',null,'2020-05-08','2020-05-13', 0,NULL,NULL,21,10000019);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(앱)','- CEO - 직원리스트 - CTO 설정 및 변경',null,'2020-05-08','2020-05-15', 0,NULL,NULL,21,10000016);
 
+
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '대시보드(웹)','- PM 대시보드 - 프로젝트 진행률(개인별) 등 (50%)&#10;- 팀원 대시보드 -해당 프로젝트 전체 진행률 / 일정 등 (50%)',null,'2020-05-14','2020-05-23', 0,NULL,NULL,21,10000019);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(웹)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 0,NULL,NULL,21,10000016);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM (웹)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 0,NULL,NULL,21,10000022);
@@ -58,6 +61,7 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / 팀�
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(앱)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 0,NULL,NULL,21,10000016);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM(앱)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 0,NULL,NULL,21,10000022);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / 팀원(앱)','- 팀원 - 업무 리스트(내업무)(50%)&#10;- 팀원 - 업무 리스트 상세 - 진행률 갱신 / 결재 신청 (50%)&#10;',null,'2020-05-23','2020-06-01', 0,NULL,NULL,21,10000022);
+
 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1010, '일정관리 CEO / CTO (웹)','- CEO / CTO - 프로젝트 간트챠트',null,'2020-05-15','2020-05-22', 0,NULL,NULL,21,10000017);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1010, '일정관리 PM / 팀원 (웹) ','- PM - 프로젝트 간트챠트  (50%)&#10;- 팀원 - 프로젝트 간트챠트 (50%)',null,'2020-05-22','2020-06-01', 0,NULL,NULL,21,10000017);
@@ -77,16 +81,3 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / �
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (웹)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 0,NULL,NULL,21,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000023);
-
-
-
-
-SELECT * FROM PMSCODES;
-SELECT * FROM PMSMEMBER;
-SELECT * FROM PMSEMP;
-SELECT * FROM PMSTASK;
-
-
-
-
-

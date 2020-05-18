@@ -40,12 +40,20 @@ public class pmsempService {
 			return d;
 		}
 		// 인사 사원정보 수정
-		public void updept(pmsemp uptdept) {
-			rep.updatedept(uptdept);
+		public void modifyEmp(pmsemp modify) {
+			rep.updateEmp(modify);	
 		}
-		public void upgrade(pmsemp uptgrade) {
-			rep.updatedept(uptgrade);
+		// 퇴사 처리
+		public void deleteG(pmsemp deleteG) {
+			int isMem = rep.delCheck(deleteG);
+			if(isMem==0) {
+				rep.delGrade3(deleteG);
+			} else {
+				rep.delGrade1(deleteG);
+				rep.delGrade2(deleteG);				
+			}
 		}
+		
 		
 
 		// Jin
