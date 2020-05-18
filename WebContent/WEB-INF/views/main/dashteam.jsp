@@ -180,7 +180,7 @@ function goMeet() {
                     <td>${notice.nno }</td>
                     <td>${notice.title }</td>
                     <td>${notice.writer }</td>
-                    <td>${notice.wdate==0?"오늘":notice.wdate+"일전" }</td>
+                    <td>${notice.wdate }일전</td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -202,7 +202,7 @@ function goMeet() {
                     <td>${meet.mnno }</td>
                     <td>${meet.topic }</td>
                     <td>${meet.writer }</td>
-                    <td>${meet.wdate==0?"오늘":meet.wdate+"일전" }</td>
+                    <td>${meet.wdate }일전</td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -224,7 +224,7 @@ function goMeet() {
                     <td>${issue.ino }</td>
                     <td>${issue.solve==1?"해결완료":"미해결" }</td>
                     <td>${issue.writer }</td>
-                    <td>${issue.wdate==0?"오늘":issue.wdate+"일전" }</td>
+                    <td>${issue.wdate }일전</td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -246,7 +246,7 @@ function goMeet() {
                     <td>${re.rno }</td>
                     <td>${re.ino }</td>
                     <td>${re.writer }</td>
-                    <td>${re.wdate==0?"오늘":re.wdate+"일전" }</td>
+                    <td>${re.wdate }일전</td>
                   </tr>
                 </c:forEach>
                 </tbody>
