@@ -3,6 +3,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -52,6 +53,38 @@
 
 </style>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		<%-- 
+		
+		--%>
+		$("h2").text("시작");
+		$("#regBtn").click(function(){
+			//if(confirm("등록합니다")){
+			// 등록화면 호출.
+				$(location).attr("href","${path}/meet.do?method=insForm");
+			//}
+		});
+		$("#pageSize").change(function(){
+			$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
+								// 나오게 처리..
+			$("form").submit();
+		});
+	});
+	function go(mnno){
+		
+		$(location).attr("href", "${path}/meet.do?method=detail&mnno="+mnno);
+	}
+	function goPage(no){
+		//alert("이동 번호:"+no);
+		$("#curPage").val(no);
+		$("form").submit();
+	}
+	
+</script>
+
+
+
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -81,7 +114,7 @@
                 </thead>
                 <tbody>
                 <c:forEach var="meet" items="${mlist}">
-                  <tr>
+                  <tr ondblclick="javascript:go(${meet.mnno})">
                     <td style="text-align: center;">${meet.mnno}</td>
                     <td style="padding-left:70px;">${meet.topic}</td>
                     <td style="text-align: center;"><fmt:formatDate value="${meet.wdate}" type="date"/></td>
@@ -91,6 +124,45 @@
                  </c:forEach>
                 </tbody>
               </table>
+              
+	<form:form class="form" commandName="msch" method="post" >
+  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+  				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  					<form:input class="form-control mr-sm-2 sch" 
+	    				path="title" placeholder="제목" />
+	    			<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	   				<button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
+  				</nav>
+  				<br>
+ 			<div class="input-group lb-3">	
+				<div class="input-group-prepend ">
+					<span class="input-group-text "> 총 : ${msch.count} 건</span>
+				</div>
+				<input class="form-control" />	
+			<div class="input-group-append">
+				<span class="input-group-text">페이지 크기:</span>
+				<form:select path="pageSize" class="form-control">
+					<form:option value="3">3</form:option >
+					<form:option value="5">5</form:option >
+					<form:option value="10">10</form:option >
+					<form:option value="20">20</form:option >
+					<form:option value="30">30</form:option >
+				</form:select> 
+			</div>
+			</div>  
+	</form:form> 
+  
+     <ul class="pagination justify-content-center" style="margin:20px 0">
+      	<li class="page-item">
+	   		<a class="page-link" href="javascript:goPage(${msch.startBlock-1});">Previous</a></li>
+	   	<c:forEach var="cnt" begin="${msch.startBlock }" end="${msch.endBlock}">
+	  		<li class="page-item ${msch.curPage==cnt?'active':''}">
+	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+		</c:forEach>
+			<li class="page-item">
+			<a class="page-link" href="javascript:goPage(${(msch.endBlock==msch.pageCount)?msch.endBlock:msch.endBlock+1});">Next</a></li>
+	  </ul>   
+              
             </div>
            
           </div>
