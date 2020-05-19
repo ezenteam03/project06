@@ -25,11 +25,15 @@ public class pmsempService {
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
+			System.out.println("isMem : "+isMem);
 			if(isMem==0) {
 				// 기존 CTO권한 변경
 				rep.updatepmsemp2();
 				// 새로운 CTO Member등록
 				updateCto.setPass(makePass("1234qwer!"));
+				System.out.println(updateCto.getEno());
+				System.out.println(updateCto.getPass());
+				System.out.println(updateCto.getPhone());
 				rep.insertMem1(updateCto);
 			}else{
 				rep.updatepmsemp2();

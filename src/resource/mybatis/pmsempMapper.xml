@@ -10,8 +10,7 @@
 		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
 		FROM pmsemp a 
 		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
- 	</select>
- 	
+ 	</select>	
  	<!-- 상세페이지 -->
  	<select id="getemp" resultType="pmsemp" parameterType="int">
 	 	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
@@ -77,8 +76,7 @@
 		UPDATE pmsmember
 		SET pno=null, mdiv=9
 		WHERE mno =#{eno}
-	</update>
-	
+	</update>	
 	<!-- 인사 사원정보 수정 페이지 -->
 	<select id="getPmsemp" resultType="pmsemp" parameterType="int">
  		SELECT *

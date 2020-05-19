@@ -46,7 +46,7 @@
 	 }
 	 function go(eno){
 		 $(location).attr("href",
-				 "${path}/PMSemp.do?method=setForm&peno="+eno);
+				 "${path}/PMSemp.do?method=setForm&eno="+eno);
 	 }
 
   </script>
@@ -81,6 +81,7 @@
                     <th>이메일</th>
                     <th>핸드폰</th>
                     <th>권한</th>
+                    <th>권한</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,6 +94,7 @@
                     <td style="width:200px;">${emp.email}</td>
                     <th>${emp.phone}</th>
                     <td style="width:200px;">${emp.cname==null?"PMS등록안됨":emp.cname}</td>
+                    <td style="width:200px;">${emp.cname}</td>
                   </tr>
                   </c:forEach> 
                 </tbody>

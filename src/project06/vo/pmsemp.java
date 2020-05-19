@@ -18,7 +18,7 @@ public class pmsemp {
 		private String phone;
 		private String email;
 		private String cname;	// 권한이름		(pmscodes)
-		private int pno;		// 프로젝트번호	(pmsmember)
+		private int pno;		// 프로젝트번호		(pmsmember)
 		private String pass;	// 비밀번호		(pmsmember)
 		private int mdiv;		// 권한구분		(pmsmember)
 		private String wcon;	// 희망연락처		(pmsmember)

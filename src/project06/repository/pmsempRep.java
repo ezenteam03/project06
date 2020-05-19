@@ -25,9 +25,6 @@ public interface pmsempRep {
 	// PM설정
 	public void updatePm1(pmsemp uptPm);
 	public void updatePm2();
-	
-	
-	
 	// PM 삭제 리스트
 	public ArrayList<pmsemp> pmempList(pmsemp sch);
 	// PM 팀원 삭제
