@@ -12,6 +12,9 @@ public class Project {
 	private int pdiv;
 	private int mno;
 	private String name;
+	private String sdatestr;
+	private String deadlinestr;
+	
 	public int getPno() {
 		return pno;
 	}
@@ -65,6 +68,18 @@ public class Project {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getSdatestr() {
+		return sdatestr;
+	}
+	public void setSdatestr(String sdatestr) {
+		this.sdatestr = sdatestr;
+	}
+	public String getDeadlinestr() {
+		return deadlinestr;
+	}
+	public void setDeadlinestr(String deadlinestr) {
+		this.deadlinestr = deadlinestr;
 	}
 	
 }

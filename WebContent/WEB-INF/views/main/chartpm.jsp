@@ -68,6 +68,21 @@
 			}
 		});	
 		
+		/*
+			private int pno;
+			private Date sdate;
+			private Date deadline;
+			private String pname;
+			private String detail;
+			private Date cdate;
+			private int pdiv;
+			private int mno;
+			private String name;
+		*/
+		
+		var sdatestr = new Date("${project.sdatestr}");
+		var deadlinestr = new Date("${project.deadlinestr}");
+		
 		$.ajax({
 			type:"post",
 			url:"${path}/chart.do?method=ajaxdata",
@@ -75,8 +90,8 @@
 			dataType:"json",
 			success:function(data){
 				
-				var todayOrigin = new Date(2020, 4, 4); 
-				var today = new Date(2020, 4, 4); 
+				var todayOrigin = sdatestr; 
+				var today = sdatestr; 
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -89,36 +104,39 @@
 				var clist = data.chartlist;
 				var dataInfo = [];
 				
+				//
 				dataInfo.push({
-	            	name: '총괄진행',	
+	            	name: '총괄진행(시작일, 종료일, 소요일수, 진행도, 담당자)',	
 	            	id: '0',
-	            	owner: '유재인'
+	            	owner: "${project.name}",
 				});
 				
+				//
 				$.each(clist,function(idx, chart){
+					var sdate = new Date(chart.sdateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					var edate = new Date(chart.edateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					
 					dataInfo.push({
-						name: chart.tname, 
+						name: chart.tname+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")", 
 						id: ""+chart.tno+"", 
 						parent: ""+chart.refno+"", 
 						start: today+(chart.sdate * day), 
 						end: today+(chart.edate * day),
-						completed : { amount : chart.prog },
+						completed : chart.prog,
 						owner : ""+chart.name+"",
 						collapsed : true,
 						});
 				});
 				var seriesInfo = [{
-			        name: 'PMS',
+			        name: '${project.pname}',
 			        data: dataInfo
 			    }];
 				var tooltipInfo = {
 				        pointFormatter: function () {
 				            var point = this,
 				                format = '%e. %b',
-				                options = point.options,
-				                completed = options.completed,
-				                amount = isObject(completed) ? completed.amount : completed,
-				                status = ((amount || 0) * 100) + '%',
+				                completed = point.completed,
+				                status = (completed * 100) + '%',
 				                lines;
 			
 				            lines = [{
@@ -128,7 +146,6 @@
 				                title: '시작',
 				                value: dateFormat(format, point.start)
 				            }, {
-				                visible: !options.milestone,
 				                title: '끝',
 				                value: dateFormat(format, point.end)
 				            }, {
@@ -136,7 +153,7 @@
 				                value: status
 				            }, {
 				                title: '담당자',
-				                value: options.owner || 'unassigned'
+				                value: point.owner
 				            }];
 			
 				            return reduce(lines, function (str, line) {
@@ -157,19 +174,103 @@
 				        }
 				    };
 				var titleInfo = {
-				        text: 'PMS 진행사항'
+				        text: "${project.pname}"
 			    };
 				var xAxisInfo = {
 				        currentDateIndicator: true,
 				        min: today + 1 * day, //프로젝트 첫날
-				        max: today + 35 * day, //프로젝트 마지막날
+				        max: today + ((deadlinestr-sdatestr)/day) * day, //프로젝트 마지막날
 				    };
-				
+/* 				var yAxisInfo = {
+			    type: 'category',
+			    grid: {      
+			      borderColor: '#3a5d96',      
+			      columns: [{
+			        title: {
+				          text: '작업명',
+				          rotation: 45,
+				          y: -15,
+				          x: -15
+				        },
+				        labels: {
+				          format: '{point.name}'
+				        }
+				      }, {
+			        title: {
+			          text: '담당자',
+			          rotation: 45,
+			          y: -15,
+			          x: -15
+			        },
+			        labels: {
+			          format: '{point.owner}'
+			        }
+			      }, {
+			        title: {
+				          text: '소요일',
+				          rotation: 45,
+				          y: -15,
+				          x: -15
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  days = (1000 * 60 * 60 * 24),
+				                  number = (point.end - point.start) / days;
+				                return number	;
+				              }
+				        }
+			      },{
+			        title: {
+				          text: '시작일',
+				          rotation: 45,
+				          y: -15,
+				          x: -15
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.start);
+				              }
+				        }
+				      },{
+			        title: {
+				          text: '종료일',
+				          rotation: 45,
+				          y: -15,
+				          x: -15
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.end);
+				              }
+				        }
+				      },{
+			        title: {
+				          text: '진행도',
+				          rotation: 45,
+				          y: -15,
+				          x: -15
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  number = point.completed * 100;
+				                return number + '%';
+				              }
+				        }
+				      }]
+			    }
+			  }; */
 				var cInfo = {
 						series : seriesInfo,
 						tooltip : tooltipInfo,
 						title: titleInfo,
-						xAxis: xAxisInfo
+						xAxis: xAxisInfo,
+						//yAxis: yAxisInfo,
 				};
 				
 				console.log(todayOrigin);

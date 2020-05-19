@@ -30,7 +30,7 @@ public class pmsempService {
 				// 기존 CTO권한 변경
 				rep.updatepmsemp2();
 				// 새로운 CTO Member등록
-				updateCto.setPass(makePass());
+				updateCto.setPass(makePass("1234qwer!"));
 				rep.insertMem1(updateCto);
 			}else{
 				rep.updatepmsemp2();
@@ -126,7 +126,18 @@ public class pmsempService {
 			
 			return eno;
 		}
-		public String makePass() {
-			return "";
+		public String makePass(String pass) {
+			if(pass!=null&&pass!="") {
+				return pass;
+			} else {
+				String result = "";
+				String[] chars = {"0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+				for(int i=0; i<9; i++) {
+					int ran = (int) (Math.random()*36);
+					result += chars[ran];
+				}
+				System.out.println(result);
+				return result;
+			}
 		}
 }
