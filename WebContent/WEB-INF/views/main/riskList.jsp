@@ -69,43 +69,67 @@
 #name{width:20%}
 #date{width:20%}
 #views{width:10%}
+#all{padding: 2px}
 </style>
 </head>
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
-<div class="container">
-
- <form:form class="form" commandName="rsch" method="post" >
- <form:hidden path="curPage"/>
- 
-  <form:input class="form-control mr-sm-2" path="title" placeholder="제목"/>
-  <form:input class="form-control mr-sm-2" path="name" placeholder="작성자"/>
-  <button class="btn btn-success" type="submit">검색</button>
-    
-	
-<div class="col-md-12 Rtable">
-   	<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control" style="width:100px;float:left; ">
-	
-			<form:option value="5">5</form:option>
-			<form:option value="10">10</form:option>
-			<form:option value="20">20</form:option>		
-			 </form:select>	
-			<span class="input-group-text">프로젝트 번호:</span>
-			<form:select path="pno" class="form-control" style="width:100px;float:left; ">
-	
-			<form:option value="1001">1001</form:option>
-			<form:option value="1002">1002</form:option>	
-			 </form:select>	
-			 <button class="btn btn-success" type="submit">Search</button>		
-		</div>
+	 <section id="main-content">
+      <section class="wrapper">
+<div id="all">
+        <div class="row">
+         <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
             <div class="content-panel">
-         
-   <table class="table table-hover">
+             <h4><i class="fa fa-th"></i>&ensp;  이슈리스트 </h4>
+
+				 <form:form class="form" commandName="rsch" method="post" >
+				 <form:hidden path="curPage"/>   
+
+	 			<div style="float:left; height:34px">
+				<span style="height:34px" class="input-group-text">페이지 크기:</span>
+				</div>
+				 <div style="float:left; margin-right: 5px">
+				<form:select  path="pageSize" class="form-control" style="width:100px;float:left; ">
+		
+				<form:option value="5">5</form:option>
+				<form:option value="10">10</form:option>
+				<form:option value="20">20</form:option>		
+				 </form:select>	
+				 </div>
+				 <div style="float:left;"> 
+				<span class="input-group-text" style="height:34px">프로젝트 번호:</span>
+				</div>
+				 <div style="float:left; margin-right: 5px">
+				<form:select path="pno" class="form-control" style="width:100px;float:left; ">
+		
+				<form:option value="1001">1001</form:option>
+				<form:option value="1002">1002</form:option>	
+				 </form:select>	
+				 </div>
+			  <div style="float:left;">
+			 <button class="btn btn-success" type="submit">선택</button>	
+			 </div>	
+		
+			<div style="float:right;">
+			 			 <button  class="btn btn-success" type="submit" >검색</button>
+			 		</div>
+			 		<div  style="float:right;">
+				  <form:input style="width: 200px" class="form-control mr-sm-2" path="name" placeholder="작성자"/>
+				  
+				  </div>
+				  <div  style="float:right;">
+				  <form:input style="width: 200px" class="form-control mr-sm-2"  path="title" placeholder="제목"/>
+				  </div>
+				   
+			 		
+			 		
+			 
+		     
+   <table class="table table-hover" >
     <thead>
-      <tr class="table-secondary text-left">
+      <tr class="text-left">
         <th id="num">번호</th>
         <th id="title">제목</th>
         <th id="name">작성자</th>
@@ -116,7 +140,7 @@
     <tbody>
       <c:forEach var="risk" items="${rlist}">	
       <tr class="text-left" onclick="go(${risk.ino})">
-        <td class="text-left">${risk.ino}</td>
+        <td class="text-left">${risk.cnt}</td>
         <td class="text-left">${risk.title}</td>
         <td class="text-left">${risk.name}</td>
         <td class="text-left"><fmt:formatDate value="${risk.wdate}"/> </td>
@@ -125,7 +149,7 @@
       </c:forEach>
     </tbody>
   </table>  
-</div></div>
+
 <!-- 페이징 -->
 	
 	 <ul class="pagination" >
@@ -141,15 +165,13 @@
     <button  class="btn btn-info" id="regBtn" type="button">작성</button>
 	</div>
 
-  
-<div>
-
-</div>
-  
-  
-   </form:form>
-</div>
+  </form:form>
+  </div>
+  </div>   
+   </div>   
+   </div>
  </section>
+ </section></section>
 </body>
 <script type="text/javascript">
 

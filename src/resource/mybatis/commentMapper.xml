@@ -36,7 +36,7 @@
  		FROM PMSISSUE p, PMSEMP pm	
  		where 1=1
  		and p.mno = pm.ENO 
- 		and ino = #{ino}
+ 		and rno = #{rno}
  	</select>
 </mapper>	
 

@@ -91,7 +91,13 @@ public class RiskCtrl {
 			service.deleteComment(rno);
 			return "redirect:/risk.do?method=comment";
 		}
-	
+		// 댓글 상세
+		@RequestMapping(params="method=cdetail")
+		public String cdetail(@RequestParam("rno") int rno, Model d) {
+			d.addAttribute("comment", service.getComment(rno));
+			return "forward:/risk.do?method=detail";
+		}
+		
 	
 }
 
