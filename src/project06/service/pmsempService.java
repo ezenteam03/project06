@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import project06.repository.pmsempRep;
 import project06.vo.pmsemp;
-import project06.vo.pmsempSch;
 
 @Service
 public class pmsempService {
@@ -126,6 +125,7 @@ public class pmsempService {
 			
 			return eno;
 		}
+		// 비밀번호 생성
 		public String makePass(String pass) {
 			if(pass!=null&&pass!="") {
 				return pass;

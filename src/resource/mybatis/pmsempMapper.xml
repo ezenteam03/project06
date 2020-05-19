@@ -30,7 +30,7 @@
 	<!-- pms에 등록안된 경우 CTO로등록 -->
 	<insert id="insertMem1" parameterType="pmsemp">
 		 insert into pmsmember 
-		 	values(#{mno}, #{pass}, 3, #{wcon}, null)
+		 	values(#{eno}, #{pass}, 3, #{phone}, null)
 	</insert>
  	<!-- 기존 CTO 권한변경 -->
 	<update id="updatepmsemp2" parameterType="pmsemp">
