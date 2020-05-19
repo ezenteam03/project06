@@ -112,13 +112,7 @@ function goPage(no){
                 <br>
               <form:form class="form" commandName="nsch" method="post" >
   				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  				<nav class="navbar navbar-expand-sm  navbar-dark">
-  
-	    		<form:input class="form-control mr-sm-2 sch" 
-	    			path="title" placeholder="제목" />
-	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
-	    
-  				</nav>
+  				
   				<br>
  	<div class="input-group lb-3">	
 		<div style="float:left; width:20%;" class="input-group-prepend ">
@@ -136,7 +130,7 @@ function goPage(no){
 			</form:select> 
 		</div>
 	</div>  
-  </form:form> 
+  
   
   			<hr>
 			<table class="table table-hover">
@@ -160,9 +154,8 @@ function goPage(no){
 		        </tbody>
 			</table>
 	
-   
-    
-      <div style="text-align:center; float:left; margin-left:600px;">  
+ 
+      <div style="text-align:center; margin-left:auto; margin-right:auto;">  
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
 	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
@@ -174,6 +167,16 @@ function goPage(no){
 			<a class="page-link" href="javascript:goPage(${(nsch.endBlock==nsch.pageCount)?nsch.endBlock:nsch.endBlock+1});">Next</a></li>
 	  </ul>  
       </div>      
+             <br>
+                <nav style="width:20%;  margin-left:auto; margin-right:auto;" class="navbar navbar-expand-sm  navbar-dark">
+  
+	    		<form:input class="form-control mr-sm-2 sch" 
+	    			path="title" placeholder="제목" />
+	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	    
+  				</nav>
+    </form:form>
+             
              <br>
         <!-- c:if 어쩌고-->
           <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
