@@ -26,11 +26,12 @@
  	</select>
  	
  	 <!-- 상세화면  parameterType="int" -->
- 	<select id="getProject" resultType="project" >
- 		SELECT pp.*, pem.name
+ 	<select id="getProject" resultType="project" parameterType="int">
+ 		SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
+		 pem.name
 		FROM PMSPROJECT pp, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 		WHERE pem.mno = pp.mno
-		AND pem.mno = 10000005
+		AND pem.mno = #{mno}
  	</select>
 </mapper>	
