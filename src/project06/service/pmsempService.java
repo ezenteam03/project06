@@ -42,14 +42,21 @@ public class pmsempService {
 		}
 		// 기존 PM 권한변경 후 새로운 PM에게 권한 부여
 		public void updatePm(pmsemp updatePm) {
+			System.out.println("service PM설정");
 			int isMem = rep.memCheck(updatePm);
+			System.out.println("isMem : "+isMem);
 			if(isMem==0) {
-				// 기존 CTO권한 변경
-				rep.updatePm2();
-				// 새로운 CTO Member등록
+				// 기존 PM권한 변경
+				rep.updatePm2(updatePm);
+				// 새로운 PM Member등록
+				updatePm.setPass(makePass("1234qwer!"));
+				System.out.println("service eno:"+updatePm.getEno());
+				System.out.println("service pass:"+updatePm.getPass());
+				System.out.println("service phone:"+updatePm.getPhone());
+				System.out.println("service pno:"+updatePm.getPno());
 				rep.insertMem2(updatePm);
 			}else{
-				rep.updatePm2();
+				rep.updatePm2(updatePm);
 				rep.updatePm1(updatePm);	
 			}
 		}
