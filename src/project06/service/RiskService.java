@@ -99,14 +99,11 @@ public class RiskService {
 	}
 	// 상세화면 처리..
 	public Risk getRisk(int ino,HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		
-		dao.getRisk(ino);
 		
 		dao.uptReadCnt(ino);
 		Risk d = dao.getRisk(ino);
 		d.setFilenames(dao.fnames(ino));
+		
 		return d;	
 	}
 	

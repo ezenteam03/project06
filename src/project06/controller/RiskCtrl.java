@@ -65,9 +65,7 @@ public class RiskCtrl {
 		HttpSession session = request.getSession();
 
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		if(emp.getPno()==1001) {
-			d.addAttribute("ri", 2);
-		}else if(emp.getMdiv()==4) {
+		if(emp.getMdiv()==4) {
 			d.addAttribute("ri", 3);
 		}else if(emp.getMdiv()==6) {
 			d.addAttribute("ri", 4);
@@ -108,7 +106,7 @@ public class RiskCtrl {
 		@RequestMapping(params="method=comment")
 		public String clist(@ModelAttribute("rsch")RiskSch sch, Model d) {
 			d.addAttribute("clist", service.clist(sch));
-			d.addAttribute("ri", 1);
+			d.addAttribute("co", 1);
 			
 			return "forward:/risk.do?method=detail";
 		}
