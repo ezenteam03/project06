@@ -22,8 +22,8 @@
 	<script src="${path}/a00_com/jquery-ui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <meta name="author" content="Dashmeet">
+  <meta name="keyword" content="Dashmeet, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>Dashio - Bootstrap Admin Template</title>
 
   <!-- Favicons -->
@@ -47,47 +47,42 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-</head>
-<style>
-#all{
-	padding:2%;
-}
-
-.num {width:10%;}
-.title {width:65%;}
-.date {width:15%;}
-.cnt {width:10%;}
-
-
-</style>
 <script type="text/javascript">
-$(document).ready(function(){
-	<%-- 
-	
-	--%>
-	$("#goMain").click(function(){
-		$(location).attr("href","${path}/meet.do?method=list");			
-	});	
-	
-	$("#uptBtn").click(function(){
-		if(confirm("수정하시겠습니까?")){
-			$("form").attr("action","${path}/meet.do?method=update");
-			$("form").submit();
-		}
+	$(document).ready(function(){
+		<%-- 
+		
+		--%>
+		$("#goMain").click(function(){
+			$(location).attr("href","${path}/meet.do?method=list");			
+		});	
+		$(".fileInfo").click(function(){
+			var fname=$(this).val();
+			if(confirm("다운로드하시겠습니까?")){
+				$(location).attr("href",
+					"${path}/meet.do?method=download&fname="+fname);	
+			}
+			
+		});
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				$("form").attr("action","${path}/meet.do?method=update");
+				$("form").submit();
+			}
+		});
+		$(".custom-file-input").on("change",function(){
+			$(this).next(".custom-file-label").text($(this).val());
+		});	
+		$("#delBtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				var no = $("input[name=mnno]").val();
+				$(location).attr("href","${path}/meet.do?method=delete&mnno="+mnno);					
+			}
+		});
+		
 	});
-	$(".custom-file-input").on("change",function(){
-		$(this).next(".custom-file-label").text($(this).val());
-	});	
-	$("#delBtn").click(function(){
-		if(confirm("삭제하시겠습니까?")){
-			var nno = $("input[name=mnno]").val();
-			$(location).attr("href","${path}/meet.do?method=delete&mnno="+mnno);					
-		}
-	});
-	
-});
-
 </script>
+</head>
+
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
@@ -109,11 +104,15 @@ $(document).ready(function(){
 		</div>
 		<input name="mnno" class="form-control" 
 			value="${meet.mnno}"/>	
-		
+			
 	</div>	
 	<div class="input-group mb-3">	
-		
-		
+		<div class="input-group-prepend">
+			<span class="input-group-text">작 성 자</span>
+		</div>
+		<input name="mno" class="form-control" 
+			value="${meet.mno}" 
+			placeholder="작성자입력하세요" />	
 		<div class="input-group-prepend">
 			<span class="input-group-text">조회수</span>
 		</div>
@@ -124,7 +123,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="input-group-text">제 목</span>
 		</div>
-		<input name="title" class="form-control"
+		<input name="topic" class="form-control"
 			value="${meet.topic}"  
 			placeholder="제목입력하세요" />	
 		 
@@ -149,13 +148,31 @@ $(document).ready(function(){
 			class="form-control" 
 			placeholder="내용입력하세요" >${meet.detail}</textarea>		 
 	</div> 
-	
+	<c:forEach var="fname"  begin="1" end="3"
+		 varStatus="sts">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">첨부 파일( ${sts.count} / 3 )</span>
+		</div>
+		<!-- 등록된 파일 정보..(fnames == vo의 property) -->
+		<input class="form-control fileInfo" name="fnames"
+			value="${meet.filenames[sts.index-1]}" />	
+		<div class="custom-file">
+		<!-- 변경할 파일 정보 (report ==> vo의 property)-->
+			<input type="file" name="report" 
+				class="custom-file-input" id="file01"/>
+			<label class="custom-file-label" for="file01">
+			변경할려면 파일을 선택하세요!</label>
+		</div>			
+		 
+	</div> 	
+	</c:forEach>
 	<div style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="수정" id="uptBtn"/>
 		<input type="button" class="btn btn-danger"
 			value="삭제" id="delBtn"/>		
-			
+					
 		<input type="button" class="btn btn-success"
 			value="조회 화면으로" id="goMain"/>
 	</div>

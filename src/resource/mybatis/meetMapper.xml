@@ -68,7 +68,7 @@
  	</delete> 	
   	
   	
-<!-- 여기서부터 다시 체크 
+<!--  
   	<insert id="insertRepo" parameterType="String"> 
  		insert into meetfile values(pmsmeeting_seq.currval, 
  			#{fname}, sysdate, sysdate, '')
@@ -97,7 +97,7 @@
  		insert into meetfile values(${no}, 
  			#{tar}, sysdate, sysdate, '')
 	</insert>	
+-->
 	
-	--> 	
 </mapper>
 
