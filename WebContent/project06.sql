@@ -1102,12 +1102,24 @@ insert into PMSISSUE values(pmsissue_seq.nextval,'insert','결제 정보를 inse
 insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-15','YYYY-MM-DD'),null,null,1001,10000024);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000023);		
+
+insert into PMSISSUE values(pmsissue_seq.nextval,'결제시스템','결재 시스템을 데이테 베이스와 연동하는 부분에서 오류가 발생하는데 이유를 모르겠습니다. 400에러라 출력이 되며 자세한 내용은 파일을 첨부하겠습니다.',0,null,to_date('2020-05-05','YYYY-MM-DD'),null,null,1002,10000006);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'역할 분배문제','신청과 결제가 두사람에게 분배되어 있는것을 확인 일의 효율성을 위해서라도 역할의 재분배가 필요해 보입니다.',0,null,to_date('2020-05-09','YYYY-MM-DD'),null,null,1002,10000011);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'게시판 공통 문제','게시판과 데이터 베이스의 연동하는 내용이 너무 어렵습니다. 추가적인 교육을 요청합니다.',0,null,to_date('2020-05-11','YYYY-MM-DD'),null,null,1002,10000012);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 내역 갱신 문제','결제 이후 쿠폰의 사용에 따라 잔여 쿠폰 개수가 다르게 나오는 문제가 발생하였습니다. 별다른 오류내역이 뜨지 않아 어디서 부터 해결해야 할 지 모르겠습니다.',0,null,to_date('2020-05-18','YYYY-MM-DD'),null,null,1002,10000021);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'페이지 연동에 따른 문제','팀원이 작성한 페이지를 메인에 연동하여 실행하였는데 많은 오류가 발생하여 최종 결제까지 사간이 더 필요해질것 같습니다. 추가적으로 다음 프로젝트시 이를 예방할 수 있는 방법을 토론해 보고 싶습니다.',0,null,to_date('2020-05-21','YYYY-MM-DD'),null,null,1002,10000025);		
+
 -- 이슈리스트 댓글
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰 코드의번호를 획득 한뒤 새로운 쿠폰을 등록해야 할거 같습니다.',sysdate,10000023,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,1,'그뒤 제약조건을 삭제하고 다시 생성한 뒤 일반회원 리스트 작성해야 할것 같습니다.',sysdate,10000023,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysdate,10000022,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
+
+insert into PMSREPLY values(pmsreply_seq.nextval,0,'저도 같은 생각입니다. 해당 문제 때문에 프로젝트 진행이 느려지는 문제가 있었습니다.',sysdate,10000012,20);	
+insert into PMSREPLY values(pmsreply_seq.nextval,6,'해당 문제에 대해서는 다음 프로젝트 진행시 참고하도록 하겠습니다.',sysdate,10000006,20);	
+insert into PMSREPLY values(pmsreply_seq.nextval,7,'감사합니다.',sysdate,10000012,20);	
+
 -- 업무리스트
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계',null, '2020/05/04', '2020/05/08',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '데이터베이스', 'DB설계 및 생성',null, '2020/05/04','2020/05/14',0,NULL,NULL,21,10000005);
