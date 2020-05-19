@@ -26,11 +26,27 @@ public class DashTeamCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		d.addAttribute("nlist", service.nlist(emp.getPno()));
-		d.addAttribute("mlist", service.mlist(emp.getPno()));
-		d.addAttribute("ilist", service.ilist(emp.getPno()));
-		d.addAttribute("rlist", service.rlist(emp.getPno()));
-		return "WEB-INF\\views\\main\\dashteam.jsp";
+		if(emp.getMdiv()==5) {
+			d.addAttribute("nlist", service.nlist(emp.getPno()));
+			d.addAttribute("mlist", service.mlist(emp.getPno()));
+			d.addAttribute("ilist", service.ilist(emp.getPno()));
+			d.addAttribute("rlist", service.rlist(emp.getPno()));
+			return "WEB-INF\\views\\main\\dashteam.jsp";
+		} else if(emp.getMdiv()==4) {
+			d.addAttribute("nlist", service.nlist(emp.getPno()));
+			d.addAttribute("mlist", service.mlist(emp.getPno()));
+			d.addAttribute("ilist", service.ilist(emp.getPno()));
+			d.addAttribute("rlist", service.rlist(emp.getPno()));
+			return "WEB-INF\\views\\main\\dashpm.jsp";
+		} else if(emp.getMdiv()==7) {
+			return "WEB-INF\\views\\main\\top.jsp";
+		} else {
+			d.addAttribute("nlist", service.nlist(emp.getPno()));
+			d.addAttribute("mlist", service.mlist(emp.getPno()));
+			d.addAttribute("ilist", service.ilist(emp.getPno()));
+			d.addAttribute("rlist", service.rlist(emp.getPno()));
+			return "WEB-INF\\views\\main\\dashceo.jsp";
+		}	
 	}
 	
 	public String isLogin(String page, HttpServletRequest request) {

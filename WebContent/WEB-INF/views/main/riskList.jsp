@@ -70,6 +70,7 @@
 #date{width:20%}
 #views{width:10%}
 #all{padding: 2px}
+.row{padding:0px 50px 0px 50px }
 </style>
 </head>
 <body>

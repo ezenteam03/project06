@@ -47,8 +47,8 @@
 		$("form").submit();
 	 });
 	 // PM 버튼
-	 $("#delBtn").click(function(){
-		$("form").attr("action","${path}/PMSemp.do?method=dbtn");
+	 $("#pmBtn").click(function(){
+		$("form").attr("action","${path}/PMSemp.do?method=updatePm");
 		$("form").submit();
 	 });
 	 // 이전 버튼
@@ -135,7 +135,7 @@
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
 	             	   <button type="button" class="btn btn-primary" 
-		           			id="ctoBtn" style="margin-right:20px;">CTO 설정</button>
+		           				id="ctoBtn" style="margin-right:20px;">CTO 설정</button>
 			           <button type="button" class="btn btn-success" 
 			           			id="pmBtn" style="margin-right:20px;">PM 설정</button>
 			           <button type="button" class="btn btn-default"
