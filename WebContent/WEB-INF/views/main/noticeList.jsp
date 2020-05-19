@@ -53,6 +53,12 @@
 	padding:2%;
 }
 
+.jumbotron{background-color:#22D6B2; }
+.pagination{margin-left:1%;float:left; }
+#regBtn{margin: 20px; }
+.Rtable{margin-top: 20%}
+/*#F3969A*/
+.row{padding:0px 50px 0px 50px }
 .num {width:10%;}
 .title {width:65%;}
 .date {width:15%;}
@@ -93,20 +99,42 @@ function goPage(no){
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
-    <!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        
-       <div id="all">
-        <div class="row">
-         <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
-                <hr>
+		<section id="main-content">
+      		<section class="wrapper">
+        		<div id="all">
+        			<div class="row">
+         				<!-- /col-md-12 -->
+          				<div class="col-md-12 mt">
+            			<div class="content-panel">
+	            			<h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+                			<hr>
+                			
+                			<form:form class="form" commandName="nsch" method="post" >
+  							<form:hidden path="curPage"/>
+                			<div style="float:left; height:34px">
+								<span style="height:34px" class="input-group-text">페이지 크기:</span>
+							</div>
+                			
+                			<div style="float:left; margin-right: 5px">
+								<form:select  path="pageSize" class="form-control" style="width:100px;float:left; ">
+									<form:option value="5">5</form:option>
+									<form:option value="10">10</form:option>
+									<form:option value="20">20</form:option>		
+				 				</form:select>	
+							 </div>
+							 <div style="float:left;">
+			 					<button class="btn btn-success" type="submit">선택</button>	
+			 				</div>
+							
+							<div style="float:right;">
+			 			 		<button  class="btn btn-success" type="submit" >검색</button>
+			 				</div>
+			 				<div  style="float:right;">
+				  				<form:input style="width: 200px" class="form-control mr-sm-2" path="title" placeholder="제목"/>
+				  			</div>
+				  
+                			
+                			
                 <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
@@ -131,15 +159,10 @@ function goPage(no){
 		        </tbody>
 			</table>
 	
-   <form:form class="form" commandName="nsch" method="post" >
-  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  
-	    <form:input class="form-control mr-sm-2 sch" 
-	    		path="title" placeholder="제목" />
-	    <button class="btn btn-success" type="submit">Search</button>&nbsp;
-	    <button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
-  	</nav>
+    
+	    
+	    
+	    
   	<br>
  	<div class="input-group lb-3">	
 		<div class="input-group-prepend ">
@@ -159,31 +182,6 @@ function goPage(no){
 	</div>  
   </form:form> 
     
-    
-   <%-- 
-   <form:form class="form" commandName="nsch" method="post" >
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
- 
- 	<br>
- 	
-<div class="input-group lb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>
-		<input class="form-control" />	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-	</div>  
-  </form:form>
---%>  
               
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
