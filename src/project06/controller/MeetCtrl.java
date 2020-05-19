@@ -34,7 +34,7 @@ public class MeetCtrl {
 	}	
 	@RequestMapping(params="method=insForm")
 	public String insertForm() {
-		return "WEB-INF\\views\\main\\MeetInsert.jsp";
+		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
 	@RequestMapping(params="method=insert")
 	public String insert(Meet insert) {
@@ -44,7 +44,7 @@ public class MeetCtrl {
 		service.insert(insert);
 		insert.setTopic("");
 		insert.setDetail("");
-		return "WEB-INF\\views\\main\\MeetInsert.jsp";
+		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
 	@RequestMapping(params="method=update")
 	public String update(Meet upt) {
@@ -60,7 +60,7 @@ public class MeetCtrl {
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("mnno") int mnno, Model d) {
 		d.addAttribute("Meet", service.getMeet(mnno));
-		return "WEB-INF\\views\\main\\MeetDetail.jsp";
+		return "WEB-INF\\views\\main\\meetDetail.jsp";
 	}
 	// 다운로드 처리.
 	@RequestMapping(params="method=download")
