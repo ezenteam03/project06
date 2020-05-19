@@ -44,7 +44,7 @@
  		WHERE mnno = #{mnno}
  	</select>
  	
- 	<update id="uptViews" parameterType="int">
+ 	<update id="uptReadCnt" parameterType="int">
  		UPDATE pmsmeeting
  		   SET views = views+1
  		 WHERE mnno = #{mnno}
