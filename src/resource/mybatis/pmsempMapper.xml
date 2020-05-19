@@ -20,6 +20,12 @@
 			AND a.eno = b.mno(+)
 			AND a.eno = #{eno}
  	</select>
+ 	<!-- 프로젝트 리스트 -->
+ 	<select id="getPlist" resultMap="pmsEmpEnoResult">
+		select pno 
+		from pmsproject
+		order by pno asc 
+	</select>
  	<!-- pmsmember에 등록 됐는지 확인 -->
  	<select id="memCheck" resultType="int" parameterType="pmsemp">
 		select count(*) 
@@ -46,7 +52,7 @@
 	<!-- pms에 등록안된 경우 PM으로등록 -->
 	<insert id="insertMem2" parameterType="pmsemp">
 		 insert into pmsmember 
-		 	values(#{mno}, #{pass}, 4, #{wcon}, null)
+		 	values(#{eno}, #{pass}, 4, #{phone}, #{pno})
 	</insert>
 	<!-- PM 권한해제 설정 -->
 	<update id="updatePm2" parameterType="pmsemp">

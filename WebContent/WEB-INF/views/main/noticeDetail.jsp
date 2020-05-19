@@ -116,9 +116,9 @@ $(document).ready(function(){
 		
 		
 		<div class="input-group-prepend">
-			<span class="input-group-text">조회수</span>
+			<span  style="width:10%; padding:7px;" class="bg-warning ">조회수 </span>
 		</div>
-		<input  class="form-control" readonly="readonly"
+		<input  class="form-control" readonly="readonly" style="background:white;"
 			 value="${notice.views}" />	
 	</div>		
 	<div class="input-group mb-3">

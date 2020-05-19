@@ -43,13 +43,13 @@
   $(document).ready(function(){
 	 // CTO 버튼
 	 $("#ctoBtn").click(function(){		
-		$("form").attr("action","${path}/PMSemp.do?method=update");
-		$("form").submit();
+		$("#setForm").attr("action","${path}/PMSemp.do?method=update");
+		$("#setForm").submit();
 	 });
 	 // PM 버튼
-	 $("#pmBtn").click(function(){
-		$("form").attr("action","${path}/PMSemp.do?method=updatePm");
-		$("form").submit();
+	 $("#pmBtn").click(function(){		
+		$("#setForm").attr({"action":"${path}/PMSemp.do?method=updatePm"});
+		$("#setForm").submit();
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
@@ -75,59 +75,56 @@
           <div class="col-lg-12">
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 수정</h4>
-              <form class="form-horizontal style-form" method="post">
+              <form class="form-horizontal style-form" method="post" id="setForm">
+              <input type="hidden" name="eno" value="${pemp.eno}"/>
+              <input type="hidden" name="peno" value="${pemp.eno}"/>
+              <input type="hidden" name="phone" value="${pemp.phone }"/>                         
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">
-                    <span>${emp.name}</span>
+                    <span>${pemp.name}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
                   <div class="col-sm-10">
-                    <span>${emp.dept}</span>
+                    <span>${pemp.dept}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
-                    <span>${emp.grade}</span>
+                    <span>${pemp.grade}</span>
 
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">핸드폰</label>
                   <div class="col-sm-10">
-                    <span>${emp.phone}</span>
+                    <span>${pemp.phone}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
-                    <span>${emp.email}</span>
+                    <span>${pemp.email}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">권한</label>
                   <div class="col-sm-10">
-                    <span>${emp.cname==null?"PMS등록안됨":emp.cname}</span>
+                    <span>${pemp.cname==null?"PMS등록안됨":pemp.cname}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">프로젝트</label>
                   <div class="col-sm-10">
-                    <span>${emp.pno}</span>
-                    <select class="sel-grade" name="pno">
-                  	<option>${emp.pno==null?"PMS등록안됨":emp.pno}</option>
-                  	<option value="1001">1001</option>
-                  	<option value="1002">1002</option>
-                  	<option value="1003">1003</option>
-                  	<option value="1004">1004</option>
-                  	<option value="1005">1005</option>
-                  	<option value="1006">1006</option>
-                  	<option value="1007">1007</option>
-                  	<option value="1008">1008</option>
-                  </select>
+                    <span>${pemp.pno==null?"PMS등록안됨":pemp.pno}</span>
+	                  <select class="sel-grade" name="pno">
+	                  	<c:forEach var="p" items="${plist}" >
+	                  		<option value="${p}">${p}</option>
+	                  	</c:forEach>
+	                  </select>
                   </div>
                 </div>
                 </form>
@@ -135,8 +132,8 @@
 	               <div style="display:inline-block; ">
 	             	   <input type="button" class="btn btn-primary" 
 		           				id="ctoBtn" style="margin-right:20px;" value="CTO 설정"/>
-			           <button type="button" class="btn btn-success" 
-			           			id="pmBtn" style="margin-right:20px;">PM 설정</button>
+			           <input type="button" class="btn btn-success" 
+			           			id="pmBtn" style="margin-right:20px;" value="PM 설정" />
 			           <button type="button" class="btn btn-default"
 			           			id="preBtn">이전</button>
 		           </div>

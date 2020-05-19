@@ -37,23 +37,24 @@ public class pmsempCtrl {
 	}
 	// CEO, CTO 권한설정 페이지 이동
 	@RequestMapping(params="method=setForm")
-	public String setemp(@RequestParam("eno") int eno, Model d) {
+	public String setemp(@RequestParam("peno") int eno, Model d) {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
-		System.out.println("ctrl eno : "+eno);
-		d.addAttribute("emp", service.getemp(eno));
+		System.out.println("ctrl 상세페이지  eno : "+eno);
+		d.addAttribute("pemp", service.getemp(eno));
+		d.addAttribute("plist",service.getPlist());
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CTO 권한 설정
 	@RequestMapping(params="method=update")
 	public String update(pmsemp upt) {
-		System.out.println("실행체크");
-		System.out.println("upt eno : "+upt.getEno());
+		System.out.println("ctrl CTO권한설정버튼eno"+upt.getEno());
 		service.updateCto(upt);
 		return "forward:/PMSemp.do?method=setForm";
 	}
 	// PM 권한 설정
 	@RequestMapping(params="method=updatePm")
 	public String updatePm(pmsemp uptPm) {
+		System.out.println("ctrl PM권한설정버튼eno"+uptPm.getEno());
 		service.updatePm(uptPm);
 		return "forward:/PMSemp.do?method=setForm";
 	}

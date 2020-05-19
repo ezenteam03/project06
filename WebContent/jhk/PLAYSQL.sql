@@ -45,6 +45,9 @@ AND pt.mno = pem.mno;
 10000015 10000016 10000017 10000019 10000022 10000023 10000024 팀원
  진수님           형준님           현규님         조장님           나             하나님         준석님
  */
+SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno;
+
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
@@ -54,26 +57,12 @@ WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
-AND pp.pno = 1002
+--AND pp.pno = 1002
 --AND pt.tname LIKE '%'||'웹'||'%'
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 --팀원 작업 내역
-SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
-(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
-FROM PMSPROJECT pp, PMSTASK pt, 
-(SELECT * FROM PMSEMP pe, PMSMEMBER pm
-WHERE pe.eno = pm.mno) pem
-WHERE pp.pno = pt.pno
-AND pt.mno = pem.mno
-AND pt.tno = 1009
---AND pt.refno = 1009
---AND pem.eno = 10000005
---OR pt.tno = 1008
---OR pt.tno = 1009
---OR pt.tno = 1011
-UNION all
-SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+/*SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
@@ -82,22 +71,37 @@ WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 --AND pt.tno = 1009
 --AND pt.refno = 1009
---AND pem.eno = 10000005
---OR pt.tno = 1008
---OR pt.tno = 1009
---OR pt.tno = 1011
-START WITH pt.refno=1009
+AND pem.eno = 10000005
+UNION all*/
+SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+AND pem.eno = 10000016
+AND pt.refno = 1008
+OR pt.tno = 1008
+START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 
-SELECT * FROM
-	(SELECT ROWNUM NUM, REFNO FROM
-		(SELECT DISTINCT refno FROM pmstask
-		WHERE mno=10000016
-		START WITH refno=0
-		CONNECT BY PRIOR tno = refno
-		ORDER BY refno ASC)
-	) a
-;
+SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+AND pt.tno = 1008
+START WITH pt.refno=0
+CONNECT BY PRIOR pt.tno = pt.refno;
+
+SELECT DISTINCT refno FROM pmstask
+WHERE mno=10000016
+START WITH refno=0
+CONNECT BY PRIOR tno = refno
+ORDER BY refno ASC;
 
 SELECT pp.*, pt.*, pem.* 
 FROM PMSPROJECT pp, PMSTASK pt, 

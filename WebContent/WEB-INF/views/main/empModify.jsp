@@ -76,7 +76,8 @@
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 수정</h4>
               <form class="form-horizontal style-form" method="post">
-				<input type="hidden" name="eno" value="${pemp.eno}" />
+				<input type="hidden" name="eno" value="${pemp.eno}"/>
+                <input type="hidden" name="peno" value="${pemp.eno}"/>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">

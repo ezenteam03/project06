@@ -89,13 +89,13 @@
 	<input name="mnno" type="hidden" value="${meet.mnno }"/>
 <div class="input-group mb-3">	
 		<div class="input-group-prepend">
-			<span class="input-group-text">작성자</span>
+			<span style=" padding:7px;" >작성자</span>
 		</div>
 		<input class="form-control" disabled="disabled"  style="background-color: #ffffff;"
 			value="${meet.writer }" placeholder="작성자입력하세요"/>	
 			
 		<div class="input-group-prepend">
-			<span class="input-group-text">작 성 일</span>
+			<span style=" padding:7px;" >작 성 일</span>
 		</div>
 		<input  class="form-control" disabled="disabled"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${meet.wdate }'/>" 
@@ -104,7 +104,7 @@
 	</div>		
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text">제 목</span>
+			<span style=" padding:7px;" >제 목</span>
 		</div>
 		<input name="topic" class="form-control"
 			value="${meet.topic}"  
