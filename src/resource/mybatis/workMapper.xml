@@ -66,6 +66,11 @@
 		   	   detail = #{detail}   
 		 WHERE tno = #{tno}
  	</update> 
+ 	<update id="upDetail" parameterType="task">
+		UPDATE PMSTASK
+		   SET updetail = #{updetail}
+		 WHERE tno = #{tno}
+ 	</update>
  	<update id="coment" parameterType="task">
 		UPDATE PMSTASK
 		   SET coment = #{coment}

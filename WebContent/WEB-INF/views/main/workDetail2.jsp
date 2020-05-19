@@ -21,6 +21,8 @@
 <style type="text/css">
 	.input-group-text{width:100%;}
 	.input-group-prepend{width:20%;}
+	.tdiv-text{text-align:center; font-size:20px; width:120px; background:white; float:left;}
+	.div-Btn{height:40px; margin-left:10px;}
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -107,6 +109,22 @@
 				}
 			}
 		});
+		$("#divBtn3").click(function(){
+			if(${task.tdiv==22}){
+				if(confirm("결재완료 하시겠습니까?")){
+					alert("결재완료 되었습니다.");
+					$("form").attr("action","${path}/task.do?method=upTdiv3");
+					$("form").submit();
+				}
+			}
+		});
+		$("#updetail").click(function(){
+			if(confirm("진행률 저장 하시겠습니까?")){
+				alert("저장 되었습니다.");
+				$("form").attr("action","${path}/task.do?method=upDetail");
+				$("form").submit();
+			}
+		})
 		function inNumber(){
 			  if(event.keyCode<48 || event.keyCode>57){
 			     event.returnValue=false;
@@ -121,7 +139,19 @@
 	<jsp:include page="top.jsp"/>
 
 <div class="jumbotron text-left" style="margin-left:200px;">
+<div style="float:left;">
   <h2><i class="fa fa-angle-right"></i> 업무상세 </h2>
+  </div>
+  <div style="margin-left:200px; width:300px; height:50px; margin-bottom:50px;">
+	    		<span border>업무 진행률 기준</span>
+		    		<ul>
+		    		<li>- 요구사항분석 10%</li>
+		    		<li>- 화면구현 20%</li>
+		    		<li>- 기능구현 30%</li>
+		    		<li>- 데이터베이스연동 30%</li>
+		    		<li>- 테스트 10%</li>
+		    	</ul>
+	    	</div>
 </div>
 
 <div class="container">
@@ -178,6 +208,18 @@
 			class="form-control" 
 			placeholder="내용입력하세요" >${task.detail}</textarea>		 
 	</div> 
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">업 무 진 행 도</span>
+		</div>
+		<textarea name="updetail" rows="5" style="width:980px;"
+			class="form-control" 
+			placeholder="내용 입력하세요" >${task.updetail}</textarea>		
+			<div>
+				<input type="button" class="btn btn-success" style="width:130px; height:115px;"
+				value="저장하기" id="updetail"/>
+			</div>	 
+	</div> 
 	<!-- 
 	<c:forEach var="fname"  begin="1" end="2"
 		 varStatus="sts">
@@ -197,29 +239,31 @@
 		
 	</div> 
 	</c:forEach>	 -->
-	<div class="input-group mb-3" style="float:left;">
-			<span class="bg-warning text-white input-group-text" style="width:220px; float:left;">결재 여부</span>
+	<div class="input-group mb-3" style="float:left; ">
+			<span class="bg-warning text-white input-group-text" style="font-size:20px;height:40px; width:220px; float:left;">결재 여부</span>
 			<c:choose>
 				<c:when test="${task.tdiv==21}">
-				<span class="input-group-text" style="width:330px; background:white; float:left;">업무수행중</span>
+				<span class="input-group-text tdiv-text">업무수행중</span>
 				</c:when>
 				<c:when test="${task.tdiv==22}">
-				<span class="input-group-text" style="width:330px; background:white; float:left;">결재신청</span>
+				<span class="input-group-text tdiv-text">결재신청</span>
 				</c:when>
 				<c:when test="${task.tdiv==23}">
-				<span class="input-group-text" style="width:330px; background:white; float:left;">반려</span>
+				<span class="input-group-text tdiv-text">반려</span>
 				</c:when>
 				<c:when test="${task.tdiv==24}">
-				<span class="input-group-text" style="width:330px; background:white; float:left;">결재완료</span>
+				<span class="input-group-text tdiv-text">결재완료</span>
 				</c:when>
 			</c:choose>
-			<button class="btn btn-success" id="divBtn">결재신청</button>
+			</t>
+			<button class="btn btn-success div-Btn" id="divBtn">결재신청</button>
 			
-			<button class="btn btn-danger" id="divBtn2">반려처리</button>
-			<button class="btn btn-success" id="divBtn3">결재완료</button>
+			<button class="btn btn-danger div-Btn" id="divBtn2">반려처리</button>
+			<button class="btn btn-info div-Btn" id="divBtn3">결재완료</button>
+			<br><br>
 			<div class="input-group-prepend">
 				<span class="bg-warning text-white input-group-text" style="width:220px;">진행률</span>
-				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">%
+				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 				<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
 				
 			</div>
@@ -233,11 +277,13 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">반려 사유</span>
 		</div>
-		<textarea name="coment" rows="2" 
+		<textarea name="coment" rows="3"   style="width:980px;"
 			class="form-control" 
 			placeholder="사유를 입력하세요" >${task.coment}</textarea>
-			<input type="button" class="btn btn-success"
-			value="사유 등록" id="coment"/>		 
+			<div>
+				<input type="button" class="btn btn-success" style="width:130px; height:75px;"
+				value="사유 등록" id="coment"/>
+			</div>		 
 	</div> 
 	<div style="text-align:left;">
 	

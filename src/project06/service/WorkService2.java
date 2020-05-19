@@ -69,6 +69,9 @@ public class WorkService2 {
 	public void coment(Task upt) {
 		dao.coment(upt);
 	}
+	public void upDetail(Task upt) {
+		dao.upDetail(upt);
+	}
 	public void prog(Task upt) {
 		dao.prog(upt);
 	}
