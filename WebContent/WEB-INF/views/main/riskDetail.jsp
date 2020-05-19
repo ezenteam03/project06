@@ -77,10 +77,10 @@
 			$('#cuptBt').css('display', 'none');
 			
 			$("#coment").css('backgroundColor','#ffffff');			
-//			$("#coment").attr('readOnly','true');
-//			$("#file01").attr('disabled','false');
-//			$("#title").attr('readOnly','false');
-//			$("#detail").attr('readOnly','false');	
+			$("#coment").attr('readOnly',true);
+			$("#file01").attr('disabled',false);
+			$("#title").attr('readOnly',false);
+			$("#detail").attr('readOnly',false);	
 		}else{
 			// 권한없음
 			$('#uptBtn').css('display', 'none');
@@ -88,32 +88,41 @@
 			$("#title").css('backgroundColor','#ffffff');
 			$("#detail").css('backgroundColor','#ffffff');
 			$("#coment").css('backgroundColor','#ffffff');
-//			$("#coment").attr('readOnly','true');
-//			$("#title").attr('readOnly','true');
-//			$("#detail").attr('readOnly','true');
-//			$("#file01").attr('disabled','true');
+			$("#coment").attr('readOnly',true);
+			$("#title").attr('readOnly',true);
+			$("#detail").attr('readOnly',true);
+			$("#file01").attr('disabled',true);
 		
 		}
 		// PM권한		
 		if(ri==3){
-			$('#cuptBt').css('display', 'block');
-			$("#title").css('backgroundColor','#ffffff');
-			$("#detail").css('backgroundColor','#ffffff');	
-			$("#file01").css('backgroundColor','#ffffff');
-			$("#file01").attr('disabled',true);
-			$("#title").attr('readOnly',true);
-			$("#detail").attr('readOnly',true);
-			$("#coment").attr('readOnly',false);
+			if(mno!=rmno){
+				$('#cuptBt').css('display', 'block');
+				$("#title").css('backgroundColor','#ffffff');
+				$("#detail").css('backgroundColor','#ffffff');	
+				$("#file01").css('backgroundColor','#ffffff');
+				$("#file01").attr('disabled',true);
+				$("#title").attr('readOnly',true);
+				$("#detail").attr('readOnly',true);
+				$("#coment").attr('readOnly',false);
+			}else{
+				$('#uptBtn').css('display', 'block');
+				$('#cuptBt').css('display', 'block');
+				$("#file01").attr('disabled',false);
+				$("#title").attr('readOnly',false);
+				$("#detail").attr('readOnly',false);
+				$("#coment").attr('readOnly',false);
+			}
 					
 		}		
 		// admin권한
 		if(ri==4){
 			$('#uptBtn').css('display', 'block');
 			$('#cuptBt').css('display', 'block');
-	//		$("#file01").attr('disabled','false');
-//			$("#title").attr('readOnly','false');
-//			$("#detail").attr('readOnly','false');
-//			$("#coment").attr('readOnly','false');
+			$("#file01").attr('disabled',false);
+			$("#title").attr('readOnly',false);
+			$("#detail").attr('readOnly',false);
+			$("#coment").attr('readOnly',false);
 		}		
 		
 		// 댓글 수정창 열기(댓글 상세)
