@@ -99,11 +99,11 @@ INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이�
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',0,NULL,NULL,21,10000005);
 
 -- 1050~1054
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1003, '프로그램 상세내용', '쇼모꼬 프로그램 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1003, '대관신청', '대관신청 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1003, '게시판', '게시판 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1003, '회원가입 / 로그인', '회원가입 / 로그인 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1003, '관리자 시스템', '관리자 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '프로그램 상세내용', '쇼모꼬 프로그램 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '대관신청', '대관신청 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '게시판', '게시판 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '회원가입 / 로그인', '회원가입 / 로그인 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '관리자 시스템', '관리자 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 
 
 ----- 1050
