@@ -67,6 +67,36 @@
 		 WHERE mnno = #{mnno}
  	</delete> 	
   	
+ <!-- 조회수 -->
+ 	
+	<!-- 파일 업로드	 -->
+	<insert id="insertRepo" parameterType="String"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,pmsissue_seq.currval, 
+ 			#{fname}, sysdate)
+	</insert>
+	<resultMap type="String" id="strMap"/> 
+ 	<select id="fnames" resultMap="strMap" parameterType="int">
+ 		SELECT fname 
+ 		FROM PMSBFILE		
+ 		WHERE mnno=#{mnno}
+ 	</select> 
+	
+	<update id="uptFileInfo" parameterType="java.util.HashMap">
+		UPDATE PMSBFILE
+			SET fname = #{tar},
+	        upload= sysdate
+	    WHERE mnno = ${mnno}
+		AND fname = #{org}	    	
+	</update> 	
+ 	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${mnno},
+ 			#{tar}, sysdate)
+	</insert>
+ 
+ 
+ 
+ 
+ 
   	
 <!--  
   	<insert id="insertRepo" parameterType="String"> 
