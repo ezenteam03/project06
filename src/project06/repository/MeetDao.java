@@ -11,9 +11,7 @@ import project06.vo.MeetSch;
 
 @Repository
 public interface MeetDao {
-	// select * from reMeet
-	// springweb.a03_mvc.a03_repository.MeetDao
-	// 검색할 내용의 전체 데이터 건수.
+
 	public int totCnt(MeetSch sch);
 	
 	public ArrayList<Meet> list(MeetSch sch);
