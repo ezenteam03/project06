@@ -9,7 +9,7 @@ import project06.vo.Project;
 @Repository
 public interface ProjectDao{
 	public ArrayList<Project> projectList();
-	public Project getProject();
+	public Project getProject(int mno);
 	
 }
 
