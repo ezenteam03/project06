@@ -53,12 +53,6 @@
 	padding:2%;
 }
 
-.jumbotron{background-color:#22D6B2; }
-.pagination{margin-left:1%;float:left; }
-#regBtn{margin: 20px; }
-.Rtable{margin-top: 20%}
-/*#F3969A*/
-.row{padding:0px 50px 0px 50px }
 .num {width:10%;}
 .title {width:65%;}
 .date {width:15%;}
@@ -91,7 +85,7 @@ function go(nno){
 
 
 function goPage(no){
-	alert("이동 번호:"+no);
+	
 	$("#curPage").val(no);
 	$("form").submit();
 }
@@ -99,45 +93,52 @@ function goPage(no){
 <body>
   <section id="container">
 	<jsp:include page="top.jsp"/>
-		<section id="main-content">
-      		<section class="wrapper">
-        		<div id="all">
-        			<div class="row">
-         				<!-- /col-md-12 -->
-          				<div class="col-md-12 mt">
-            			<div class="content-panel">
-	            			<h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
-                			<hr>
-                			
-                			<form:form class="form" commandName="nsch" method="post" >
-  							<form:hidden path="curPage"/>
-                			<div style="float:left; height:34px">
-								<span style="height:34px" class="input-group-text">페이지 크기:</span>
-							</div>
-                			
-                			<div style="float:left; margin-right: 5px">
-								<form:select  path="pageSize" class="form-control" style="width:100px;float:left; ">
-									<form:option value="5">5</form:option>
-									<form:option value="10">10</form:option>
-									<form:option value="20">20</form:option>		
-				 				</form:select>	
-							 </div>
-							 <div style="float:left;">
-			 					<button class="btn btn-success" type="submit">선택</button>	
-			 				</div>
-							
-							<div style="float:right;">
-			 			 		<button  class="btn btn-success" type="submit" >검색</button>
-			 				</div>
-			 				<div  style="float:right;">
-				  				<form:input style="width: 200px" class="form-control mr-sm-2" path="title" placeholder="제목"/>
-				  			</div>
-				  
-                			
-                			
-                <form method="post">
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        
+       <div id="all">
+        <div class="row">
+         <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
+              <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
+	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+                <br>
+              <form:form class="form" commandName="nsch" method="post" >
+  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+  				<nav class="navbar navbar-expand-sm  navbar-dark">
+  
+	    		<form:input class="form-control mr-sm-2 sch" 
+	    			path="title" placeholder="제목" />
+	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	    
+  				</nav>
+  				<br>
+ 	<div class="input-group lb-3">	
+		<div style="float:left; width:20%;" class="input-group-prepend ">
+			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
+		</div>
+		
+		<div style="float:right; width:20%;" class="input-group-append">
+			<span class="input-group-text">페이지 크기:</span>
+			<form:select path="pageSize" class="form-control">
+				<form:option value="3">3</form:option >
+				<form:option value="5">5</form:option >
+				<form:option value="10">10</form:option >
+				<form:option value="20">20</form:option >
+				<form:option value="30">30</form:option >
+			</form:select> 
+		</div>
+	</div>  
+  </form:form> 
+  
+  			<hr>
 			<table class="table table-hover">
 		    	<thead>
 		          <tr>
@@ -159,30 +160,9 @@ function goPage(no){
 		        </tbody>
 			</table>
 	
+   
     
-	    
-	    
-	    
-  	<br>
- 	<div class="input-group lb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>
-		<input class="form-control" />	
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-	</div>  
-  </form:form> 
-    
-              
+      <div style="text-align:center; float:left; margin-left:600px;">  
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
 	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
@@ -193,9 +173,11 @@ function goPage(no){
 			<li class="page-item">
 			<a class="page-link" href="javascript:goPage(${(nsch.endBlock==nsch.pageCount)?nsch.endBlock:nsch.endBlock+1});">Next</a></li>
 	  </ul>  
-            
-            
-            
+      </div>      
+             <br>
+        <!-- c:if 어쩌고-->
+          <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+            <br><br><br>
             </div>
            
           </div>
@@ -204,9 +186,7 @@ function goPage(no){
         </div>
         <!-- row -->
         
-        <br>
-        <!-- c:if 어쩌고-->
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+       
     </div>
      
         
