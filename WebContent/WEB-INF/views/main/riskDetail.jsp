@@ -69,6 +69,12 @@
 		}
 		
 		
+		// 댓글 수정창 열기(댓글 상세)
+		$("#comentbt").click(function(){			
+			$(location).attr("href","${path}/risk.do?method=cdetail&rno="+rno);
+		
+		});
+		
 	});
 		
 </script>
@@ -199,12 +205,10 @@
        
        <td class="txt" >${comment.cdetail}</td>
         
-        <td class="num" ><input type="button" class="btn btn-info"
-			value="삭제" id="delBtn${comment.rno}"/>	</td>
-        <td class="num" ><a href="#pop01"
-			 >수정</a>	</td>
+     
+        <td class="num" ><a id="comentbt" href="#popup">수정</a></td>
         <td class="num"><input type="button" class="btn btn-info"
-			value="댓글" id="cComment${comment.rno}" />	</td>
+			value="댓글" id="cComment" />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
    
@@ -214,14 +218,29 @@
 </div></div>
 </div>
 	</form>
-<div id="pop01" class="overlay">
+<div id="popup" class="overlay">
 	<div class="popup">
 		<a href="#none" class="close">&times;</a>
 	
 		<form class="form-login" id="inforCheckForm" method="post" style="background-color:#e0e0e0;margin-top:0%">
 
-		<h2 class="form-login-heading">INFORMATION</h2>
-	
+		<h2 class="form-login-heading">댓글 수정</h2>
+		<div class="login-wrap">
+			<label>작성자</label>
+			<input type="text" class="form-control" value="${mno}" name="mno" readonly="readonly"/>
+			
+			<br>
+			<label>작성일</label><br>
+			<fmt:formatDate type='both' value='${comment.wdate}'/>
+			
+			<br>
+			
+			<label>댓글 내용</label>
+				<input type="text" class="form-control" value="${comment.cdetail}" name="mno" />
+		
+			<button class="btn btn-theme btn-block" type="button" id="inforBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
+								
+		</div>
 			
 		</form>
 	</div>

@@ -23,15 +23,16 @@ public class RiskService {
 	private RiskDao dao;
 	
 	public ArrayList<Risk> list(RiskSch sch){
+		if(sch.getPno()==0) {
+			sch.setPno(1001);
+		}
 		// 1. 데이터 총건수
 		sch.setCount(dao.totCnt(sch));
 		// 2. 페이지 초기값
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
 		}
-		if(sch.getPno()==0) {
-			sch.setPno(1001);
-		}
+		
 		
 		if(sch.getCurPage()==0) {
 			sch.setCurPage(1);
@@ -202,6 +203,12 @@ public class RiskService {
 		dao.deleteComment(no);
 	
 	}
+	// 댓글 상세화면 처리..
+		public Comment getComment(int rno) {
+			Comment d = dao.getComment(rno);
+
+			return d;	
+		}
 	
 }
 

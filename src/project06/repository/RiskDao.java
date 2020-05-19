@@ -32,6 +32,7 @@ public interface RiskDao {
 	// 댓글
 	public ArrayList<Comment> clist(RiskSch sch);
 	public void deleteComment(int rno);	
+	public Comment getComment(int rno);
 	// 조회수
 	public void uptReadCnt(int ino);
 }
