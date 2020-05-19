@@ -1,5 +1,8 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,14 @@ public class RiskCtrl {
 	@Autowired(required=false)
 	private RiskService service;
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("rsch") RiskSch sch, Model d) {
+	
+	public String list(@ModelAttribute("rsch") RiskSch sch, Model d,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		
+		
 		d.addAttribute("rlist", service.list(sch));
 			
 		return "WEB-INF\\views\\main\\riskList.jsp";
