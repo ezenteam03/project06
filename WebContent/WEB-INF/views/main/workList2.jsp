@@ -98,12 +98,25 @@ function go(no){
       <section class="wrapper">
         
        <div id="all">
+       	
+	    
         <div class="row">
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
+            <div style="float:left;">
              <h4><i class="fa fa-bullhorn"></i>&ensp;  업무현황 </h4>
-             
+             </div>
+             <div style="margin-left:400px; width:300px; height:50px; ">
+	    		<span>업무 진행률 기준</span>
+		    		<ul>
+		    		<li>- 요구사항분석 10%</li>
+		    		<li>- 화면구현 20%</li>
+		    		<li>- 기능구현 30%</li>
+		    		<li>- 데이터베이스연동 30%</li>
+		    		<li>- 테스트 10%</li>
+		    	</ul>
+	    	</div>
     <form:form class="form" commandName="tsch" method="post" >
     <form:hidden path="curPage"/>
   	 <div style="width:300px; float:left;">
@@ -111,7 +124,7 @@ function go(no){
 	    
 	    </div>
 	    
-	    <div>
+	    <div >
 	    <button class="btn btn-success" type="submit">검색</button>
 	    </div>
 	    
@@ -145,17 +158,24 @@ function go(no){
           <tr>
             <th class="num">번호</th>
             <th class="title">업무 명</th>
-            <th class="date">종료일/th>
-            <th class="cnt"></th>
+            <th class="date">종료일</th>
+            <th class="cnt">결재여부</th>
           </tr>
         </thead>
         <tbody>
         <c:forEach var="task" items="${tlist}">
           <tr onclick="go(${task.tno})">
             <td style="text-align: center;">${task.tno}</td>
-            <td style="padding-left:70px;">${task.tname}</td>
+            <td style="text-align: center; padding-left:70px;">${task.tname}</td>
             <td style="text-align: center;"><fmt:formatDate value="${task.edate }" type="date"/></td>
-            <td style="text-align: right;padding-right:70px;"></td>
+            <td style="text-align: center;">
+            <c:choose>
+            	<c:when test="${task.tdiv == 21}">업무진행중</c:when>
+            	<c:when test="${task.tdiv == 22}">결재신청</c:when>
+            	<c:when test="${task.tdiv == 23}">반려처리</c:when>
+            	<c:when test="${task.tdiv == 24}">결재완료</c:when>
+            </c:choose>
+            </td>
           </tr>
          </c:forEach>
         </tbody>

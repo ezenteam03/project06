@@ -61,6 +61,11 @@ public class WorkCtrl2 {
 			service.upTdiv3(upt);
 			return "forward:/task.do?method=detail"; 
 		}
+		@RequestMapping(params="method=upDetail")
+		public String upDetail(Task upt) {
+			service.upDetail(upt);
+			return "forward:/task.do?method=detail"; 
+		}
 		
 		
 		
