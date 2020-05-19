@@ -330,20 +330,8 @@ th{text-align:center;}
          <br>
          <h3 style="color:white" align="center">${emp.grade} ${emp.name}</h3>
          </li>
-          <li class="mt" v-if="mdiv==2||mdiv==3||mdiv==6">
-            <a class="active" href="${path }/DashTeam.do?method=ceo">
-              <i class="fa fa-dashboard"></i>
-              <span>대시보드</span>
-              </a>
-          </li>
-          <li class="mt" v-else-if="mdiv==4">
-            <a class="active" href="${path }/DashTeam.do?method=pm">
-              <i class="fa fa-dashboard"></i>
-              <span>대시보드</span>
-              </a>
-          </li>
-          <li class="mt" v-else-if="mdiv==5">
-            <a class="active" href="${path }/DashTeam.do?method=team">
+          <li class="mt" v-if="mdiv==2||mdiv==3||mdiv==6||mdiv==4||mdiv==5">
+            <a class="active" href="${path }/DashTeam.do?method=list">
               <i class="fa fa-dashboard"></i>
               <span>대시보드</span>
               </a>
