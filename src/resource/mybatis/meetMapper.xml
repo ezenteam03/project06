@@ -25,7 +25,7 @@
 			FROM pmsmeeting p, pmsemp m 
 			WHERE 1=1 AND p.mno=m.eno 
 			<if test="topic!=null and topic!=''">
-			and title like '%'||#{topic}||'%'
+			and topic like '%'||#{topic}||'%'
 			</if>
 			ORDER BY mnno DESC) 
 		WHERE cnt BETWEEN #{start} AND #{end}
@@ -39,12 +39,12 @@
  	
 	<select id="getMeet" 
  		resultType="meet" parameterType="int">
- 		SELECT *
- 		FROM pmsmeeting
- 		WHERE mnno = #{mnno}
+ 		SELECT mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,mndiv,m.name writer,pno
+ 		FROM pmsmeeting p, pmsemp m
+ 		WHERE mnno = #{mnno} and p.mno=m.eno
  	</select>
  	
- 	<update id="uptViews" parameterType="int">
+ 	<update id="uptReadCnt" parameterType="int">
  		UPDATE pmsmeeting
  		   SET views = views+1
  		 WHERE mnno = #{mnno}
@@ -66,9 +66,38 @@
 		DELETE FROM pmsmeeting
 		 WHERE mnno = #{mnno}
  	</delete> 	
+
+ 	
+	<!-- 파일 업로드	 -->
+	<insert id="insertRepo" parameterType="String"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,pmsissue_seq.currval, 
+ 			#{fname}, sysdate)
+	</insert>
+	<resultMap type="String" id="strMap"/> 
+ 	<select id="fnames" resultMap="strMap" parameterType="int">
+ 		SELECT fname 
+ 		FROM PMSBFILE		
+ 		WHERE mnno=#{mnno}
+ 	</select> 
+	
+	<update id="uptFileInfo" parameterType="java.util.HashMap">
+		UPDATE PMSBFILE
+			SET fname = #{tar},
+	        upload= sysdate
+	    WHERE mnno = ${mnno}
+		AND fname = #{org}	    	
+	</update> 	
+ 	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${mnno},
+ 			#{tar}, sysdate)
+	</insert>
+ 
+ 
+ 
+ 
+ 
   	
-  	
-<!-- 여기서부터 다시 체크 
+<!--  
   	<insert id="insertRepo" parameterType="String"> 
  		insert into meetfile values(pmsmeeting_seq.currval, 
  			#{fname}, sysdate, sysdate, '')
@@ -97,7 +126,7 @@
  		insert into meetfile values(${no}, 
  			#{tar}, sysdate, sysdate, '')
 	</insert>	
+-->
 	
-	--> 	
 </mapper>
 

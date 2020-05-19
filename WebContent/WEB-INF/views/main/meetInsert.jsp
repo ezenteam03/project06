@@ -107,30 +107,7 @@ $(document).ready(function(){
 		<input name="topic" class="form-control" 
 			value="${meet.topic}" placeholder="안건을 입력하세요" />	
 	</div> 
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">작 성 자</span>
-		</div>
-		<input name="writer" class="form-control" 
-			value="${meet.mno}" placeholder="입력하세요" />	
-	</div> 
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">작 성 일</span>
-		</div>
-		<input name="wdate" class="form-control" 
-			value="${meet.wdate}" placeholder="입력하세요" />	
-	</div> 
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">수 정 일</span>
-		</div>
-		<input name="chdate" class="form-control" 
-			value="${meet.chdate}" placeholder="입력하세요" />	
-	</div> 
+		
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 

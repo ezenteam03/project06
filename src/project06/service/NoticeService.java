@@ -119,9 +119,7 @@ public class NoticeService {
 	
 	// 상세화면 처리..
 		public Notice getNotice(int no) {
-			// 조회수 카운트업..
-		/* dao.uptViews(no); */
-			
+			dao.uptReadCnt(no);
 			Notice n = dao.getNotice(no);
 			
 			return n;

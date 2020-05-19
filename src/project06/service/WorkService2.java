@@ -73,8 +73,13 @@ public class WorkService2 {
 		dao.prog(upt);
 	}
 	public void upTdiv(Task upt) {
-		System.out.println("service tdiv 실행");
 		dao.upTdiv(upt);
+	}
+	public void upTdiv2(Task upt) {
+		dao.upTdiv2(upt);
+	}
+	public void upTdiv3(Task upt) {
+		dao.upTdiv3(upt);
 	}
 	public void insert(Task ins) {
 		System.out.println("등록 제목:"+ins.getTname());

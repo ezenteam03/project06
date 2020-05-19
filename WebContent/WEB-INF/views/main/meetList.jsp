@@ -63,32 +63,32 @@
 </style>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		<%-- 
-		
-		--%>
-		$("h2").text("시작");
-		$("#regBtn").click(function(){
-			//if(confirm("등록합니다")){
-			// 등록화면 호출.
-				$(location).attr("href","${path}/meet.do?method=insForm");
-			//}
-		});
-		$("#pageSize").change(function(){
-			$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
-								// 나오게 처리..
-			$("form").submit();
-		});
+$(document).ready(function(){
+	<%-- 
+	
+	--%>
+	$("h2").text("시작");
+	$("#regBtn").click(function(){
+		//if(confirm("등록합니다")){
+		// 등록화면 호출.
+			$(location).attr("href","${path}/meet.do?method=insForm");
+		//}
 	});
-	function go(mnno){
-		
-		$(location).attr("href", "${path}/meet.do?method=detail&mnno="+mnno);
-	}
-	function goPage(no){
-		//alert("이동 번호:"+no);
-		$("#curPage").val(no);
+	$("#pageSize").change(function(){
+		$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
+							// 나오게 처리..
 		$("form").submit();
-	}
+	});
+});
+function go(mnno){
+	
+	$(location).attr("href", "${path}/meet.do?method=detail&mnno="+mnno);
+}
+function goPage(no){
+	//alert("이동 번호:"+no);
+	$("#curPage").val(no);
+	$("form").submit();
+}
 	
 </script>
 
@@ -143,7 +143,7 @@
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   
 	    <form:input class="form-control mr-sm-2 sch" 
-	    		path="topic" placeholder="제목" />
+	    		path="topic" placeholder="안건" />
 	    <button class="btn btn-success" type="submit">Search</button>&nbsp;
 	    <button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
   	</nav>

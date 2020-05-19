@@ -57,7 +57,7 @@
 		 WHERE tno = #{tno}
  	</delete>
  	
- 	<!-- 제목, 내용수정  / 반려사유
+ 	<!-- 제목, 내용수정  / 결재, 반려
  	pstart = #{pstart},
 	pend = #{pend}-->
  	<update id="updateTask" parameterType="task">
@@ -79,6 +79,16 @@
  	<update id="upTdiv" parameterType="task">
 		UPDATE PMSTASK
 		   SET tdiv = 22, pdate = sysdate
+		 WHERE tno = #{tno}
+ 	</update>
+ 	<update id="upTdiv2" parameterType="task">
+		UPDATE PMSTASK
+		   SET tdiv = 23, pdate = sysdate
+		 WHERE tno = #{tno}
+ 	</update>
+ 	<update id="upTdiv3" parameterType="task">
+		UPDATE PMSTASK
+		   SET tdiv = 24, pdate = sysdate
 		 WHERE tno = #{tno}
  	</update>
  	
