@@ -17,6 +17,9 @@
 		<if test="name != null and name != ''">
 		and name like '%'||#{name}||'%'
 		</if>		
+		<if test="pno != null and pno != ''">
+		and pno like '%'||#{pno}||'%'
+		</if>		
 	 </select>
 	 
 	<select id="list" resultMap="riskResult" parameterType="rsch" >
@@ -31,6 +34,9 @@
 		<if test="name != null and name != ''">
 		and name like '%'||#{name}||'%'
 		</if>
+		<if test="pno != null and pno != ''">
+		and pno like '%'||#{pno}||'%'
+		</if>	
 		ORDER BY ino DESC)
 		where cnt between #{start} and #{end}	
 	</select>

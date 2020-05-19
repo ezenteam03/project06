@@ -4,6 +4,7 @@ public class RiskSch {
 	private String title;
 	private String name;
 	private int ino;
+	private int pno;
 	// 1. 페이징 처리
 	private int count; // 총데이터 건수
 	private int pageSize; // 한번에 보여줄 페이지 크기
@@ -19,6 +20,12 @@ public class RiskSch {
 	
 	
 	
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	public int getIno() {
 		return ino;
 	}

@@ -29,6 +29,9 @@ public class RiskService {
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
 		}
+		if(sch.getPno()==0) {
+			sch.setPno(1001);
+		}
 		
 		if(sch.getCurPage()==0) {
 			sch.setCurPage(1);
