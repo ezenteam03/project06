@@ -60,9 +60,14 @@
 		});
 
 		$("#coment").click(function(){
-			if(confirm("사유 다시겠습니까?")){
-				$("form").attr("action","${path}/task.do?method=coment");
-				$("form").submit();
+			if(confirm("반려사유 다시겠습니까?")){
+				if(${task.tdiv==23}){
+					$("form").attr("action","${path}/task.do?method=coment");
+					$("form").submit();
+				}else{
+					alert("반려처리 했을 때에만 사유작성 가능합니다.");
+				}
+				
 			}
 		});
 		
@@ -72,21 +77,36 @@
 				alert("진행률은 1~100까지만 수정 가능합니다.");
 			}
 			else if(confirm("진행률 수정합니다.")){
-				$("form").attr("action","${path}/task.do?method=prog");
-				$("form").submit();
-			}
-		});
-		$("#divBtn").click(function(){
-			var prog = $('input[name=prog]').val();
-			alert(prog);
-			if(prog == 100){
-				if(confirm("결재 신청 하시겠습니까?")){
-					$("form").attr("action","${path}/task.do?method=upTdiv");
+				if(${task.tdiv==22} || ${task.tdiv==24}){
+					alert("결재 신청이나 완료된 업무는 진행률 수정이 불가합니다.");
+				}else{
+					$("form").attr("action","${path}/task.do?method=prog");
 					$("form").submit();
 				}
 			}
 		});
-		
+		$("#divBtn").click(function(){
+			var prog = $('input[name=prog]').val();
+			if(prog == 100){
+				if(confirm("결재 신청 하시겠습니까?")){
+					if(${task.tdiv==22}){
+						alert("이미 결재 신청되었습니다.");
+					}else{
+						$("form").attr("action","${path}/task.do?method=upTdiv");
+						$("form").submit();
+					}
+				}
+			}
+		});
+		$("#divBtn2").click(function(){
+			if(${task.tdiv==22}){
+				if(confirm("반려 처리 하시겠습니까?")){
+					alert("반려처리 되었습니다.");
+					$("form").attr("action","${path}/task.do?method=upTdiv2");
+					$("form").submit();
+				}
+			}
+		});
 		function inNumber(){
 			  if(event.keyCode<48 || event.keyCode>57){
 			     event.returnValue=false;
@@ -195,6 +215,8 @@
 			</c:choose>
 			<button class="btn btn-success" id="divBtn">결재신청</button>
 			
+			<button class="btn btn-danger" id="divBtn2">반려처리</button>
+			<button class="btn btn-success" id="divBtn3">결재완료</button>
 			<div class="input-group-prepend">
 				<span class="bg-warning text-white input-group-text" style="width:220px;">진행률</span>
 				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">%
