@@ -66,8 +66,7 @@
 		DELETE FROM pmsmeeting
 		 WHERE mnno = #{mnno}
  	</delete> 	
-  	
- <!-- 조회수 -->
+
  	
 	<!-- 파일 업로드	 -->
 	<insert id="insertRepo" parameterType="String"> 
