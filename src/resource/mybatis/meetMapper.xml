@@ -25,7 +25,7 @@
 			FROM pmsmeeting p, pmsemp m 
 			WHERE 1=1 AND p.mno=m.eno 
 			<if test="topic!=null and topic!=''">
-			and title like '%'||#{topic}||'%'
+			and topic like '%'||#{topic}||'%'
 			</if>
 			ORDER BY mnno DESC) 
 		WHERE cnt BETWEEN #{start} AND #{end}

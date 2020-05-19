@@ -47,8 +47,3 @@ public interface MeetDao {
 
 
 
-//@Repository
-//public interface MeetDao{
-//	public ArrayList<Meet> list();
-
-//}
