@@ -11,6 +11,15 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+  <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+  <style type="text/css">
+	.sch{width:25%;}
+  </style>
+ 	<script src="${path}/a00_com/jquery.min.js"></script>
+	<script src="${path}/a00_com/popper.min.js"></script>
+	<script src="${path}/a00_com/bootstrap.min.js"></script>
+	<script src="${path}/a00_com/jquery-ui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -100,7 +109,7 @@
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
+              
                 <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
                 <hr>
                 <form method="post">
@@ -130,14 +139,15 @@
               </table>
               
 	<form:form class="form" commandName="msch" method="post" >
-  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  					<form:input class="form-control mr-sm-2 sch" 
-	    				path="topic" placeholder="제목" />
-	    			<button class="btn btn-success" type="submit">Search</button>&nbsp;
-	   				<button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
-  				</nav>
-  				<br>
+  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  
+	    <form:input class="form-control mr-sm-2 sch" 
+	    		path="topic" placeholder="제목" />
+	    <button class="btn btn-success" type="submit">Search</button>&nbsp;
+	    <button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
+  	</nav>
+  	<br>
  			<div class="input-group lb-3">	
 				<div class="input-group-prepend ">
 					<span class="input-group-text "> 총 : ${msch.count} 건</span>
