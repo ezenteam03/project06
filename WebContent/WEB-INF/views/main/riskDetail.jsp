@@ -61,7 +61,8 @@
 				$("#form").submit();										
 		});	
 		var ri="${ri}";
-		if(ri == 1){
+		var co="${co}";
+		if(co == 1){
 			$('#comment').css('display', 'block');
 			$('#combt').css('display', 'none');
 		}else{
