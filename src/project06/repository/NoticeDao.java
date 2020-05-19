@@ -18,7 +18,7 @@ public interface NoticeDao{
 	public void deleteNotice(int no);
 	
 	public Notice getNotice(int no);
-	public void uptReadCnt(int nno);
+	public void uptReadCnt(int no);
 	
 	
 	
