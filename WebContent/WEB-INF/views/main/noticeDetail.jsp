@@ -99,7 +99,8 @@ $(document).ready(function(){
       <section class="wrapper">
         
        
-     <h1>게시판 상세화면.</h1>
+     <h4 style="margin-left:12%;"><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+                <br><br>
 
 <div class="container">
 	<form method="post"  enctype="multipart/form-data" >
@@ -107,7 +108,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">글번호</span>
 		</div>
-		<input name="nno" class="form-control" 
+		<input name="nno" class="form-control" readonly="readonly"
 			value="${notice.nno}"/>	
 		
 	</div>	
@@ -115,9 +116,9 @@ $(document).ready(function(){
 		
 		
 		<div class="input-group-prepend">
-			<span class="input-group-text">조회수</span>
+			<span  style="width:10%; padding:7px;" class="bg-warning ">조회수 </span>
 		</div>
-		<input  class="form-control" 
+		<input  class="form-control" readonly="readonly" style="background:white;"
 			 value="${notice.views}" />	
 	</div>		
 	<div class="input-group mb-3">
@@ -133,12 +134,12 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="input-group-text">등록일</span>
 		</div>
-		<input class="form-control" 
+		<input class="form-control" readonly="readonly"
 			value="<fmt:formatDate type='both' value='${notice.wdate }'/>"/>	
 		<div class="input-group-prepend">
 			<span class="input-group-text">수정일</span>
 		</div>
-		<input class="form-control" 
+		<input class="form-control" readonly="readonly"
 			value="<fmt:formatDate type='both' value='${notice.chdate }'/>" />	
 	</div>			
 	<div class="input-group mb-3">

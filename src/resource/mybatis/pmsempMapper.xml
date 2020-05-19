@@ -46,7 +46,7 @@
 	<!-- pms에 등록안된 경우 PM으로등록 -->
 	<insert id="insertMem2" parameterType="pmsemp">
 		 insert into pmsmember 
-		 	values(#{mno}, #{pass}, 4, #{wcon}, null)
+		 	values(#{eno}, #{pass}, 4, #{phone}, #{pno})
 	</insert>
 	<!-- PM 권한해제 설정 -->
 	<update id="updatePm2" parameterType="pmsemp">

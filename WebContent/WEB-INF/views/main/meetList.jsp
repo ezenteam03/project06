@@ -151,7 +151,7 @@ function goPage(no){
                 </thead>
                 <tbody>
                 <c:forEach var="meet" items="${mlist}">
-                  <tr ondblclick="javascript:go(${meet.mnno})">
+                  <tr onclick="javascript:go(${meet.mnno})">
                     <td style="text-align: center;">${meet.mnno}</td>
                     <td style="padding-left:70px;">${meet.topic}</td>
                     <td style="text-align: center;"><fmt:formatDate value="${meet.wdate}" type="date"/></td>
