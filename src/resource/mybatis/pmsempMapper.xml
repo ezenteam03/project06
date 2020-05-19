@@ -20,6 +20,12 @@
 			AND a.eno = b.mno(+)
 			AND a.eno = #{eno}
  	</select>
+ 	<!-- 프로젝트 리스트 -->
+ 	<select id="getPlist" resultMap="pmsEmpEnoResult">
+		select pno 
+		from pmsproject
+		order by pno asc 
+	</select>
  	<!-- pmsmember에 등록 됐는지 확인 -->
  	<select id="memCheck" resultType="int" parameterType="pmsemp">
 		select count(*) 

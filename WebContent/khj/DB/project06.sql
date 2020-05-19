@@ -9,17 +9,6 @@ DROP SEQUENCE pmsreply_seq;
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
 
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-		FROM pmsemp a 
-		WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
-UPDATE pmsmember
-		SET mdiv=9, pno=null
-		WHERE mdiv=4
-		and pno=1001;
-UPDATE pmsmember
-		SET mdiv=4, pno=1001
-		WHERE mno=10000005;
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY

@@ -41,6 +41,7 @@ public class pmsempCtrl {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		System.out.println("ctrl 상세페이지  eno : "+eno);
 		d.addAttribute("pemp", service.getemp(eno));
+		d.addAttribute("plist",service.getPlist());
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CTO 권한 설정

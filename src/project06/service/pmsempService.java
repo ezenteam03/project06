@@ -22,6 +22,10 @@ public class pmsempService {
 			pmsemp a = rep.getemp(eno);
 			return a;
 		}
+		// 프로젝트 리스트
+		public ArrayList<Integer> getPlist(){
+			return rep.getPlist();
+		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
@@ -31,9 +35,11 @@ public class pmsempService {
 				rep.updatepmsemp2();
 				// 새로운 CTO Member등록
 				updateCto.setPass(makePass("1234qwer!"));
-				System.out.println(updateCto.getEno());
-				System.out.println(updateCto.getPass());
-				System.out.println(updateCto.getPhone());
+				System.out.println("service eno:"+updateCto.getEno());
+				System.out.println("service pass:"+updateCto.getPass());
+				System.out.println("service phone:"+updateCto.getPhone());
+				System.out.println("service pno:"+updateCto.getPno());
+				System.out.println("service mdiv:"+updateCto.getMdiv());
 				rep.insertMem1(updateCto);
 			}else{
 				rep.updatepmsemp2();
@@ -54,6 +60,7 @@ public class pmsempService {
 				System.out.println("service pass:"+updatePm.getPass());
 				System.out.println("service phone:"+updatePm.getPhone());
 				System.out.println("service pno:"+updatePm.getPno());
+				System.out.println("service mdiv:"+updatePm.getMdiv());
 				rep.insertMem2(updatePm);
 			}else{
 				rep.updatePm2(updatePm);
