@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.RiskService;
 import project06.vo.Comment;
+import project06.vo.PmsMember;
 import project06.vo.Risk;
 import project06.vo.RiskSch;
 
@@ -30,7 +31,14 @@ public class RiskCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		if(emp.getPno()==1001) {
+			d.addAttribute("ri", 1);
+		}else if(emp.getPno()==1002) {
+			d.addAttribute("ri", 2);
+		}else {
+			d.addAttribute("ri", 3);
+		}
 		
 		d.addAttribute("rlist", service.list(sch));
 			
