@@ -49,7 +49,7 @@
 	  function go(eno){
 		  $(location).attr("href",
 				  //eno다음에 = 추가됨
-				  "${path}/PMSemp.do?method=modForm&eno="+eno);
+				  "${path}/PMSemp.do?method=modForm&peno="+eno);
 	  }
 
 

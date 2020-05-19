@@ -21,7 +21,17 @@
 			AND a.eno = b.mno(+)
 			AND a.eno = #{eno}
  	</select>
- 	
+ 	<!-- pmsmember에 등록 됐는지 확인 -->
+ 	<select id="memCheck" resultType="int" parameterType="pmsemp">
+		select count(*) 
+		from pmsmember 
+		where mno=#{eno}
+	</select>
+	<!-- pms에 등록안된 경우 CTO로등록 -->
+	<insert id="insertMem1" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{mno}, #{pass}, 3, #{wcon}, null)
+	</insert>
  	<!-- 기존 CTO 권한변경 -->
 	<update id="updatepmsemp2" parameterType="pmsemp">
 		UPDATE pmsmember
@@ -34,14 +44,24 @@
 		SET mdiv=3
 		WHERE mno=#{eno}
 	</update>
-	<!-- pmsmemeber null check -->
-	
-	<!-- pmsmember null일 경우 insert -->
-	
-	<!-- pmsmember null이 아닐 경우 update -->
-	
-	<!--  -->
-	
+	<!-- pms에 등록안된 경우 PM으로등록 -->
+	<insert id="insertMem2" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{mno}, #{pass}, 4, #{wcon}, null)
+	</insert>
+	<!-- PM 권한해제 설정 -->
+	<update id="updatePm2" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=9, pno=null
+		WHERE mdiv=4
+		and pno=#{pno}
+	</update>
+	<!-- PM 권한 설정  -->
+	<update id="updatePm1" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=4, pno=#{pno}
+		WHERE mno=#{eno}
+	</update>
  	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
@@ -72,11 +92,6 @@
 		WHERE eno =#{eno}
 	</update>
 	<!-- 퇴사처리 -->
-	<select id="memCheck" resultType="int" parameterType="pmsemp">
-		select count(*) 
-		from pmsmember 
-		where mno=#{eno}
-	</select>
 	<!-- pms등록된 직원 -->
 	<update id="delGrade1" parameterType="pmsemp">
 		UPDATE pmsemp

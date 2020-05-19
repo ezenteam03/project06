@@ -35,7 +35,7 @@ public class pmsempCtrl {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
-	// 인사 사원정보수정 페이지 이동
+	// CEO, CTO 권한설정 페이지 이동
 	@RequestMapping(params="method=setForm")
 	public String setemp(@RequestParam("peno") int eno, Model d) {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
@@ -43,10 +43,16 @@ public class pmsempCtrl {
 		d.addAttribute("pemp", service.getemp(eno));
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
-	// CEO, CTO 권한 설정
+	// CTO 권한 설정
 	@RequestMapping(params="method=update")
 	public String update(pmsemp upt) {
-		service.update(upt);
+		service.updateCto(upt);
+		return "forward:/PMSemp.do?method=setForm";
+	}
+	// PM 권한 설정
+	@RequestMapping(params="method=updatePm")
+	public String updatePm(pmsemp uptPm) {
+		service.updatePm(uptPm);
 		return "forward:/PMSemp.do?method=setForm";
 	}
 	// PM 팀원추가 사원 리스트 불러오기
@@ -87,10 +93,10 @@ public class pmsempCtrl {
 	}
 	// 인사 사원정보수정 페이지 이동
 	@RequestMapping(params="method=modForm")
-	public String modlist(@RequestParam("eno") int eno, Model d) {
+	public String modlist(@RequestParam("peno") int eno, Model d) {
 		System.out.println(eno);
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
-		d.addAttribute("emp", service.getPmsemp(eno));
+		d.addAttribute("pemp", service.getPmsemp(eno));
 		return "WEB-INF\\views\\main\\empModify.jsp";
 	}
 	// 사원정보수정

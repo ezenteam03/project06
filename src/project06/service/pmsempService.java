@@ -24,9 +24,31 @@ public class pmsempService {
 			return a;
 		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
-		public void update(pmsemp update) {
-			rep.updatepmsemp2();
-			rep.updatepmsemp1(update);
+		public void updateCto(pmsemp updateCto) {
+			int isMem = rep.memCheck(updateCto);
+			if(isMem==0) {
+				// 기존 CTO권한 변경
+				rep.updatepmsemp2();
+				// 새로운 CTO Member등록
+				updateCto.setPass(makePass());
+				rep.insertMem1(updateCto);
+			}else{
+				rep.updatepmsemp2();
+				rep.updatepmsemp1(updateCto);	
+			}
+		}
+		// 기존 PM 권한변경 후 새로운 PM에게 권한 부여
+		public void updatePm(pmsemp updatePm) {
+			int isMem = rep.memCheck(updatePm);
+			if(isMem==0) {
+				// 기존 CTO권한 변경
+				rep.updatePm2();
+				// 새로운 CTO Member등록
+				rep.insertMem2(updatePm);
+			}else{
+				rep.updatePm2();
+				rep.updatePm1(updatePm);	
+			}
 		}
 		// PM 삭제리스트
 		public ArrayList<pmsemp> pmempList(pmsemp sch){
@@ -104,5 +126,7 @@ public class pmsempService {
 			
 			return eno;
 		}
-
+		public String makePass() {
+			return "";
+		}
 }
