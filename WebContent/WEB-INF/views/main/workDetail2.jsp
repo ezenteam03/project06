@@ -4,6 +4,7 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -23,6 +24,7 @@
 	.input-group-prepend{width:20%;}
 	.tdiv-text{text-align:center; font-size:20px; width:120px; background:white; float:left;}
 	.div-Btn{height:40px; margin-left:10px;}
+
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -33,7 +35,24 @@
 		<%-- 
 		
 		--%>
-		var login = 0;
+		
+		var mdiv = "${mdiv}";
+		
+		if(mdiv != 4 && mdiv != 7){
+			$("#tDetail").attr('readonly',true);
+			$("#tDetail").css('background','white');
+			$("#tTitle").attr('readonly',true);
+			$("#tTitle").css('background','white');
+			$("#tComent").attr('readonly',true);
+			$("#tComent").css('background','white');
+		}
+		if(mdiv != 5 && mdiv != 7){
+			$("#textdetail").attr('readonly',true);
+			$("#textdetail").css('background','white');
+			$("#prog").attr('readonly',true);
+			$("#prog").css('background','white');
+		}
+			
 		$("#goMain").click(function(){
 			$(location).attr("href","${path}/task.do?method=list");			
 		});	
@@ -62,7 +81,10 @@
 		});
 
 		$("#coment").click(function(){
-			if(confirm("반려사유 다시겠습니까?")){
+			if(mdiv != 4 && mdiv != 7){
+				alert("반려사유는 PM과 ADMIN만 등록가능합니다");
+			}
+			else if(confirm("반려사유 다시겠습니까?")){
 				if(${task.tdiv==23}){
 					$("form").attr("action","${path}/task.do?method=coment");
 					$("form").submit();
@@ -119,12 +141,14 @@
 			}
 		});
 		$("#updetail").click(function(){
-			if(confirm("진행률 저장 하시겠습니까?")){
+			if(mdiv != 5 && mdiv != 7){
+				alert("담당자만 수정 가능합니다.");
+			}else if(confirm("업무진행 저장 하시겠습니까?")){
 				alert("저장 되었습니다.");
 				$("form").attr("action","${path}/task.do?method=upDetail");
 				$("form").submit();
 			}
-		})
+		});
 		function inNumber(){
 			  if(event.keyCode<48 || event.keyCode>57){
 			     event.returnValue=false;
@@ -143,7 +167,7 @@
   <h2><i class="fa fa-angle-right"></i> 업무상세 </h2>
   </div>
   <div style="margin-left:200px; width:300px; height:50px; margin-bottom:50px;">
-	    		<span border>업무 진행률 기준</span>
+	    		<span>업무 진행률 기준</span>
 		    		<ul>
 		    		<li>- 요구사항분석 10%</li>
 		    		<li>- 화면구현 20%</li>
@@ -179,10 +203,10 @@
 		</div> -->
 		<c:if test=""></c:if> 
 		
-		<div class="input-group-prepend">
-			<span class="input-group-text">업무명</span>
+		<div class="input-group-prepend" >
+			<span class="input-group-text" >업무명</span>
 		</div>
-		<input name="tname" class="form-control"
+		<input name="tname" class="form-control" id="tTitle"
 			value="${task.tname}"  
 			placeholder="제목입력하세요" />	
 		 
@@ -206,11 +230,11 @@
 			value="${task.edate}"/>	
 			<!-- <fmt:formatDate type='both' value='${board.credte }'/> -->
 	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
+	<div class="input-group mb-3" >
+		<div class="input-group-prepend ">
 			<span class="input-group-text">업 무 내 용</span>
 		</div>
-		<textarea name="detail" rows="10" 
+		<textarea name="detail" rows="10" id="tDetail"
 			class="form-control" 
 			placeholder="내용입력하세요">${task.detail}</textarea>		 
 	</div> 
@@ -218,7 +242,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">업 무 진 행 도</span>
 		</div>
-		<textarea name="updetail" rows="5" style="width:980px;"
+		<textarea name="updetail" rows="5" style="width:980px;" id="textdetail"
 			class="form-control" 
 			placeholder="내용 입력하세요">${task.updetail}</textarea>	
 			
@@ -249,6 +273,7 @@
 		
 	</div> 
 	</c:forEach>	 -->
+	
 	<div class="input-group mb-3" style="float:left; ">
 			<span class="bg-warning text-white input-group-text" style="font-size:20px;height:40px; width:220px; float:left;">결재 여부</span>
 			<c:choose>
@@ -267,20 +292,25 @@
 			</c:choose>
 			</t>
 			<!-- 팀원만 보이게 + admin -->
-			<c:if test=""></c:if> 
-			<button class="btn btn-success div-Btn" id="divBtn">결재신청</button>
-			
-			<!-- 팀장만 보이게 + admin -->
-			<c:if test=""></c:if> 
-			<button class="btn btn-danger div-Btn" id="divBtn2">반려처리</button>
-			<button class="btn btn-info div-Btn" id="divBtn3">결재완료</button>
-			
+			<c:if test="${mdiv==5 || mdiv==7}">
+				<button class="btn btn-success div-Btn" id="divBtn">결재신청</button>
+			</c:if> 
+			<!-- PM만 보이게 + admin -->
+			<c:if test="${mdiv == 4 || mdiv == 7}">
+				<button class="btn btn-danger div-Btn" id="divBtn2">반려처리</button>
+				<button class="btn btn-info div-Btn" id="divBtn3">결재완료</button>
+			</c:if> 
 			
 			<br><br>
 			<div class="input-group-prepend">
 				<span class="bg-warning text-white input-group-text" style="width:220px;">진행률</span>
-				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
-				<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
+				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+				id="prog">
+				
+				<!-- 팀원만 보이게 + admin -->
+				<c:if test="${mdiv==5 || mdiv==7}">
+					<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
+				</c:if>
 				
 			</div>
 		</div>
@@ -293,22 +323,27 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">반려 사유</span>
 		</div>
-		<textarea name="coment" rows="3"   style="width:980px;"
+		<textarea name="coment" rows="3"   style="width:980px;" id="tComent"
 			class="form-control" 
 			placeholder="사유를 입력하세요" >${task.coment}</textarea>
 			<div>
+			
 				<input type="button" class="btn btn-success" style="width:130px; height:75px;"
 				value="사유 등록" id="coment"/>
+	
 			</div>		 
 	</div> 
 	<div style="text-align:left;">
 	
 	</div>
 	<div style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="수정" id="uptBtn"/>
-		<input type="button" class="btn btn-danger"
-			value="삭제" id="delBtn"/>		
+		
+		<c:if test="${mdiv != 5}">
+			<input type="button" class="btn btn-info"
+				value="수정" id="uptBtn"/>
+			<input type="button" class="btn btn-danger"
+				value="삭제" id="delBtn"/>	
+		</c:if>
 			
 		<input type="button" class="btn btn-success"
 			value="조회 화면으로" id="goMain"/>

@@ -83,6 +83,7 @@ function goPage(no){
 	$("form").attr("method","post").submit();
 }
 function go(no){
+
 	$(location).attr("href","${path}/task.do?method=detail&tno="+no);
 }
 

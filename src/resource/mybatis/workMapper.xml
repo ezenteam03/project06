@@ -23,6 +23,9 @@
  		select count(*) 
 		from pmstask
 		where 1=1
+		<if test="mdiv!=2 and mdiv!=3 and mdiv!=6">
+		AND mno = #{mno}
+		</if>
 		<if test="tname!=null and tname!=''">
 		and tname like '%'||#{tname}||'%'
 		</if>	
@@ -42,6 +45,24 @@
 			ORDER BY tno desc )
 		WHERE cnt BETWEEN #{start} AND #{end}	
  	</select>
+ 	
+ 	<!-- 사원 -->
+ 	<select id="slist" resultMap="taskResult" 
+ 		parameterType="tsch" >
+ 		SELECT *
+ 		FROM(
+			select rownum cnt, b.* 
+			from PMSTASK b, pmsmember pm
+			where 1=1 AND pm.mno = b.mno
+			AND pm.pno = #{pno}
+			AND pm.mno = #{mno}
+			<if test="tname!=null and tname!=''">
+			and tname like '%'||#{tname}||'%'
+			</if>
+			ORDER BY tno DESC )
+		WHERE cnt BETWEEN #{start} AND #{end}
+ 	</select>
+ 	
  	
  	<!-- 상세화면 -->
  	<select id="getTask" 

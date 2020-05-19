@@ -14,9 +14,10 @@ public class WorkService2 {
 	@Autowired(required=false)
 	private WorkDao2 dao;
 	public ArrayList<Task> list(TaskSch sch){
-		
-		
 		sch.setCount(dao.totCnt(sch));
+		
+		System.out.println("mdiv : "+sch.getMdiv());
+		System.out.println("getCount : "+sch.getCount());
 
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
@@ -53,6 +54,46 @@ public class WorkService2 {
 		
 		return dao.list(sch);
 	}
+	
+	public ArrayList<Task> slist(TaskSch sch){
+		sch.setCount(dao.totCnt(sch));
+
+		if(sch.getPageSize()==0) {
+			sch.setPageSize(5);
+		}
+
+		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
+
+		if(sch.getCurPage()==0) {
+			sch.setCurPage(1);
+		}
+
+		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
+		sch.setEnd(sch.getCurPage()*sch.getPageSize());
+
+		System.out.println("시작번호:"+sch.getStart());
+		System.out.println("마지막번호:"+sch.getEnd());
+		
+
+		sch.setBlocksize(5);
+
+
+		int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());
+				
+		int endBlock = blocknum*sch.getBlocksize();
+		sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);
+				
+
+		sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);
+				
+		System.out.println("시작block : "+sch.getStartBlock());
+		System.out.println("curPage : "+sch.getCurPage());
+		System.out.println("마지막block : "+sch.getEndBlock());
+				
+		
+		return dao.slist(sch);
+	}
+	
 	public void update(Task update) {
 		/*
 		데이터 수정 처리

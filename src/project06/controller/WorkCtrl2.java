@@ -1,5 +1,8 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.WorkService2;
+import project06.vo.PmsMember;
 import project06.vo.Task;
 import project06.vo.TaskSch;
 
@@ -21,9 +25,48 @@ public class WorkCtrl2 {
 		private WorkService2 service;
 		
 		@RequestMapping(params="method=list")
-		public String list(@ModelAttribute("tsch") TaskSch sch, Model d) {
-			d.addAttribute("tlist", service.list(sch));
-			return "WEB-INF\\views\\main\\workList2.jsp";
+		public String list(@ModelAttribute("tsch") TaskSch sch, Model d,HttpServletRequest request) {
+			HttpSession session = request.getSession();
+		
+		  if(session.getAttribute("mno")==null) { 
+			  return "WEB-INF\\views\\main\\login.jsp"; }
+		 
+			
+			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+			
+			sch.setMno(emp.getMno()); 
+			sch.setPno(emp.getPno());
+			sch.setMdiv(emp.getMdiv());
+			
+			if(emp.getMdiv()==5) {
+				System.out.println("팀원로그인~");
+				System.out.println(sch.getMno());
+				System.out.println(sch.getPno());
+				sch.setMdiv(emp.getMdiv());
+				d.addAttribute("tlist", service.slist(sch));
+
+				return "WEB-INF\\views\\main\\workList2.jsp";
+			}else if(emp.getMdiv()==4) {
+				System.out.println("PM로그인~");
+				System.out.println(sch.getMno());
+				System.out.println(sch.getPno());
+				d.addAttribute("tlist", service.slist(sch));
+
+				return "WEB-INF\\views\\main\\workList2.jsp";
+			}else if(emp.getMdiv()==7) {
+				System.out.println("관리자 로그인~");
+				System.out.println(sch.getMno());
+				System.out.println(sch.getPno());
+				d.addAttribute("tlist", service.slist(sch));
+
+				return "WEB-INF\\views\\main\\workList2.jsp";
+			}else {
+				System.out.println("ㄴㄴ");
+				d.addAttribute("tlist", service.list(sch));
+				return "WEB-INF\\views\\main\\workList2.jsp";
+			}
+			//d.addAttribute("tlist", service.list(sch));
+			
 		}
 		
 		
@@ -87,8 +130,20 @@ public class WorkCtrl2 {
 		}
 		
 		@RequestMapping(params="method=detail")
-		public String detail(@RequestParam("tno") int no, Model d) {
+		public String detail(@RequestParam("tno") int no, Model d, HttpServletRequest request) {
+			
 			d.addAttribute("task", service.getTask(no));
+			
+			HttpSession session = request.getSession();
+
+			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+			
+		
+			d.addAttribute("mdiv", emp.getMdiv());
+			
+			
+			
+			
 
 			
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
