@@ -7,6 +7,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import project06.repository.RiskDao;
 import project06.vo.Comment;
+import project06.vo.PmsMember;
 import project06.vo.Risk;
 import project06.vo.RiskSch;
 
@@ -22,10 +26,21 @@ public class RiskService {
 	@Autowired(required=false)
 	private RiskDao dao;
 	
-	public ArrayList<Risk> list(RiskSch sch){
+	public ArrayList<Risk> list(RiskSch sch,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		
+		
+		if(emp.getPno()==1001) {
+			sch.setPno(1001);
+		}
+		if(emp.getPno()==1002) {
+			sch.setPno(1002);
+		}
 		if(sch.getPno()==0) {
 			sch.setPno(1001);
 		}
+		
 		// 1. 데이터 총건수
 		sch.setCount(dao.totCnt(sch));
 		// 2. 페이지 초기값
@@ -83,7 +98,12 @@ public class RiskService {
 		}		
 	}
 	// 상세화면 처리..
-	public Risk getRisk(int ino) {
+	public Risk getRisk(int ino,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		
+		dao.getRisk(ino);
+		
 		dao.uptReadCnt(ino);
 		Risk d = dao.getRisk(ino);
 		d.setFilenames(dao.fnames(ino));

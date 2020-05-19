@@ -5,6 +5,7 @@ FROM pmsemp pe, pmsmember pm, PMSCODES pc
 WHERE pe.ENO = pm.MNO 
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
+SELECT * FROM PMStask;
 SELECT * FROM PMSEMP pe, PMSMEMBER pm;
 --SQL 추가해야함
 SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
@@ -12,7 +13,7 @@ SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/m
 FROM PMSPROJECT pp, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 WHERE pem.mno = pp.mno
-AND pem.mno = 10000005;
+AND pem.mno = 10000006;
 
 UPDATE PMSPROJECT
 SET cdate = '2020/05/04'
@@ -53,23 +54,58 @@ WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
-AND pem.pno = 1001
+AND pp.pno = 1002
 --AND pt.tname LIKE '%'||'웹'||'%'
-START WITH pt.refno=1003
+START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 --팀원 작업 내역
-SELECT LEVEL, pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
 WHERE pe.eno = pm.mno) pem
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
+AND pt.tno = 1009
+--AND pt.refno = 1009
+--AND pem.eno = 10000005
+--OR pt.tno = 1008
+--OR pt.tno = 1009
+--OR pt.tno = 1011
+UNION all
+SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+--AND pt.tno = 1009
+--AND pt.refno = 1009
+--AND pem.eno = 10000005
+--OR pt.tno = 1008
+--OR pt.tno = 1009
+--OR pt.tno = 1011
+START WITH pt.refno=1009
+CONNECT BY PRIOR pt.tno = pt.refno;
+
+SELECT * FROM
+	(SELECT ROWNUM NUM, REFNO FROM
+		(SELECT DISTINCT refno FROM pmstask
+		WHERE mno=10000016
+		START WITH refno=0
+		CONNECT BY PRIOR tno = refno
+		ORDER BY refno ASC)
+	) a
+;
+
+SELECT pp.*, pt.*, pem.* 
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
 AND pem.eno = 10000016
-AND pem.pno = 1001 
-OR pt.tno = 1008
-OR pt.tno = 1009
-OR pt.tno = 1011
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 

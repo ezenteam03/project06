@@ -16,8 +16,8 @@ public class ChartService {
 		@Autowired(required=false)
 		private ChartDao dao;
 		
-		public ArrayList<Chart> chartList(){
-			return dao.chartList();
+		public ArrayList<Chart> chartList(int pno){
+			return dao.chartList(pno);
 		}
 		
 		

@@ -80,8 +80,8 @@
 			private String name;
 		*/
 		
-		console.log("${project.sdate}");
-		console.log("${project.deadline}");
+		var sdatestr = new Date("${project.sdatestr}");
+		var deadlinestr = new Date("${project.deadlinestr}");
 		
 		$.ajax({
 			type:"post",
@@ -90,8 +90,8 @@
 			dataType:"json",
 			success:function(data){
 				
-				var todayOrigin = new Date(2020, 4, 4); 
-				var today = new Date('2020/05/04'); 
+				var todayOrigin = sdatestr; 
+				var today = sdatestr; 
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -104,19 +104,24 @@
 				var clist = data.chartlist;
 				var dataInfo = [];
 				
+				//(시작일, 종료일, 소요일수, 진행도, 담당자)
 				dataInfo.push({
-	            	name: '총괄진행(시작일, 종료일, 소요일수, 진행도, 담당자)',	
+	            	name: '총괄진행',	
 	            	id: '0',
+	            	start: today+(1 * day), 
+					end: today+(((deadlinestr-sdatestr)/day) * day),
+					completed : 0,
 	            	owner: "${project.name}",
-	            	y:0,
+	            	y: 0,
 				});
 				
+				//+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")"
 				$.each(clist,function(idx, chart){
 					var sdate = new Date(chart.sdateorigin).toISOString().slice(2,10).replace(/-/g,"/");
 					var edate = new Date(chart.edateorigin).toISOString().slice(2,10).replace(/-/g,"/");
 					
 					dataInfo.push({
-						name: chart.tname+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")", 
+						name: chart.tname, 
 						id: ""+chart.tno+"", 
 						parent: ""+chart.refno+"", 
 						start: today+(chart.sdate * day), 
@@ -124,11 +129,11 @@
 						completed : chart.prog,
 						owner : ""+chart.name+"",
 						collapsed : true,
-						y:idx+1,
+						y : idx+1,
 						});
 				});
 				var seriesInfo = [{
-			        name: 'PMS',
+			        name: '${project.pname}',
 			        data: dataInfo
 			    }];
 				var tooltipInfo = {
@@ -179,98 +184,81 @@
 				var xAxisInfo = {
 				        currentDateIndicator: true,
 				        min: today + 1 * day, //프로젝트 첫날
-				        max: today + 35 * day, //프로젝트 마지막날
-				    };
-				/*var yAxisInfo = {
-					    type: 'category',
-					    grid: {      
-					      borderColor: '#3a5d96',      
-					      columns: [{
-					        title: {
-						          text: '작업명',
-						          rotation: 45,
-						          y: -15,
-						          x: -15
-						        },
-						        labels: {
-						          format: '{point.name}'
-						        }
-						      }, {
-					        title: {
-					          text: '담당자',
-					          rotation: 45,
-					          y: -15,
-					          x: -15
-					        },
-					        labels: {
-					          format: '{point.owner}'
-					        }
-					      }, {
-					        title: {
-						          text: '소요일',
-						          rotation: 45,
-						          y: -15,
-						          x: -15
-						        },
-						        labels: {
-						        	formatter: function() {
-						                var point = this.point,
-						                  days = (1000 * 60 * 60 * 24),
-						                  number = (point.end - point.start) / days;
-						                return number	;
-						              }
-						        }
-					      },{
-					        title: {
-						          text: '시작일',
-						          rotation: 45,
-						          y: -15,
-						          x: -15
-						        },
-						        labels: {
-						        	formatter: function() {
-						                var point = this.point,
-						                format = '%e. %b';
-						                return dateFormat(format, point.start);
-						              }
-						        }
-						      },{
-					        title: {
-						          text: '종료일',
-						          rotation: 45,
-						          y: -15,
-						          x: -15
-						        },
-						        labels: {
-						        	formatter: function() {
-						                var point = this.point,
-						                format = '%e. %b';
-						                return dateFormat(format, point.end);
-						              }
-						        }
-						      },{
-					        title: {
-						          text: '진행도',
-						          rotation: 45,
-						          y: -15,
-						          x: -15
-						        },
-						        labels: {
-						        	formatter: function() {
-						                var point = this.point,
-						                  number = point.completed * 100;
-						                return number + '%';
-						              }
-						        }
-						      }]
-					    }
-					  };*/
+				        max: today + ((deadlinestr-sdatestr)/day) * day, //프로젝트 마지막날
+				};
+				
+				var yAxisInfo = {
+			    type: 'category',
+			    grid: {      
+			      borderColor: '#3a5d96',      
+			      columns: [{
+			        title: {
+				          text: '작업명',
+				        },
+				        labels: {
+				          format: '{point.name}'
+				        }
+				      }, {
+			        title: {
+			          text: '담당자',
+			        },
+			        labels: {
+			          format: '{point.owner}'
+			        }
+			      }, {
+			        title: {
+				          text: '소요일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  days = (1000 * 60 * 60 * 24),
+				                  number = (point.end - point.start) / days;
+				                return Math.ceil(number);
+				              }
+				        }
+			      },{
+			        title: {
+				          text: '시작일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.start);
+				              }
+				        }
+				      },{
+			        title: {
+				          text: '종료일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.end);
+				              }
+				        }
+				      },/* {
+			        title: {
+				          text: '진행도',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  number = point.completed * 100;
+				                return number + '%';
+				              }
+				        }
+				      } */]
+			    }
+			  };
 				var cInfo = {
 						series : seriesInfo,
 						tooltip : tooltipInfo,
 						title: titleInfo,
 						xAxis: xAxisInfo,
-						//yAxis: yAxisInfo,
+						yAxis: yAxisInfo,
 				};
 				
 				console.log(todayOrigin);
@@ -312,7 +300,7 @@
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">${project.sdate }간트차트(PM)</i></h4>
+	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(PM)</i></h4>
             <div class="form-panel">
               <div id="chartpm"></div>
             </div>

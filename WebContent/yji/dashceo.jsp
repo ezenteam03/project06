@@ -42,6 +42,12 @@
 function goNoti() {
 	$(location).attr("href","${path}/notice.do?method=list");
 }
+function goMeet() {
+	$(location).attr("href","${path}/meet.do?method=list");
+}
+function goIssue() {
+	$(location).attr("href","${path}/risk.do?method=list");
+}
 </script>
 <body>
   <section id="container">
@@ -172,27 +178,17 @@ function goNoti() {
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="notice" items="${nlist}">
                   <tr>
-                    <td>8</td>
-                    <td>회의공지</td>
-                    <td>김대중</td>
-                    <td>3일전</td>
+                    <td>${notice.nno }</td>
+                    <td>${notice.title }</td>
+                    <td>${notice.writer }</td>
+                    <td>${notice.wdate }일전</td>
                   </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>주말 과제 공지</td>
-                    <td>김대중</td>
-                    <td>6일전</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>1주차 발표에 대한 피드백 회의 공지</td>
-                    <td>김대중</td>
-                    <td>7일전</td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
+              <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -204,27 +200,17 @@ function goNoti() {
                   </tr>
                 </thead>
                 <tbody>
+                  <c:forEach var="meet" items="${mlist}">
                   <tr>
-                    <td>3</td>
-                    <td>bootstrap template 결정</td>
-                    <td>안희정</td>
-                    <td>9일전</td>
+                    <td>${meet.mnno }</td>
+                    <td>${meet.topic }</td>
+                    <td>${meet.writer }</td>
+                    <td>${meet.wdate }일전</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>프로젝트 역할 분담</td>
-                    <td>추미애</td>
-                    <td>10일전</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>프로젝트 주제 선정</td>
-                    <td>김대중</td>
-                    <td>10일전</td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
+              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -236,24 +222,14 @@ function goNoti() {
                   </tr>
                 </thead>
                 <tbody>
+                  <c:forEach var="issue" items="${ilist}">
                   <tr>
-                    <td>4</td>
-                    <td>미해결</td>
-                    <td>안희정</td>
-                    <td>오늘</td>
+                    <td>${issue.ino }</td>
+                    <td>${issue.solve==1?"해결완료":"미해결" }</td>
+                    <td>${issue.writer }</td>
+                    <td>${issue.wdate }일전</td>
                   </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>해결완료</td>
-                    <td>추미애</td>
-                    <td>3일전</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>해결완료</td>
-                    <td>오세훈</td>
-                    <td>3일전</td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table><br><br><br>
               <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
@@ -262,30 +238,20 @@ function goNoti() {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>원글 작성자</th>
+                    <th>이슈번호</th>
                     <th>댓글 작성자</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <c:forEach var="re" items="${rlist}">
                   <tr>
-                    <td>5</td>
-                    <td>안희정</td>
-                    <td>김무성</td>
-                    <td>오늘</td>
+                    <td>${re.rno }</td>
+                    <td>${re.ino }</td>
+                    <td>${re.writer }</td>
+                    <td>${re.wdate }일전</td>
                   </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>안희정</td>
-                    <td>이명박</td>
-                    <td>오늘</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>오세훈</td>
-                    <td>안희정</td>
-                    <td>어제</td>
-                  </tr>
+                </c:forEach>
                 </tbody>
               </table><br>
           
@@ -333,68 +299,7 @@ function goNoti() {
   <!--script for this page-->
   <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
   <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var unique_id = $.gritter.add({
-        // (string | mandatory) the heading of the notification
-        title: 'Welcome to Dashio!',
-        // (string | mandatory) the text inside the notification
-        text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
-        // (string | optional) the image to display on the left
-        image: 'img/ui-sam.jpg',
-        // (bool | optional) if you want it to fade out on its own or just sit there
-        sticky: false,
-        // (int | optional) the time you want it to be alive for before fading out
-        time: 8000,
-        // (string | optional) the class name you want to apply to that specific message
-        class_name: 'my-sticky-class'
-      });
-
-      return false;
-    });
-  </script>
-  <script type="application/javascript">
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
-
-      $("#my-calendar").zabuto_calendar({
-        action: function() {
-          return myDateFunction(this.id, false);
-        },
-        action_nav: function() {
-          return myNavFunction(this.id);
-        },
-        ajax: {
-          url: "show_data.php?action=1",
-          modal: true
-        },
-        legend: [{
-            type: "text",
-            label: "Special event",
-            badge: "00"
-          },
-          {
-            type: "block",
-            label: "Regular event",
-          }
-        ]
-      });
-    });
-
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  </script>
+  
 </body>
 
 </html>
