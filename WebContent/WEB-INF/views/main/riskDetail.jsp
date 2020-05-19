@@ -67,10 +67,54 @@
 		}else{
 			$('#comment').css('display', 'none');
 		}
-		if(ri==3){
-			$('#uptBtn').css('display', 'none');
-		}
 		
+		/* 수정, 해결방안 권한 */
+		var mno="${mno}";
+		var rmno="${risk.mno}";
+	
+		if(mno==rmno){		
+			// 작성자
+			$('#cuptBt').css('display', 'none');
+			
+			$("#coment").css('backgroundColor','#ffffff');			
+//			$("#coment").attr('readOnly','true');
+//			$("#file01").attr('disabled','false');
+//			$("#title").attr('readOnly','false');
+//			$("#detail").attr('readOnly','false');	
+		}else{
+			// 권한없음
+			$('#uptBtn').css('display', 'none');
+			$('#cuptBt').css('display', 'none');
+			$("#title").css('backgroundColor','#ffffff');
+			$("#detail").css('backgroundColor','#ffffff');
+			$("#coment").css('backgroundColor','#ffffff');
+//			$("#coment").attr('readOnly','true');
+//			$("#title").attr('readOnly','true');
+//			$("#detail").attr('readOnly','true');
+//			$("#file01").attr('disabled','true');
+		
+		}
+		// PM권한		
+		if(ri==3){
+			$('#cuptBt').css('display', 'block');
+			$("#title").css('backgroundColor','#ffffff');
+			$("#detail").css('backgroundColor','#ffffff');	
+			$("#file01").css('backgroundColor','#ffffff');
+			$("#file01").attr('disabled',true);
+			$("#title").attr('readOnly',true);
+			$("#detail").attr('readOnly',true);
+			$("#coment").attr('readOnly',false);
+					
+		}		
+		// admin권한
+		if(ri==4){
+			$('#uptBtn').css('display', 'block');
+			$('#cuptBt').css('display', 'block');
+	//		$("#file01").attr('disabled','false');
+//			$("#title").attr('readOnly','false');
+//			$("#detail").attr('readOnly','false');
+//			$("#coment").attr('readOnly','false');
+		}		
 		
 		// 댓글 수정창 열기(댓글 상세)
 		$("#comentbt").click(function(){			
@@ -103,7 +147,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">작성자</span>
 		</div>
-		<input class="form-control" readonly="readonly"  style="background-color: #ffffff;"
+		<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
 			value="${risk.name }" placeholder="작성자입력하세요"/>	
 			
 		<div class="input-group-prepend">
@@ -118,7 +162,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">제 목</span>
 		</div>
-		<input name="title" class="form-control"
+		<input name="title" class="form-control" id="title"
 			value="${risk.title}"  
 			placeholder="제목입력하세요" />	
 		<div class="input-group-prepend">
@@ -133,7 +177,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">내 용</span>
 		</div>
-		<textarea name="detail" rows="10" style="resize:none"
+		<textarea name="detail" rows="10" style="resize:none" id="detail"
 			class="form-control" 
 			placeholder="내용입력하세요" >${risk.detail}</textarea>		 
 	</div> 
@@ -142,7 +186,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">첨부 파일</span>
 		</div>
-		<input class="form-control fileInfo" name="fnames" 
+		<input class="form-control fileInfo" name="fnames" id="fnames"
 			value="${risk.filenames[0]}" />	
 		<div class="custom-file">
 			<input type="file" name="report" 
@@ -167,18 +211,18 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">해결방안</span>
 		</div>
-		<textarea name="coment"  rows="5" style="resize:none"
+		<textarea name="coment"  rows="5" style="resize:none" id="coment"
 			class="form-control" 
 			placeholder="내용입력하세요" >${risk.coment}</textarea>		 
 	</div> 
 
 	<div style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="뒤로가기" id="goMain"/>		
-		<input type="button" class="btn btn-warning"
+	<input style="float:right;" type="button" class="btn btn-success"
+			value="해결방안 저장" id="cuptBt"/>			
+		<input style="float:right;" type="button" class="btn btn-warning"
 			value="수정" id="uptBtn"/>					
-		<input type="button" class="btn btn-success"
-			value="해결방안 저장" id="cuptBt"/>
+		<input style="float:right;" type="button" class="btn btn-info"
+			value="뒤로가기" id="goMain"/>	
 	</div>
 	
 	<br>

@@ -65,9 +65,7 @@ public class RiskCtrl {
 		HttpSession session = request.getSession();
 
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		if(emp.getPno()==1001) {
-			d.addAttribute("ri", 2);
-		}else if(emp.getMdiv()==4) {
+		if(emp.getMdiv()==4) {
 			d.addAttribute("ri", 3);
 		}else if(emp.getMdiv()==6) {
 			d.addAttribute("ri", 4);
