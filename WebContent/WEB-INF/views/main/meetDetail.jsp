@@ -159,6 +159,6 @@ function go(ino){
 close.onclick=function(){
 	regDiv.style.visibility="hidden";
 }	
-	
+
 </script>
 </html>
