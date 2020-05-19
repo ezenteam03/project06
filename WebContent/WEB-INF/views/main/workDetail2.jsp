@@ -173,6 +173,12 @@
 		
 	</div>		
 	<div class="input-group mb-3">
+		<!-- 팀원은 수정불가 
+		<div class="input-group-prepend">
+			<span class="input-group-text" readonly style="background:white;">업무명</span>
+		</div> -->
+		<c:if test=""></c:if> 
+		
 		<div class="input-group-prepend">
 			<span class="input-group-text">업무명</span>
 		</div>
@@ -206,7 +212,7 @@
 		</div>
 		<textarea name="detail" rows="10" 
 			class="form-control" 
-			placeholder="내용입력하세요" >${task.detail}</textarea>		 
+			placeholder="내용입력하세요">${task.detail}</textarea>		 
 	</div> 
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
@@ -214,7 +220,11 @@
 		</div>
 		<textarea name="updetail" rows="5" style="width:980px;"
 			class="form-control" 
-			placeholder="내용 입력하세요" >${task.updetail}</textarea>		
+			placeholder="내용 입력하세요">${task.updetail}</textarea>	
+			
+				
+			<!-- 팀원만 보이게 + admin -->
+			<c:if test=""></c:if> 
 			<div>
 				<input type="button" class="btn btn-success" style="width:130px; height:115px;"
 				value="저장하기" id="updetail"/>
@@ -256,10 +266,16 @@
 				</c:when>
 			</c:choose>
 			</t>
+			<!-- 팀원만 보이게 + admin -->
+			<c:if test=""></c:if> 
 			<button class="btn btn-success div-Btn" id="divBtn">결재신청</button>
 			
+			<!-- 팀장만 보이게 + admin -->
+			<c:if test=""></c:if> 
 			<button class="btn btn-danger div-Btn" id="divBtn2">반려처리</button>
 			<button class="btn btn-info div-Btn" id="divBtn3">결재완료</button>
+			
+			
 			<br><br>
 			<div class="input-group-prepend">
 				<span class="bg-warning text-white input-group-text" style="width:220px;">진행률</span>

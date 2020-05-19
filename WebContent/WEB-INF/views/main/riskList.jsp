@@ -47,6 +47,15 @@
 				$(location).attr("href","${path}/risk.do?method=insForm");
 			
 		});
+
+		var ri="${ri}";
+		if(ri==1||ri==2){
+			$("#pm").css('display', 'none');
+		}
+		if(ri==3){
+			$("#regBtn").css('display', 'none');
+		}
+		
 	});
 	function go(ino){
 		$(location).attr("href","${path}/risk.do?method=detail&ino="+ino);		
@@ -56,6 +65,8 @@
 		$("#curPage").val(no);
 		$("form").submit();
 	}
+	
+
 </script>
 <style>
 .jumbotron{background-color:#22D6B2; }
@@ -99,15 +110,17 @@
 				<form:option value="20">20</form:option>		
 				 </form:select>	
 				 </div>
-				 <div style="float:left;"> 
-				<span class="input-group-text" style="height:34px">프로젝트 번호:</span>
-				</div>
-				 <div style="float:left; margin-right: 5px">
-				<form:select path="pno" class="form-control" style="width:100px;float:left; ">
-		
-				<form:option value="1001">1001</form:option>
-				<form:option value="1002">1002</form:option>	
-				 </form:select>	
+				 <div id="pm">
+					 <div style="float:left;"> 
+					<span class="input-group-text" style="height:34px">프로젝트 번호:</span>
+					</div>
+					 <div style="float:left; margin-right: 5px">
+					<form:select path="pno" class="form-control" style="width:100px;float:left; ">
+			
+					<form:option value="1001">1001</form:option>
+					<form:option value="1002">1002</form:option>	
+					 </form:select>	
+					 </div>
 				 </div>
 			  <div style="float:left;">
 			 <button class="btn btn-success" type="submit">선택</button>	
