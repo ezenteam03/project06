@@ -59,7 +59,7 @@ public class MeetCtrl {
 	
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("mnno") int mnno, Model d) {
-		d.addAttribute("Meet", service.getMeet(mnno));
+		d.addAttribute("meet", service.getMeet(mnno));
 		return "WEB-INF\\views\\main\\meetDetail.jsp";
 	}
 	// 다운로드 처리.

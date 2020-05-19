@@ -39,9 +39,9 @@
  	
 	<select id="getMeet" 
  		resultType="meet" parameterType="int">
- 		SELECT *
- 		FROM pmsmeeting
- 		WHERE mnno = #{mnno}
+ 		SELECT mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,mndiv,m.name writer,pno
+ 		FROM pmsmeeting p, pmsemp m
+ 		WHERE mnno = #{mnno} and p.mno=m.eno
  	</select>
  	
  	<update id="uptReadCnt" parameterType="int">

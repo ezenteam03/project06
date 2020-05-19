@@ -163,7 +163,9 @@ public class MeetService {
 		dao.uptReadCnt(mnno);
 		System.out.println("파일의 갯수:"+dao.fnames(mnno).size());
 		Meet d = dao.getMeet(mnno);
+		System.out.println(d.getWriter());
 		d.setFilenames(dao.fnames(mnno));
+		System.out.println(d.getFilenames().size());
 		return d;
 	}
 	
