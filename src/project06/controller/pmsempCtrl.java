@@ -37,10 +37,10 @@ public class pmsempCtrl {
 	}
 	// 인사 사원정보수정 페이지 이동
 	@RequestMapping(params="method=setForm")
-	public String setemp(@RequestParam("eno") int eno, Model d) {
+	public String setemp(@RequestParam("peno") int eno, Model d) {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		System.out.println("ctrl eno : "+eno);
-		d.addAttribute("emp", service.getemp(eno));
+		d.addAttribute("pemp", service.getemp(eno));
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CEO, CTO 권한 설정

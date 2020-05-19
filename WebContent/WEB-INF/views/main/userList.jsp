@@ -46,7 +46,7 @@
 	 }
 	 function go(eno){
 		 $(location).attr("href",
-				 "${path}/PMSemp.do?method=setForm&eno="+eno);
+				 "${path}/PMSemp.do?method=setForm&peno="+eno);
 	 }
 
   </script>

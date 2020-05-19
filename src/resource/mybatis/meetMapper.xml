@@ -19,16 +19,16 @@
 
 	
  	<select id="list" resultMap="meetResult" parameterType="msch" >
- 		SELECT mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,
-		mndiv,m.name writer,pno
-		FROM pmsmeeting a, pmsemp m
-		WHERE 1=1 and a.mno=m.eno
-		<if test="topic!=null and topic!=''">
+ 		SELECT * 
+		FROM(
+			SELECT rownum cnt, mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,mndiv,m.name writer,pno 
+			FROM pmsmeeting p, pmsemp m 
+			WHERE 1=1 AND p.mno=m.eno 
+			<if test="topic!=null and topic!=''">
 			and topic like '%'||#{topic}||'%'
-		</if>
-		
-		order by mnno desc
- 		WHERE cnt BETWEEN #{start} AND #{end}	
+			</if>
+			ORDER BY mnno DESC) 
+		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	
  	
@@ -68,7 +68,7 @@
  	</delete> 	
   	
   	
-<!-- 여기서부터 다시 체크 -->
+<!-- 여기서부터 다시 체크 
   	<insert id="insertRepo" parameterType="String"> 
  		insert into meetfile values(pmsmeeting_seq.currval, 
  			#{fname}, sysdate, sysdate, '')
@@ -96,6 +96,8 @@
  	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
  		insert into meetfile values(${no}, 
  			#{tar}, sysdate, sysdate, '')
-	</insert>	 	
+	</insert>	
+	
+	--> 	
 </mapper>
 
