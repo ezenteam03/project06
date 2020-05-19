@@ -17,10 +17,32 @@ public class pmsemp {
 		private String grade;
 		private String phone;
 		private String email;
-		private String cname;
-		private int pno;
+		private String cname;	// 권한이름		(pmscodes)
+		private int pno;		// 프로젝트번호	(pmsmember)
+		private String pass;	// 비밀번호		(pmsmember)
+		private int mdiv;		// 권한구분		(pmsmember)
+		private String wcon;	// 희망연락처		(pmsmember)
+
 		
 		
+		public String getPass() {
+			return pass;
+		}
+		public void setPass(String pass) {
+			this.pass = pass;
+		}
+		public int getMdiv() {
+			return mdiv;
+		}
+		public void setMdiv(int mdiv) {
+			this.mdiv = mdiv;
+		}
+		public String getWcon() {
+			return wcon;
+		}
+		public void setWcon(String wcon) {
+			this.wcon = wcon;
+		}
 		public int getPno() {
 			return pno;
 		}

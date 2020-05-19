@@ -13,9 +13,21 @@ public interface pmsempRep {
 	public ArrayList<pmsemp> pmsempList(pmsemp sch);
 	// CEO, CTO, PM 상세
 	public pmsemp getemp(int eno);
-	// CEO CTO설정
+	// PMSmember에 등록됐는지 확인
+	public int memCheck(pmsemp ckmem);
+	// CTO PMS등록
+	public void insertMem1(pmsemp insMem1);
+	// CTO설정
 	public void updatepmsemp1(pmsemp upt);
 	public void updatepmsemp2();
+	// PM PMS등록
+	public void insertMem2(pmsemp insMem2);
+	// PM설정
+	public void updatePm1(pmsemp uptPm);
+	public void updatePm2();
+	
+	
+	
 	// PM 삭제 리스트
 	public ArrayList<pmsemp> pmempList(pmsemp sch);
 	// PM 팀원 삭제
@@ -27,7 +39,6 @@ public interface pmsempRep {
 	// 인사 사원정보 수정
 	public void updateEmp(pmsemp uptemp);
 	// 퇴사 처리
-	public int memCheck(pmsemp ckmem);
 	public void delGrade1(pmsemp delG);
 	public void delGrade2(pmsemp delG);
 	public void delGrade3(pmsemp delG);
