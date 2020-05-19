@@ -25,10 +25,10 @@ public class Task {
 	private String tname;
 	private String detail;
 	private String updetail;
-	private String sdate;
-	private String edate;
+	private Date sdate;
+	private Date edate;
 	private int prog;
-	private Date pdate;
+	private String pdate;
 	private String coment;
 	private int tdiv;
 	private int mno;
@@ -69,17 +69,17 @@ public class Task {
 	public void setUpdetail(String updetail) {
 		this.updetail = updetail;
 	}
-	public String getSdate() {
+	public Date getSdate() {
 		return sdate;
 	}
-	public void setSdate(String sdate) {
+	public void setSdate(Date sdate) {
 		this.sdate = sdate;
 	}
 	
-	public String getEdate() {
+	public Date getEdate() {
 		return edate;
 	}
-	public void setEdate(String edate) {
+	public void setEdate(Date edate) {
 		this.edate = edate;
 	}
 	public int getProg() {
@@ -88,10 +88,10 @@ public class Task {
 	public void setProg(int prog) {
 		this.prog = prog;
 	}
-	public Date getPdate() {
+	public String getPdate() {
 		return pdate;
 	}
-	public void setPdate(Date pdate) {
+	public void setPdate(String pdate) {
 		this.pdate = pdate;
 	}
 	public String getComent() {

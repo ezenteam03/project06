@@ -18,6 +18,7 @@ public interface WorkDao2 {
 	
 	public void coment(Task upt);
 	public void prog(Task upt);
+	public void upTdiv(Task upt);
 	
 	public void insert(Task ins);
 	

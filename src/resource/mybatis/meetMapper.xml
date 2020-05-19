@@ -2,14 +2,100 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+	
 <mapper namespace="project06.repository.MeetDao">
 
 	<resultMap type="meet" id="meetResult"/>
- 	<select id="list" resultMap="meetResult" parameterType="meet">
-		SELECT mnno,topic,detail,result,etc,views,wdate,chdate,mdate,loc,people,
+
+ 	<select id="totCnt" resultType="int" parameterType="msch">
+ 		select count(*) 
+		from pmsmeeting
+		where 1=1
+		<if test="topic!=null and topic!=''">
+		and topic like '%'||#{topic}||'%'
+		</if>
+	</select> 
+
+
+	
+ 	<select id="list" resultMap="meetResult" parameterType="msch" >
+ 		SELECT mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,
 		mndiv,m.name writer,pno
 		FROM pmsmeeting a, pmsemp m
 		WHERE 1=1 and a.mno=m.eno
+		<if test="topic!=null and topic!=''">
+			and topic like '%'||#{topic}||'%'
+		</if>
+		
 		order by mnno desc
+ 		WHERE cnt BETWEEN #{start} AND #{end}	
  	</select>
-</mapper>	
+ 	
+ 	
+ 	<insert id="insert" parameterType="meet">
+	 	insert into pmsmeeting values(pmsmeeting_seq.nextval,#{topic},#{detail},#{decision},null,0,sysdate,null,sysdate,#{loc},#{people},0,10000017,1001);
+ 	</insert>
+ 	
+ 	
+	<select id="getMeet" 
+ 		resultType="meet" parameterType="int">
+ 		SELECT *
+ 		FROM pmsmeeting
+ 		WHERE mnno = #{mnno}
+ 	</select>
+ 	
+ 	<update id="uptViews" parameterType="int">
+ 		UPDATE pmsmeeting
+ 		   SET views = views+1
+ 		 WHERE mnno = #{mnno}
+ 	</update>
+ 	
+ 	<update id="updateMeet" parameterType="meet">
+		UPDATE pmsmeeting
+		   SET topic = #{topic},
+		   	   detail = #{detail},
+		   	   decision = #{decision},
+		   	   etc = #{etc},
+		   	   a.mno=m.eno = #{a.mno=m.eno},
+		   	   chdate = sysdate
+		   	 
+		 WHERE mnno = #{mnno}
+ 	</update> 
+
+  	<delete id="deleteMeet" parameterType="int">
+		DELETE FROM pmsmeeting
+		 WHERE mnno = #{mnno}
+ 	</delete> 	
+  	
+  	
+<!-- 여기서부터 다시 체크 -->
+  	<insert id="insertRepo" parameterType="String"> 
+ 		insert into meetfile values(pmsmeeting_seq.currval, 
+ 			#{fname}, sysdate, sysdate, '')
+	</insert>
+  	
+  	<resultMap type="String" id="strMap"/> 
+ 	<select id="fnames" resultMap="strMap" parameterType="int">
+ 		SELECT fname 
+ 		FROM meetfile		
+ 		WHERE no=#{no}
+ 	</select> 
+  	
+  	<delete id="deleteFile" parameterType="int">
+		DELETE FROM meetfile
+		 WHERE NO = #{no}
+ 	</delete>  	
+ 
+  	<update id="uptFileInfo" parameterType="java.util.HashMap">
+		UPDATE meetfile
+			SET fname = #{tar},
+	        uptdte= sysdate
+	    WHERE NO = ${no}
+		AND fname = #{org}	    	
+	</update> 	
+ 	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
+ 		insert into meetfile values(${no}, 
+ 			#{tar}, sysdate, sysdate, '')
+	</insert>	 	
+</mapper>
+

@@ -54,7 +54,7 @@
 }
 
 .num {width:10%;}
-.title {padding-right:50px; width:25%;}
+.title { width:25%;}
 .date {width:15%;}
 .cnt {width:40%;}
 
@@ -79,8 +79,8 @@ $(document).ready(function(){
 	});
 });
 function goPage(no){
-	$("#curPage").val(no);
-	$("form").submit();
+	$("[name=curPage]").val(no);
+	$("form").attr("method","post").submit();
 }
 function go(no){
 	$(location).attr("href","${path}/task.do?method=detail&tno="+no);
@@ -105,6 +105,7 @@ function go(no){
              <h4><i class="fa fa-bullhorn"></i>&ensp;  업무현황 </h4>
              
     <form:form class="form" commandName="tsch" method="post" >
+    <form:hidden path="curPage"/>
   	 <div style="width:300px; float:left;">
 	    <form:input class="form-control mr-sm-2 sch" path="tname" placeholder="업무명 검색" style="width:300px;"/>
 	    
@@ -115,7 +116,7 @@ function go(no){
 	    </div>
 	    
 	    
- 	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+ 	 <!-- 현재 클릭한 페이지 번호. -->
  
  	<br>
  	
@@ -137,15 +138,14 @@ function go(no){
                 
    <form method="post">
 			<input type="hidden" name="curPage"/>
-			
-	
 	</form>
+	
   <table class="table table-hover">
        <thead>
           <tr>
             <th class="num">번호</th>
             <th class="title">업무 명</th>
-            <th class="date"></th>
+            <th class="date">종료일/th>
             <th class="cnt"></th>
           </tr>
         </thead>
@@ -154,7 +154,7 @@ function go(no){
           <tr onclick="go(${task.tno})">
             <td style="text-align: center;">${task.tno}</td>
             <td style="padding-left:70px;">${task.tname}</td>
-            <td style="text-align: center;"><fmt:formatDate value="" type="date"/></td>
+            <td style="text-align: center;"><fmt:formatDate value="${task.edate }" type="date"/></td>
             <td style="text-align: right;padding-right:70px;"></td>
           </tr>
          </c:forEach>
@@ -172,15 +172,15 @@ function go(no){
         <br>
         <div style="text-align:center; float:left; margin-left:600px;">
 		<ul class="pagination justify-content-center" style="margin:20px 0">
-		    <li class="page-item">
-		    <a class="page-link" href="javascript:goPage(${tsch.startBlock-1})">Previous</a></li>
-		    <c:forEach var="cnt" begin="${tsch.startBlock}" end="${tsch.endBlock}">
-			  <li class="page-item ${tsch.curPage==cnt?'active':''}">
-			  
-			  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
-			</c:forEach>
-			<li class="page-item">
-			<a class="page-link" href="javascript:goPage(${(tsch.endBlock==tsch.pageCount)?tsch.endBlock:tsch.endBlock+1})">Next</a></li>
+	    <li class="page-item">
+	    <a class="page-link" href="javascript:goPage(${tsch.startBlock-1})">Previous</a></li>
+	    <c:forEach var="cnt" begin="${tsch.startBlock}" end="${tsch.endBlock}">
+		  <li class="page-item ${tsch.curPage==cnt?'active':''}">
+		  
+		  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+		</c:forEach>
+		<li class="page-item">
+		<a class="page-link" href="javascript:goPage(${(tsch.endBlock==tsch.pageCount)?tsch.endBlock:tsch.endBlock+1})">Next</a></li>
 		</ul>  
 	</div>
        <div>

@@ -16,11 +16,21 @@
  		 
  		 column ==> vo와 연결하여 ArrayList로 처리..
  	 -->
+ 	 <!-- 프로젝트 전체목록 -->
  	<resultMap type="project" id="projectResult"/>
  	<select id="projectList" resultMap="projectResult" parameterType="project">
 		SELECT pp.*, pem.name
 		FROM PMSPROJECT pp, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 		WHERE pem.mno = pp.mno
+ 	</select>
+ 	
+ 	 <!-- 상세화면  parameterType="int" -->
+ 	<select id="getProject" resultType="project" >
+ 		SELECT pp.*, pem.name
+		FROM PMSPROJECT pp, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
+		WHERE pem.mno = pp.mno
+		AND pem.mno = 10000005
  	</select>
 </mapper>	

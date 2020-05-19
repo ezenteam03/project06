@@ -53,7 +53,7 @@
 	 	insert into pmsnotice values(pmsnotice_seq.nextval,#{title},#{detail},sysdate,null,0,1001,10000005)
  	</insert>
  	
- 	<update id="uptviews" parameterType="int">
+ 	<update id="uptViews" parameterType="int">
  		UPDATE pmsnotice
  		   SET views = views+1
  		 WHERE nno = #{no}

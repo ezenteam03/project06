@@ -19,7 +19,7 @@
 	tdiv NUMBER NOT NULL, /* 결재구분 */
 	mno NUMBER NOT NULL /* 사원번호 */
  	 -->
- 	 <select id="totCnt" resultType="int" parameterType="tsch">
+ 	 <select id="totCnt" resultType="int" parameterType="task">
  		select count(*) 
 		from pmstask
 		where 1=1
@@ -60,20 +60,25 @@
  	<!-- 제목, 내용수정  / 반려사유
  	pstart = #{pstart},
 	pend = #{pend}-->
- 	<update id="updateTask" parameterType="tsch">
+ 	<update id="updateTask" parameterType="task">
 		UPDATE PMSTASK
 		   SET tname = #{tname},
 		   	   detail = #{detail}   
 		 WHERE tno = #{tno}
  	</update> 
- 	<update id="coment" parameterType="tsch">
+ 	<update id="coment" parameterType="task">
 		UPDATE PMSTASK
 		   SET coment = #{coment}
 		 WHERE tno = #{tno}
  	</update>
- 	<update id="prog" parameterType="tsch">
+ 	<update id="prog" parameterType="task">
 		UPDATE PMSTASK
 		   SET prog = #{prog}
+		 WHERE tno = #{tno}
+ 	</update>
+ 	<update id="upTdiv" parameterType="task">
+		UPDATE PMSTASK
+		   SET tdiv = 22, pdate = sysdate
 		 WHERE tno = #{tno}
  	</update>
  	

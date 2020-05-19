@@ -25,10 +25,7 @@ public class ChartCtrl {
 	
 	@RequestMapping(params="method=pm2")
 	public String chartpm2(Model d) {
-		System.out.println("컨트롤러단");
-		System.out.println("대충 내용 : "+pservice.projectList());
-		
-		//d.addAttribute("projectlist", pservice.projectList());
+		d.addAttribute("project", pservice.getProject());
 		
 		return "WEB-INF\\views\\main\\chartpm2.jsp";
 	}
