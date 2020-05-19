@@ -1063,25 +1063,23 @@ insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담�
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트에 활용할 bootstrap template 투표','카카오톡 단체채팅방에 올라온 템플릿 후보 중 하나를 선택해 주세요. ',to_date('2020-05-04','yyyy-mm-dd'),null,20,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 6일 오후 1시 30분, 507호 강의실에서 ERD설계에 관한 회의가 있을 예정입니다. 회의 전까지 각자 맡은 파트에 대한 요구사항 정의서를 구글 스프레드 시트에 작성해주세요.',to_date('2020-05-04','yyyy-mm-dd'),null,25,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'5월5일 휴일 과제 공지','Git에 업로드된 PPT템플릿을 다운받아 화면설계서를 작성하시고, 각자 자기 폴더에 업로드 해주세요. ',to_date('2020-05-04','yyyy-mm-dd'),null,20,1001,10000005);
-insert into pmsnotice values(pmsnotice_seq.nextval,'1주차 발표에 대한 피드백 회의 공지','5월 8일 오후 3시, 507호 강의실에서 1주차 발표에 대한 피드백이 있겠습니다.',to_date('2020-05-07','yyyy-mm-dd'),null,10,1001,10000005);
-insert into pmsnotice values(pmsnotice_seq.nextval,'주말 과제 공지','피드백을 반영하여 PPT 파트 수정 후 GIT에 업로드하기. PMS에 대해 공부해오기(면접 대비)',to_date('2020-05-08','yyyy-mm-dd'),null,15,1001,10000005);
-insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 11일 오후 1시 30분, 507호 강의실에서 ERD 설계에 대한 회의가 있을 예정입니다.',to_date('2020-05-11','yyyy-mm-dd'),null,10,1001,10000005);
---공지사항 정보 쇼모꼬
 insert into pmsnotice values(pmsnotice_seq.nextval,'기한 내 작업 완수 목표를 꼭 달성합시다','모두 힘을 내어 꼭 달성합시다',to_date('2020-05-04','yyyy-mm-dd'),null,0,1002,10000003);
+insert into pmsnotice values(pmsnotice_seq.nextval,'1주차 발표에 대한 피드백 회의 공지','5월 8일 오후 3시, 507호 강의실에서 1주차 발표에 대한 피드백이 있겠습니다.',to_date('2020-05-07','yyyy-mm-dd'),null,10,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'업무 분담 숙지 바랍니다','본인이 맡은 업무와 그 기한을 반드시 숙지하시기 바랍니다',to_date('2020-05-07','yyyy-mm-dd'),null,0,1002,10000006);
+insert into pmsnotice values(pmsnotice_seq.nextval,'주말 과제 공지','피드백을 반영하여 PPT 파트 수정 후 GIT에 업로드하기. PMS에 대해 공부해오기(면접 대비)',to_date('2020-05-08','yyyy-mm-dd'),null,15,1001,10000005);
 insert into pmsnotice values(pmsnotice_seq.nextval,'이슈 발생시 바로 이슈리스트 등록 바랍니다','등록 후 수정하더라도 바로바로 등록하는 습관을 들입시다',to_date('2020-05-08','yyyy-mm-dd'),null,0,1002,10000006);
+insert into pmsnotice values(pmsnotice_seq.nextval,'회의 공지','5월 11일 오후 1시 30분, 507호 강의실에서 ERD 설계에 대한 회의가 있을 예정입니다.',to_date('2020-05-11','yyyy-mm-dd'),null,10,1001,10000005);
 -- 회의록 입력
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'프로젝트 주제 선정','pms와 다른 주제들 중 이번 프로젝트로 진행할 주제 선정','나이키 등 의류 쇼핑몰&지점관리 시스템',null,15,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표,김무성',34,10000005,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'프로젝트 역할 분담','프로젝트에서 각자 담당할 part 역할 분담 및 백업/협업 계획 수립','역할 분담 완료',null,20,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표,김무성',34,10000015,1001);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'5번째 프로젝트 주제선정','9가지 가 주제 중 주제 선정 및 개략적 기능 플로우 토의','문화예술 / 공연 / 소극장 대관 시스템 결정',null,15,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',34,10000006,1002);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'bootstrap template 결정','프로젝트에 활용할 bootstrap template 비교/논의 및 결정','선정완료',null,15,to_date('2020-05-05','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정,박영선,정은경,홍준표',34,10000017,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','요구사항정의서와 화면 설계를 바탕으로 ERD 설계','러프한 ERD 개요 설계',null,20,to_date('2020-05-06','yyyy-mm-dd'),null,to_date('2020-05-06','yyyy-mm-dd'),'507호','김대중,추미애,안희정,박영선,정은경,김무성',32,10000016,1001);
-insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 개선방안논의','발표에 대한 피드백 확인 및 자체 회의를 통한 프로젝트 개선방향 및 추가로 프로젝트에 필요한 기능 논의','주말을 활용하여 결정된 사안에 대해 각자 업무 처리 후 월요일에 다시 논의',null,17,to_date('2020-05-09','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정',32,10000015,1001);
-insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
--- 회의록 입력 쇼모꼬
-insert into pmsmeeting values(pmsmeeting_seq.nextval,'5번째 프로젝트 주제선정','9가지 가 주제 중 주제 선정 및 개략적 기능 플로우 토의','문화예술 / 공연 / 소극장 대관 시스템 결정',null,15,to_date('2020-05-04','yyyy-mm-dd'),null,to_date('2020-05-04','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',34,10000006,1002);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'프로젝트 명 선정','enjoy culture / show must go on /','show must go on (쇼모꼬) 확정',null,15,to_date('2020-05-06','yyyy-mm-dd'),null,to_date('2020-05-06','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',34,10000011,1002);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'포인트 테이블 작성여부','보유 포인트의 데이터베이스 처리','포인트 출/납 테이블 생성',null,15,to_date('2020-05-08','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',34,10000012,1002);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'1주차 발표 피드백 개선방안논의','발표에 대한 피드백 확인 및 자체 회의를 통한 프로젝트 개선방향 및 추가로 프로젝트에 필요한 기능 논의','주말을 활용하여 결정된 사안에 대해 각자 업무 처리 후 월요일에 다시 논의',null,17,to_date('2020-05-09','yyyy-mm-dd'),null,to_date('2020-05-08','yyyy-mm-dd'),'507호','김대중,추미애,오세훈,안희정',32,10000015,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'동행 게시판 추가여부','동행 게시판의 필요성 논의 / 게시판 시스템 논의 / DB 설계','동행 게시판 추가',null,15,to_date('2020-05-11','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',31,10000011,1002);
+insert into pmsmeeting values(pmsmeeting_seq.nextval,'ERD 설계','테이블간 식별/비식별 관계 및 세부 컬럼 논의','DB 생성 후 추후 수정',null,7,to_date('2020-05-12','yyyy-mm-dd'),null,to_date('2020-05-11','yyyy-mm-dd'),'507호','김대중,추미애,박영선,정은경',31,10000017,1001);
 insert into pmsmeeting values(pmsmeeting_seq.nextval,'mvc2 모델 적용 방법','기능적 업무 단위별로 DAO 및 Controller 운용','추후 구현단계에서 다시 논의',null,15,to_date('2020-05-14','yyyy-mm-dd'),null,to_date('2020-05-14','yyyy-mm-dd'),'507호','김영삼,윤보선,이승만,이은재,이재명,문희상',31,10000012,1002);
 -- 이슈리스트
 insert into PMSISSUE values(pmsissue_seq.nextval,'ERD설계','ERD설계에 있어 게시판 통합의 문제 사용자 번호와 사원 번호 중복의 문제 테이블간 연결시 식별/비식별 구분 문제 등',0,null,to_date('2020-05-04','YYYY-MM-DD'),null,null,1001,10000005);		
@@ -1109,13 +1107,13 @@ insert into PMSREPLY values(pmsreply_seq.nextval,2,'정말 감사합니다',sysd
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'쿠폰부여의 DAO 메서드를 각각 작성하여 Service에서 일괄처리해보세요',sysdate,10000024,17);
 insert into PMSREPLY values(pmsreply_seq.nextval,0,'해결되었습니다. 도와주셔서 감사합니다.',sysdate,10000022,17);
 -- 업무리스트
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계',null, '2020/05/04', '2020/05/08',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '데이터베이스', 'DB설계 및 생성',null, '2020/05/04','2020/05/14',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면설계', '화면을 설계',null, '2020/05/04', '2020/05/08',100,to_date('2020-05-07','yyyy-mm-dd'),NULL,24,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '데이터베이스', 'DB설계 및 생성',null, '2020/05/04','2020/05/14',100,to_date('2020-05-11','yyyy-mm-dd'),NULL,24,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '화면구현', '설계된 웹/앱 화면 구현',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '테스트', '테스트를 함',null, '2020/06/01','2020/06/08',0,NULL,NULL,21,10000005);
 
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 설계', 'DB 설계',null, '2020/05/04','2020/05/09',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 설계', 'DB 설계',null, '2020/05/04','2020/05/09',100,to_date('2020-05-07','yyyy-mm-dd'),NULL,24,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',100,to_date('2020-05-12','yyyy-mm-dd'),NULL,24,10000005);
 
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '사원정보', '사원정보 시스템 개발 ',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 총괄관리', '총괄관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
@@ -1125,9 +1123,9 @@ INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 자�
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 의사소통관리', '의사소통관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 리스크관리', '리스크관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(웹)','- 로그인(50%) : 사원번호/비밀번호 입력 후 DB와 일치하면 로그인 &#10;- 로그아웃(50%) : 메인화면 이동 및 로그인 세션 정보 삭제',null,'2020/05/08','2020/05/12', 0,NULL,NULL,21,10000015);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '번호 찾기(웹)','- 이름/이메일 -> 일치하는 사원번호 출력 &#10;- 사원번호/이름/이메일(인증번호) -> 비밀번호 재설정(변경)',null,'2020/05/12','2020/05/16', 0,NULL,NULL,21,10000015);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '개인정보(웹)','- 내 프로젝트 팀원 확인 &#10;- 개인정보 -> 입력 정보 확인 및 수정',null,'2020/05/16','2020/05/20', 0,NULL,NULL,21,10000015);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(웹)','- 로그인(50%) : 사원번호/비밀번호 입력 후 DB와 일치하면 로그인 &#10;- 로그아웃(50%) : 메인화면 이동 및 로그인 세션 정보 삭제',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-11','yyyy-mm-dd'),NULL,24,10000015);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '번호 찾기(웹)','- 이름/이메일 -> 일치하는 사원번호 출력 &#10;- 사원번호/이름/이메일(인증번호) -> 비밀번호 재설정(변경)',null,'2020/05/12','2020/05/16', 100,to_date('2020-05-17','yyyy-mm-dd'),NULL,24,10000015);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '개인정보(웹)','- 내 프로젝트 팀원 확인 &#10;- 개인정보 -> 입력 정보 확인 및 수정',null,'2020/05/16','2020/05/20', 100,to_date('2020-05-19','yyyy-mm-dd'),NULL,24,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(앱)','- 사원번호/비밀번호 입력 -> 로그인 &#10;- 로그아웃 -> 메인화면 이동 / 로그인 세션 정보 삭제',null,'2020/05/20','2020/05/24', 0,NULL,NULL,21,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '번호 찾기(앱)','- 이름/이메일 -> 일치하는 사원번호 출력 &#10;- 사원번호/이름/이메일(인증번호) -> 비밀번호 재설정(변경)',null,'2020/05/24','2020/05/28', 0,NULL,NULL,21,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '개인정보(앱)','- 내 프로젝트 팀원 확인 &#10;- 개인정보 -> 입력 정보 확인 및 수정',null,'2020/05/28','2020/06/01', 0,NULL,NULL,21,10000015);

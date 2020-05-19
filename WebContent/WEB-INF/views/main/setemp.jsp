@@ -76,50 +76,50 @@
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 수정</h4>
               <form class="form-horizontal style-form" method="post">
-				<input type="hidden" name="eno" value="${emp.eno}" />
+				<input type="hidden" name="eno" value="${pemp.eno}" />
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">
-                    <span>${emp.name}</span>
+                    <span>${pemp.name}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">부서명</label>
                   <div class="col-sm-10">
-                    <span>${emp.dept}</span>
+                    <span>${pemp.dept}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">직책</label>
                   <div class="col-sm-10">
-                    <span>${emp.grade}</span>
+                    <span>${pemp.grade}</span>
 
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">핸드폰</label>
                   <div class="col-sm-10">
-                    <span>${emp.phone}</span>
+                    <span>${pemp.phone}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이메일</label>
                   <div class="col-sm-10">
-                    <span>${emp.email}</span>
+                    <span>${pemp.email}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">권한</label>
                   <div class="col-sm-10">
-                    <span>${emp.cname==null?"PMS등록안됨":emp.cname}</span>
+                    <span>${pemp.cname==null?"PMS등록안됨":pemp.cname}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">프로젝트</label>
                   <div class="col-sm-10">
-                    <span>${emp.pno}</span>
+                    <span>${pemp.pno}</span>
                     <select class="sel-grade" name="pno">
-                  	<option>${emp.pno==null?"PMS등록안됨":emp.pno}</option>
+                  	<option>${pemp.pno==null?"PMS등록안됨":pemp.pno}</option>
                   	<option value="1001">1001</option>
                   	<option value="1002">1002</option>
                   	<option value="1003">1003</option>

@@ -33,7 +33,7 @@
   
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-
+<script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -324,7 +324,7 @@ th{text-align:center;}
     <aside>
       <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
+        <ul id="show" class="sidebar-menu" id="nav-accordion">
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
@@ -366,10 +366,16 @@ th{text-align:center;}
               <span>이슈리스트</span>
               </a>
           </li>
-          <li>
-            <a href="${path}/PMSemp.do?method=list">
+          <li class="sub-menu" v-if="mdiv==2||mdiv==3||mdiv==6">
+          	<a href="${path}/PMSemp.do?method=list">
               <i class="fa fa-group"></i>
-              <span>인적자원관리(팀원 비활성화) </span>
+              <span>인적자원관리</span>
+              </a>
+          </li>        
+          <li class="sub-menu" v-else-if="mdiv==7">
+          	<a href="${path}/PMSemp.do?method=empList">
+              <i class="fa fa-group"></i>
+              <span>인적자원관리</span>
               </a>
           </li>        
         </ul>
@@ -469,5 +475,10 @@ th{text-align:center;}
 
   </section>
 </body>
-
+<script>
+var vm = new Vue({
+	el:"#show",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 </html>
