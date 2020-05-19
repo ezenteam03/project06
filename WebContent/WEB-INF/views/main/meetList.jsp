@@ -103,6 +103,10 @@
               <table class="table table-hover">
                 <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
                 <hr>
+                <form method="post">
+					<input type="hidden" name="curPage"/>
+				</form>
+			<table class="table table-hover">
                 <thead>
                   <tr>
                     <th class="num">번호</th>
@@ -129,7 +133,7 @@
   				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
   				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   					<form:input class="form-control mr-sm-2 sch" 
-	    				path="title" placeholder="제목" />
+	    				path="topic" placeholder="제목" />
 	    			<button class="btn btn-success" type="submit">Search</button>&nbsp;
 	   				<button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
   				</nav>
