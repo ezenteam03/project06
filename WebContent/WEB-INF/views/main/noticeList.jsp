@@ -112,16 +112,10 @@ function goPage(no){
                 <br>
               <form:form class="form" commandName="nsch" method="post" >
   				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  				<nav class="navbar navbar-expand-sm  navbar-dark">
-  
-	    		<form:input class="form-control mr-sm-2 sch" 
-	    			path="title" placeholder="제목" />
-	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
-	    
-  				</nav>
+  				
   				<br>
  	<div class="input-group lb-3">	
-		<div style="float:left; width:20%;" class="input-group-prepend ">
+		<div style="float:left; width:40%;" class="input-group-prepend ">
 			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
 		</div>
 		
@@ -136,7 +130,7 @@ function goPage(no){
 			</form:select> 
 		</div>
 	</div>  
-  </form:form> 
+  
   
   			<hr>
 			<table class="table table-hover">
@@ -150,7 +144,7 @@ function goPage(no){
 		        </thead>
 		        <tbody>
 		        <c:forEach var="notice" items="${nlist}">
-		          <tr ondblclick="javascript:go(${notice.nno})">
+		          <tr onclick="javascript:go(${notice.nno})">
 		            <td style="text-align: center;">${notice.nno}</td>
 		            <td style="padding-left:70px;">${notice.title}</td>
 		            <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
@@ -160,9 +154,8 @@ function goPage(no){
 		        </tbody>
 			</table>
 	
-   
-    
-      <div style="text-align:center; float:left; margin-left:600px;">  
+ 
+      <div style="text-align:center; margin-left:auto; margin-right:auto;">  
       <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
 	   		<a class="page-link" href="javascript:goPage(${nsch.startBlock-1});">Previous</a></li>
@@ -175,6 +168,16 @@ function goPage(no){
 	  </ul>  
       </div>      
              <br>
+                <nav style="width:20%;  margin-left:auto; margin-right:auto;" class="navbar navbar-expand-sm  navbar-dark">
+  
+	    		<form:input class="form-control mr-sm-2 sch" 
+	    			path="title" placeholder="제목" />
+	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	    
+  				</nav>
+    </form:form>
+             
+             
         <!-- c:if 어쩌고-->
           <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br>
