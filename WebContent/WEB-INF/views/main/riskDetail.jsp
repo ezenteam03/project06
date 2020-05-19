@@ -82,11 +82,20 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
+	<section id="main-content">
+      <section class="wrapper">
+		<div id="all">
+        <div class="row">
+         <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
 
-<div class="container">
 	<form method="post"  enctype="multipart/form-data" id="form"
 	action="${path}/risk.do?method=comment">
 	<input name="ino" type="hidden" value="${risk.ino }"/>
+	
+	
+	
 <div class="input-group mb-3">	
 		<div class="input-group-prepend">
 			<span class="input-group-text">작성자</span>
@@ -246,6 +255,28 @@
 	</div>
 </div>
 	</div>
+	</div></div></div></section></section>
+	
+<footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+        </div>
+        <a href="${path}/Dashio/advanced_form_components.jsp#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->	
 	</section>
 </body>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
@@ -254,7 +285,7 @@
 
 <style type="text/css">
 	.input-group-text{width:100%;}
-	.input-group-prepend{width:20%;}
+	.input-group-prepend{width:10%;}
 	.input-group-append{width:20%;}
 .num2{width: 12%}
 .num{width: 10%}
