@@ -93,6 +93,12 @@
 			<form:option value="10">10</form:option>
 			<form:option value="20">20</form:option>		
 			 </form:select>	
+			<span class="input-group-text">프로젝트 번호:</span>
+			<form:select path="pno" class="form-control" style="width:100px;float:left; ">
+	
+			<form:option value="1001">1001</form:option>
+			<form:option value="1002">1002</form:option>	
+			 </form:select>	
 			 <button class="btn btn-success" type="submit">Search</button>		
 		</div>
             <div class="content-panel">
