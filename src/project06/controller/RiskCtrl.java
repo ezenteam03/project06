@@ -36,11 +36,13 @@ public class RiskCtrl {
 			d.addAttribute("ri", 1);
 		}else if(emp.getPno()==1002) {
 			d.addAttribute("ri", 2);
+		}else if(emp.getMdiv()==6) {
+			d.addAttribute("ri", 4);
 		}else {
 			d.addAttribute("ri", 3);
 		}
 		
-		d.addAttribute("rlist", service.list(sch));
+		d.addAttribute("rlist", service.list(sch,request));
 			
 		return "WEB-INF\\views\\main\\riskList.jsp";
 	}
@@ -57,8 +59,22 @@ public class RiskCtrl {
 		return "WEB-INF\\views\\main\\riskInsert.jsp";
 	}
 	@RequestMapping(params="method=detail")
-	public String detail(@RequestParam("ino") int ino, Model d) {
-		d.addAttribute("risk", service.getRisk(ino));
+	public String detail(@RequestParam("ino") int ino, Model d,HttpServletRequest request) {
+		d.addAttribute("risk", service.getRisk(ino, request));
+
+		HttpSession session = request.getSession();
+
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		if(emp.getPno()==1001) {
+			d.addAttribute("ri", 2);
+		}else if(emp.getMdiv()==4) {
+			d.addAttribute("ri", 3);
+		}else if(emp.getMdiv()==6) {
+			d.addAttribute("ri", 4);
+		}else {
+			d.addAttribute("ri", 5);
+		}
+		
 		return "WEB-INF\\views\\main\\riskDetail.jsp";
 	}
 
@@ -92,7 +108,7 @@ public class RiskCtrl {
 		@RequestMapping(params="method=comment")
 		public String clist(@ModelAttribute("rsch")RiskSch sch, Model d) {
 			d.addAttribute("clist", service.clist(sch));
-			d.addAttribute("ck", 1);
+			d.addAttribute("ri", 1);
 			
 			return "forward:/risk.do?method=detail";
 		}

@@ -55,17 +55,20 @@
 												
 		});	
 
-		var ck="${ck}";
+		
 		$("#combt").click(function(){	
 				$(location).attr("href","${path}/risk.do?method=comment");	
 				$("#form").submit();										
 		});	
-		
-		if(ck == 1){
+		var ri="${ri}";
+		if(ri == 1){
 			$('#comment').css('display', 'block');
 			$('#combt').css('display', 'none');
 		}else{
 			$('#comment').css('display', 'none');
+		}
+		if(ri==3){
+			$('#uptBtn').css('display', 'none');
 		}
 		
 		
@@ -100,13 +103,13 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">작성자</span>
 		</div>
-		<input class="form-control" disabled="disabled"  style="background-color: #ffffff;"
+		<input class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="${risk.name }" placeholder="작성자입력하세요"/>	
 			
 		<div class="input-group-prepend">
 			<span class="input-group-text">작 성 일</span>
 		</div>
-		<input  class="form-control" disabled="disabled"  style="background-color: #ffffff;"
+		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.wdate }'/>" 
 			 />	
 	
@@ -121,7 +124,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">수정일</span>
 		</div>
-		<input class="form-control" disabled="disabled"  style="background-color: #ffffff;"
+		<input class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.chdate}'/>" />	
 		 
 	</div>  	
@@ -139,7 +142,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">첨부 파일</span>
 		</div>
-		<input class="form-control fileInfo" name="fnames"
+		<input class="form-control fileInfo" name="fnames" 
 			value="${risk.filenames[0]}" />	
 		<div class="custom-file">
 			<input type="file" name="report" 
@@ -156,7 +159,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">해결방안 작성일</span>
 		</div>
-		<input  class="form-control" 
+		<input  class="form-control"  readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.cdate}'/>" 
 			 />	
 	</div>	
