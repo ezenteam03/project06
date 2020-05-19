@@ -85,18 +85,7 @@ AND pt.refno = 1008
 OR pt.tno = 1008
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
-
-SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
-(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
-FROM PMSPROJECT pp, PMSTASK pt, 
-(SELECT * FROM PMSEMP pe, PMSMEMBER pm
-WHERE pe.eno = pm.mno) pem
-WHERE pp.pno = pt.pno
-AND pt.mno = pem.mno
-AND pt.tno = 1008
-START WITH pt.refno=0
-CONNECT BY PRIOR pt.tno = pt.refno;
-
+--팀원에 해당하는 REFNO 가져오기
 SELECT DISTINCT refno FROM pmstask
 WHERE mno=10000016
 START WITH refno=0

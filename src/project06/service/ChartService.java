@@ -19,6 +19,13 @@ public class ChartService {
 		public ArrayList<Chart> chartList(int pno){
 			return dao.chartList(pno);
 		}
-		
-		
+		//수정 필요
+		public ArrayList<Chart> chartListTm(int mno, int pno){
+			ArrayList<Chart> clisttm = new ArrayList<Chart>();
+			
+			ArrayList<Integer> tmRefno = dao.getRefno(mno);
+			
+			clisttm = dao.chartList(pno);
+			return clisttm;
+		}
 }
