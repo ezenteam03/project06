@@ -109,12 +109,36 @@ function goPage(no){
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              
-                <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
-                <hr>
-                <form method="post">
+              <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
+                <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
+                <br>
+                <form:form class="form" commandName="msch" method="post" >
+  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+				
+				<br>
+				
+				<div class="input-group lb-3">	
+				<div style="float:left; width:40%;"class="input-group-prepend ">
+					<span class="input-group-text "> 총 : ${msch.count} 건</span>
+				</div>
+				
+				<div style="float:right; width:20%;" class="input-group-append">
+				<span class="input-group-text">페이지 크기:</span>
+				<form:select path="pageSize" class="form-control">
+					<form:option value="3">3</form:option >
+					<form:option value="5">5</form:option >
+					<form:option value="10">10</form:option >
+					<form:option value="20">20</form:option >
+					<form:option value="30">30</form:option >
+				</form:select> 
+				</div>
+			</div> 
+			
+			
+			<hr>
+			
 			<table class="table table-hover">
                 <thead>
                   <tr>
@@ -138,45 +162,32 @@ function goPage(no){
                 </tbody>
               </table>
               
-	<form:form class="form" commandName="msch" method="post" >
-  	<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  
-	    <form:input class="form-control mr-sm-2 sch" 
-	    		path="topic" placeholder="안건" />
-	    <button class="btn btn-success" type="submit">Search</button>&nbsp;
-	    <button class="btn btn-info" id="regBtn" type="button">글쓰기</button>
-  	</nav>
-  	<br>
- 			<div class="input-group lb-3">	
-				<div class="input-group-prepend ">
-					<span class="input-group-text "> 총 : ${msch.count} 건</span>
-				</div>
-				<input class="form-control" />	
-			<div class="input-group-append">
-				<span class="input-group-text">페이지 크기:</span>
-				<form:select path="pageSize" class="form-control">
-					<form:option value="3">3</form:option >
-					<form:option value="5">5</form:option >
-					<form:option value="10">10</form:option >
-					<form:option value="20">20</form:option >
-					<form:option value="30">30</form:option >
-				</form:select> 
-			</div>
-			</div>  
-	</form:form> 
-  
-     <ul class="pagination justify-content-center" style="margin:20px 0">
+	
+  	
+ 	<div style="text-align:center; margin-left:auto; margin-right:auto;">
+	  <ul class="pagination justify-content-center" style="margin:20px 0">
       	<li class="page-item">
 	   		<a class="page-link" href="javascript:goPage(${msch.startBlock-1});">Previous</a></li>
-	   	<c:forEach var="cnt" begin="${msch.startBlock }" end="${msch.endBlock}">
-	  		<li class="page-item ${msch.curPage==cnt?'active':''}">
+	   		<c:forEach var="cnt" begin="${msch.startBlock }" end="${msch.endBlock}">
+	  			<li class="page-item ${msch.curPage==cnt?'active':''}">
 	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
-		</c:forEach>
-			<li class="page-item">
+			</c:forEach>
+		<li class="page-item">
 			<a class="page-link" href="javascript:goPage(${(msch.endBlock==msch.pageCount)?msch.endBlock:msch.endBlock+1});">Next</a></li>
-	  </ul>   
-              
+	  </ul>
+	</div>   
+    <br>
+                
+    <nav style="width:20%;  margin-left:auto; margin-right:auto;" class="navbar navbar-expand-sm  navbar-dark">
+		<form:input class="form-control mr-sm-2 sch" 
+			path="topic" placeholder="제목" />
+		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	</nav>
+    </form:form> 
+    
+    <!-- c:if 어쩌고-->
+          <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+            <br><br><br> 
             </div>
            
           </div>
@@ -185,9 +196,7 @@ function goPage(no){
         </div>
         <!-- row -->
         
-        <br>
-        <!-- c:if 어쩌고-->
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+        
     </div>
      
         

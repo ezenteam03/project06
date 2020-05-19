@@ -115,7 +115,7 @@ function goPage(no){
   				
   				<br>
  	<div class="input-group lb-3">	
-		<div style="float:left; width:20%;" class="input-group-prepend ">
+		<div style="float:left; width:40%;" class="input-group-prepend ">
 			<span class="input-group-text "> 총 : ${nsch.count} 건</span>
 		</div>
 		
@@ -177,7 +177,7 @@ function goPage(no){
   				</nav>
     </form:form>
              
-             <br>
+             
         <!-- c:if 어쩌고-->
           <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br>
