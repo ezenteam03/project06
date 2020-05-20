@@ -98,9 +98,9 @@
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
                     <select class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
-                    	<option>홍길동 과장</option>
-                    	<option>신길동 부장</option>
-                    	<option>고길동 대리</option>
+                    	<c:forEach var="emp" items="${elist}">
+                    	<option>${emp.name} ${emp.grade}</option>
+                    	</c:forEach>
                     </select>
                   </div>
                   <div class="form-group ">

@@ -4,8 +4,7 @@ public class pmsempSch {
 
 	// 검색과 페이징 처리를 위한 VO 객체
 	// 1. 검색(제목과 작성자)
-	private String title;
-	private String writer;
+	
 	// 2. 페이징 처리
 	private int count; // 총데이터 건수
 	private int pageSize; // 한번에 보여줄 페이지 크기
@@ -18,18 +17,7 @@ public class pmsempSch {
 	private int startBlock; // 시작 블럭
 	private int endBlock; // 끝나는 블럭
 	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
+
 	public int getCount() {
 		return count;
 	}

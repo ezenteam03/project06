@@ -63,7 +63,7 @@
               <form method="post">
               <table class="table table-hover">
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 삭제</span>
+                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 추가</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
