@@ -47,3 +47,5 @@ public class SendpassMailService {
 			return sendNum;
 		}
 }
+
+
