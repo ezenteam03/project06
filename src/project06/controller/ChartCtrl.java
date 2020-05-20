@@ -36,15 +36,21 @@ public class ChartCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		d.addAttribute("project", pservice.getProject(emp.getMno()));
+		d.addAttribute("project", pservice.getProject(emp.getPno()));
 		
 		return "WEB-INF\\views\\main\\chartpm2.jsp";
 	}
 	
 	// http://localhost:6080/project06_git/chart.do?method=tm
 	@RequestMapping(params="method=tm")
-	public String charttm(Model d) {
-		//d.addAttribute("chartlist", cservice.chartList());
+	public String charttm(HttpServletRequest request, Model d) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		d.addAttribute("project", pservice.getProject(emp.getPno()));
+		
 		return "WEB-INF\\views\\main\\charttm.jsp";
 	}
 	
@@ -57,4 +63,16 @@ public class ChartCtrl {
 		d.addAttribute("chartlist", cservice.chartList(emp.getPno()));
 		return "pageJsonReport";
 	}
+	
+	// http://localhost:6080/project06_git/chart.do?method=ajaxdatatm
+		@RequestMapping(params="method=ajaxdatatm")
+		public String chtDatatm(HttpServletRequest request, Model d) {
+			HttpSession session = request.getSession();
+			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+				
+			System.out.println("pno : "+emp.getPno());
+			System.out.println("mno : "+emp.getMno());
+			d.addAttribute("chartlist", cservice.chartListTm(emp.getPno(), emp.getMno()));
+			return "pageJsonReport";
+		}
 }
