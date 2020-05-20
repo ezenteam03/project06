@@ -15,13 +15,12 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>사원 리스트 : 프로젝트 인원 추가</title>
+  <title>사원 리스트 : 프로젝트 팀원 삭제</title>
 	<style type="text/css">
 		.sch-bar{width:450px; height:40px;border-radius:10px; outline:none; border-color:black;
 					padding-left:10px;}
 		.sch-btn{width: 100px; height: 40px; border-radius: 10px; outline: none;
     				border-color: black; background-color: black; color: white;}
-    	.select-emp{width: 100px; height:40px; border-radius:10px; outline:none; border-color:black; font-weight:800;}
 	</style>
   <!-- Favicons -->
   <link href="${path}/Dashio/img/favicon.png" rel="icon">
@@ -34,7 +33,21 @@
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
- 
+  <script src="${path}/a00_com/jquery.min.js"></script>
+  <script src="${path}/a00_com/popper.min.js"></script>
+  <script src="${path}/a00_com/bootstrap.min.js"></script>
+  <script src="${path}/a00_com/jquery-ui.js"></script>
+  <script type="text/javascript">
+	  $(document).ready(function(){
+			 $("#insBtn").click(function(){
+				 $("#insphone").val("${emp.phone}");
+				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
+				 $("form").submit(); 
+			 });
+	  });
+
+
+  </script> 
 </head>
 
 <body>
@@ -47,22 +60,23 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-           	  <form method="post">
+              <form method="post">
               <table class="table table-hover">
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>사원 목록</span>
+                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 삭제</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
-	                	<input type="hidden" name="eno" value="${emp.eno}"/>
-	                	<input type="hidden" name="phone" value="${emp.phone}" />
+	                	<input type="hidden" name="phone" id="insphone" value="${emp.phone}" />
+	                	<input type="hidden" name="pno" value="1001" />
                 	</span>
                 </div>
                 <thead>
+                <!-- hidden속성으로 PM과 동일한 프로젝트 넘버가 등록된 사용자만 불러오기 -->
                   <tr>
                     <th>사원번호</th>
-                    <th>이름</th>
-                    <th>직책</th>
+                    <th style="width:150px;">이름</th>
+                    <th style="width:150px;">직책</th>
                     <th>부서명</th>
                     <th>이메일</th>
                     <th>핸드폰</th>
@@ -74,15 +88,15 @@
                   <c:forEach var="emp" items="${elist}">
                   <tr>
                     <th>${emp.eno}</th>
-                    <th>${emp.name}</th>
-                    <th>${emp.grade}</th>
+                    <td>${emp.name}</td>
+                    <td>${emp.grade}</td>
                     <th>${emp.dept}</th>
-                    <td style="width:150px;">${emp.email}</td>
+                    <td style="width:200px;">${emp.email}</td>
                     <th>${emp.phone}</th>
-                    <th>${emp.cname}</th>
+                    <th style="width:150px;">${emp.cname}</th>
                     <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
                   </tr>
-                  </c:forEach>
+                  </c:forEach> 
                 </tbody>
               </table>
               </form>
@@ -105,7 +119,7 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
-		           <button type="button" class="btn btn-info"
+		           <button type="button" class="btn btn-success" 
 		           			id="insBtn" style="margin-right:20px;">추가</button>
 		           <button type="button" class="btn btn-default">이전</button>
 	           </div>

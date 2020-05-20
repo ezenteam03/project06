@@ -38,7 +38,7 @@
 		
 		var mdiv = "${mdiv}";
 		
-		if(mdiv != 4 && mdiv != 7){
+		if(mdiv != 4 && mdiv != 6){
 			$("#tDetail").attr('readonly',true);
 			$("#tDetail").css('background','white');
 			$("#tTitle").attr('readonly',true);
@@ -46,7 +46,7 @@
 			$("#tComent").attr('readonly',true);
 			$("#tComent").css('background','white');
 		}
-		if(mdiv != 5 && mdiv != 7){
+		if(mdiv != 5 && mdiv != 6){
 			$("#textdetail").attr('readonly',true);
 			$("#textdetail").css('background','white');
 			$("#prog").attr('readonly',true);
@@ -81,8 +81,8 @@
 		});
 
 		$("#coment").click(function(){
-			if(mdiv != 4 && mdiv != 7){
-				alert("반려사유는 PM과 ADMIN만 등록가능합니다");
+			if(mdiv != 4 && mdiv != 6){
+				alert("권한이 없습니다.");
 			}
 			else if(confirm("반려사유 다시겠습니까?")){
 				if(${task.tdiv==23}){
@@ -104,6 +104,7 @@
 				if(${task.tdiv==22} || ${task.tdiv==24}){
 					alert("결재 신청이나 완료된 업무는 진행률 수정이 불가합니다.");
 				}else{
+					
 					$("form").attr("action","${path}/task.do?method=prog");
 					$("form").submit();
 				}
@@ -141,8 +142,8 @@
 			}
 		});
 		$("#updetail").click(function(){
-			if(mdiv != 5 && mdiv != 7){
-				alert("담당자만 수정 가능합니다.");
+			if(mdiv != 5 && mdiv != 6){
+				alert("권한이 없습니다.");
 			}else if(confirm("업무진행 저장 하시겠습니까?")){
 				alert("저장 되었습니다.");
 				$("form").attr("action","${path}/task.do?method=upDetail");
@@ -195,7 +196,16 @@
 			value="${task.mno}" 
 			placeholder="" />	
 		
-	</div>		
+	</div>	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="input-group-text">상위업무번호</span>
+		</div>
+		<input name="refno" class="form-control" readonly style="background:white;"
+			value="${task.refno}" 
+			placeholder="" />	
+		
+	</div>	
 	<div class="input-group mb-3">
 		<!-- 팀원은 수정불가 
 		<div class="input-group-prepend">
@@ -292,11 +302,11 @@
 			</c:choose>
 			</t>
 			<!-- 팀원만 보이게 + admin -->
-			<c:if test="${mdiv==5 || mdiv==7}">
+			<c:if test="${mdiv==5 || mdiv==6}">
 				<button class="btn btn-success div-Btn" id="divBtn">결재신청</button>
 			</c:if> 
 			<!-- PM만 보이게 + admin -->
-			<c:if test="${mdiv == 4 || mdiv == 7}">
+			<c:if test="${mdiv == 4 || mdiv == 6}">
 				<button class="btn btn-danger div-Btn" id="divBtn2">반려처리</button>
 				<button class="btn btn-info div-Btn" id="divBtn3">결재완료</button>
 			</c:if> 
@@ -308,7 +318,7 @@
 				id="prog">
 				
 				<!-- 팀원만 보이게 + admin -->
-				<c:if test="${mdiv==5 || mdiv==7}">
+				<c:if test="${mdiv==5 || mdiv==6}">
 					<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
 				</c:if>
 				
@@ -338,7 +348,7 @@
 	</div>
 	<div style="text-align:right;">
 		
-		<c:if test="${mdiv != 5}">
+		<c:if test="${mdiv == 4 || mdiv == 6}">
 			<input type="button" class="btn btn-info"
 				value="수정" id="uptBtn"/>
 			<input type="button" class="btn btn-danger"

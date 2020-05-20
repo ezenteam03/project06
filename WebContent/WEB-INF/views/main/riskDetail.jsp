@@ -68,7 +68,7 @@
 		}else{
 			$('#comment').css('display', 'none');
 		}
-		
+	
 		/* 수정, 해결방안 권한 */
 		var mno="${mno}";
 		var rmno="${risk.mno}";

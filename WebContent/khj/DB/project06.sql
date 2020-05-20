@@ -8,14 +8,31 @@ DROP SEQUENCE pmsissue_seq;
 DROP SEQUENCE pmsreply_seq; 
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
-
+SELECT *
+FROM (
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		c.CNAME,b.pno
 		FROM pmsemp a, pmsmember b, pmscodes c
 		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9
-		AND b.pno is NULL;
-		
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9)
+		ORDER BY eno ASC;
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9;
 
 ALTER TABLE PMSCODES
 	DROP

@@ -115,3 +115,9 @@ WHERE c.cno(+)=b.mdiv
 AND a.eno = b.mno(+)
 --AND a.eno = #{eno};
 ORDER BY a.eno ASC;
+SELECT pe.eno, pe.name, pe.GRADE, pe.DEPT, pe.EMAIL, pe.PHONE,  
+		pc.CNAME,pm.pno
+		FROM pmsemp pe, pmsmember pm, pmscodes pc
+		WHERE pe.eno = pm.mno and pm.mdiv=pc.cno;
+
+-- pno가 null인것, cname이 구분 없음인
