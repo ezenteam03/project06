@@ -13,7 +13,7 @@ SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/m
 FROM PMSPROJECT pp, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 WHERE pem.mno = pp.mno
-AND pem.mno = 10000006;
+AND pem.pno = 1002;
 
 UPDATE PMSPROJECT
 SET cdate = '2020/05/04'

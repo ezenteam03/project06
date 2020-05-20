@@ -23,22 +23,15 @@ public class ChartCtrl {
 	
 	// http://localhost:6080/project06_git/chart.do?method=pm
 	@RequestMapping(params="method=pm")
-	public String chartpm(Model d) {
-		//d.addAttribute("project", pservice.getProject());
-		
-		return "WEB-INF\\views\\main\\chartpm.jsp";
-	}
-	// http://localhost:6080/project06_git/chart.do?method=pm2
-	@RequestMapping(params="method=pm2")
-	public String chartpm2(HttpServletRequest request, Model d) {
+	public String chartpm(HttpServletRequest request, Model d) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		d.addAttribute("project", pservice.getProject(emp.getPno()));
+		d.addAttribute("project", pservice.getProject(emp.getPno()));		
 		
-		return "WEB-INF\\views\\main\\chartpm2.jsp";
+		return "WEB-INF\\views\\main\\chartpm.jsp";
 	}
 	
 	// http://localhost:6080/project06_git/chart.do?method=tm
