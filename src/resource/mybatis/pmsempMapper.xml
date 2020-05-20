@@ -69,7 +69,9 @@
 	</update>
  	<!-- PM 팀원 추가 리스트 -->
  	<select id="insList" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		SELECT *
+FROM (
+SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		c.CNAME,b.pno
 		FROM pmsemp a, pmsmember b, pmscodes c
 		WHERE a.eno = b.mno and b.mdiv=c.cno
@@ -79,7 +81,8 @@
 		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 				c.CNAME,b.pno
 		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-		where b.mno is NULL AND c.cno=9
+		where b.mno is NULL AND c.cno=9)
+		ORDER BY eno ASC
  	</select>
  	<!-- pms등록된 직원 팀원추가 -->
  	<update id="updPNum" parameterType="pmsemp">
