@@ -69,7 +69,7 @@ WHERE pe.eno = pm.mno) pem
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 AND pp.pno = 1001
-AND pt.tno = 1008
+AND pt.tno = 1009
 --AND pt.refno = 1009
 --AND pem.eno = 10000005
 UNION all
@@ -82,13 +82,13 @@ WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 AND pp.pno = 1001
 AND pem.eno = 10000016
-AND pt.refno = 1008
+AND pt.refno = 1009
 --OR pt.tno = 1009
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 --팀원에 해당하는 REFNO 가져오기
 SELECT DISTINCT refno FROM pmstask
-WHERE mno=10000016
+WHERE mno=10000017
 START WITH refno=0
 CONNECT BY PRIOR tno = refno
 ORDER BY refno ASC;

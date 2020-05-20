@@ -1,0 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+
+	<c:forEach var="notice" items="${nlist}" varStatus="status">
+		<tr onclick="javascript:go(${notice.noti_no})">
+			<td align="center">${fn:length(nlist) - status.index}</td>
+			<td>${notice.noti_name}</td>
+			<td align="center">관리자</td>
+			<td align="center">${notice.noti_date}</td>
+		</tr>
+	</c:forEach>
