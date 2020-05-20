@@ -336,31 +336,35 @@ th{text-align:center;}
               <span>대시보드</span>
               </a>
           </li>
-          <li class="sub-menu">
+          <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path }/task.do?method=list">
               <i class="fa fa-desktop"></i>
               <span>업무관리</span>
               </a>
           </li>
-          <li class="sub-menu">
-            <a href="${path }/chart.do?method=pm2">
+          <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
+            <a href="${path }/chart.do?method=pm" v-if="mdiv==6||mdiv==4">
               <i class="fa fa-cogs"></i>
               <span>일정관리</span>
               </a>
+            <a href="${path }/chart.do?method=tm" v-if="mdiv==5">
+              <i class="fa fa-cogs"></i>
+              <span>일정관리</span>
+              </a>  
           </li>
-          <li class="sub-menu">
+          <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/notice.do?method=list">
               <i class="fa fa-book"></i>
               <span>공지사항</span>
               </a>
           </li>
-          <li class="sub-menu">
+          <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/meet.do?method=list">
               <i class="fa fa-tasks"></i>
               <span>회의록</span>
               </a>
           </li>
-          <li class="sub-menu">
+          <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/risk.do?method=list">
               <i class="fa fa-th"></i>
               <span>이슈리스트</span>
@@ -372,8 +376,14 @@ th{text-align:center;}
               <span>인적자원관리</span>
               </a>
           </li>        
-          <li class="sub-menu" v-else-if="mdiv==7">
+          <li class="sub-menu" v-if="mdiv==4">
           	<a href="${path}/PMSemp.do?method=empList">
+              <i class="fa fa-group"></i>
+              <span>인적자원관리</span>
+              </a>
+          </li>        
+          <li class="sub-menu" v-else-if="mdiv==7">
+          	<a href="${path}/PMSemp.do?method=empmList">
               <i class="fa fa-group"></i>
               <span>인적자원관리</span>
               </a>

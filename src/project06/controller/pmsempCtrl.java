@@ -1,16 +1,16 @@
 package project06.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
+import project06.service.SendpassMailService;
 import project06.service.pmsempService;
 import project06.vo.pmsemp;
 
@@ -41,6 +41,7 @@ public class pmsempCtrl {
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		System.out.println("ctrl 상세페이지  eno : "+eno);
 		d.addAttribute("pemp", service.getemp(eno));
+		d.addAttribute("plist",service.getPlist());
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
 	// CTO 권한 설정
@@ -59,9 +60,15 @@ public class pmsempCtrl {
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")
-	public String empList(pmsemp sch, Model d) {
-		d.addAttribute("elist", service.pmsempList(sch));
+	public String empList(pmsemp insL, Model d) {
+		d.addAttribute("elist", service.insList(insL));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
+	}
+	// PM 팀원 추가
+	@RequestMapping(params="method=insemp")
+	public String ins(pmsemp inse) {
+		service.insPm(inse);
+		return "forward:/PMSemp.do?method=empList";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")
@@ -119,7 +126,8 @@ public class pmsempCtrl {
 	
 	
 	
-	
+	@Autowired(required=false)
+	private SendpassMailService sendService;
 	
 	
 	// Jin 사원번호 찾기
@@ -153,6 +161,32 @@ public class pmsempCtrl {
 		return "WEB-INF\\views\\main\\findPassword.jsp";
 	}
 	
+	String sendNum = "";
+	
+	@RequestMapping(params="method=sendText")
+	public String sendPassMail(Model m, @RequestParam("email") String email) throws MessagingException {
+		System.out.println("pmsempCtrl method=sendText 실행");
+		
+		String ranNum = sendService.sendPassMail(email);
+		sendNum = ranNum;
+		m.addAttribute("ck", 2);
+		return "WEB-INF\\views\\main\\findPassword.jsp";
+	}
+	
+	@RequestMapping(params="method=matchSend")
+	public String comparisonNum(Model m, @RequestParam("ranNum") String ran) {
+		System.out.println("pmsempCtrl method=matchSend 실행");
+		
+		if(ran.equals(sendNum)) {
+			m.addAttribute("ck", 3);
+			sendNum="";
+			return "WEB-INF\\views\\main\\findPassword.jsp";
+		}
+		m.addAttribute("ck", 4);
+		return "WEB-INF\\views\\main\\findPassword.jsp";
+	}
+	
+
 	@RequestMapping(params="method=findPass")
 	public String findPass(pmsemp emp, Model m) {
 		System.out.println("pmsempCtrl method=findPass 실행");

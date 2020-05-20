@@ -78,7 +78,7 @@
               <form class="form-horizontal style-form" method="post" id="setForm">
               <input type="hidden" name="eno" value="${pemp.eno}"/>
               <input type="hidden" name="peno" value="${pemp.eno}"/>
-              <input type="hidden" name="phone" value="${pemp.phone }"/>              
+              <input type="hidden" name="phone" value="${pemp.phone }"/>                         
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">이름</label>
                   <div class="col-sm-10">
@@ -121,15 +121,9 @@
                   <div class="col-sm-10">
                     <span>${pemp.pno==null?"PMS등록안됨":pemp.pno}</span>
 	                  <select class="sel-grade" name="pno">
-	                  	<option value="${pemp.pno}">${pemp.pno}</option>
-	                  	<option value="1001">1001</option>
-	                  	<option value="1002">1002</option>
-	                  	<option value="1003">1003</option>
-	                  	<option value="1004">1004</option>
-	                  	<option value="1005">1005</option>
-	                  	<option value="1006">1006</option>
-	                  	<option value="1007">1007</option>
-	                  	<option value="1008">1008</option>
+	                  	<c:forEach var="p" items="${plist}" >
+	                  		<option value="${p}">${p}</option>
+	                  	</c:forEach>
 	                  </select>
                   </div>
                 </div>

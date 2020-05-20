@@ -45,6 +45,35 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		var ck = "${ck}";
+		var ckNum = 0;
+		if(ck==1){
+			Swal.fire(
+				'사원 정보 없음',
+				'사원번호/이름/이메일을 확인하세요',
+				'error'
+			);
+		}else if(ck==2){
+			$("#sendBtn").val("인증");
+			$("#sendBtn").attr("id", "sendBtn02");
+		}else if(ck==3){
+			Swal.fire(
+				'인증번호',
+				'인증이 완료되었습니다',
+				'success'
+			);
+			ckNum = 1;
+			$("#sendBtn").val("완료");
+		}else if(ck==4){
+			Swal.fire(
+				'인증번호',
+				'인증번호가 다릅니다',
+				'error'
+			);
+			$("#sendBtn").val("인증");
+			$("#sendBtn").attr("id", "sendBtn02");
+		}
+		
 		$("#findPassBtn").click(function(){
 			if($("#eno").val() == ""){
 	    		Swal.fire(
@@ -64,19 +93,43 @@
 					'이메일을 입력하세요',
 					'error'
 				);
-	    	}else{
-	    		$("#findPassForm").submit();
+	    	}else if($("#sendNum").val() == ""){
+	    		Swal.fire(
+					'인증번호',
+					'인증번호를 입력하세요',
+					'error'
+				);
+    		}else{
+    			if(ckNum == 1){
+	    			$("#findPassForm").attr("action", "${path}/PMSemp.do?method=findPass");
+	    			$("#findPassForm").submit();
+    			}else{
+    				Swal.fire(
+   						'인증번호',
+   						'인증번호를 확인하세요',
+   						'error'
+   					);	
+    			}
 	    	}			
 		});
 		
-		var ck = "${ck}";
-		if(ck==1){
-			Swal.fire(
-				'사원 정보 없음',
-				'사원번호/이름/이메일을 확인하세요',
-				'error'
-			);
-		}
+		$("#sendBtn").click(function(){
+			$("#findPassForm").attr("action", "${path}/PMSemp.do?method=sendText");
+	    	$("#findPassForm").submit();			
+		});
+		$("#sendBtn02").click(function(){
+			if($("#ranNum").val() == ""){
+				Swal.fire(
+					'인증번호',
+					'인증번호가 이미 전송되었습니다',
+					'info'
+				);	
+			}else{
+				$("#findPassForm").attr("action", "${path}/PMSemp.do?method=matchSend");
+		    	$("#findPassForm").submit();
+			}
+		});
+		
 
 
 
@@ -89,29 +142,29 @@
 
 <div id="login-page">
 	<div class="container">
-		<form class="form-login" id="findPassForm" action="${path}/PMSemp.do?method=findPass" method="post" style="margin-top:20%;background-color:#e0e0e0;;">
+		<form class="form-login" id="findPassForm" action="" method="post" style="margin-top:20%;background-color:#e0e0e0;;">
 
 			<h2 class="form-login-heading">FIND PASSWORD</h2>
 			
 			<div class="login-wrap">
 				<label>사원번호</label>
-				<input type="text" class="form-control" id="eno" name="eno" placeholder="사원번호를 입력하세요" autofocus>
+				<input type="text" class="form-control" id="eno" name="eno" value="${param.eno}" placeholder="사원번호를 입력하세요" autofocus>
 			
 				<br>
 			
 				<label>이름</label>
-				<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요">
+				<input type="text" class="form-control" id="name" name="name" value="${param.name }" placeholder="이름을 입력하세요">
 				
 				<br>
 				
 				<label>이메일</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요">
+				<input type="email" class="form-control" id="email" name="email" value="${param.email }" placeholder="이메일을 입력하세요">
 				
 				<div>
 					<div class="form-inline">
-						<input type="email" class="form-control" placeholder="인증번호">
+						<input type="email" id="ranNum" name="ranNum" class="form-control" value="${param.ranNum }" placeholder="인증번호">
 						&nbsp;
-						<button type="button" class="btn btn-theme">전송</button>
+						<input type="button" id="sendBtn" class="btn btn-theme" value="전송">
 					</div>
 				</div>
 				
@@ -139,6 +192,7 @@
 </body>
 
 </html>
+
 
 
 

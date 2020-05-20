@@ -19,6 +19,7 @@
  		 AND pt.refno <![CDATA[ <= ]]> 0
  		 AND pem.eno = 10000005
  	 -->
+ 	<resultMap type="int" id="intResult"/>
  	<resultMap type="chart" id="chartResult"/>
  	<select id="chartList" resultMap="chartResult" parameterType="int">
 		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
@@ -29,6 +30,39 @@
 		WHERE pp.pno = pt.pno
 		AND pt.mno = pem.mno
 		AND pp.pno = #{pno}
+		START WITH pt.refno=0
+		CONNECT BY PRIOR pt.tno = pt.refno
+ 	</select>
+ 	
+ 	<select id="getRefno" resultMap="intResult" parameterType="int">
+ 		SELECT DISTINCT refno FROM pmstask
+		WHERE mno=#{mno}
+		START WITH refno=0
+		CONNECT BY PRIOR tno = refno
+		ORDER BY refno ASC
+ 	</select>
+ 	
+ 	<select id="chartListtm" resultMap="chartResult" parameterType="int">
+ 		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pt.tno = #{refno}
+		UNION all
+		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pem.eno = #{mno}
+		AND pt.refno = #{refno}
 		START WITH pt.refno=0
 		CONNECT BY PRIOR pt.tno = pt.refno
  	</select>

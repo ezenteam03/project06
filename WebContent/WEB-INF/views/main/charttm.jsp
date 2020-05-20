@@ -68,17 +68,30 @@
 			}
 		});	
 		
+		/*
+			private int pno;
+			private Date sdate;
+			private Date deadline;
+			private String pname;
+			private String detail;
+			private Date cdate;
+			private int pdiv;
+			private int mno;
+			private String name;
+		*/
+		
+		var sdatestr = new Date("${project.sdatestr}");
+		var deadlinestr = new Date("${project.deadlinestr}");
+		
 		$.ajax({
 			type:"post",
-			url:"${path}/chart.do?method=ajaxdata",
+			url:"${path}/chart.do?method=ajaxdatatm",
 			data: $("form").serialize(),
 			dataType:"json",
 			success:function(data){
-				// data.모델명
-				var clist = data.chartlist;
-				var clist2 = [];
 				
-				var today = new Date(2020, 4, 4); 
+				var todayOrigin = sdatestr; 
+				var today = sdatestr; 
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -87,86 +100,48 @@
 				today.setUTCMilliseconds(0);
 				today = today.getTime();
 				
-				console.log(clist);
+				// data.모델명
+				var clist = data.chartlist;
+				var dataInfo = [];
+				
+				//(시작일, 종료일, 소요일수, 진행도, 담당자)
+				dataInfo.push({
+	            	name: '총괄진행',	
+	            	id: '0',
+	            	start: today+(1 * day), 
+					end: today+(((deadlinestr-sdatestr)/day) * day),
+					completed : 0,
+	            	owner: "${project.name}",
+	            	y: 0,
+				});
+				
+				//+"("+sdate+",\t"+edate+",\t"+(chart.edate-chart.sdate)+"일,\t"+chart.prog*100+"%,\t"+chart.name+")"
 				$.each(clist,function(idx, chart){
-					clist2.push({
+					var sdate = new Date(chart.sdateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					var edate = new Date(chart.edateorigin).toISOString().slice(2,10).replace(/-/g,"/");
+					
+					dataInfo.push({
 						name: chart.tname, 
 						id: ""+chart.tno+"", 
 						parent: ""+chart.refno+"", 
 						start: today+(chart.sdate * day), 
 						end: today+(chart.edate * day),
-						completed : { amount : chart.prog },
-						owner : ""+chart.name+""
+						completed : chart.prog,
+						owner : ""+chart.name+"",
+						collapsed : true,
+						y : idx+1,
 						});
 				});
-				console.log(clist2);
-			    dateFormat = Highcharts.dateFormat,
-			    defined = Highcharts.defined,
-			    isObject = Highcharts.isObject,
-			    reduce = Highcharts.reduce;
-
-				Highcharts.ganttChart('container2', {
-				    series: [{
-				        name: 'PMS',
-				        data: [{
-				            name: '총괄진행',	
-				            id: 'pms_rogress',
-				            owner: '유재인'
-				        }, {
-				            name: '요구사항 정의서',
-				            id: 'requirement_specification',
-				            parent: 'pms_rogress',
-				            start: today,
-				            end: today + (5 * day),
-				            completed: {
-				                amount: 0.2
-				            },
-				            owner: '유재인'
-				        }, {
-				            name: '화면설계',
-				            id: 'story_board',
-				            parent: 'pms_rogress',
-				            start: today + 5 * day,
-				            end: today + 11 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '데이터베이스 설계',
-				            id: 'db_design',
-				            parent: 'pms_rogress',
-				            start: today + 11 * day,
-				            end: today + 17 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '데이터베이스 생성',
-				            id: 'db_create',
-				            parent: 'pms_rogress',
-				            start: today + 17 * day,
-				            end: today + 23 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '웹 구현',
-				            id: 'screen_web',
-				            parent: 'pms_rogress',
-				            start: today + 23 * day,
-				            end: today + 29 * day,
-				            owner: '유재인'
-				        }, {
-				            name: '앱 구현',
-				            id: 'screen_app',
-				            parent: 'pms_rogress',
-				            start: today + 29 * day,
-				            end: today + 35 * day,
-				            owner: '유재인'
-				        }, ]
-				    }],
-				    tooltip: {
+				var seriesInfo = [{
+			        name: '${project.pname}',
+			        data: dataInfo
+			    }];
+				var tooltipInfo = {
 				        pointFormatter: function () {
 				            var point = this,
 				                format = '%e. %b',
-				                options = point.options,
-				                completed = options.completed,
-				                amount = isObject(completed) ? completed.amount : completed,
-				                status = ((amount || 0) * 100) + '%',
+				                completed = point.completed,
+				                status = (completed * 100) + '%',
 				                lines;
 			
 				            lines = [{
@@ -176,7 +151,6 @@
 				                title: '시작',
 				                value: dateFormat(format, point.start)
 				            }, {
-				                visible: !options.milestone,
 				                title: '끝',
 				                value: dateFormat(format, point.end)
 				            }, {
@@ -184,7 +158,7 @@
 				                value: status
 				            }, {
 				                title: '담당자',
-				                value: options.owner || 'unassigned'
+				                value: point.owner
 				            }];
 			
 				            return reduce(lines, function (str, line) {
@@ -203,147 +177,107 @@
 				                return str + s;
 				            }, '');
 				        }
-				    },
-				    title: {
-				        text: 'PMS 진행사항'
-				    },
-				    xAxis: {
+				    };
+				var titleInfo = {
+				        text: "${project.pname}"
+			    };
+				var xAxisInfo = {
 				        currentDateIndicator: true,
-				        min: today + 1 * day,
-				        max: today + 35 * day
-				    }
-				});
+				        min: today + 1 * day, //프로젝트 첫날
+				        max: today + ((deadlinestr-sdatestr)/day) * day, //프로젝트 마지막날
+				};
+				
+				var yAxisInfo = {
+			    type: 'category',
+			    grid: {      
+			      borderColor: '#3a5d96',      
+			      columns: [{
+			        title: {
+				          text: '작업명',
+				        },
+				        labels: {
+				          format: '{point.name}'
+				        }
+				      }, {
+			        title: {
+			          text: '담당자',
+			        },
+			        labels: {
+			          format: '{point.owner}'
+			        }
+			      }, {
+			        title: {
+				          text: '소요일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  days = (1000 * 60 * 60 * 24),
+				                  number = (point.end - point.start) / days;
+				                return Math.ceil(number);
+				              }
+				        }
+			      },{
+			        title: {
+				          text: '시작일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.start);
+				              }
+				        }
+				      },{
+			        title: {
+				          text: '종료일',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                format = '%e. %b';
+				                return dateFormat(format, point.end);
+				              }
+				        }
+				      },/* {
+			        title: {
+				          text: '진행도',
+				        },
+				        labels: {
+				        	formatter: function() {
+				                var point = this.point,
+				                  number = point.completed * 100;
+				                return number + '%';
+				              }
+				        }
+				      } */]
+			    }
+			  };
+				var cInfo = {
+						series : seriesInfo,
+						tooltip : tooltipInfo,
+						title: titleInfo,
+						xAxis: xAxisInfo,
+						yAxis: yAxisInfo,
+				};
+				
+				console.log(todayOrigin);
+				console.log(today);
+				console.log(clist);
+				console.log(dataInfo);
+				console.log(cInfo);
+			    dateFormat = Highcharts.dateFormat,
+			    defined = Highcharts.defined,
+			    isObject = Highcharts.isObject,
+			    reduce = Highcharts.reduce;
+				
+				Highcharts.ganttChart('chartpm', cInfo);
 			},
 			error:function(err){
 				console.log("ajax처리 에러");
 				console.log(err);
 			}
 		});
-		//프로젝트 시작일을 표시, 월은 0부터 시작, 일은 +1해야함
-	    var today = new Date(2020, 4, 5), 
-	    day = 1000 * 60 * 60 * 24,
-	    // Utility functions
-	    dateFormat = Highcharts.dateFormat,
-	    defined = Highcharts.defined,
-	    isObject = Highcharts.isObject,
-	    reduce = Highcharts.reduce;
-
-		// Set to 00:00:00:000 today
-		today.setUTCHours(0);
-		today.setUTCMinutes(0);
-		today.setUTCSeconds(0);
-		today.setUTCMilliseconds(0);
-		today = today.getTime();
-	
-		Highcharts.ganttChart('charttm', {
-		    series: [{
-		        name: 'PMS',
-		        data: [{
-		            name: '프로젝트 상세',
-		            id: 'project_detail',
-		            owner: '전현규, 김하나, 이준석'
-		        }, {
-		            name: '공지사항 게시판',
-		            id: 'notice_list',
-		            parent: 'project_detail',
-		            start: today + 0 * day,
-		            end: today + 3 * day,
-		            owner: '김하나'
-		        }, {
-		            name: '공지사항 작성',
-		            id: 'notice_ins',
-		            parent: 'notice_list',
-		            start: today + 0 * day,
-		            end: today + 2 * day,
-		            owner: '김하나'
-		        }, {
-		            name: '공지사항 상세',
-		            id: 'notice_detail',
-		            dependency: 'notice_ins',
-		            parent: 'notice_list',
-		            start: today + 2 * day,
-		            end: today + 3 * day,
-		            owner: '김하나'
-		        },{
-		            name: '회의록 게시판',
-		            id: 'meeting_list',
-		            dependency: 'notice_list',
-		            parent: 'project_detail',
-		            start: today + 3 * day,
-		            end: today + 7 * day,
-		            owner: '김하나'
-		        },{
-		            name: '회의록 작성',
-		            id: 'meeting_ins',
-		            parent: 'meeting_list',
-		            start: today + 3 * day,
-		            end: today + 5 * day,
-		            owner: '김하나'
-		        },{
-		            name: '회의록 상세',
-		            id: 'meeting_detail',
-		            dependency: 'meeting_ins',
-		            parent: 'meeting_list',
-		            start: today + 5 * day,
-		            end: today + 7 * day,
-		            owner: '김하나'
-		        }]
-		    }],
-		    tooltip: {
-		        pointFormatter: function () {
-		            var point = this,
-		                format = '%e. %b',
-		                options = point.options,
-		                completed = options.completed,
-		                amount = isObject(completed) ? completed.amount : completed,
-		                status = ((amount || 0) * 100) + '%',
-		                lines;
-	
-		            lines = [{
-		                value: point.name,
-		                style: 'font-weight: bold;'
-		            }, {
-		                title: '시작',
-		                value: dateFormat(format, point.start)
-		            }, {
-		                visible: !options.milestone,
-		                title: '끝',
-		                value: dateFormat(format, point.end)
-		            }, {
-		                title: '진행도',
-		                value: status
-		            }, {
-		                title: '담당자',
-		                value: options.owner || 'unassigned'
-		            }];
-	
-		            return reduce(lines, function (str, line) {
-		                var s = '',
-		                    style = (
-		                        defined(line.style) ? line.style : 'font-size: 0.8em;'
-		                    );
-		                if (line.visible !== false) {
-		                    s = (
-		                        '<span style="' + style + '">' +
-		                        (defined(line.title) ? line.title + ': ' : '') +
-		                        (defined(line.value) ? line.value : '') +
-		                        '</span><br/>'
-		                    );
-		                }
-		                return str + s;
-		            }, '');
-		        }
-		    },
-		    title: {
-		        text: 'PMS 진행사항'
-		    },
-		    xAxis: {
-		        currentDateIndicator: true,
-		        min: today + 0 * day,
-		        max: today + 7 * day
-		    }
-		});
-		
 	});
 </script>
 <style>
@@ -362,13 +296,13 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper" style="height:300px; margin-top:0;" >
+      <section class="wrapper" style="height:300px; margin-top:0;">
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(팀원)</i></h4>
+	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(TM)</i></h4>
             <div class="form-panel">
-              <div id="charttm"></div>
+              <div id="chartpm"></div>
             </div>
             <!-- /form-panel -->
           </div>
@@ -381,25 +315,7 @@
     <!-- /MAIN CONTENT -->
     <!--main content end-->
         <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="${path}/Dashio/advanced_form_components.jsp#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
+
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->

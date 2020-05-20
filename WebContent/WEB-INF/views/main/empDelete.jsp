@@ -68,7 +68,6 @@
 	                	<input type="button" class="sch-btn" value="Search" />
                 	</span>
                 </div>
-
                 <thead>
                 <!-- hidden속성으로 PM과 동일한 프로젝트 넘버가 등록된 사용자만 불러오기 -->
                   <tr>
@@ -119,7 +118,8 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
-		           <button type="button" class="btn btn-danger" id="delBtn" style="margin-right:20px;">삭제</button>
+		           <button type="button" class="btn btn-danger" 
+		           			id="delBtn" style="margin-right:20px;">삭제</button>
 		           <button type="button" class="btn btn-default">이전</button>
 	           </div>
 	        </div>

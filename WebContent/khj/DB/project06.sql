@@ -8,18 +8,32 @@ DROP SEQUENCE pmsissue_seq;
 DROP SEQUENCE pmsreply_seq; 
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
-
+SELECT *
+FROM (
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-		FROM pmsemp a 
-		WHERE NOT a.grade LIKE '%'||'대표이사'||'%';
-UPDATE pmsmember
-		SET mdiv=9, pno=null
-		WHERE mdiv=4
-		and pno=1001;
-UPDATE pmsmember
-		SET mdiv=4, pno=1001
-		WHERE mno=10000005;
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9)
+		ORDER BY eno ASC;
+	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9;
+
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY

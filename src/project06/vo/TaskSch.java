@@ -5,6 +5,9 @@ public class TaskSch {
 	// 1. 검색(제목과 작성자)
 	private String tname;
 	private String writer;
+	private int pno;
+	private int mno;
+	private int mdiv;
 	// 2. 페이징 처리.
 	private int count; // 총데이터 건수.
 	private int pageSize; // 한번에 보여줄 페이지 크기..
@@ -17,6 +20,25 @@ public class TaskSch {
 	private int startBlock;
 	private int endBlock;
 	 
+	
+	public int getMdiv() {
+		return mdiv;
+	}
+	public void setMdiv(int mdiv) {
+		this.mdiv = mdiv;
+	}
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public String getTname() {
 		return tname;
 	}

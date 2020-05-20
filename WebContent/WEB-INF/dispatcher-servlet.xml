@@ -126,6 +126,26 @@
 	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
 		<property name="contentType" value="text/html;charset=utf-8"/>
 	</bean>
+
+	
+	
+	<!-- SMTP 서버 설정 -->	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<!-- gmail에 등록한 계정과 비밀번호 입력 -->
+		<property name="username" value=""/>		<!-- 구글 아이디 -->
+		<property name="password" value=""/>		<!-- 구글 비번 -->
+		<!-- 보안 관련 설정. -->
+		<property name="JavaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+
 </beans>       
        
        

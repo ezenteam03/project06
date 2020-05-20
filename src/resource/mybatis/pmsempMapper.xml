@@ -20,6 +20,12 @@
 			AND a.eno = b.mno(+)
 			AND a.eno = #{eno}
  	</select>
+ 	<!-- 프로젝트 리스트 -->
+ 	<select id="getPlist" resultMap="pmsEmpEnoResult">
+		select pno 
+		from pmsproject
+		order by pno asc 
+	</select>
  	<!-- pmsmember에 등록 됐는지 확인 -->
  	<select id="memCheck" resultType="int" parameterType="pmsemp">
 		select count(*) 
@@ -61,7 +67,37 @@
 		SET mdiv=4, pno=#{pno}
 		WHERE mno=#{eno}
 	</update>
- 	
+ 	<!-- PM 팀원 추가 리스트 -->
+ 	<select id="insList" resultMap="pmsempResult" parameterType="pmsemp">
+		SELECT *
+		FROM (
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9)
+		<if test="mdiv==2 and mdiv==3 and mdiv==6">
+		WHERE NOT grade = '사원'
+		</if>
+		ORDER BY eno ASC
+ 	</select>
+ 	<!-- pms등록된 직원 팀원추가 -->
+ 	<update id="updPNum" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET pno=#{pno}, mdiv=5
+		WHERE mno =#{eno}
+	</update>	
+ 	<!-- pms등록안된 직원 팀원추가 -->
+ 	<insert id="insPNum" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{eno}, #{pass}, 5, #{phone}, #{pno})
+	</insert>
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  

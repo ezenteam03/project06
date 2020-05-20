@@ -23,6 +23,10 @@
  		select count(*) 
 		from pmstask
 		where 1=1
+		AND pno = #{pno}
+		<if test="mdiv!=2 and mdiv!=3 and mdiv!=4 and mdiv!=6">
+		AND mno = #{mno}
+		</if>
 		<if test="tname!=null and tname!=''">
 		and tname like '%'||#{tname}||'%'
 		</if>	
@@ -42,6 +46,26 @@
 			ORDER BY tno desc )
 		WHERE cnt BETWEEN #{start} AND #{end}	
  	</select>
+ 	
+ 
+ 	<select id="slist" resultMap="taskResult" 
+ 		parameterType="tsch" >
+ 		SELECT *
+ 		FROM(
+			select rownum cnt, b.* 
+			from PMSTASK b, pmsmember pm
+			where 1=1 AND pm.mno = b.mno
+			AND pm.pno = #{pno}
+			<if test="mdiv!=2 and mdiv!=3 and mdiv!=4 and mdiv!=6">
+			AND pm.mno = #{mno}
+			</if>
+			<if test="tname!=null and tname!=''">
+			and tname like '%'||#{tname}||'%'
+			</if>
+			ORDER BY tno DESC )
+		WHERE cnt BETWEEN #{start} AND #{end}
+ 	</select>
+ 	
  	
  	<!-- 상세화면 -->
  	<select id="getTask" 
@@ -95,6 +119,17 @@
 		UPDATE PMSTASK
 		   SET tdiv = 24, pdate = sysdate
 		 WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="progUdt" parameterType="task">
+		UPDATE pmstask 
+		SET prog = ROUND((SELECT sum(prog)
+					FROM PMSTASK
+					where refno = #{refno}) / 
+					(SELECT count(prog)
+					FROM PMSTASK
+					where refno = #{refno}))
+		WHERE tno = #{refno}
  	</update>
  	
  	<!-- 등록 -->

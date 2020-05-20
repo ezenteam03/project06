@@ -68,21 +68,27 @@ $(document).ready(function(){
 	--%>
 
 	$("#regBtn").click(function(){
-		if(confirm("등록합니다")){
+		if(${tsch.mdiv != 4 && tsch.mdiv != 6}){
+			alert("권한이 없습니다.");
+		}else{
 			$(location).attr("href","${path}/task.do?method=insForm");
 		}
+		
 	});
 	$("#pageSize").change(function(){
 		$("#curPage").val(1);
 
 		$("form").submit();
 	});
+	
+	$
 });
 function goPage(no){
 	$("[name=curPage]").val(no);
 	$("form").attr("method","post").submit();
 }
 function go(no){
+
 	$(location).attr("href","${path}/task.do?method=detail&tno="+no);
 }
 
@@ -203,9 +209,11 @@ function go(no){
 		<a class="page-link" href="javascript:goPage(${(tsch.endBlock==tsch.pageCount)?tsch.endBlock:tsch.endBlock+1})">Next</a></li>
 		</ul>  
 	</div>
-       <div>
-          <button type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
-         </div>
+
+	      	 <div>
+	          <button type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
+	         </div>
+
     </div>
      
         
