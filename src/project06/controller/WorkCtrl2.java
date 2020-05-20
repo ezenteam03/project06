@@ -83,7 +83,6 @@ public class WorkCtrl2 {
 		}
 		@RequestMapping(params="method=prog")
 		public String prog(Task upt) {
-			System.out.println("ctrl prog 실행");
 			service.prog(upt);
 			return "forward:/task.do?method=detail"; 
 		}
@@ -109,7 +108,11 @@ public class WorkCtrl2 {
 			service.upDetail(upt);
 			return "forward:/task.do?method=detail"; 
 		}
-		
+		@RequestMapping(params="method=progUdt")
+		public String progUdt(Task upt) {
+			service.progUdt(upt);
+			return "forward:/task.do?method=detail";
+		}
 		
 		
 		@RequestMapping(params="method=delete")
@@ -129,6 +132,8 @@ public class WorkCtrl2 {
 			return "redirect:/task.do?method=list";
 		}
 		
+		
+		
 		@RequestMapping(params="method=detail")
 		public String detail(@RequestParam("tno") int no, Model d, HttpServletRequest request) {
 			
@@ -140,10 +145,6 @@ public class WorkCtrl2 {
 			
 		
 			d.addAttribute("mdiv", emp.getMdiv());
-			
-			
-			
-			
 
 			
 			return "WEB-INF\\views\\main\\workDetail2.jsp";

@@ -23,6 +23,7 @@ public interface WorkDao2 {
 	public void upTdiv2(Task upt);
 	public void upTdiv3(Task upt);
 	public void upDetail(Task upt);
+	public void progUdt(Task upt);
 	
 	public void insert(Task ins);
 	

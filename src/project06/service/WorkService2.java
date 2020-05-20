@@ -89,7 +89,7 @@ public class WorkService2 {
 		System.out.println("시작block : "+sch.getStartBlock());
 		System.out.println("curPage : "+sch.getCurPage());
 		System.out.println("마지막block : "+sch.getEndBlock());
-				
+		System.out.println("마지막block : "+sch.getMdiv());
 		
 		return dao.slist(sch);
 	}
@@ -114,7 +114,9 @@ public class WorkService2 {
 		dao.upDetail(upt);
 	}
 	public void prog(Task upt) {
+		System.out.println("상위업무번호 : "+upt.getRefno());
 		dao.prog(upt);
+		dao.progUdt(upt);
 	}
 	public void upTdiv(Task upt) {
 		dao.upTdiv(upt);
@@ -124,6 +126,9 @@ public class WorkService2 {
 	}
 	public void upTdiv3(Task upt) {
 		dao.upTdiv3(upt);
+	}
+	public void progUdt(Task upt) {
+		
 	}
 	public void insert(Task ins) {
 		System.out.println("등록 제목:"+ins.getTname());
