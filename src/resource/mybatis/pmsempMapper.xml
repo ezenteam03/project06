@@ -67,6 +67,18 @@
 		SET mdiv=4, pno=#{pno}
 		WHERE mno=#{eno}
 	</update>
+ 	<!-- PM 팀원 추가 리스트 -->
+ 	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9
+		AND b.pno is NULL;
+ 	</select>
+ 	
+ 	
+ 	
  	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
