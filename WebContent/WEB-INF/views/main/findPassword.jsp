@@ -63,6 +63,7 @@
 				'success'
 			);
 			ckNum = 1;
+			$("#sendBtn").val("완료");
 		}else if(ck==4){
 			Swal.fire(
 				'인증번호',
