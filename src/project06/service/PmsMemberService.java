@@ -28,7 +28,7 @@ public class PmsMemberService {
 		
 		PmsMember mem = null;
 		int mno = 0;
-		System.out.println("mno : " + mno);
+		System.out.println("Service mno : " + mno);
 		
 		if(count != 0) {
 			mem = dao.pmsMemberInfor(member);
@@ -51,6 +51,7 @@ public class PmsMemberService {
 	public String projectName(int mno) {
 		System.out.println("PmsMemberDao projectName 실행");
 		int count = dao.projectCount(mno);
+		System.out.println("service count 실행완료");
 		String proName = "";
 		if(count != 0) {
 			proName = dao.projectName(mno);

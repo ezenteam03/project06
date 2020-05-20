@@ -29,11 +29,10 @@ public class PmsMemberCtrl {
 		System.out.println("PmsMemberCtrl method=login 실행");
 		
 		int mno = service.memberInfor(member);
-		System.out.println("mno : " + mno);
+		System.out.println("Ctrl mno : " + mno);
 		pmsemp emp = service.empInfor(mno);
 		PmsMember infor_M = service.memberInforAll(mno);
 		String proName = service.projectName(mno);
-		System.out.println("pno : "+infor_M.getPno());
 		if(mno!=0) {
 			
 			if(infor_M.getMdiv() == 8 || infor_M.getMdiv() == 9) {
