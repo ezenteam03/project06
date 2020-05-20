@@ -60,9 +60,15 @@ public class pmsempCtrl {
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")
-	public String empList(pmsemp sch, Model d) {
-		d.addAttribute("elist", service.pmsempList(sch));
+	public String empList(pmsemp insL, Model d) {
+		d.addAttribute("elist", service.insList(insL));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
+	}
+	// PM 팀원 추가
+	@RequestMapping(params="method=insemp")
+	public String ins(pmsemp inse) {
+		service.insPm(inse);
+		return "forward:/PMSemp.do?method=empList";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")

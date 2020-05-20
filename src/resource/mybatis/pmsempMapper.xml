@@ -68,18 +68,25 @@
 		WHERE mno=#{eno}
 	</update>
  	<!-- PM 팀원 추가 리스트 -->
- 	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
+ 	<select id="insList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		c.CNAME,b.pno
 		FROM pmsemp a, pmsmember b, pmscodes c
 		WHERE a.eno = b.mno and b.mdiv=c.cno
 		AND c.cno =9
-		AND b.pno is NULL;
+		AND b.pno is NULL
  	</select>
- 	
- 	
- 	
- 	
+ 	<!-- pms등록된 직원 팀원추가 -->
+ 	<update id="updPNum" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET pno=#{pno}, mdiv=5
+		WHERE mno =#{eno}
+	</update>	
+ 	<!-- pms등록안된 직원 팀원추가 -->
+ 	<insert id="insPNum" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{eno}, #{pass}, 5, #{phone}, #{pno})
+	</insert>
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
 		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
