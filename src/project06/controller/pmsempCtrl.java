@@ -1,5 +1,6 @@
 package project06.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import project06.service.SendpassMailService;
 import project06.service.pmsempService;
 import project06.vo.pmsemp;
 
@@ -120,7 +122,8 @@ public class pmsempCtrl {
 	
 	
 	
-	
+	@Autowired(required=false)
+	private SendpassMailService sendService;
 	
 	
 	// Jin 사원번호 찾기
@@ -154,6 +157,32 @@ public class pmsempCtrl {
 		return "WEB-INF\\views\\main\\findPassword.jsp";
 	}
 	
+	String sendNum = "";
+	
+	@RequestMapping(params="method=sendText")
+	public String sendPassMail(Model m, @RequestParam("email") String email) throws MessagingException {
+		System.out.println("pmsempCtrl method=sendText 실행");
+		
+		String ranNum = sendService.sendPassMail(email);
+		sendNum = ranNum;
+		m.addAttribute("ck", 2);
+		return "WEB-INF\\views\\main\\findPassword.jsp";
+	}
+	
+	@RequestMapping(params="method=matchSend")
+	public String comparisonNum(Model m, @RequestParam("ranNum") String ran) {
+		System.out.println("pmsempCtrl method=matchSend 실행");
+		
+		if(ran.equals(sendNum)) {
+			m.addAttribute("ck", 3);
+			sendNum="";
+			return "WEB-INF\\views\\main\\findPassword.jsp";
+		}
+		m.addAttribute("ck", 4);
+		return "WEB-INF\\views\\main\\findPassword.jsp";
+	}
+	
+
 	@RequestMapping(params="method=findPass")
 	public String findPass(pmsemp emp, Model m) {
 		System.out.println("pmsempCtrl method=findPass 실행");
