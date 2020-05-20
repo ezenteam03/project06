@@ -33,6 +33,25 @@ SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,
 				c.CNAME,b.pno
 		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
 		where b.mno is NULL AND c.cno=9;
+	
+	SELECT * FROM pmsemp
+	WHERE name LIKE '%'||''||'%'
+	or grade LIKE '%'||''||'%'
+	OR dept LIKE '%'||''||'%'
+	ORDER BY eno  asc;
+
+SELECT *
+	FROM(
+		select rownum cnt, b.* 
+		from pmsemp b
+		where 1=1
+		ORDER siblings BY NO DESC )
+		WHERE cnt BETWEEN #{start} AND #{end};	
+
+		select count(*) 
+		from pmsemp
+		where 1=1
+		and eno like '%'||''||'%';	
 
 ALTER TABLE PMSCODES
 	DROP

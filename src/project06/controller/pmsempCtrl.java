@@ -7,12 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.SendpassMailService;
 import project06.service.pmsempService;
 import project06.vo.pmsemp;
+import project06.vo.pmsempSch;
 
 @Controller
 @RequestMapping("/PMSemp.do")
@@ -20,18 +22,26 @@ public class pmsempCtrl {
 	@Autowired(required=false)
 	private pmsempService service;
 	
+	// CEO, CTO 사원 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
+	// CEO, CTO 권한설정 상세 페이지
 	// http://localhost:5080/project06_git/PMSemp.do?method=setForm
-	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
-	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
+	// PM 추가 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
+	// PM 삭제 리스트
+	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
+	// 인사 사원 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empmList
+	// 인사 사원등록
+	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
+	// 인사 사원정보 수정
 	// http://localhost:5080/project06_git/PMSemp.do?method=modForm
 
 	
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
-	public String list(pmsemp sch, Model d) {
+	public String list(@ModelAttribute("pmsempsch") 
+		pmsempSch sch, Model d, HttpServletRequest request) {		
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
@@ -60,8 +70,9 @@ public class pmsempCtrl {
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")
-	public String empList(pmsemp insL, Model d) {
-		d.addAttribute("elist", service.insList(insL));
+	public String empList(@ModelAttribute("pmsempsch")
+	pmsempSch sch, Model d, HttpServletRequest request) {
+		d.addAttribute("elist", service.insList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원 추가
@@ -83,9 +94,9 @@ public class pmsempCtrl {
 		service.delete(del);
 		return "forward:/PMSemp.do?method=delForm";
 	}
-	// 인사 사원리스트 불러오기
+	// 인사 사원리스트 불러오기, *****수정 필요함*****
 	@RequestMapping(params="method=empmList")
-	public String empmList(pmsemp sch, Model d) {
+	public String empmList(pmsempSch sch, Model d) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\modList.jsp";
 	}

@@ -125,11 +125,13 @@
 			$("#detail").attr('readOnly',false);
 			$("#coment").attr('readOnly',false);
 		}		
-		
-		// 댓글 수정창 열기(댓글 상세)
-		$("#comentbt").click(function(){			
-			$(location).attr("href","${path}/risk.do?method=cdetail&rno="+rno);
-		
+			var rno = "${comment.rno}";
+		 
+		function cpopup() { 
+			window.open("http://localhost:5080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
+		}
+		$("#comentbt").click(function(){
+			cpopup();
 		});
 		
 	});
@@ -245,6 +247,8 @@
 			 value="${empty comment.refno?0:comment.refno}" />	 	
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 		  	
+	  	 <input name="mno" type="hidden"
+			 value="${mno}" />		  	
 	<input type="button" value="댓글창 열기" id="combt">
 	<!-- 댓글 -->
 	<div id="comment">
@@ -265,14 +269,14 @@
    <table class="table table-hover">
    
       <c:forEach var="comment" items="${clist}">
- 
+    
       <tr class="text-center">
-      <td class="num">${comment.mno}</td>
+      <td class="num">${comment.name}</td>
        
        <td class="txt" >${comment.cdetail}</td>
         
      
-        <td class="num" ><a id="comentbt" href="#popup">수정</a></td>
+        <td class="num" ><input type="button" class="btn btn-info" id="comentbt" value="수정"/></td>
         <td class="num"><input type="button" class="btn btn-info"
 			value="댓글" id="cComment" />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
@@ -284,33 +288,7 @@
 </div></div>
 </div>
 	</form>
-<div id="popup" class="overlay">
-	<div class="popup">
-		<a href="#none" class="close">&times;</a>
-	
-		<form class="form-login" id="inforCheckForm" method="post" style="background-color:#e0e0e0;margin-top:0%">
 
-		<h2 class="form-login-heading">댓글 수정</h2>
-		<div class="login-wrap">
-			<label>작성자</label>
-			<input type="text" class="form-control" value="${mno}" name="mno" readonly="readonly"/>
-			
-			<br>
-			<label>작성일</label><br>
-			<fmt:formatDate type='both' value='${comment.wdate}'/>
-			
-			<br>
-			
-			<label>댓글 내용</label>
-				<input type="text" class="form-control" value="${comment.cdetail}" name="mno" />
-		
-			<button class="btn btn-theme btn-block" type="button" id="inforBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
-								
-		</div>
-			
-		</form>
-	</div>
-</div>
 	</div>
 	</div></div></div></section></section>
 	
