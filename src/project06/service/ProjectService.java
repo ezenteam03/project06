@@ -20,4 +20,13 @@ public class ProjectService {
 	public Project getProject(int pno){
 		return dao.getProject(pno);
 	}
+
+	public void proIns(Project ins) {
+		System.out.println("프로젝트명 : "+ins.getName());
+		System.out.println("프로젝트시작일 : "+ins.getSdate());
+		System.out.println("프로젝트종료일 : "+ins.getDeadline());
+		System.out.println("프로젝트PM : "+ins.getMno());
+		System.out.println("프로젝트상세정보 : "+ins.getDetail());
+		dao.proIns(ins);
+	}
 }

@@ -10,6 +10,7 @@ import project06.vo.Project;
 public interface ProjectDao{
 	public ArrayList<Project> projectList();
 	public Project getProject(int pno);
+	public void proIns(Project ins);
 	
 }
 

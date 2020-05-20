@@ -64,7 +64,8 @@
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
             <div class="form-panel">
               <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+                <form class="cmxform form-horizontal style-form" method="post" action="${path}/project.do?method=proIns">
+                <!-- <input type="hidden" name="eno"/> -->
                   <div class="form-group ">
                     <label for="pname" class="control-label col-lg-2">프로젝트명</label>
                     <div class="col-lg-10">
@@ -97,7 +98,7 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-                    <select class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
+                    <select name="mno" class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
                     	<c:forEach var="emp" items="${elist}">
                     	<option value="${emp.eno}">${emp.name} ${emp.grade}</option>
                     	</c:forEach>
@@ -111,7 +112,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10" style="text-align:right;">
-                      <button class="btn btn-theme" type="submit">등록</button>
+                      <button class="btn btn-theme" type="button" id="proIns">등록</button>
                       <button class="btn btn-theme04" type="button">취소</button>
                     </div>
                   </div>
@@ -174,8 +175,14 @@
   <script src="${path}/Dashio/lib/common-scripts.js"></script>
   <!--script for this page-->
   <script type="text/javascript">
-    $(document).ready(function() {
-    });
+  $(document).ready(function(){
+	 // PM 버튼
+	 $("#proIns").click(function(){
+		//var eno = $("[name=mno]").val();
+		//$("[name=eno]").val(eno);
+		$("form").submit();
+	 });
+  });
   </script>
 </body>
 

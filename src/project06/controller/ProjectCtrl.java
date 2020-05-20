@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import project06.service.ProjectService;
 import project06.service.pmsempService;
 import project06.vo.PmsMember;
+import project06.vo.Project;
 import project06.vo.pmsemp;
 
 
@@ -17,6 +19,8 @@ import project06.vo.pmsemp;
 @RequestMapping("project.do")
 public class ProjectCtrl {
 	
+	@Autowired(required=false)
+	private ProjectService prservice;
 	@Autowired(required=false)
 	private pmsempService peservice;
 	
@@ -37,5 +41,12 @@ public class ProjectCtrl {
 		d.addAttribute("elist", peservice.insList(emp));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
 	}
-	
+	//, pmsemp inspe
+	@RequestMapping(params="method=proIns")
+	public String proIns(Project insp) {
+		prservice.proIns(insp);
+		//peservice.updatePm(inspe);
+		
+		return "WEB-INF\\views\\main\\projectInsert.jsp";
+	}
 }

@@ -34,4 +34,9 @@
 		WHERE pem.mno = pp.mno
 		AND pem.pno = #{pno}
  	</select>
+ 	
+ 	<insert id="proIns" parameterType="project">
+		 INSERT INTO pmsproject(pno, sdate, deadline, mno, detail) 
+		 VALUES(pmsproject_seq.nextval,#{sdate},#{deadline}, #{mno},#{detail})
+	</insert>
 </mapper>	
