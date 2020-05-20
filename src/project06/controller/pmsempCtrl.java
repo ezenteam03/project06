@@ -26,10 +26,10 @@ public class pmsempCtrl {
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
 	// CEO, CTO 권한설정 상세 페이지
 	// http://localhost:5080/project06_git/PMSemp.do?method=setForm
-	// PM 삭제 리스트
-	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// PM 추가 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
+	// PM 삭제 리스트
+	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// 인사 사원 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empmList
 	// 인사 사원등록
@@ -40,14 +40,8 @@ public class pmsempCtrl {
 	
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("pmsempsch") pmsempSch sch, Model d, HttpServletRequest request) {		
-		/*
-		 * HttpSession session = request.getSession();
-		 * 
-		 * if(session.getAttribute("mno")==null) { return
-		 * "WEB-INF\\views\\main\\login.jsp"; }
-		 */
-		  
+	public String list(@ModelAttribute("pmsempsch") 
+		pmsempSch sch, Model d, HttpServletRequest request) {		
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
@@ -76,8 +70,9 @@ public class pmsempCtrl {
 	}
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")
-	public String empList(pmsemp insL, Model d) {
-		d.addAttribute("elist", service.insList(insL));
+	public String empList(@ModelAttribute("pmsempsch")
+	pmsempSch sch, Model d, HttpServletRequest request) {
+		d.addAttribute("elist", service.insList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원 추가

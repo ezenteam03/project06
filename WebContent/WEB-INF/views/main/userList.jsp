@@ -38,10 +38,7 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-		  $("#pageSize").change(function(){
-				$("#curPage").val(1);
-				$("form").submit();
-			});
+
 	  });
 	 function goPage(no){
 		$("[name=curPage]").val(no);
@@ -69,8 +66,8 @@
               <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
-                					사원 목록</span>
+               	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
+               					사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="name" id="" placeholder="Search"/>
 	                	<input type="submit" class="sch-btn" value="Search" />

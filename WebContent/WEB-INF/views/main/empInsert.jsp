@@ -44,7 +44,12 @@
 				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
 				 $("form").submit(); 
 			 });
-	  });
+		  });
+		 function goPage(no){
+			$("[name=curPage]").val(no);
+			$("form").submit();
+		 }
+	 
 
 
   </script> 
@@ -61,6 +66,7 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <form method="post">
+              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>
                 	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 추가</span>
@@ -104,13 +110,16 @@
 	          <div align="center">
 			    <ul class="pagination pagination-sm">
 			      <li class="page-item disabled">
-			        <a class="page-link" href="#">&laquo;</a>
+			        <a class="page-link" href="javascript:goPage(${pmsempsch.startBlock-1});">&laquo;</a>
 			      </li>
-			      <li class="page-item active">
-			        <a class="page-link" href="#">1</a>
-			      </li>
+				    <c:forEach var="cnt" begin="${pmsempsch.startBlock}" end="${pmsempsch.endBlock}">
+					  <li class="page-item ${pmsempsch.curPage==cnt?'active':''}">				  
+					  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a>
+					  </li>
+					</c:forEach>    
 			      <li class="page-item">
-			        <a class="page-link" href="#">&raquo;</a>
+			        <a class="page-link" href="javascript:goPage(${(pmsempsch.endBlock==pmsempsch.pageCount)?
+									pmsempsch.endBlock:pmsempsch.endBlock+1});">&raquo;</a>
 			      </li>
 			    </ul>
 			  </div>   

@@ -4,13 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
- 	
+ 	<!-- 데이터 총 건수 -->
  	<select id="totCnt" resultType="int" parameterType="pmsempsch">
  		select count(*) 
 		from pmsemp
 		where 1=1
- 	</select> 
- 	
+ 	</select> 	
  	<!-- CEO, CTO 사원리스트 불러오기 -->
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
  		SELECT *
@@ -80,23 +79,26 @@
 	</update>
  	<!-- PM 팀원 추가 리스트 -->
  	<select id="insList" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT *
-		FROM (
-		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9 
-		AND b.pno is NULL
-		UNION ALL
-		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-				c.CNAME,b.pno
-		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-		where b.mno is NULL AND c.cno=9)
-		<if test="mdiv==2 or mdiv==3 or mdiv==6">
-		WHERE NOT grade = '사원'
-		</if>
-		ORDER BY eno ASC
+ 		SELECT *
+ 		FROM(
+			SELECT *
+			FROM (
+			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+			c.CNAME,b.pno
+			FROM pmsemp a, pmsmember b, pmscodes c
+			WHERE a.eno = b.mno and b.mdiv=c.cno
+			AND c.cno =9 
+			AND b.pno is NULL
+			UNION ALL
+			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+					c.CNAME,b.pno
+			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+			where b.mno is NULL AND c.cno=9)
+			<if test="mdiv==2 or mdiv==3 or mdiv==6">
+			WHERE NOT grade = '사원'
+			</if>
+			ORDER BY eno ASC)
+		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	<!-- pms등록된 직원 팀원추가 -->
  	<update id="updPNum" parameterType="pmsemp">
