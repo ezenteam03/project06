@@ -32,6 +32,6 @@
 		FROM PMSPROJECT pp, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 		WHERE pem.mno = pp.mno
-		AND pem.mno = #{mno}
+		AND pem.pno = #{pno}
  	</select>
 </mapper>	

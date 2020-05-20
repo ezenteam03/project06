@@ -13,7 +13,7 @@ SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/m
 FROM PMSPROJECT pp, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 WHERE pem.mno = pp.mno
-AND pem.mno = 10000006;
+AND pem.pno = 1002;
 
 UPDATE PMSPROJECT
 SET cdate = '2020/05/04'
@@ -47,7 +47,6 @@ AND pt.mno = pem.mno;
  */
 SELECT * FROM PMSEMP pe, PMSMEMBER pm
 WHERE pe.eno = pm.mno;
-
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
@@ -62,17 +61,6 @@ AND pt.mno = pem.mno
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 --팀원 작업 내역
-/*SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
-(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
-FROM PMSPROJECT pp, PMSTASK pt, 
-(SELECT * FROM PMSEMP pe, PMSMEMBER pm
-WHERE pe.eno = pm.mno) pem
-WHERE pp.pno = pt.pno
-AND pt.mno = pem.mno
---AND pt.tno = 1009
---AND pt.refno = 1009
-AND pem.eno = 10000005
-UNION all*/
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
@@ -80,9 +68,22 @@ FROM PMSPROJECT pp, PMSTASK pt,
 WHERE pe.eno = pm.mno) pem
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
+AND pp.pno = 1001
+AND pt.tno = 1008
+--AND pt.refno = 1009
+--AND pem.eno = 10000005
+UNION all
+SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+AND pp.pno = 1001
 AND pem.eno = 10000016
 AND pt.refno = 1008
-OR pt.tno = 1008
+--OR pt.tno = 1009
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
 --팀원에 해당하는 REFNO 가져오기

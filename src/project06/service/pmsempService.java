@@ -67,6 +67,20 @@ public class pmsempService {
 				rep.updatePm1(updatePm);	
 			}
 		}
+		// PM 추가리스트
+		public ArrayList<pmsemp> insList(pmsemp insL){
+			return rep.insList(insL);
+		}
+		// PM 팀원 추가
+		public void insPm(pmsemp insertPm) {
+			int isMem = rep.memCheck(insertPm);
+			if(isMem==0) {
+				insertPm.setPass(makePass("1234qwer!"));
+				rep.insPNum(insertPm);
+			}else{
+				rep.updPNum(insertPm);
+			}
+		}
 		// PM 삭제리스트
 		public ArrayList<pmsemp> pmempList(pmsemp sch){
 			return rep.pmempList(sch);
