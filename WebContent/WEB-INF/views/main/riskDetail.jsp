@@ -245,6 +245,8 @@
 			 value="${empty comment.refno?0:comment.refno}" />	 	
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 		  	
+	  	 <input name="mno" type="hidden"
+			 value="${mno}" />		  	
 	<input type="button" value="댓글창 열기" id="combt">
 	<!-- 댓글 -->
 	<div id="comment">
@@ -265,9 +267,9 @@
    <table class="table table-hover">
    
       <c:forEach var="comment" items="${clist}">
- 
+    
       <tr class="text-center">
-      <td class="num">${comment.mno}</td>
+      <td class="num">${comment.name}</td>
        
        <td class="txt" >${comment.cdetail}</td>
         

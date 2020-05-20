@@ -14,8 +14,8 @@
 	 </select>
  	<select id="clist" resultMap="commentResult" parameterType="rsch" >
  	SELECT *
-	FROM PMSREPLY
-	WHERE 1=1
+	FROM PMSREPLY re, PMSEMP e
+	WHERE re.MNO = e.ENO 
 	and ino = #{ino}
 	START WITH refno =0
 	CONNECT BY PRIOR rno = refno
@@ -23,7 +23,7 @@
 	</select>
 	<insert id="cinsert" parameterType="comment">
 		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},
-		#{cdetail},sysdate,10000023,#{ino})
+		#{cdetail},sysdate,#{mno},#{ino})
 	</insert>
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM PMSREPLY
