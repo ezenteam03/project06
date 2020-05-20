@@ -41,4 +41,29 @@
 		CONNECT BY PRIOR tno = refno
 		ORDER BY refno ASC
  	</select>
+ 	
+ 	<select id="chartListtm" resultMap="chartResult" parameterType="int">
+ 		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pt.tno = #{refno}
+		UNION all
+		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pem.eno = #{mno}
+		AND pt.refno = #{refno}
+		START WITH pt.refno=0
+		CONNECT BY PRIOR pt.tno = pt.refno
+ 	</select>
 </mapper>	

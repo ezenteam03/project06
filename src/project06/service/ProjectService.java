@@ -17,7 +17,7 @@ public class ProjectService {
 		return dao.projectList();
 	}
 	
-	public Project getProject(int mno){
-		return dao.getProject(mno);
+	public Project getProject(int pno){
+		return dao.getProject(pno);
 	}
 }
