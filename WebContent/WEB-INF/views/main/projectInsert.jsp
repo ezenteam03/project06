@@ -66,16 +66,16 @@
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
                   <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-2">프로젝트명</label>
+                    <label for="pname" class="control-label col-lg-2">프로젝트명</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                      <input class=" form-control" name="pname" minlength="2" type="text" required />
                     </div>
                   </div>
 					<div class="form-group">
-					  <label class="control-label col-lg-2">시작일</label>
+					  <label for="sdate" class="control-label col-lg-2">시작일</label>
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
-					      <input type="text" readonly size="16" class="form-control">
+					      <input type="text" name="sdate" readonly size="16" class="form-control" required />
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 					        </span>
@@ -87,7 +87,7 @@
 					  <label class="control-label col-lg-2">종료일</label>
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
-					      <input type="text" readonly size="16" class="form-control">
+					      <input type="text" name="deadline" readonly size="16" class="form-control" required />
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 					        </span>
@@ -99,14 +99,14 @@
                     <label for="curl" class="control-label col-lg-2">PM</label>
                     <select class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
                     	<c:forEach var="emp" items="${elist}">
-                    	<option>${emp.name} ${emp.grade}</option>
+                    	<option value="${emp.eno}">${emp.name} ${emp.grade}</option>
                     	</c:forEach>
                     </select>
                   </div>
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">프로젝트 개요</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                      <textarea class="form-control " name="detail" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">
