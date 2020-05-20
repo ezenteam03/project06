@@ -33,7 +33,7 @@
  	<select id="getComment" 
  		resultType="comment" parameterType="int">
  		SELECT *
- 		FROM PMSISSUE p, PMSEMP pm	
+ 		FROM PMSREPLY p, PMSEMP pm	
  		where 1=1
  		and p.mno = pm.ENO 
  		and rno = #{rno}

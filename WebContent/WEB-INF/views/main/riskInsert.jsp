@@ -100,7 +100,7 @@
 	<form method="post" enctype="multipart/form-data"
 	 	action="${path}/risk.do?method=insert">
 	 	<input name="mno" type="hidden" value="${mno}"  />			
-	 	<input name="pno"  value="${risk.pno}"  />			
+	 	<input name="pno" type="hidden" value="${infor_M.pno}"  />			
 	 	
 	<div class="form-group">
 		

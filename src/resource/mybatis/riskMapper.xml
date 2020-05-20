@@ -44,7 +44,7 @@
 
 	<insert id="insert" parameterType="risk">
 		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,#{title},
-		#{detail},0,null,sysdate,null,null,1001,#{mno})
+		#{detail},0,null,sysdate,null,null,#{pno},#{mno})
 	</insert>
 	
 	<select id="getRisk" 

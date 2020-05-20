@@ -127,7 +127,7 @@ public class RiskCtrl {
 		@RequestMapping(params="method=cdetail")
 		public String cdetail(@RequestParam("rno") int rno, Model d) {
 			d.addAttribute("comment", service.getComment(rno));
-			return "forward:/risk.do?method=detail";
+			return "WEB-INF\\views\\main\\comment.jsp";
 		}
 		
 	
