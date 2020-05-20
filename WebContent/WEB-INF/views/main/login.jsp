@@ -151,7 +151,7 @@
 			<h2 class="form-login-heading">LOGIN</h2>
 			
 			<div class="login-wrap">
-				<input type="text" class="form-control" id="mno" name="mno" placeholder="사원번호를 입력하세요" autofocus>
+				<input type="text" class="form-control" id="mno" name="mno" value="${param.mno }" placeholder="사원번호를 입력하세요" autofocus>
 				
 				<br>
 				
