@@ -115,9 +115,20 @@ WHERE c.cno(+)=b.mdiv
 AND a.eno = b.mno(+)
 --AND a.eno = #{eno};
 ORDER BY a.eno ASC;
-SELECT pe.eno, pe.name, pe.GRADE, pe.DEPT, pe.EMAIL, pe.PHONE,  
-		pc.CNAME,pm.pno
-		FROM pmsemp pe, pmsmember pm, pmscodes pc
-		WHERE pe.eno = pm.mno and pm.mdiv=pc.cno;
-
--- pno가 null인것, cname이 구분 없음인
+--pmsemp로 
+SELECT * 
+FROM (
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9
+	)
+WHERE NOT grade = '사원'
+ORDER BY eno ASC;

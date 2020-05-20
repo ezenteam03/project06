@@ -82,7 +82,7 @@
 				c.CNAME,b.pno
 		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
 		where b.mno is NULL AND c.cno=9)
-		<if test="mdiv==2 and mdiv==3 and mdiv==6">
+		<if test="mdiv==2 or mdiv==3 or mdiv==6">
 		WHERE NOT grade = '사원'
 		</if>
 		ORDER BY eno ASC
