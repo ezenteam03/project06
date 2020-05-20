@@ -9,14 +9,6 @@ DROP SEQUENCE pmsreply_seq;
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
 
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9
-		AND b.pno is NULL;
-		
-
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY
