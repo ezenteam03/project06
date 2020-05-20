@@ -95,17 +95,17 @@
 			
 			<div class="login-wrap">
 				<label>사원번호</label>
-				<input type="text" class="form-control" id="eno" name="eno" placeholder="사원번호를 입력하세요" autofocus>
+				<input type="text" class="form-control" id="eno" name="eno" value="${param.eno}" placeholder="사원번호를 입력하세요" autofocus>
 			
 				<br>
 			
 				<label>이름</label>
-				<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요">
+				<input type="text" class="form-control" id="name" name="name" value="${param.name }" placeholder="이름을 입력하세요">
 				
 				<br>
 				
 				<label>이메일</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요">
+				<input type="email" class="form-control" id="email" name="email" value="${param.email }" placeholder="이메일을 입력하세요">
 				
 				<div>
 					<div class="form-inline">
