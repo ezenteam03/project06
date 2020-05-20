@@ -9,8 +9,9 @@ import project06.vo.pmsempSch;
 
 @Repository
 public interface pmsempRep {
+	public int totCnt(pmsempSch sch);
 	// CEO, CTO, PM 리스트
-	public ArrayList<pmsemp> pmsempList(pmsemp sch);
+	public ArrayList<pmsemp> pmsempList(pmsempSch sch);
 	// CEO, CTO, PM 상세
 	public pmsemp getemp(int eno);
 	// 프로젝트 리스트

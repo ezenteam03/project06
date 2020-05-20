@@ -38,17 +38,20 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-		  
+		  $("#pageSize").change(function(){
+				$("#curPage").val(1);
+				$("form").submit();
+			});
 	  });
 	 function goPage(no){
-		 $("#curPage").val(no);
-		 $("form").submit();
+		$("[name=curPage]").val(no);
+		$("form").submit();
 	 }
 	 function go(eno){
 		 $(location).attr("href",
 				 "${path}/PMSemp.do?method=setForm&peno="+eno);
 	 }
-
+	
   </script>
 </head>
 
@@ -63,6 +66,7 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <form method="post">
+              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>
                 	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
@@ -102,14 +106,16 @@
 	          <div align="center">
 			    <ul class="pagination pagination-sm">
 			      <li class="page-item disabled">
-			        <a class="page-link" href="javascript:goPage(${bsch.startBlock-1});">&laquo;</a>
+			        <a class="page-link" href="javascript:goPage(${pmsempsch.startBlock-1});">&laquo;</a>
 			      </li>
-				      <li class="page-item active ${bsch.curPage==cnt?'active':''}">
-				        <a class="page-link" href="javascript:goPage(${cnt})">1</a>
-				      </li>
+				  <c:forEach var="cnt" begin="${pmsempsch.startBlock}" end="${pmsempsch.endBlock}">
+					  <li class="page-item ${pmsempsch.curPage==cnt?'active':''}">
+					  
+					  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+					</c:forEach>    
 			      <li class="page-item">
-			        <a class="page-link" href="javascript:goPage(${(bsch.endBlock==bsch.pageCount)?
-									bsch.endBlock:bsch.endBlock+1});">&raquo;</a>
+			        <a class="page-link" href="javascript:goPage(${(pmsempsch.endBlock==pmsempsch.pageCount)?
+									pmsempsch.endBlock:pmsempsch.endBlock+1});">&raquo;</a>
 			      </li>
 			    </ul>
 			  </div>   

@@ -4,12 +4,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
 <mapper namespace="project06.repository.pmsempRep">
  	<resultMap type="pmsemp" id="pmsempResult"/>
+ 	
+ 	<select id="totCnt" resultType="int" parameterType="pmsempsch">
+ 		select count(*) 
+		from pmsemp
+		where 1=1
+ 	</select> 
+ 	
  	<!-- CEO, CTO 사원리스트 불러오기 -->
  	<select id="pmsempList" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-		FROM pmsemp a 
-		WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
+ 		SELECT *
+ 		FROM(
+			SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+			(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
+			FROM pmsemp a 
+			WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
+			ORDER BY a.eno asc)
+		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>	
  	<!-- 상세페이지 -->
  	<select id="getemp" resultType="pmsemp" parameterType="int">
