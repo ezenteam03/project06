@@ -11,9 +11,14 @@ public class Comment {
 	private int mno;		// 사원번호
 	private int ino;		// 이슈리스트 번호
 	private String name;	// 작성자
+	private int level;	
 	
-	
-	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public String getName() {
 		return name;
 	}

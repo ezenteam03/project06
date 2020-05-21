@@ -12,13 +12,14 @@
 		FROM PMSREPLY			
 	 </select>
  	<select id="clist" resultMap="commentResult" parameterType="rsch" >
- 	SELECT *
-	FROM PMSREPLY re, PMSEMP e
+ 	 	
+ 	SELECT level,re.*,e.*
+	FROM PMSREPLY re,PMSEMP e
 	WHERE re.MNO = e.ENO 
 	and ino = #{ino}
 	START WITH refno =0
 	CONNECT BY PRIOR rno = refno
-	ORDER siblings BY rno	
+	ORDER siblings BY rno
 	</select>
 	<insert id="cinsert" parameterType="comment">
 		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},

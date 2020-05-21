@@ -137,6 +137,14 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=detail";
 		}	
+		// 대댓글입력
+			@RequestMapping(params="method=ccinsert")
+			public String ccinsert(Comment insert) {
+				
+				service.cinsert(insert);
+				
+				return "WEB-INF\\views\\main\\riskDetail.jsp";
+			}
 		
 	
 }

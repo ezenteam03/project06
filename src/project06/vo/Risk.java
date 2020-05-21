@@ -19,7 +19,7 @@ public class Risk {
 	private Date cdate; /* 해결방안작성일 */	
 	private int pno; /* 프로젝트번호 */
 	private int mno; /* 사원번호 */
-	private int level;	
+	
 	private int refno; // 답글번호
 	
 
@@ -112,12 +112,7 @@ public class Risk {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
+	
 	public MultipartFile[] getReport() {
 		return report;
 	}

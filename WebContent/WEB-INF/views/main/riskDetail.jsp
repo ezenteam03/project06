@@ -124,7 +124,9 @@
 			$("#title").attr('readOnly',false);
 			$("#detail").attr('readOnly',false);
 			$("#coment").attr('readOnly',false);
-		}		
+		}	
+		
+	
 		
 		
 	});
@@ -268,19 +270,13 @@
        <!-- 댓글 들여쓰기 -->
        <td class="text-left" >
        		<c:forEach varStatus="sts" 
-        		begin="2" end="${board.level}">&nbsp;&nbsp;<c:if test="${board.level>1 and sts.last}">☞</c:if>	
-        	</c:forEach> ${comment.detail}
-        	<fmt:parseNumber value="${board.credte.time / (1000*60*60*24)}" 
-	    		integerOnly="true" var="toFmt2"/>
-	    		
-	    	<c:if test="${toFmt==toFmt2}">
-	    		<span class="badge badge-danger">New</span>
-	    	</c:if>	      	
-        	</td>
+        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
+        	</c:forEach> ${comment.detail}      		         	
+       </td>
         
      
         <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>
-        <td class="num"><input type="button" class="btn btn-info"
+        <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno})"
 			value="댓글"  />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
@@ -338,6 +334,15 @@ function cpopup(rno) {
 function coment(rno){
 	cpopup(rno);
 };
+function ccpopup(rno) { 
+	window.open("http://localhost:5080/project06_git/risk.do?method=ccinsert&rno="+rno, "1", "width=780, height=500, left=300, top=100");
+}
+function ccoment(rno){
+	ccpopup(rno);
+};
+
+
+
 	
 </script>
 </html>
