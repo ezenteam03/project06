@@ -37,6 +37,16 @@
 		<%-- 
 		
 		--%>
+		$( "#datepicker" ).datepicker({
+	    	minDate: 1,
+	    	dateFormat: 'yy-mm-dd',    	  
+	    	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+	   		,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+	    	,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+	    	,yearSuffix: "년"
+	    	,showMonthAfterYear:true 
+	    	,showOtherMonths: true
+    	});
 		
 		$("#regBtn").click(function(){
 			alert("클릭");
@@ -49,16 +59,7 @@
 			$(location).attr("href","${path}/task.do?method=list");			
 			//}
 		});	
-		$( "#datepicker" ).datepicker({
-	    	minDate: 1,
-	    	dateFormat: 'yy-mm-dd',    	  
-	    	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-	   		,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-	    	,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-	    	,yearSuffix: "년"
-	    	,showMonthAfterYear:true 
-	    	,showOtherMonths: true
-    	});
+		
 		//var refno = "${task.refno}";
 		var isReg= "${param.tname}";
 		//&&refno==""
@@ -107,7 +108,7 @@
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">마감일</span>
 		</div>
-		<input name="edate" class="form-control" id="datepicker" 
+		<input name="edate" class="form-control" 
 			placeholder="마감일" value="" />	
 		
 		
