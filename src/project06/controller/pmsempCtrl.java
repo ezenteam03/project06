@@ -71,7 +71,7 @@ public class pmsempCtrl {
 	// PM 팀원추가 사원 리스트 불러오기
 	@RequestMapping(params="method=empList")
 	public String empList(@ModelAttribute("pmsempsch")
-	pmsempSch sch, Model d, HttpServletRequest request) {
+		pmsempSch sch, Model d, HttpServletRequest request) {
 		d.addAttribute("elist", service.insList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
@@ -83,7 +83,8 @@ public class pmsempCtrl {
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")
-	public String pmlist(pmsemp sch, Model d) {
+	public String pmlist(@ModelAttribute("pmsempsch") 
+		pmsempSch sch, Model d, HttpServletRequest request) {
 		sch.setPno(1001);
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
@@ -96,7 +97,8 @@ public class pmsempCtrl {
 	}
 	// 인사 사원리스트 불러오기, *****수정 필요함*****
 	@RequestMapping(params="method=empmList")
-	public String empmList(pmsempSch sch, Model d) {
+	public String empmList(@ModelAttribute("pmsempsch") 
+		pmsempSch sch, Model d, HttpServletRequest request) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\modList.jsp";
 	}

@@ -5,6 +5,7 @@ public class pmsempSch {
 	// 검색과 페이징 처리를 위한 VO 객체
 	// 1. 검색(제목과 작성자)
 	private int mdiv;
+	private int pno;
 	// 2. 페이징 처리
 	private int count; // 총데이터 건수
 	private int pageSize; // 한번에 보여줄 페이지 크기
@@ -18,6 +19,12 @@ public class pmsempSch {
 	private int endBlock; // 끝나는 블럭
 	
 
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	public int getMdiv() {
 		return mdiv;
 	}

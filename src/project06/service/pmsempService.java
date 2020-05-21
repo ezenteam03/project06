@@ -121,7 +121,7 @@ public class pmsempService {
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
-			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);	
+			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);
 			return rep.insList(sch);
 		}
 		// PM 팀원 추가
@@ -135,7 +135,26 @@ public class pmsempService {
 			}
 		}
 		// PM 삭제리스트
-		public ArrayList<pmsemp> pmempList(pmsemp sch){
+		public ArrayList<pmsemp> pmempList(pmsempSch sch){
+			sch.setCount(rep.totCnt(sch));
+			if(sch.getPageSize()==0) {
+				// 페이지에 보일 데이터 건수
+				sch.setPageSize(3);
+			}
+			sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
+			if(sch.getCurPage()==0) {
+				sch.setCurPage(1);
+			}
+			sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
+			sch.setEnd(sch.getCurPage()*sch.getPageSize());
+			System.out.println("시작번호:"+sch.getStart());
+			System.out.println("마지막번호:"+sch.getEnd());		
+			// 페이지에 보일 블럭 갯수
+			sch.setBlocksize(3);
+			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
+			int endBlock = blocknum*sch.getBlocksize();
+			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
+			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);
 			return rep.pmempList(sch);
 		}
 		// PM 팀원 삭제

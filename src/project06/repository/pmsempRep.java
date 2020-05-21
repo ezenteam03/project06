@@ -39,7 +39,7 @@ public interface pmsempRep {
 	public void updPNum(pmsemp upn);
 	public void insPNum(pmsemp ipn);
 	// PM 삭제 리스트
-	public ArrayList<pmsemp> pmempList(pmsemp sch);
+	public ArrayList<pmsemp> pmempList(pmsempSch sch);
 	// PM 팀원 삭제
 	public void delemp(pmsemp del);
 	// 인사 사원등록
