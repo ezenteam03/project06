@@ -1246,4 +1246,6 @@ select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-m
  		and p.mno=10000005
  		and p.refno=0
  		order by p.tno ASC;
-	
+select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
+ 		from pmsproject p, pmsemp e
+ 		where pno=1001;	
