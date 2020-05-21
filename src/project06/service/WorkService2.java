@@ -123,6 +123,7 @@ public class WorkService2 {
 	}
 	public void upTdiv2(Task upt) {
 		dao.upTdiv2(upt);
+		dao.prog0(upt);
 	}
 	public void upTdiv3(Task upt) {
 		dao.upTdiv3(upt);
