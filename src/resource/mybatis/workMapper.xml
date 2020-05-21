@@ -105,6 +105,11 @@
 		   SET prog = #{prog}
 		 WHERE tno = #{tno}
  	</update>
+ 	<update id="prog0" parameterType="task">
+		UPDATE PMSTASK
+		   SET prog = 0
+		 WHERE tno = #{tno}
+ 	</update>
  	<update id="upTdiv" parameterType="task">
 		UPDATE PMSTASK
 		   SET tdiv = 22, pdate = sysdate
