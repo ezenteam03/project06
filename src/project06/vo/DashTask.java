@@ -2,7 +2,7 @@ package project06.vo;
 
 import java.util.*;
 
-public class DashTeam {
+public class DashTask {
 	private int tno;
 	private String tname;
 	private Date sdate;
