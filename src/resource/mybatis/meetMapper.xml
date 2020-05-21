@@ -21,7 +21,7 @@
  	<select id="list" resultMap="meetResult" parameterType="msch" >
  		SELECT * 
 		FROM(
-			SELECT rownum cnt, mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,mndiv,m.name writer,pno 
+			SELECT ROW_NUMBER() OVER(ORDER BY mnno desc) cnt, mnno,topic,detail,decision,etc,views,wdate,chdate,mdate,loc,people,mndiv,m.name writer,pno 
 			FROM pmsmeeting p, pmsemp m 
 			WHERE 1=1 AND p.mno=m.eno 
 			<if test="topic!=null and topic!=''">
