@@ -67,9 +67,9 @@
 		
 		
 		$("#regBtn").click(function(){		
-				if(confirm("등록합니다.")){
-					$("form").submit();				
-				}			
+			if(confirm("등록합니다.")){
+				$("form").submit();				
+		}			
 		});	
 		$("#goMain").click(function(){
 			if(confirm("조회 화면 이동 합니다.")){

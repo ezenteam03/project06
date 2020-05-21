@@ -226,7 +226,12 @@ public class RiskService {
 
 			return d;	
 		}
+		// 댓글 수정
+	public void cupdate(Comment cupdate) {
+		
+		dao.updatecomment(cupdate);		
 	
+	}
 }
 
 

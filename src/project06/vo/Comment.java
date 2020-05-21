@@ -3,11 +3,10 @@ package project06.vo;
 import java.util.Date;
 
 public class Comment {
-		
-	
+			
 	private int rno;		// 댓글번호
 	private int refno;		// 상위글번호
-	private String cdetail;	// 댓글 내용
+	private String detail;	// 댓글 내용
 	private Date wdate;		// 댓글 작성일
 	private int mno;		// 사원번호
 	private int ino;		// 이슈리스트 번호
@@ -33,11 +32,11 @@ public class Comment {
 	public void setRefno(int refno) {
 		this.refno = refno;
 	}
-	public String getCdetail() {
-		return cdetail;
+	public String getDetail() {
+		return detail;
 	}
-	public void setCdetail(String cdetail) {
-		this.cdetail = cdetail;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 	public Date getWdate() {
 		return wdate;

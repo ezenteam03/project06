@@ -23,6 +23,7 @@ public interface RiskDao {
 	public Risk getRisk(int ino);
 	
 	public void updateRisk(Risk upt);
+	
 	public void comupdate(Risk upt2);
 	// 업로드
 	public void insertRepo(String fname);
@@ -33,6 +34,7 @@ public interface RiskDao {
 	public ArrayList<Comment> clist(RiskSch sch);
 	public void deleteComment(int rno);	
 	public Comment getComment(int rno);
+	public void updatecomment(Comment cupt);
 	// 조회수
 	public void uptReadCnt(int ino);
 }

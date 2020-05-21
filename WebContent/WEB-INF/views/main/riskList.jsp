@@ -55,6 +55,11 @@
 		if(ri==3){
 			$("#regBtn").css('display', 'none');
 		}
+		$("#pageSize").change(function(){
+			$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
+								// 나오게 처리..
+			$("form").submit();
+		});
 		
 	});
 	function go(ino){

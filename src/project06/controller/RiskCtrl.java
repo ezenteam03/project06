@@ -119,9 +119,9 @@ public class RiskCtrl {
 			return "forward:/risk.do?method=comment";
 		}
 		@RequestMapping(params="method=delete")
-		public String delete(@RequestParam("no") int rno) {
+		public String delete(@RequestParam("rno") int rno) {
 			service.deleteComment(rno);
-			return "redirect:/risk.do?method=comment";
+			return "WEB-INF\\views\\main\\riskDetail.jsp";
 		}
 		// 댓글 상세
 		@RequestMapping(params="method=cdetail")
@@ -129,6 +129,14 @@ public class RiskCtrl {
 			d.addAttribute("comment", service.getComment(rno));
 			return "WEB-INF\\views\\main\\comment.jsp";
 		}
+		// 댓글 수정
+		@RequestMapping(params="method=cupdate")
+		public String cupdate(Comment upt) {
+			
+			service.cupdate(upt);
+			
+			return "forward:/risk.do?method=detail";
+		}	
 		
 	
 }
