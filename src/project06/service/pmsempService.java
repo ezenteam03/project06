@@ -87,6 +87,12 @@ public class pmsempService {
 				rep.updatePm1(updatePm);	
 			}
 		}
+		
+		// PM 추가리스트
+		public ArrayList<pmsemp> insList(pmsemp sch){
+			return rep.insList2(sch);
+		}
+		
 		// PM 추가리스트
 		public ArrayList<pmsemp> insList(pmsempSch sch){
 			sch.setCount(rep.totCnt(sch));
