@@ -17,7 +17,7 @@
 		 <typeAlias alias="dashMeet" type="project06.vo.DashMeet"/> 
 		 <typeAlias alias="dashIssue" type="project06.vo.DashIssue"/> 
 		 <typeAlias alias="dashRe" type="project06.vo.DashRe"/> 
-		 <typeAlias alias="dashTeam" type="project06.vo.DashTeam"/> 
+		 <typeAlias alias="dashTask" type="project06.vo.DashTask"/> 
 		 <typeAlias alias="dashPro" type="project06.vo.DashProject"/> 
 		 
 		 <!-- Jin -->
