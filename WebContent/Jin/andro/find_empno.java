@@ -7,24 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class find_empno extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_find_empno);
 
-        Button lolol = (Button)findViewById(R.id.btn);
-        lolol.setOnClickListener(lololPage);
+        Button find02 = (Button)findViewById(R.id.find_empno_but01);
+        find02.setOnClickListener(findEmpno02);
+
 
     }
 
-    View.OnClickListener lololPage = new View.OnClickListener(){
+    View.OnClickListener findEmpno02 = new View.OnClickListener(){
         Intent int01;
         @Override
         public void onClick(View v) {
-            int01 = new Intent(getApplicationContext(), login.class);
+            int01 = new Intent(getApplicationContext(), find_empno02.class);
             startActivity(int01);
         }
     };
+
 }
