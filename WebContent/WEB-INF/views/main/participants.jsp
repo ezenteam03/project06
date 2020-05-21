@@ -111,7 +111,7 @@
 							<td>${log.name }</td>
 							<td>${log.grade }</td>
 							<td>${log.wcon }</td>
-							<td>${log.state }</td>
+							<td align="center">${log.state }</td>
 						</tr>
 					</c:forEach>
 				</tbody>	
