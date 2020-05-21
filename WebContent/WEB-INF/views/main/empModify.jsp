@@ -89,7 +89,10 @@
                   <div class="col-sm-10">
                     <span>${pemp.dept}</span>
                     <select class="sel-dept" name="dept">
-                  	<option value="${pemp.dept}">${pemp.dept}</option>
+                    <c:forEach var="d" items="${dlist}" >
+	                  	<option value="${d}">${d}</option>
+	                </c:forEach>
+                  	<%-- <option value="${pemp.dept}">${pemp.dept}</option>
                   	<option value="개발1팀">개발1팀</option>
                   	<option value="개발2팀">개발2팀</option>
                   	<option value="개발3팀">개발3팀</option>
@@ -97,7 +100,7 @@
                   	<option value="개발5팀">개발5팀</option>
                   	<option value="개발6팀">개발6팀</option>
                   	<option value="개발7팀">개발7팀</option>
-                  	<option value="개발8팀">개발8팀</option>
+                  	<option value="개발8팀">개발8팀</option> --%>
                   </select>
                   </div>
                 </div>
@@ -106,7 +109,10 @@
                   <div class="col-sm-10">
                     <span>${pemp.grade}</span>
                     <select class="sel-grade" name="grade">
-                  	<option value="${pemp.grade}">${pemp.grade}</option>
+                    <c:forEach var="g" items="${glist}" >
+	                  	<option value="${g}">${g}</option>
+	                </c:forEach>
+                  	<%-- <option value="${pemp.grade}">${pemp.grade}</option>
                   	<option value="전무">전무</option>
                   	<option value="기술이사">기술이사</option>
                   	<option value="상무">상무</option>
@@ -114,7 +120,7 @@
                   	<option value="차장">차장</option>
                   	<option value="과장">과장</option>
                   	<option value="대리">대리</option>
-                  	<option value="사원">사원</option>
+                  	<option value="사원">사원</option> --%>
                   </select>
                   </div>
                 </div>

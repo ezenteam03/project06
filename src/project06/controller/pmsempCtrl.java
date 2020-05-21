@@ -117,6 +117,8 @@ public class pmsempCtrl {
 		System.out.println(eno);
 		// d.addAttribute("emp" <== 내가 정보를 받을 페이지에 사용
 		d.addAttribute("pemp", service.getPmsemp(eno));
+		d.addAttribute("glist",service.getGlist());
+		d.addAttribute("dlist",service.getDlist());
 		return "WEB-INF\\views\\main\\empModify.jsp";
 	}
 	// 사원정보수정
