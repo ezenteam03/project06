@@ -79,7 +79,62 @@ function goIssue() {
             	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
             </div>
-              
+            <div class="grey-panel pn donut-chart">
+                  <div class="grey-header">
+                    <h5>총 업무</h5>
+                  </div>
+                  <canvas id="serverstatus01" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 60,
+                        color: "#FF6B6B"
+                      },
+                      {
+                        value: 40,
+                        color: "#fdfdfd"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6 goleft">
+                      <p>Usage<br/>Increase:</p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                      <h2>21%</h2>
+                    </div>
+                  </div>
+                </div>
+                <!-- /grey-panel -->
+              </div>
+              <div class="grey-panel pn donut-chart">
+                  <div class="grey-header">
+                    <h5>SERVER LOAD</h5>
+                  </div>
+                  <canvas id="serverstatus01" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 60,
+                        color: "#FF6B6B"
+                      },
+                      {
+                        value: 40,
+                        color: "#fdfdfd"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6 goleft">
+                      <p>Usage<br/>Increase:</p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                      <h2>21%</h2>
+                    </div>
+                  </div>
+                </div>
+                <!-- /grey-panel -->
+              </div>  
             <!--custom chart end-->
             <div style="float:right;margin-right:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
           </div>
