@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.ProjectService;
 import project06.service.pmsempService;
@@ -35,18 +36,21 @@ public class ProjectCtrl {
 		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 		
 		emp.setMdiv(pmsm.getMdiv());
-		
-		System.out.println(emp.getMdiv());
+		System.out.println("검증용 mdiv "+emp.getMdiv());
 		
 		d.addAttribute("elist", peservice.insList(emp));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
 	}
-	//, pmsemp inspe
+	//
 	@RequestMapping(params="method=proIns")
-	public String proIns(Project insp) {
+	public String proIns(@RequestParam("proeno") int eno,  Project insp) {
+		System.out.println("실행확인1 eno : "+eno);
 		prservice.proIns(insp);
+		//pmsemp inspe = new pmsemp();
+		//inspe.setEno(eno);
+		//System.out.println("실행확인2");
 		//peservice.updatePm(inspe);
 		
-		return "WEB-INF\\views\\main\\projectInsert.jsp";
+		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}
 }

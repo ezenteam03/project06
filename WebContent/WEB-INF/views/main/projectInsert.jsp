@@ -47,6 +47,30 @@
   <style>
   	.control-label{font-size:1.3em;}
   </style>
+  
+  <script src="${path}/a00_com/jquery.min.js"></script>
+<script src="${path}/a00_com/popper.min.js"></script>
+<script src="${path}/a00_com/bootstrap.min.js"></script>
+<script src="${path}/a00_com/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#regBtn").click(function(){	
+			var eno = $("[name=mno]").val();
+			$("[name=proeno]").val(eno);
+			if(confirm("등록합니다.")){
+				$("form").submit();				
+			}			
+		});	
+		$("#goMain").click(function(){
+			if(confirm("조회 화면 이동 합니다.")){
+				$(location).attr("href","${path}/chart.do?method=pm");			
+			}
+		});	
+	});
+</script>
+  
 </head>
 
 <body>
@@ -57,26 +81,32 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper" style="height:300px;">
+      <section class="wrapper" style="height:300px; margin-top:0;">
          <!-- FORM VALIDATION -->
+          <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="${path}/project.do?method=proIns">
+              	<input type="hidden" name="proeno"/>
         <div class="row mt">
           <div class="col-lg-12">
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
             <div class="form-panel">
               <div class=" form">
-                <form class="cmxform form-horizontal style-form" method="post" action="${path}/project.do?method=proIns">
-                <!-- <input type="hidden" name="eno"/> -->
+               
+                
                   <div class="form-group ">
-                    <label for="pname" class="control-label col-lg-2">프로젝트명</label>
+                    <label for="cname" class="control-label col-lg-2">프로젝트명</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" name="pname" minlength="2" type="text" required />
+                    
+                      <input class=" form-control" id="" name="pname" minlength="2" type="text" required />
+                      
                     </div>
                   </div>
 					<div class="form-group">
-					  <label for="sdate" class="control-label col-lg-2">시작일</label>
+					  <label class="control-label col-lg-2">시작일</label>
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
-					      <input type="text" name="sdate" readonly size="16" class="form-control" required />
+					    
+					      <input type="text" name="sdate" readonly size="16" class="form-control">
+					      
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 					        </span>
@@ -88,7 +118,9 @@
 					  <label class="control-label col-lg-2">종료일</label>
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
-					      <input type="text" name="deadline" readonly size="16" class="form-control" required />
+					    
+					      <input type="text" name="deadline" readonly size="16" class="form-control">
+					      
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 					        </span>
@@ -98,31 +130,36 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-                    <select name="mno" class="btn-group" style="padding:10px; font-size:1.2em; margin-left:15px;">
+                    
+                    <select class="sel-grade" name="mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
                     	<c:forEach var="emp" items="${elist}">
-                    	<option value="${emp.eno}">${emp.name} ${emp.grade}</option>
+						<option value="${emp.eno}">${emp.name} ${emp.grade}</option>                    		
                     	</c:forEach>
                     </select>
+                    
                   </div>
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">프로젝트 개요</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " name="detail" required></textarea>
+                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10" style="text-align:right;">
-                      <button class="btn btn-theme" type="button" id="proIns">등록</button>
-                      <button class="btn btn-theme04" type="button">취소</button>
+                    <input type="button" class="btn btn-info"
+						value="등록" id="regBtn"/>
+                      <input type="button" class="btn btn-success"
+						value="뒤로가기" id="goMain"/>
                     </div>
                   </div>
-                </form>
+                
               </div>
             </div>
             <!-- /form-panel -->
           </div>
           <!-- /col-lg-12 -->
         </div>
+        </form>
         <!-- /row -->
         
         
@@ -174,16 +211,6 @@
   <!--common script for all pages-->
   <script src="${path}/Dashio/lib/common-scripts.js"></script>
   <!--script for this page-->
-  <script type="text/javascript">
-  $(document).ready(function(){
-	 // PM 버튼
-	 $("#proIns").click(function(){
-		//var eno = $("[name=mno]").val();
-		//$("[name=eno]").val(eno);
-		$("form").submit();
-	 });
-  });
-  </script>
 </body>
 
 </html>

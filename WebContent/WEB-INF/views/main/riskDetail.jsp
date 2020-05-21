@@ -125,14 +125,7 @@
 			$("#detail").attr('readOnly',false);
 			$("#coment").attr('readOnly',false);
 		}		
-			var rno = "${comment.rno}";
-		 
-		function cpopup() { 
-			window.open("http://localhost:5080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
-		}
-		$("#comentbt").click(function(){
-			cpopup();
-		});
+		
 		
 	});
 		
@@ -271,7 +264,7 @@
       <c:forEach var="comment" items="${clist}">
     
       <tr class="text-center">
-      <td class="num">${comment.name}</td>
+      <td class="num">${comment.name}${comment.rno}</td>
        
        <td class="txt" >${comment.cdetail}</td>
         
@@ -328,14 +321,14 @@
 
 </style>
 <script type="text/javascript">
-var regBtn = document.querySelector("#regBtn");
-var close = document.querySelector("#close");
-function go(ino){
-	cdetail.style.visibility="visible";
+var rno = "${comment.rno}";
+
+function cpopup() { 
+	window.open("http://localhost:5080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
 }
-close.onclick=function(){
-	regDiv.style.visibility="hidden";
-}	
+$("#comentbt").click(function(){
+	cpopup();
+});
 	
 </script>
 </html>

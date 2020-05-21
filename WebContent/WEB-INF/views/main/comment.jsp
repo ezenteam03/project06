@@ -26,8 +26,7 @@
 <body>
 <div id="popup" class="overlay">
 	<div class="popup">
-		<a href="#none" class="close">&times;</a>
-	
+			
 		<form class="form-login" id="inforCheckForm" method="post" style="background-color:#e0e0e0;margin-top:0%">
 
 		<h2 class="form-login-heading">댓글 수정</h2>
@@ -42,7 +41,7 @@
 			<br>
 			
 			<label>댓글 내용</label>
-				<input type="text" class="form-control" value="${param.cdetail}" name="cdetail"/>
+				<input type="text" class="form-control" value="${comment.cdetail}" />
 		
 			<button class="btn btn-theme btn-block" type="button" id="inforBtn" style="margin-top:10%;"><i class="fa fa-lock"></i>&nbsp;CHECK</button>
 								
