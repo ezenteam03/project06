@@ -51,7 +51,7 @@
  	</select>
 
  	<select id="tlist" resultMap="teamResult" parameterType="int">
- 		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng,edate-sysdate grade
+ 		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng,edate-sysdate grade
  		from pmstask p, pmscodes c
  		where p.tdiv=c.cno
  		and p.mno=#{eno}

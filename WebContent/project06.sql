@@ -1132,7 +1132,7 @@ INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 총�
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 통합관리', '통합관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 일정관리', '일정관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 자원관리', '자원관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 의사소통관리', '의사소통관리 시스템 개발',null, '2020/05/08','2020/06/01',50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 의사소통관리', '의사소통관리 시스템 개발',null, '2020/05/08','2020/06/01',25,to_date('2020-05-15','yyyy-mm-dd'),NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 리스크관리', '리스크관리 시스템 개발',null, '2020/05/08','2020/06/01',50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000005);
 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(웹)','- 로그인(50%) : 사원번호/비밀번호 입력 후 DB와 일치하면 로그인 &#10;- 로그아웃(50%) : 메인화면 이동 및 로그인 세션 정보 삭제',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-11','yyyy-mm-dd'),NULL,24,10000015);
@@ -1163,7 +1163,7 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1011, '인적자원관리 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1011, '인적자원관리 (앱) ','- 사원리스트  (50%)&#10;- 팀장권한 프로젝트 팀원 설정 및 변경 (50%)',null,'2020-05-24','2020-06-01', 0,NULL,NULL,21,10000016);
 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 게시판 리스트 (웹)','- CEO / CTO / PM / 팀원 - 공지사항 게시판 리스트  (50%)&#10;- CEO / CTO / PM / 팀원 - 회의록 게시판 리스트 (50%)',null,'2020-05-08','2020-05-14', 100,to_date('2020-05-15','yyyy-mm-dd'),NULL,24,10000023);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 작성(웹)','- CEO / CTO / PM - 공지사항 작성 페이지  (50%)&#10;- PM / 팀원 - 회의록 작성 페이지 (파일 업로드 가능) (50%)',null,'2020-05-14','2020-05-20', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,24,10000023);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 작성(웹)','- CEO / CTO / PM - 공지사항 작성 페이지  (50%)&#10;- PM / 팀원 - 회의록 작성 페이지 (파일 업로드 가능) (50%)',null,'2020-05-14','2020-05-20', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,22,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 상세 (PM/팀원) (웹)','- 팀원 - 공지사항 상세페이지 (조회만 가능)  (50%)&#10;- PM / 팀원 - 회의록 게시판 상세 (수정/파일 업로드 가능) (50%)',null,'2020-05-20','2020-05-26', 0,NULL,NULL,21,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 상세 (CEO/CTO/PM) (웹)','- CEO / CTO / PM - 공지사항 상세페이지 (수정/삭제 가능) (50%)&#10;- CEO / CTO - 회의록 게시판 상세 (조회만 가능) (50%)',null,'2020-05-26','2020-06-01', 0,NULL,NULL,21,10000023);
 

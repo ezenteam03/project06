@@ -29,15 +29,25 @@ public class DashTeamService {
 		ArrayList<DashTeam> tasks = dao.tlist(eno);
 		System.out.println("tlist");
 		System.out.println(tasks.size());
+		ArrayList<DashTeam> ts = new ArrayList<DashTeam>();
 		for(int i=0; i<tasks.size(); i++) {
-			int dprog = (int)(tasks.get(i).getDleng()/tasks.get(i).getTleng());
+			int dprog = (int)((tasks.get(i).getDleng()<0?0:tasks.get(i).getDleng()*100)/tasks.get(i).getTleng());
+			System.out.println("dprog : "+dprog);
+			System.out.println("전 : "+tasks.get(i).getGrade());
+			DashTeam t = tasks.get(i);
 			if(tasks.get(i).getGrade()<0 && (tasks.get(i).getProg() != 100 || !tasks.get(i).getTdiv().equals("결재완료")) ) {
-				tasks.get(i).setGrade(2);
-				continue;
-			} else if(tasks.get(i).getProg()<dprog) tasks.get(i).setGrade(1);
-			else tasks.get(i).setGrade(0);
+				t.setGrade(2);
+			} else if(tasks.get(i).getProg()<(dprog>100?100:dprog)) {
+				t.setGrade(1);
+			} else {
+				t.setGrade(0);
+			}
+			ts.add(tasks.get(i));
 		}
-		return tasks;
+		for(int i=0; i<ts.size(); i++) {
+			System.out.println(ts.get(i).getGrade());
+		}
+		return ts;
 	}
 	public DashProject getProject(int pno) {
 		System.out.println("getProject");
@@ -50,8 +60,10 @@ public class DashTeamService {
 		int prog=0;
 		int dleng=0;
 		for(int i=0; i<plist.size(); i++) {
+			System.out.println("plist.get(i).getGrade() : "+plist.get(i).getGrade());
 			if(plist.get(i).getGrade()<0 && (plist.get(i).getProg() != 100 || !plist.get(i).getTdiv().equals("결재완료"))) {
 				p.setGrade(2);
+				System.out.println(p.getGrade());
 			} 
 			tleng += plist.get(i).getTleng();
 			if(plist.get(i).getTdiv().equals("결재완료")) {
@@ -65,8 +77,9 @@ public class DashTeamService {
 		}
 		prog = (int) prog/tleng;
 		int dprog = (int)(dleng/tleng);
-		if(prog+10<dprog&&p.getGrade()!=2) p.setGrade(1);
+		if(prog+10<dprog&&p.getGrade()==0) p.setGrade(1);
 		p.setProg(prog);
+		System.out.println(p.getGrade());
 		return p;
 	}
 }
