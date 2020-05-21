@@ -62,8 +62,10 @@ function goIssue() {
           <div class="col-lg-9 main-chart">
             <!--CUSTOM CHART START -->
             <div class="border-head">
-              
-              <h3>내 프로젝트 현황</h3>
+              <h3>프로젝트 현황</h3>
+            </div>
+            <div class="border-head" style="float:right;margin-right:50px;">
+              <h3>프로젝트 추가</h3><button onclick="">추가</button>
             </div>
             <div class="custom-bar-chart" style="height:180px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
