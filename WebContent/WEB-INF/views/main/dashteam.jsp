@@ -80,7 +80,7 @@ function goIssue(num) {
               
               <h3>내 프로젝트 현황</h3>
             </div>
-            <div class="custom-bar-chart" style="height:180px;">
+            <div class="custom-bar-chart">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>${pro.pname}</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${pro.pm }</h4></div>
             	<br>            		

@@ -850,7 +850,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     margin-top: 20px;
     margin-left: 10px;
     position: relative;
-    border-bottom: 1px solid #c9cdd7;
 }
 
 .custom-bar-chart .bar {
