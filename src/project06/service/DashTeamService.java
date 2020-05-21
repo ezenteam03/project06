@@ -82,4 +82,9 @@ public class DashTeamService {
 		System.out.println(p.getGrade());
 		return p;
 	}
+	public ArrayList<DashTeam> teamlist(int pno) {
+		ArrayList<DashTeam> tl = dao.teamlist(pno);
+		
+		return tl;
+	}
 }

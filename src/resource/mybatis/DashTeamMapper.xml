@@ -9,6 +9,7 @@
  	<resultMap type="dashIssue" id="issueResult"/>
  	<resultMap type="dashRe" id="reResult"/>
  	<resultMap type="dashTask" id="taskResult"/>
+ 	<resultMap type="dashTeam" id="teamResult"/>
 
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
 		SELECT nno,title,writer,wdate
@@ -77,6 +78,12 @@
  		and p.mno=#{mno}
  		and p.refno=0
  		order by p.tno asc
+ 	</select>
+ 	
+ 	<select id="teamlist" resultMap="teamResult" parameterType="int">
+ 		select e.eno,e.name
+ 		from pmsemp e,pmsmember m, pmsproject p
+ 		where e.eno=m.mno and m.pno=#{pno} and m.pno=p.pno and not m.mno=p.mno
  	</select>
  	
 </mapper>	

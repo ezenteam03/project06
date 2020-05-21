@@ -16,4 +16,5 @@ public interface DashTeamDao {
 	public int pm(int pno);
 	public DashProject getProject(int pno);
 	public ArrayList<DashTask> plist(int mno);
+	public ArrayList<DashTeam> teamlist(int pno);
 }
