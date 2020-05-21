@@ -42,11 +42,26 @@
 function goNoti() {
 	$(location).attr("href","${path}/notice.do?method=list");
 }
+function goNoti(num) {
+	$("[name=nno]").val(num);
+	$("#noti").attr("action","${path}/notice.do?method=detail");
+	$("#noti").submit();
+}
 function goMeet() {
 	$(location).attr("href","${path}/meet.do?method=list");
 }
+function goMeet(num) {
+	$("[name=mnno]").val(num);
+	$("#meet").attr("action","${path}/meet.do?method=detail");
+	$("#meet").submit();
+}
 function goIssue() {
 	$(location).attr("href","${path}/risk.do?method=list");
+}
+function goIssue(num) {
+	$("[name=ino]").val(num);
+	$("#issue").attr("action","${path}/risk.do?method=detail");
+	$("#issue").submit();
 }
 </script>
 <body>
@@ -66,98 +81,76 @@ function goIssue() {
               <h3>내 프로젝트 현황</h3>
             </div>
             <div class="custom-bar-chart" style="height:180px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${pro.pname}</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${pro.pm }</h4></div>
             	<br>            		
             	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">40% Complete (success)</span>
-                </div>
-              </div>
-            	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
+            	<br>   
+            	<c:choose>
+					<c:when test="${pro.grade==0 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:when test="${pro.grade==1 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:otherwise>
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:otherwise>
+				</c:choose>         		
+            	<div width="49%" style="float:left;margin-left:50px"><h4>${pro.prog} %</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${pro.edate}"/> 마감</h4></div>
             </div>
             <div class="border-head">
               <h3>세부 업무 현황</h3>
             </div>
             <div class="custom-bar-chart" style="height:800px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>요구사항 정의서 작성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
+            <c:forEach var="task" items="${tlist}">
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.tname }</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.sdate}"/> 시작</h4></div>
             	<br>            		
             	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (success)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
+            	<br> 
+            	<c:choose>
+					<c:when test="${pro.grade==0 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                  <span class="sr-only">100% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:when test="${pro.grade==1 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:otherwise>
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:otherwise>
+				</c:choose>
+              	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.prog } % 완료</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.edate}"/> 마감</h4></div>
               <br>
               <br>
               <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>데이터베이스 설계 및 생성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-12 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 설계</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                  <span class="sr-only">50% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>50% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 구현</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              <div width="49%" style="float:left;margin-left:50px;"><h4>10% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-22 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>테스트</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>시작 전</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
+           </c:forEach>   
             </div>
             <!--custom chart end-->
           </div>
@@ -168,6 +161,7 @@ function goIssue() {
           <div class="col-lg-3 ds">
           	<h4 onclick="goNoti()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
+              <form method="post" id="noti"><input type="hidden" name="nno"/></form>
           	<table class="table">
                 <thead>
                   <tr>
@@ -179,7 +173,7 @@ function goIssue() {
                 </thead>
                 <tbody>
                 <c:forEach var="notice" items="${nlist}">
-                  <tr>
+                  <tr onclick="goNoti(${notice.nno})">
                     <td>${notice.nno }</td>
                     <td>${notice.title }</td>
                     <td>${notice.writer }</td>
@@ -190,6 +184,7 @@ function goIssue() {
               </table><br><br><br>
               <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
+              <form method="post" id="meet"><input type="hidden" name="mnno"/></form>
           	<table class="table">
                 <thead>
                   <tr>
@@ -201,7 +196,7 @@ function goIssue() {
                 </thead>
                 <tbody>
                   <c:forEach var="meet" items="${mlist}">
-                  <tr>
+                  <tr onclick="goMeet(${meet.mnno})">
                     <td>${meet.mnno }</td>
                     <td>${meet.topic }</td>
                     <td>${meet.writer }</td>
@@ -212,6 +207,7 @@ function goIssue() {
               </table><br><br><br>
               <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
+              <form method="post" id="issue"><input type="hidden" name="ino"/></form>
           	<table class="table">
                 <thead>
                   <tr>
@@ -223,7 +219,7 @@ function goIssue() {
                 </thead>
                 <tbody>
                   <c:forEach var="issue" items="${ilist}">
-                  <tr>
+                  <tr onclick="goIssue(${issue.ino})">
                     <td>${issue.ino }</td>
                     <td>${issue.solve==1?"해결완료":"미해결" }</td>
                     <td>${issue.writer }</td>
@@ -232,7 +228,7 @@ function goIssue() {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
+              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -245,7 +241,7 @@ function goIssue() {
                 </thead>
                 <tbody>
                   <c:forEach var="re" items="${rlist}">
-                  <tr>
+                  <tr onclick="goIssue(${re.ino})">
                     <td>${re.rno }</td>
                     <td>${re.ino }</td>
                     <td>${re.writer }</td>

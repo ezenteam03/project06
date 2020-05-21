@@ -65,9 +65,9 @@
  	</select>
  	
  	<select id="getProject" resultType="dashPro" parameterType="int">
- 		select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd) edate
+ 		select p.pno,p.pname,e.name pm,deadline edate
  		from pmsproject p, pmsemp e
- 		where pno=#{pno}
+ 		where pno=#{pno} and p.mno=e.eno
  	</select>
  	
  	<select id="plist" resultMap="teamResult" parameterType="int">
