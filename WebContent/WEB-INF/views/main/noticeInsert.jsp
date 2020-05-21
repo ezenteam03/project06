@@ -91,9 +91,10 @@ $(document).ready(function(){
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        
+        <div id="all">
        
-       <h1>게시판 등록</h1>
+       <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+                <br>
 
 <div class="container">
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
@@ -134,8 +135,8 @@ $(document).ready(function(){
        
        
        
-       
-     
+   
+   </div> 
         
    </section>
       <!-- /wrapper -->
