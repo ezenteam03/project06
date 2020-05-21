@@ -8,7 +8,7 @@
  	<resultMap type="dashMeet" id="meetResult"/>
  	<resultMap type="dashIssue" id="issueResult"/>
  	<resultMap type="dashRe" id="reResult"/>
- 	<resultMap type="dashTeam" id="teamResult"/>
+ 	<resultMap type="dashTask" id="taskResult"/>
 
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
 		SELECT nno,title,writer,wdate
@@ -50,7 +50,7 @@
 		WHERE cnt BETWEEN 1 AND 3
  	</select>
 
- 	<select id="tlist" resultMap="teamResult" parameterType="int">
+ 	<select id="tlist" resultMap="taskResult" parameterType="int">
  		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng,edate-sysdate grade
  		from pmstask p, pmscodes c
  		where p.tdiv=c.cno
@@ -70,7 +70,7 @@
  		where pno=#{pno} and p.mno=e.eno
  	</select>
  	
- 	<select id="plist" resultMap="teamResult" parameterType="int">
+ 	<select id="plist" resultMap="taskResult" parameterType="int">
  		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng,edate-sysdate grade
  		from pmstask p, pmscodes c
  		where p.tdiv=c.cno

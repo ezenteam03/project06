@@ -117,8 +117,8 @@ function goIssue(num) {
             </div>
             <div class="custom-bar-chart">
             <c:forEach var="task" items="${tlist}">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.name }</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4></h4></div>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.tname }</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.sdate}"/> 시작</h4></div>
             	<br>            		
             	<br>
             	<br> 
@@ -145,8 +145,8 @@ function goIssue(num) {
 			              </div>
 					</c:otherwise>
 				</c:choose>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4></h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>${task.prog } % 완료</h4></div>
+              	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.prog } % 완료</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.edate}"/> 마감</h4></div>
               <br>
               <br>
               <br>

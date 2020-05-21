@@ -116,41 +116,42 @@ function goIssue(num) {
               <h3>팀원별 업무 현황</h3>
             </div>
             <div class="custom-bar-chart" style="height:800px;">
-            	<c:forEach var="task" items="${teamlist}">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.tname }</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.sdate}"/> 시작</h4></div>
+            	<c:forEach var="team" items="${teamlist}">
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${team.name }</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4></h4></div>
             	<br>            		
             	<br>
             	<br> 
             	<c:choose>
-					<c:when test="${task.grade==0 }">
+					<c:when test="${team.grade==0 }">
 						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${team.prog}%">
 			                  <span class="sr-only">100% Complete (success)</span>
 			                </div>
 			              </div>
 					</c:when>
-					<c:when test="${task.grade==1 }">
+					<c:when test="${team.grade==1 }">
 						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${team.prog}%">
 			                  <span class="sr-only">40% Complete (success)</span>
 			                </div>
 			              </div>
 					</c:when>
 					<c:otherwise>
 						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
+			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${team.prog}%">
 			                  <span class="sr-only">40% Complete (success)</span>
 			                </div>
 			              </div>
 					</c:otherwise>
 				</c:choose>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.prog } % 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.edate}"/> 마감</h4></div>
+              	<div width="49%" style="float:left;margin-left:50px;"><h4></h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>${team.prog } % 완료</h4></div>
               <br>
               <br>
               <br>
-           </c:forEach> 
+           </c:forEach>
+            	 
             </div>
             <!--custom chart end-->
           </div>
