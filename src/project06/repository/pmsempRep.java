@@ -30,6 +30,7 @@ public interface pmsempRep {
 	public void updatePm2(pmsemp uptPm);
 	// PM 추가 리스트
 	public ArrayList<pmsemp> insList(pmsempSch sch);
+	public ArrayList<pmsemp> insList2(pmsemp sch); //임시로 추가
 	// PM 팀원 추가
 	public void updPNum(pmsemp upn);
 	public void insPNum(pmsemp ipn);
