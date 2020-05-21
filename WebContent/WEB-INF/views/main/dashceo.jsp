@@ -64,9 +64,7 @@ function goIssue() {
             <div class="border-head">
               <h3>프로젝트 현황</h3>
             </div>
-            <div class="border-head" style="float:right;margin-right:50px;">
-              <h3>프로젝트 추가</h3><button onclick="">추가</button>
-            </div>
+            
             <div class="custom-bar-chart" style="height:180px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
@@ -81,88 +79,12 @@ function goIssue() {
             	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
             </div>
-            <div class="border-head">
-              <h3>세부 업무 현황</h3>
-            </div>
-            <div class="custom-bar-chart" style="height:800px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>요구사항 정의서 작성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (success)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>데이터베이스 설계 및 생성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-12 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 설계</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                  <span class="sr-only">50% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>50% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 구현</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              <div width="49%" style="float:left;margin-left:50px;"><h4>10% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-22 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>테스트</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>시작 전</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            </div>
+              
             <!--custom chart end-->
+            <div style="float:right;margin-right:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
           </div>
+
+        
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
