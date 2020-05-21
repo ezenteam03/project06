@@ -12,4 +12,7 @@ public interface DashTeamDao {
 	public ArrayList<DashMeet> mlist(int pno);
 	public ArrayList<DashIssue> ilist(int pno);
 	public ArrayList<DashRe> rlist(int pno);
+	public ArrayList<DashTeam> tlist(int eno);
+	public int pm(int pno);
+
 }

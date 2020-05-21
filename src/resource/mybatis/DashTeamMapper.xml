@@ -8,6 +8,7 @@
  	<resultMap type="dashMeet" id="meetResult"/>
  	<resultMap type="dashIssue" id="issueResult"/>
  	<resultMap type="dashRe" id="reResult"/>
+ 	<resultMap type="dashTeam" id="teamResult"/>
 
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
 		SELECT nno,title,writer,wdate
@@ -47,6 +48,20 @@
 		WHERE 1=1 and i.ino=p.ino and p.mno=e.eno and i.pno=#{pno}
 		ORDER BY p.rno DESC )
 		WHERE cnt BETWEEN 1 AND 3
+ 	</select>
+ 	
+ 	<select id="tlist" resultMap="teamResult" parameterType="int">
+ 		select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=#{eno}
+ 		order by p.tno
+ 	</select>
+ 	
+ 	<select id="pm" resultType="int" parameterType="int">
+ 		select mno
+ 		from pmsproject
+ 		where pno=#{pno}
  	</select>
  	
 </mapper>	
