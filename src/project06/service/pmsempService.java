@@ -46,6 +46,14 @@ public class pmsempService {
 		public ArrayList<Integer> getPlist(){
 			return rep.getPlist();
 		}
+		// 직급 리스트
+		public ArrayList<String> getGlist(){
+			return rep.getGlist();
+		}
+		// 부서 리스트
+		public ArrayList<String> getDlist(){
+			return rep.getDlist();
+		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
