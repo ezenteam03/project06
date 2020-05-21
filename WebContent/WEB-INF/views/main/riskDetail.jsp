@@ -250,8 +250,8 @@
 			<span class="input-group-text">댓글</span>
 		</div>	
 		<textarea  rows="5" style="resize:none; "
-			class="form-control" name="cdetail"
-			placeholder="내용입력하세요" >${comment.cdetail}</textarea>	
+			class="form-control" name="detail"
+			placeholder="내용입력하세요" >${comment.detail}</textarea>	
 		<div class="input-group-append">
 			<button class="input-group-text" id="cmtBtn">입력</button>
 		</div>		 
@@ -265,13 +265,23 @@
     
       <tr class="text-center">
       <td class="num">${comment.name}</td>
-       
-       <td class="txt" >${comment.cdetail}</td>
+       <!-- 댓글 들여쓰기 -->
+       <td class="text-left" >
+       		<c:forEach varStatus="sts" 
+        		begin="2" end="${board.level}">&nbsp;&nbsp;<c:if test="${board.level>1 and sts.last}">☞</c:if>	
+        	</c:forEach> ${comment.detail}
+        	<fmt:parseNumber value="${board.credte.time / (1000*60*60*24)}" 
+	    		integerOnly="true" var="toFmt2"/>
+	    		
+	    	<c:if test="${toFmt==toFmt2}">
+	    		<span class="badge badge-danger">New</span>
+	    	</c:if>	      	
+        	</td>
         
      
-        <td class="num" ><input type="button" class="btn btn-info" id="comentbt" value="수정"/></td>
+        <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>
         <td class="num"><input type="button" class="btn btn-info"
-			value="댓글" id="cComment" />	</td>
+			value="댓글"  />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
    
@@ -321,14 +331,13 @@
 
 </style>
 <script type="text/javascript">
-var rno = "${comment.rno}";
 
-function cpopup() { 
+function cpopup(rno) { 
 	window.open("http://localhost:5080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
 }
-$("#comentbt").click(function(){
-	cpopup();
-});
+function coment(rno){
+	cpopup(rno);
+};
 	
 </script>
 </html>

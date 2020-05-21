@@ -5,7 +5,6 @@
 <mapper namespace="project06.repository.RiskDao">
 	
 	<resultMap type="comment" id="commentResult">
-		<result property="cdetail" column="detail"/>
 	</resultMap>
 
  	<select id="ctotCnt" resultType="int" parameterType="rsch">
@@ -23,7 +22,7 @@
 	</select>
 	<insert id="cinsert" parameterType="comment">
 		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},
-		#{cdetail},sysdate,#{mno},#{ino})
+		#{detail},sysdate,#{mno},#{ino})
 	</insert>
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM PMSREPLY
@@ -38,6 +37,13 @@
  		and p.mno = pm.ENO 
  		and rno = #{rno}
  	</select>
+ 	
+ 	<update id="updatecomment" parameterType="comment">
+		UPDATE PMSREPLY 
+		   SET detail = #{detail},
+		   	   wdate =sysdate
+		 WHERE rno = #{rno}
+ 	</update> 
 </mapper>	
 
 
