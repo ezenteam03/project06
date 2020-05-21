@@ -84,7 +84,37 @@ public class DashTeamService {
 	}
 	public ArrayList<DashTeam> teamlist(int pno) {
 		ArrayList<DashTeam> tl = dao.teamlist(pno);
-		
-		return tl;
+		ArrayList<DashTeam> teaml = new ArrayList<DashTeam>();
+		System.out.println("teamlist : " + tl.size());
+		DashTeam team = null;
+		for(int i=0; i<tl.size(); i++) {
+			ArrayList<DashTask> tasks = dao.tlist(tl.get(i).getEno());
+			int prog = 0;
+			team = tl.get(i);
+			int t = 0;
+			System.out.println(team.getEno());
+			System.out.println(team.getName());
+			for(int j=0; j<tasks.size(); j++) {
+				int dprog = (int)((tasks.get(j).getDleng()<0?0:tasks.get(j).getDleng()*100)/tasks.get(j).getTleng());
+				System.out.println("dprog : "+dprog);
+				System.out.println("전 : "+tasks.get(j).getGrade());
+				prog += tasks.get(j).getProg();
+				if(tasks.get(j).getGrade()<0 && (tasks.get(j).getProg() != 100 || !tasks.get(j).getTdiv().equals("결재완료")) ) {
+					team.setGrade(2);
+					t=2;					
+				} else if(tasks.get(j).getProg()<(dprog>100?100:dprog)) {
+					t=1;
+				}
+			}
+			prog = (int)(prog/tasks.size());
+			if(team.getGrade()!=2) team.setGrade(t);
+			team.setProg(prog);
+			System.out.println(team.getProg());
+			
+			System.out.println(team.getGrade());
+			
+			teaml.add(team);
+		}
+		return teaml;
 	}
 }

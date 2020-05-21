@@ -40,6 +40,7 @@ public class DashTeamCtrl {
 			d.addAttribute("mlist", service.mlist(emp.getPno()));
 			d.addAttribute("ilist", service.ilist(emp.getPno()));
 			d.addAttribute("rlist", service.rlist(emp.getPno()));
+			d.addAttribute("teamlist", service.teamlist(emp.getPno()));
 			d.addAttribute("pro", service.getProject(emp.getPno()));
 			return "WEB-INF\\views\\main\\dashpm.jsp";
 		} else if(emp.getMdiv()==7) {
