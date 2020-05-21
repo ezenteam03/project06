@@ -81,16 +81,16 @@ function goIssue() {
             </div>
             <div class="grey-panel pn donut-chart">
                   <div class="grey-header">
-                    <h5>총 업무</h5>
+                    <h5>총 업무수 : 43 개</h5>
                   </div>
                   <canvas id="serverstatus01" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
-                        value: 60,
+                        value: 53,
                         color: "#FF6B6B"
                       },
                       {
-                        value: 40,
+                        value: 47,
                         color: "#fdfdfd"
                       }
                     ];
@@ -98,10 +98,10 @@ function goIssue() {
                   </script>
                   <div class="row">
                     <div class="col-sm-6 col-xs-6 goleft">
-                      <p>Usage<br/>Increase:</p>
+                      <p>완료<br/>업무수 :</p>
                     </div>
                     <div class="col-sm-6 col-xs-6">
-                      <h2>21%</h2>
+                      <h2>53%</h2>
                     </div>
                   </div>
                 </div>
@@ -109,16 +109,16 @@ function goIssue() {
               </div>
               <div class="grey-panel pn donut-chart">
                   <div class="grey-header">
-                    <h5>SERVER LOAD</h5>
+                    <h5>미완료 업무수 : 20 개</h5>
                   </div>
                   <canvas id="serverstatus01" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
-                        value: 60,
+                        value: 20,
                         color: "#FF6B6B"
                       },
                       {
-                        value: 40,
+                        value: 80,
                         color: "#fdfdfd"
                       }
                     ];
@@ -126,15 +126,25 @@ function goIssue() {
                   </script>
                   <div class="row">
                     <div class="col-sm-6 col-xs-6 goleft">
-                      <p>Usage<br/>Increase:</p>
+                      <p>진행중<br/>업무수 :</p>
                     </div>
                     <div class="col-sm-6 col-xs-6">
-                      <h2>21%</h2>
+                      <h2>20%</h2>
                     </div>
                   </div>
                 </div>
                 <!-- /grey-panel -->
               </div>  
+              <div id="morris">
+              	<div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> Chart Example 4</h4>
+                <div class="panel-body">
+                  <div id="hero-donut" class="graph"></div>
+                </div>
+              </div>
+            </div>
+              </div>
             <!--custom chart end-->
             <div style="float:right;margin-right:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
           </div>
@@ -278,7 +288,110 @@ function goIssue() {
   <!--script for this page-->
   <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
   <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
-  
+  <script type="text/javascript">
+  var Script = function () {
+
+      //morris chart
+
+      $(function () {
+        // data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type
+        var tax_data = [
+             {"period": "2011 Q3", "licensed": 3407, "sorned": 660},
+             {"period": "2011 Q2", "licensed": 3351, "sorned": 629},
+             {"period": "2011 Q1", "licensed": 3269, "sorned": 618},
+             {"period": "2010 Q4", "licensed": 3246, "sorned": 661},
+             {"period": "2009 Q4", "licensed": 3171, "sorned": 676},
+             {"period": "2008 Q4", "licensed": 3155, "sorned": 681},
+             {"period": "2007 Q4", "licensed": 3226, "sorned": 620},
+             {"period": "2006 Q4", "licensed": 3245, "sorned": null},
+             {"period": "2005 Q4", "licensed": 3289, "sorned": null}
+        ];
+        Morris.Line({
+          element: 'hero-graph',
+          data: tax_data,
+          xkey: 'period',
+          ykeys: ['licensed', 'sorned'],
+          labels: ['Licensed', 'Off the road'],
+          lineColors:['#4ECDC4','#ed5565']
+        });
+
+        Morris.Donut({
+          element: 'hero-donut',
+          data: [
+            {label: '기한내완료', value: 50 },
+            {label: '기한초과', value: 20 },
+            {label: '기한미도달', value: 30 }
+          ],
+            colors: ['#3498db', '#2980b9', '#34495e'],
+          formatter: function (y) { return y + "%" }
+        });
+
+        Morris.Area({
+          element: 'hero-area',
+          data: [
+            {period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647},
+            {period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
+            {period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
+            {period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
+            {period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
+            {period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
+            {period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
+            {period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
+            {period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
+            {period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
+          ],
+
+            xkey: 'period',
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['iPhone', 'iPad', 'iPod Touch'],
+            hideHover: 'auto',
+            lineWidth: 1,
+            pointSize: 5,
+            lineColors: ['#4a8bc2', '#ff6c60', '#a9d86e'],
+            fillOpacity: 0.5,
+            smooth: true
+        });
+
+        Morris.Bar({
+          element: 'hero-bar',
+          data: [
+            {device: 'iPhone', geekbench: 136},
+            {device: 'iPhone 3G', geekbench: 137},
+            {device: 'iPhone 3GS', geekbench: 275},
+            {device: 'iPhone 4', geekbench: 380},
+            {device: 'iPhone 4S', geekbench: 655},
+            {device: 'iPhone 5', geekbench: 1571}
+          ],
+          xkey: 'device',
+          ykeys: ['geekbench'],
+          labels: ['Geekbench'],
+          barRatio: 0.4,
+          xLabelAngle: 35,
+          hideHover: 'auto',
+          barColors: ['#ac92ec']
+        });
+
+        new Morris.Line({
+          element: 'examplefirst',
+          xkey: 'year',
+          ykeys: ['value'],
+          labels: ['Value'],
+          data: [
+            {year: '2008', value: 20},
+            {year: '2009', value: 10},
+            {year: '2010', value: 5},
+            {year: '2011', value: 5},
+            {year: '2012', value: 20}
+          ]
+        });
+
+        $('.code-example').each(function (index, el) {
+          eval($(el).text());
+        });
+      });
+
+  }();
+  </script>
 </body>
 
 </html>
