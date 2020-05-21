@@ -6,6 +6,8 @@ public class pmsempSch {
 	// 1. 검색(제목과 작성자)
 	private int mdiv;
 	private int pno;
+	private String name;
+	
 	// 2. 페이징 처리
 	private int count; // 총데이터 건수
 	private int pageSize; // 한번에 보여줄 페이지 크기
@@ -19,6 +21,13 @@ public class pmsempSch {
 	private int endBlock; // 끝나는 블럭
 	
 
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getPno() {
 		return pno;
 	}

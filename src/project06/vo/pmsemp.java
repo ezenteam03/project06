@@ -22,9 +22,16 @@ public class pmsemp {
 		private String pass;	// 비밀번호		(pmsmember)
 		private int mdiv;		// 권한구분		(pmsmember)
 		private String wcon;	// 희망연락처		(pmsmember)
+		private String schEmp;
 
 		
 		
+		public String getSchEmp() {
+			return schEmp;
+		}
+		public void setSchEmp(String schEmp) {
+			this.schEmp = schEmp;
+		}
 		public String getPass() {
 			return pass;
 		}

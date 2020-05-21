@@ -41,7 +41,7 @@ public class pmsempCtrl {
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("pmsempsch") 
-		pmsempSch sch, Model d, HttpServletRequest request) {		
+		pmsempSch sch, Model d, HttpServletRequest request) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}

@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>사원 리스트 : 프로젝트 팀원 삭제</title>
+  <title>사원 리스트 : 프로젝트 팀원 추가</title>
 	<style type="text/css">
 		.sch-bar{width:450px; height:40px;border-radius:10px; outline:none; border-color:black;
 					padding-left:10px;}

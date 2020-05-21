@@ -38,7 +38,10 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-
+		$("#schBtn").click (function(){
+			$("#setForm").attr("action","${path}/PMSemp.do?method=list");
+			$("#setForm").submit();
+		});
 	  });
 	 function goPage(no){
 		$("[name=curPage]").val(no);
@@ -48,6 +51,7 @@
 		 $(location).attr("href",
 				 "${path}/PMSemp.do?method=setForm&peno="+eno);
 	 }
+	 
 	
   </script>
 </head>
@@ -62,15 +66,21 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
+              <form method="post" action="" id="setForm">
               <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>
                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
                					사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
-	                	<input type="text" class="sch-bar" name="name" id="" placeholder="Search"/>
-	                	<input type="submit" class="sch-btn" value="Search" />
+                		<!-- 검색창 -->
+	                	<input type="text" 
+	                		class="sch-bar" name="name" id="" 
+	                		placeholder="이름, 부서, 직급 검색"/>
+	                	<!-- 검색버튼 -->
+	                	<input type="button"  
+	                		class="sch-btn" name="" id="schBtn"
+	                		 value="Search" />
                 	</span>
                 </div>        
                 <thead>

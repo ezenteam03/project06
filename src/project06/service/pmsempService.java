@@ -33,7 +33,8 @@ public class pmsempService {
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
-			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);			
+			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);	
+			System.out.println("Service pmsempList 실행");
 			return rep.pmsempList(sch);
 		}
 		// CEO, CTO 상세
