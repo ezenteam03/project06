@@ -128,12 +128,13 @@
  	
  	<update id="progUdt" parameterType="task">
 		UPDATE pmstask 
-		SET prog = ROUND((SELECT sum(prog)
+		SET prog = ROUND((SELECT count(*)
 					FROM PMSTASK
-					where refno = #{refno}) / 
-					(SELECT count(prog)
+					where refno = #{refno}
+					AND tdiv = 24)*100 / 
+					(SELECT count(*)
 					FROM PMSTASK
-					where refno = #{refno}))
+					where refno = #{refno})) 
 		WHERE tno = #{refno}
  	</update>
  	

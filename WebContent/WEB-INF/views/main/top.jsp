@@ -310,7 +310,7 @@ th{text-align:center;}
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="#pop01">개인정보</a></li>
         <!--   <li><a class="logout" href="#pop03">참여인원</a></li>	-->
-          <li><a class="logout" id="po03">참여인원</a></li>
+          <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
           <li><a class="logout" href="javascript:logOut();">LogOut</a></li>
 
         </ul>

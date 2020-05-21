@@ -116,7 +116,6 @@ public class WorkService2 {
 	public void prog(Task upt) {
 		System.out.println("상위업무번호 : "+upt.getRefno());
 		dao.prog(upt);
-		dao.progUdt(upt);
 	}
 	public void upTdiv(Task upt) {
 		dao.upTdiv(upt);
@@ -127,6 +126,7 @@ public class WorkService2 {
 	}
 	public void upTdiv3(Task upt) {
 		dao.upTdiv3(upt);
+		dao.progUdt(upt);
 	}
 	public void progUdt(Task upt) {
 		

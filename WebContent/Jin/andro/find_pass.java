@@ -7,23 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class find_pass extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_find_pass);
 
-        Button lolol = (Button)findViewById(R.id.btn);
-        lolol.setOnClickListener(lololPage);
+        Button findpass02 = (Button)findViewById(R.id.find_pass_but01);
+        findpass02.setOnClickListener(findPass02);
 
     }
 
-    View.OnClickListener lololPage = new View.OnClickListener(){
+    View.OnClickListener findPass02 = new View.OnClickListener(){
         Intent int01;
         @Override
         public void onClick(View v) {
-            int01 = new Intent(getApplicationContext(), login.class);
+            int01 = new Intent(getApplicationContext(), find_pass02.class);
             startActivity(int01);
         }
     };
