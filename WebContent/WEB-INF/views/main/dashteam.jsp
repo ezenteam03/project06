@@ -80,7 +80,7 @@ function goIssue(num) {
               
               <h3>내 프로젝트 현황</h3>
             </div>
-            <div class="custom-bar-chart">
+            <div class="custom-bar-chart" style="height:180px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>${pro.pname}</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${pro.pm }</h4></div>
             	<br>            		
@@ -115,7 +115,7 @@ function goIssue(num) {
             <div class="border-head">
               <h3>세부 업무 현황</h3>
             </div>
-            <div class="custom-bar-chart" style="height:800px;">
+            <div class="custom-bar-chart">
             <c:forEach var="task" items="${tlist}">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>${task.tname }</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${task.sdate}"/> 시작</h4></div>
@@ -123,14 +123,14 @@ function goIssue(num) {
             	<br>
             	<br> 
             	<c:choose>
-					<c:when test="${pro.grade==0 }">
+					<c:when test="${task.grade==0 }">
 						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
 			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
 			                  <span class="sr-only">100% Complete (success)</span>
 			                </div>
 			              </div>
 					</c:when>
-					<c:when test="${pro.grade==1 }">
+					<c:when test="${task.grade==1 }">
 						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
 			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${task.prog}%">
 			                  <span class="sr-only">40% Complete (success)</span>
