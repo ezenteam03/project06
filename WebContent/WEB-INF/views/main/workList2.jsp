@@ -66,9 +66,11 @@ $(document).ready(function(){
 	<%-- 
 	
 	--%>
-
+	var mdiv = "${tsch.mdiv}";
+	
 	$("#regBtn").click(function(){
-		if(${tsch.mdiv != 4 && tsch.mdiv != 6}){
+
+		if(mdiv != 4 && mdiv != 6){
 			alert("권한이 없습니다.");
 		}else{
 			$(location).attr("href","${path}/task.do?method=insForm");
@@ -173,7 +175,8 @@ function go(no){
           <tr onclick="go(${task.tno})">
             <td style="text-align: center;">${task.tno}</td>
             <td style="text-align: center; padding-left:70px;">${task.tname}</td>
-            <td style="text-align: center;"><fmt:formatDate value="${task.edate }" type="date"/></td>
+           
+           <td style="text-align: center;">${task.edate }</td>
             <td style="text-align: center;">
             <c:choose>
             	<c:when test="${task.tdiv == 21}">업무진행중</c:when>

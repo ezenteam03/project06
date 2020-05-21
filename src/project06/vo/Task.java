@@ -25,8 +25,8 @@ public class Task {
 	private String tname;
 	private String detail;
 	private String updetail;
-	private Date sdate;
-	private Date edate;
+	private String sdate;
+	private String edate;
 	private int prog;
 	private String pdate;
 	private String coment;
@@ -69,17 +69,17 @@ public class Task {
 	public void setUpdetail(String updetail) {
 		this.updetail = updetail;
 	}
-	public Date getSdate() {
+	public String getSdate() {
 		return sdate;
 	}
-	public void setSdate(Date sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
 	
-	public Date getEdate() {
+	public String getEdate() {
 		return edate;
 	}
-	public void setEdate(Date edate) {
+	public void setEdate(String edate) {
 		this.edate = edate;
 	}
 	public int getProg() {

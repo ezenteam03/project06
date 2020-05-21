@@ -37,19 +37,24 @@
 		<%-- 
 		
 		--%>
-		$( "#datepicker" ).datepicker({
-	    	minDate: 1,
-	    	dateFormat: 'yy-mm-dd',    	  
-	    	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-	   		,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-	    	,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-	    	,yearSuffix: "년"
-	    	,showMonthAfterYear:true 
-	    	,showOtherMonths: true
-    	});
 		
 		$("#regBtn").click(function(){
-			alert("클릭");
+			var pno = $("[name=pno]").val();
+			var refno = $("[name=refno]").val();
+			var tname = $("[name=tname]").val();
+			var sdate = $("[name=sdate]").val();
+			var edate = $("[name=edate]").val();
+			var detail = $("[name=detail]").val();
+			var mno = $("[name=mno]").val();
+			
+			console.log("mno : "+mno);
+			console.log(pno);
+			console.log(refno);
+			console.log(tname);
+			console.log(detail);
+			console.log(sdate);
+			console.log(edate);
+			
 			if(confirm("등록합니다.")){
 				$("form").submit();				
 			}
@@ -61,7 +66,7 @@
 		});	
 		
 		//var refno = "${task.refno}";
-		var isReg= "${param.tname}";
+		//var isReg= "${param.tname}";
 		//&&refno==""
 		//if(isReg!=""){
 		//	if(!confirm("등록 완료하였습니다\n계속 등록하시겠습니까?")){
@@ -69,13 +74,13 @@
 		//	}
 		//}
 		
-		var is = $("[name=sdate]").val();
+		//var is = $("[name=sdate]").val();
 		
 		
 		
-		$(".custom-file-input").on("change",function(){
+		/*$(".custom-file-input").on("change",function(){
 			$(this).next(".custom-file-label").text($(this).val());
-		});
+		});*/
 	});
 </script>
 </head>
@@ -91,6 +96,21 @@
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
 	<form method="post" enctype="multipart/form-data" 
 		action="${path}/task.do?method=insert">
+		
+	<div class="input-group mb-3">
+		<div class="input-group-prepend"> 
+			<span class="bg-info text-white input-group-text">프로젝트번호</span>
+		</div>
+		<input name="pno" class="form-control" 
+			value="" placeholder="입력하세요" />	
+	</div>  
+	<div class="input-group mb-3">
+		<div class="input-group-prepend"> 
+			<span class="bg-info text-white input-group-text">상위업무번호</span>
+		</div>
+		<input name="refno" class="form-control" 
+			value="" placeholder="입력하세요" />	
+	</div>  
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">업무명</span>
@@ -115,7 +135,7 @@
 	</div>		
 	<div class="input-group-prepend" style="width:555px;">
 			<span class="bg-info text-white input-group-text">담당자</span>
-			<input name="" class="form-control" style="width:845px; "
+			<input class="form-control" style="width:845px;" name="mno"
 			placeholder="" value=""/>	
 	</div>
 		<br>
@@ -134,24 +154,14 @@
 			<span class="bg-warning text-white input-group-text">첨부 파일</span>
 		</div>
 		<div class="custom-file">
-			<input type="file" name="" 
+			<input type="file" 
 				class="custom-file-input" id="file01"/>
 			<label class="custom-file-label" for="file01">
 			파일 선택</label>
 		</div>		
 	</div> 	
 	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="bg-warning text-white input-group-text">첨부 파일</span>
-		</div>
-		<div class="custom-file">
-			<input type="file" name="" 
-				class="custom-file-input" id="file01"/>
-			<label class="custom-file-label" for="file01">
-			파일 선택</label>
-		</div>		
-	</div> 				
+			
 	<div style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="등록" id="regBtn"/>

@@ -23,7 +23,9 @@
  		select count(*) 
 		from pmstask
 		where 1=1
+		<if test="mdiv!=6">
 		AND pno = #{pno}
+		</if>
 		<if test="mdiv!=2 and mdiv!=3 and mdiv!=4 and mdiv!=6">
 		AND mno = #{mno}
 		</if>
@@ -131,7 +133,7 @@
 		SET prog = ROUND((SELECT count(*)
 					FROM PMSTASK
 					where refno = #{refno}
-					AND tdiv = 24)*100 / 
+					AND tdiv = 24) * 100 / 
 					(SELECT count(*)
 					FROM PMSTASK
 					where refno = #{refno})) 
@@ -140,8 +142,8 @@
  	
  	<!-- 등록 -->
  	<insert id="insert" parameterType="task">
-	 	INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1, #{tname},#{detail},null,to_date(#{sdate},'yy-mm-dd'),to_date(#{edate},'yy-mm-dd'),
-		0,'','',21,10000001)
+	 	INSERT INTO PMSTASK values(pmstask_seq.nextval, #{pno}, #{refno}, #{tname},#{detail},null,
+	 	to_date(#{sdate},'yy-mm-dd'),to_date(#{edate},'yy-mm-dd'),0,'','',21,#{mno})
  	</insert>
 
  	

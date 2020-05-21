@@ -98,46 +98,58 @@ public class WorkService2 {
 		/*
 		데이터 수정 처리
 		 * */ 
+		// 해당 업무 글 수정 ( 업무명, 내용 )
 		dao.updateTask(update);
 		// 파일 수정 정보 처리
 		//upload2(update);
 	}
 	public void deleteTask(int no) {
+		// 해당 업무 글 삭제
 		dao.deleteTask(no);
 		//dao.deleteFile(no);
 	}
 	
 	public void coment(Task upt) {
+		// 해당 업무 글 반려사유
 		dao.coment(upt);
 	}
 	public void upDetail(Task upt) {
+		// 해당 업무 글의 업무진행도 수정
 		dao.upDetail(upt);
 	}
 	public void prog(Task upt) {
-		System.out.println("상위업무번호 : "+upt.getRefno());
+		//System.out.println("상위업무번호 : "+upt.getRefno());
+		// 해당 업무글의 진행률 수정
 		dao.prog(upt);
 	}
 	public void upTdiv(Task upt) {
+		// 해당 업무 글 결재신청
 		dao.upTdiv(upt);
 	}
 	public void upTdiv2(Task upt) {
+		// 해당 업무 글 반려처리
 		dao.upTdiv2(upt);
 		dao.prog0(upt);
 	}
 	public void upTdiv3(Task upt) {
+		// 하위업무 결재 / 결재 시 상위업무 진행률 상승
 		dao.upTdiv3(upt);
 		dao.progUdt(upt);
+	}
+	public void upTdiv4(Task upt) {
+		// pm업무 결재완료
+		dao.upTdiv3(upt);
 	}
 	public void progUdt(Task upt) {
 		
 	}
 	public void insert(Task ins) {
+		// 업무 글 등록
 		System.out.println("등록 제목:"+ins.getTname());
 		dao.insert(ins);
 	}
 	public Task getTask(int no) {
-		// 조회수 카운트업..
-		//dao.uptReadCnt(no);
+		// 업무 상세화면
 		Task d =  dao.getTask(no);
 		//System.out.println("파일의 갯수:"+dao.fnames(no).size());
 		//d.setFilenames(dao.fnames(no));

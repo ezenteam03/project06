@@ -37,6 +37,18 @@
 		--%>
 		
 		var mdiv = "${mdiv}";
+		var tdiv = "${task.tdiv}";
+		
+		var emno = "${mno}";
+		var tmno = "${task.mno}";
+		
+		var refno = "${task.refno}";
+		var tno = "${task.tno}";
+		var tprog = "${task.prog}";
+		
+		console.log("emno : "+emno);
+		console.log("tmno : "+tmno);
+		console.log("refno : "+refno);
 		
 		if(mdiv != 4 && mdiv != 6){
 			$("#tDetail").attr('readonly',true);
@@ -49,9 +61,16 @@
 		if(mdiv != 5 && mdiv != 6){
 			$("#textdetail").attr('readonly',true);
 			$("#textdetail").css('background','white');
+		}
+		if(emno == tmno || mdiv == 6){
+			$("#prog").attr('readonly',false);
+		}else{
 			$("#prog").attr('readonly',true);
 			$("#prog").css('background','white');
 		}
+		
+		
+		
 			
 		$("#goMain").click(function(){
 			$(location).attr("href","${path}/task.do?method=list");			
@@ -85,7 +104,7 @@
 				alert("권한이 없습니다.");
 			}
 			else if(confirm("반려사유 다시겠습니까?")){
-				if(${task.tdiv==23}){
+				if( tdiv == 23 ){
 					$("form").attr("action","${path}/task.do?method=coment");
 					$("form").submit();
 				}else{
@@ -97,14 +116,27 @@
 		
 		$("#progBtn").click(function(){
 			var prog = $('input[name=prog]').val();
-			if(prog > 100 || prog < 1){
-				alert("진행률은 1~100까지만 수정 가능합니다.");
+			
+			console.log("클릭 emno : "+emno);
+			console.log("클릭 tmno : "+tmno);
+			console.log("클릭 mdiv : "+mdiv);
+			console.log("클릭 refno : "+refno);
+			console.log("클릭 tno : "+tno);
+			
+			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
+				alert("진행률을 수정 할 수 없는 업무입니다.");
+			}
+			else if(prog > 100 || prog < 1){
+				if(emno == tmno || mdiv == 6){
+					alert("진행률은 1~100까지만 수정 가능합니다.");
+				}else{
+					alert("담당자만 수정 가능합니다.");
+				}
 			}
 			else if(confirm("진행률 수정합니다.")){
-				if(${task.tdiv==22} || ${task.tdiv==24}){
+				if(tdiv ==22 || tdiv ==24){
 					alert("결재 신청이나 완료된 업무는 진행률 수정이 불가합니다.");
 				}else{
-					
 					$("form").attr("action","${path}/task.do?method=prog");
 					$("form").submit();
 				}
@@ -114,7 +146,7 @@
 			var prog = $('input[name=prog]').val();
 			if(prog == 100){
 				if(confirm("결재 신청 하시겠습니까?")){
-					if(${task.tdiv==22}){
+					if(tdiv == 22 ){
 						alert("이미 결재 신청되었습니다.");
 					}else{
 						$("form").attr("action","${path}/task.do?method=upTdiv");
@@ -124,22 +156,40 @@
 			}
 		});
 		$("#divBtn2").click(function(){
-			if(${task.tdiv==22}){
+			if(tdiv==22){
 				if(confirm("반려 처리 하시겠습니까?")){
 					alert("반려처리 되었습니다.");
 					$("form").attr("action","${path}/task.do?method=upTdiv2");
 					$("form").submit();
 				}
+			}else{
+				alert("신청 여부를 확인 해주세요");
 			}
 		});
 		$("#divBtn3").click(function(){
-			if(${task.tdiv==22}){
+			console.log("클릭 emno : "+emno);
+			console.log("클릭 tmno : "+tmno);
+			console.log("클릭 prog : "+tprog);
+			console.log("클릭 mdiv : "+mdiv);
+			console.log("클릭 refno : "+refno);
+			console.log("클릭 tno : "+tno);
+			
+			if(tdiv==22){
 				if(confirm("결재완료 하시겠습니까?")){
 					alert("결재완료 되었습니다.");
 					$("form").attr("action","${path}/task.do?method=upTdiv3");
 					$("form").submit();
 				}
+			}else if (emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
+				if(confirm("PM업무 "+tno+"번 결재 하시겠습니까?")){
+					$("form").attr("action","${path}/task.do?method=upTdiv4");
+					$("form").submit();
+				}
+			}else{
+				alert("신청 여부 혹은 진행률을 확인 해주세요");
 			}
+			
+			
 		});
 		$("#updetail").click(function(){
 			if(mdiv != 5 && mdiv != 6){
@@ -317,8 +367,8 @@
 				<input type="text" name="prog" value="${task.prog}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
 				id="prog">
 				
-				<!-- 팀원만 보이게 + admin -->
-				<c:if test="${mdiv==5 || mdiv==6}">
+				<!-- 담당자만 보이게 + admin -->
+				<c:if test="${mdiv == 4||mdiv==5 || mdiv==6}">
 					<input type="button"  class="btn btn-success" id="progBtn" value="진행률수정"/>
 				</c:if>
 				

@@ -103,6 +103,11 @@ public class WorkCtrl2 {
 			service.upTdiv3(upt);
 			return "forward:/task.do?method=detail"; 
 		}
+		@RequestMapping(params="method=upTdiv4")
+		public String upTdiv4(Task upt) {
+			service.upTdiv3(upt);
+			return "forward:/task.do?method=detail"; 
+		}
 		@RequestMapping(params="method=upDetail")
 		public String upDetail(Task upt) {
 			service.upDetail(upt);
@@ -127,7 +132,8 @@ public class WorkCtrl2 {
 		}
 		
 		@RequestMapping(params="method=insert")
-		public String insert(Task ins) {
+		public String insert(Task ins, Model d, HttpServletRequest request) {
+
 			service.insert(ins);
 			return "redirect:/task.do?method=list";
 		}
@@ -143,10 +149,9 @@ public class WorkCtrl2 {
 
 			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
 			
-		
+			d.addAttribute("mno", emp.getMno());
 			d.addAttribute("mdiv", emp.getMdiv());
 
-			
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
 		}
 }
