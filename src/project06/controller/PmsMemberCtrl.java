@@ -39,7 +39,10 @@ public class PmsMemberCtrl {
 				int ck = 10;
 				m.addAttribute("ck",ck);
 				return "WEB-INF\\views\\main\\login.jsp";
-			}else {
+			} else if(infor_M.getMdiv() == 7) {
+				session.setAttribute("infor_M", infor_M);
+				return "forward:/PMSemp.do?method=empmList";
+			} else {
 				session.setAttribute("mno", mno);
 				session.setAttribute("emp", emp);
 				session.setAttribute("infor_M", infor_M);
