@@ -1,5 +1,8 @@
 package project06.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -37,20 +40,34 @@ public class ProjectCtrl {
 		
 		emp.setMdiv(pmsm.getMdiv());
 		System.out.println("검증용 mdiv "+emp.getMdiv());
-		
+		//현재 프로젝트에 소속되어있지 않은 대리급 이상 사원리스트 호출
 		d.addAttribute("elist", peservice.insList(emp));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
 	}
 	//
-	@RequestMapping(params="method=proIns")
-	public String proIns(@RequestParam("proeno") int eno,  Project insp) {
-		System.out.println("실행확인1 eno : "+eno);
-		prservice.proIns(insp);
-		//pmsemp inspe = new pmsemp();
-		//inspe.setEno(eno);
-		//System.out.println("실행확인2");
-		//peservice.updatePm(inspe);
+	@RequestMapping(params="method=proins")
+	public String proIns(HttpServletRequest request) {
+		int mno = Integer.parseInt(request.getParameter("pro_mno"));
 		
-		return "WEB-INF\\views\\main\\noticeList.jsp";
+		Project insp = new Project();
+		pmsemp inspe = new pmsemp();
+		Project insertedp = new Project();
+		
+		insp.setPname(request.getParameter("pro_pname"));
+		insp.setMno(mno); //프로젝트 매니저 번호
+		insp.setSdatestr(request.getParameter("pro_sdate"));
+		insp.setDeadlinestr(request.getParameter("pro_dline"));
+		insp.setDetail(request.getParameter("pro_detail"));
+		//프로젝트 추가
+		prservice.proIns(insp);
+		//방금 추가한 프로젝트를 불러오기
+		insertedp = prservice.getProjectformno(mno); 
+		
+		inspe.setEno(mno);
+		inspe.setPno(insertedp.getPno());
+		//회원의 PM 권한변경 수행
+		peservice.updatePm(inspe);
+		
+		return "WEB-INF\\views\\main\\dashceo.jsp";
 	}
 }

@@ -271,7 +271,7 @@
 			    isObject = Highcharts.isObject,
 			    reduce = Highcharts.reduce;
 				
-				Highcharts.ganttChart('chartpm', cInfo);
+				Highcharts.ganttChart('charttm', cInfo);
 			},
 			error:function(err){
 				console.log("ajax처리 에러");
@@ -300,9 +300,9 @@
          <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(TM)</i></h4>
+	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트(팀원)</i></h4>
             <div class="form-panel">
-              <div id="chartpm"></div>
+              <div id="charttm"></div>
             </div>
             <!-- /form-panel -->
           </div>

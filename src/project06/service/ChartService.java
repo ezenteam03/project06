@@ -20,12 +20,15 @@ public class ChartService {
 		public ArrayList<Chart> chartList(int pno){
 			return dao.chartList(pno);
 		}
-		//수정 필요
+		
 		public ArrayList<Chart> chartListTm(int pno, int mno){
-			ArrayList<Chart> clisttmfinal = new ArrayList<Chart>(); //화면에 반환할 객체
-			ArrayList<Chart> clisttm = new ArrayList<Chart>();
-			ArrayList<Integer> tmRefno = dao.getRefno(mno); //1008 1009 1011
-			//tmRefno의 내용물 수만큼 chartListtm을 실행
+			//화면에 반환할 객체배열
+			ArrayList<Chart> clisttmfinal = new ArrayList<Chart>();
+			//반환할 객체배열에 순차적으로 데이터를 입력할 객체배열
+			ArrayList<Chart> clisttm = new ArrayList<Chart>(); 
+			//팀원이 해당 프로젝트(pno)에 가진 refno를 자신의 사원번호(mno) 조회 -> int객체배열로 호출
+			ArrayList<Integer> tmRefno = dao.getRefno(mno); 
+			//tmRefno의 refno수만큼 데이터 입력 객체배열에 차트 정보를 받아서 반환 객체배열에 추가(누적)
 			for(int refno : tmRefno) {
 				System.out.println("pno : "+pno);
 				System.out.println("mno : "+mno);

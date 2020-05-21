@@ -35,8 +35,18 @@
 		AND pem.pno = #{pno}
  	</select>
  	
+ 	<select id="getProjectformno" resultType="project" parameterType="int">
+ 		SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
+		 pem.name
+		FROM PMSPROJECT pp, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
+		WHERE pem.mno = pp.mno
+		AND pem.mno = #{mno}
+		AND pp.pdiv = 11
+ 	</select>
+ 	
  	<insert id="proIns" parameterType="project">
-		 INSERT INTO pmsproject(pno, sdate, deadline, mno, detail) 
-		 VALUES(pmsproject_seq.nextval,#{sdate},#{deadline}, #{mno},#{detail})
+		 INSERT INTO pmsproject(pno, pname, sdate, deadline, mno, pdiv, detail) 
+		 VALUES(pmsproject_seq.nextval,#{pname}, #{sdatestr},#{deadlinestr}, #{mno}, 11 ,#{detail})
 	</insert>
 </mapper>	

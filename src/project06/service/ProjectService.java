@@ -20,13 +20,17 @@ public class ProjectService {
 	public Project getProject(int pno){
 		return dao.getProject(pno);
 	}
-
+	
+	public Project getProjectformno(int mno){
+		return dao.getProjectformno(mno);
+	}
+	
 	public void proIns(Project ins) {
-		System.out.println("프로젝트명 : "+ins.getName());
-		System.out.println("프로젝트시작일 : "+ins.getSdate());
-		System.out.println("프로젝트종료일 : "+ins.getDeadline());
-		System.out.println("프로젝트PM : "+ins.getMno());
-		System.out.println("프로젝트상세정보 : "+ins.getDetail());
+		System.out.println("pname : "+ins.getPname());
+		System.out.println("sdate : "+ins.getSdatestr());
+		System.out.println("deadline : "+ins.getDeadlinestr());
+		System.out.println("mno : "+ins.getMno());
+		System.out.println("detail : "+ins.getDetail());
 		dao.proIns(ins);
 	}
 }

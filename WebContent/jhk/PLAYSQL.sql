@@ -5,15 +5,27 @@ FROM pmsemp pe, pmsmember pm, PMSCODES pc
 WHERE pe.ENO = pm.MNO 
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
+
+DELETE FROM pmsproject
+WHERE pno = 1027;
+
 SELECT * FROM PMStask;
 SELECT * FROM PMSEMP pe, PMSMEMBER pm;
---SQL 추가해야함
+--pno를 기준으로 project정보 가져오기
 SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
  pem.name
 FROM PMSPROJECT pp, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 WHERE pem.mno = pp.mno
 AND pem.pno = 1002;
+--mno와 pdiv를 기준으로 프로젝트 정보 가져오기
+SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
+ pem.name
+FROM PMSPROJECT pp, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
+WHERE pem.mno = pp.mno
+AND pem.mno = 10000010
+AND pp.pdiv = 11;
 
 UPDATE PMSPROJECT
 SET cdate = '2020/05/04'

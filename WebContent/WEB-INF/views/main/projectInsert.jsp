@@ -57,15 +57,14 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#regBtn").click(function(){	
-			var eno = $("[name=mno]").val();
-			$("[name=proeno]").val(eno);
 			if(confirm("등록합니다.")){
-				$("form").submit();				
+				$("#commentForm").attr("action","${path}/project.do?method=proins");
+				$("#commentForm").submit();				
 			}			
 		});	
 		$("#goMain").click(function(){
 			if(confirm("조회 화면 이동 합니다.")){
-				$(location).attr("href","${path}/chart.do?method=pm");			
+				$(location).attr("href","${path}/DashTeam.do?method=list");			
 			}
 		});	
 	});
@@ -83,20 +82,20 @@
     <section id="main-content">
       <section class="wrapper" style="height:300px; margin-top:0;">
          <!-- FORM VALIDATION -->
-          <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="${path}/project.do?method=proIns">
-              	<input type="hidden" name="proeno"/>
+          <form class="cmxform form-horizontal style-form" id="commentForm" method="post">
+          
+          
+              	
         <div class="row mt">
           <div class="col-lg-12">
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
             <div class="form-panel">
               <div class=" form">
-               
-                
                   <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-2">프로젝트명</label>
+                    <label for="pname" class="control-label col-lg-2">프로젝트명</label>
                     <div class="col-lg-10">
                     
-                      <input class=" form-control" id="" name="pname" minlength="2" type="text" required />
+                      <input class=" form-control" id="pname" name="pro_pname" minlength="2" type="text" required />
                       
                     </div>
                   </div>
@@ -105,7 +104,7 @@
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
 					    
-					      <input type="text" name="sdate" readonly size="16" class="form-control">
+					      <input type="text" name="pro_sdate" readonly size="16" class="form-control">
 					      
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
@@ -119,7 +118,7 @@
 					  <div class="col-md-3 col-xs-11">
 					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
 					    
-					      <input type="text" name="deadline" readonly size="16" class="form-control">
+					      <input type="text" name="pro_dline" readonly size="16" class="form-control">
 					      
 					      <span class="input-group-btn add-on">
 					        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
@@ -131,9 +130,9 @@
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
                     
-                    <select class="sel-grade" name="mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
-                    	<c:forEach var="emp" items="${elist}">
-						<option value="${emp.eno}">${emp.name} ${emp.grade}</option>                    		
+                    <select class="sel-grade" name="pro_mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
+                    	<c:forEach var="empl" items="${elist}">
+						<option value="${empl.eno}">${empl.name} ${empl.grade}</option>                    		
                     	</c:forEach>
                     </select>
                     
@@ -141,7 +140,7 @@
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">프로젝트 개요</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                      <textarea class="form-control " id="ccomment" name="pro_detail" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">
