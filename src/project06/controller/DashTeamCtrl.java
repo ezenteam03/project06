@@ -26,6 +26,7 @@ public class DashTeamCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		System.out.println(emp.getPno());
 		if(emp.getMdiv()==5) {
 			d.addAttribute("nlist", service.nlist(emp.getPno()));
 			d.addAttribute("mlist", service.mlist(emp.getPno()));
