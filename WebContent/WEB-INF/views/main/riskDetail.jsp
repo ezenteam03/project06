@@ -70,8 +70,8 @@
 		}
 	
 		/* 수정, 해결방안 권한 */
-		var mno="${mno}";
-		var rmno="${risk.mno}";
+		var mno="${mno}"; // 로그인한 사원번호
+		var rmno="${risk.mno}"; // 작성자 사원번호
 	
 		if(mno==rmno){		
 			// 작성자
@@ -264,7 +264,7 @@
       <c:forEach var="comment" items="${clist}">
     
       <tr class="text-center">
-      <td class="num">${comment.name}${comment.rno}</td>
+      <td class="num">${comment.name}</td>
        
        <td class="txt" >${comment.cdetail}</td>
         
