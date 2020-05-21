@@ -133,12 +133,16 @@
 	</insert>
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+ 	SELECT *
+ 		FROM(
+		SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 		c.CNAME,b.pno
 		FROM pmsemp a, pmsmember b, pmscodes c
 		WHERE a.eno = b.mno and b.mdiv=c.cno
 		AND b.pno=#{pno}
 		AND b.mdiv=5
+		ORDER BY eno ASC)
+	WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
 	<!-- 팀원삭제  pno==>null로 변경 -->
 	<update id="delemp" parameterType="pmsemp">
@@ -180,6 +184,20 @@
 		 insert into pmsemp values(pmsemp_seq.nextval,#{name},#{dept},
 		 					#{grade},#{phone},#{email})
 	</insert>
+	<resultMap type="String" id="pmsEmpStringResult"/>
+	<!-- 직급 리스트 -->
+	<select id="getGlist" resultMap="pmsEmpStringResult">
+		select DISTINCT grade 
+		from pmsemp
+		order by grade asc 
+	</select>
+	<!-- 부서 리스트 -->
+	<select id="getDlist" resultMap="pmsEmpStringResult">
+		select DISTINCT dept
+		from pmsemp
+		WHERE dept IS NOT null
+		order by dept ASC
+	</select>
 	
 	
 	

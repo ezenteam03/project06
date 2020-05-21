@@ -16,6 +16,10 @@ public interface pmsempRep {
 	public pmsemp getemp(int eno);
 	// 프로젝트 리스트
 	public ArrayList<Integer> getPlist();
+	// 직급 리스트
+	public ArrayList<String> getGlist();
+	// 부서 리스트
+	public ArrayList<String> getDlist();
 	// PMSmember에 등록됐는지 확인
 	public int memCheck(pmsemp ckmem);
 	// CTO PMS등록
@@ -35,7 +39,7 @@ public interface pmsempRep {
 	public void updPNum(pmsemp upn);
 	public void insPNum(pmsemp ipn);
 	// PM 삭제 리스트
-	public ArrayList<pmsemp> pmempList(pmsemp sch);
+	public ArrayList<pmsemp> pmempList(pmsempSch sch);
 	// PM 팀원 삭제
 	public void delemp(pmsemp del);
 	// 인사 사원등록

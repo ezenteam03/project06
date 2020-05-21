@@ -49,9 +49,9 @@
 		ORDER BY p.rno DESC )
 		WHERE cnt BETWEEN 1 AND 3
  	</select>
- 	
+
  	<select id="tlist" resultMap="teamResult" parameterType="int">
- 		select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng
+ 		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng,edate-sysdate grade
  		from pmstask p, pmscodes c
  		where p.tdiv=c.cno
  		and p.mno=#{eno}
@@ -62,6 +62,21 @@
  		select mno
  		from pmsproject
  		where pno=#{pno}
+ 	</select>
+ 	
+ 	<select id="getProject" resultType="dashPro" parameterType="int">
+ 		select p.pno,p.pname,e.name pm,deadline edate
+ 		from pmsproject p, pmsemp e
+ 		where pno=#{pno} and p.mno=e.eno
+ 	</select>
+ 	
+ 	<select id="plist" resultMap="teamResult" parameterType="int">
+ 		select p.tno,p.tname,p.sdate,p.edate, p.prog,p.pdate,sysdate tdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng,edate-sysdate grade
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=#{mno}
+ 		and p.refno=0
+ 		order by p.tno asc
  	</select>
  	
 </mapper>	

@@ -1035,28 +1035,28 @@ UPDATE pmsmember SET pno=1002 WHERE mno=10000006;
 --로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000004);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000005);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000006);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000007);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000008);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000010);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000011);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000012);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000013);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085332','yyyymmddhh24miss'),to_date('20200503202532','yyyymmddhh24miss'),10000015);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085432','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000016);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085532','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000017);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085632','yyyymmddhh24miss'),to_date('20200503202132','yyyymmddhh24miss'),10000019);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000020);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000021);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000022);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085832','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000023);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000024);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085232','yyyymmddhh24miss'),null,10000005);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085332','yyyymmddhh24miss'),null,10000015);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085432','yyyymmddhh24miss'),null,10000016);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085532','yyyymmddhh24miss'),null,10000017);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmddhh24miss'),null,10000019);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000006);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000011);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000012);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000021);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000025);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000028);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000025);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000026);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000027);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000028);
 --공지사항 정보
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
@@ -1235,5 +1235,17 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(�
 
 SELECT * FROM pmstask;
 
-	
-	
+select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=10000015
+ 		order by p.tno asc;
+ select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=10000005
+ 		and p.refno=0
+ 		order by p.tno ASC;
+select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
+ 		from pmsproject p, pmsemp e
+ 		where pno=1001;	
