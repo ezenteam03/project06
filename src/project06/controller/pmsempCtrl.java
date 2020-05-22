@@ -84,11 +84,9 @@ public class pmsempCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
-		pmsempSch pmssch = new pmsempSch();
-		
+		pmsempSch pmssch = new pmsempSch();	
 		inse.setPno(pmsm.getPno());
-		service.insPm(inse);
-		
+		service.insPm(inse);		
 		request.setAttribute("pmsempsch", pmssch);
 		d.addAttribute("elist", service.insList(pmssch));
 		//return "forward:/PMSemp.do?method=empList";
