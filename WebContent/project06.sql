@@ -975,7 +975,7 @@ INSERT INTO pmscodes values(32,30,'결재신청');
 INSERT INTO pmscodes values(33,30,'반려');
 INSERT INTO pmscodes values(34,30,'결재완료');
 --사원정보
-insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','Moon2017@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','rujane99@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'기술이사','010-0224-1025','MB2008@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'노무현','인사과','과장','010-8586-8894','MH2003@daum.net');

@@ -50,7 +50,7 @@ public class DashTeamCtrl {
 			d.addAttribute("mlist", service.mlist(emp.getPno()));
 			d.addAttribute("ilist", service.ilist(emp.getPno()));
 			d.addAttribute("rlist", service.rlist(emp.getPno()));
-			return "WEB-INF\\views\\main\\dashceo.jsp";
+			return "WEB-INF\\views\\main\\index.jsp";
 		}	
 	}
 	

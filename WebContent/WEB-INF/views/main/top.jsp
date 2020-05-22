@@ -165,7 +165,9 @@ th{text-align:center;}
 <script type="text/javascript">
 	var pno = "${infor_M.pno}";
 	function popup() { 
-		window.open("http://localhost:5080/project06_git/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
+		//window.open("http://localhost:5080/project06_git/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
+		//http://192.168.4.230:7080/project06_git/main.do
+		window.open("http://192.168.4.230:7080/project06_git/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
 	}
 	
 	$(document).ready(function(){
