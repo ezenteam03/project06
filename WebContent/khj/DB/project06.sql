@@ -18,6 +18,25 @@ select DISTINCT grade
 	select pno 
 		from pmsproject
 		order by pno asc ;
+	
+	SELECT * FROM (
+		SELECT rownum cnt, e.name, e.grade, m.wcon, 
+		CASE WHEN l.state = 0 
+		THEN '로그아웃' 
+		ELSE '로그인' END AS state
+		FROM PMSEMP e, PMSMEMBER m, PMSLOG l 
+		WHERE e.eno=m.mno 
+		AND m.mno=l.mno
+		AND login=(SELECT max(login) 
+				   FROM pmslog 
+				   WHERE mno=m.mno)
+		AND m.pno=1002
+		AND e.name like '%'||''||'%' 
+		ORDER BY m.mno);	
+	SELECT*FROM pmsmember;
+				
+	
+	
 SELECT *
 FROM (
 SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
