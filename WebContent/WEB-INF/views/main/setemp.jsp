@@ -46,6 +46,21 @@
 		$("#setForm").attr("action","${path}/PMSemp.do?method=update");
 		$("#setForm").submit();
 	 });
+	 
+//	 $("#ctoBtn").click(function(){			 
+	//	 Swal.fire({
+	//		  title:'로그아웃 ',
+	//		  text:"로그아웃 하시겠습니까?",
+	//		  icon: 'info',
+	//		  showCancelButton: true
+	//	}).then((result) => {
+	//		if (result.value) {
+	//			$("#setForm").attr("action","${path}/PMSemp.do?method=update");
+	//			$("#setForm").submit();
+	//		}
+	//	});
+//	 });
+		
 	 // PM 버튼
 	 $("#pmBtn").click(function(){		
 		$("#setForm").attr({"action":"${path}/PMSemp.do?method=updatePm"});
