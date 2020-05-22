@@ -104,6 +104,7 @@ $(document).ready(function(){
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
 	<form method="post" enctype="multipart/form-data" 
 		action="${path}/meet.do?method=insert">
+		<input type="hidden" value="${mno}" name="mnno">
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">안 건</span>
@@ -111,7 +112,22 @@ $(document).ready(function(){
 		<input name="topic" class="form-control" 
 			value="${meet.topic}" placeholder="안건을 입력하세요" />	
 	</div> 
+	
+	<div class="input-group mb-3">
+		<div class="input-group-prepend"> 
+			<span class="bg-info text-white input-group-text">회의 참여자</span>
+		</div>
+		<input name="people" class="form-control" 
+			value="${meet.people}" placeholder="참여자를 입력하세요(,를 사용하여 구분)" />	
+	</div>
 		
+	<div class="input-group mb-3">
+		<div class="input-group-prepend"> 
+			<span class="bg-info text-white input-group-text">회의 장소</span>
+		</div>
+		<input name="loc" class="form-control" 
+			value="${meet.loc}" placeholder="회의 장소를 입력하세요" />	
+	</div>
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 

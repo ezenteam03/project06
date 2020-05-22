@@ -85,8 +85,7 @@ $(document).ready(function(){
 
 <div class="container">
 	<form method="post"  enctype="multipart/form-data" >
-	
-	
+
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">안건</span>
@@ -95,14 +94,32 @@ $(document).ready(function(){
 			value="${meet.topic}"  
 			placeholder="안건을 입력하세요" />	
 	</div>
+	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">작성자</span>
 		</div>
-		<input name="wdate" class="form-control"
+		<input name="writer" class="form-control"
 			value="${meet.writer}"  
 			placeholder="안건을 입력하세요" />	
 	</div>
+	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend ">
+			<span class="bg-info text-white input-group-text">회의참석자</span>
+		</div>
+		<input name="people" class="form-control"
+			value="${meet.people}"/>	
+	</div>
+	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend ">
+			<span class="bg-info text-white input-group-text">회의장소</span>
+		</div>
+		<input name="loc" class="form-control" readonly="readonly"
+			value="${meet.loc}"/>	
+	</div>	
+	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="bg-info text-white input-group-text">글번호</span>
@@ -119,6 +136,14 @@ $(document).ready(function(){
 			 value="${meet.views}" />	
 	</div>		
 	 
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="bg-warning text-white input-group-text">회의일시 </span>
+		</div>
+		<input  class="form-control" readonly="readonly" 
+				style="background:white;"
+			 value="<fmt:formatDate type='both' value='${meet.mdate }'/>"/>	
+	</div>
 	 	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend">
@@ -131,22 +156,33 @@ $(document).ready(function(){
 		</div>
 		<input class="form-control" readonly="readonly"
 			value="<fmt:formatDate type='both' value='${meet.chdate }'/>" />	
-	</div>			
+	</div>
+				
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>
 		<textarea name="detail" rows="5" 
 			class="form-control" 
-			placeholder="내용입력하세요" >${meet.detail}</textarea>		 
+			placeholder="없음" >${meet.detail}</textarea>		 
 	</div> 
+	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">기타</span>
+			<span class="bg-info text-white input-group-text">결정사항</span>
+		</div>
+		<textarea name="decision" rows="5" 
+			class="form-control" 
+			placeholder="없음" >${meet.decision}</textarea>		 
+	</div>
+	
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="bg-info text-white input-group-text">특이사항</span>
 		</div>
 		<textarea name="etc" rows="5" 
 			class="form-control" 
-			placeholder="내용입력하세요" >${meet.etc}</textarea>		 
+			placeholder="없음" >${meet.etc}</textarea>		 
 	</div> 
 
 	
