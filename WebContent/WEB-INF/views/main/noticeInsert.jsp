@@ -73,7 +73,7 @@ $(document).ready(function(){
       <section class="wrapper">
         <div id="all">
        
-       <h3 style="margin-left:10%;"><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h3>
+       <h3 style="margin-left:10%;"><i class="fa fa-bullhorn"></i>&ensp;  공지사항</h3>
        
                 <br><br>
 

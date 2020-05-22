@@ -69,12 +69,15 @@ $(document).ready(function(){
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
  
-     
-        
+     <section id="main-content">
+      <section class="wrapper">
+        <div id="all">
        
-       <h4><i class="fa fa-book"></i>&ensp;  희의록 작성 </h4>
-       <hr>
-
+       <h3 style="margin-left:10%;"><i class="fa fa-book"></i>&ensp; 회의록 작성 </h3>
+       
+                <br><br>  
+       
+    
 <div class="container">
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
 	<form method="post" enctype="multipart/form-data" 
@@ -92,29 +95,30 @@ $(document).ready(function(){
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>
-		<input name="detail" class="form-control" 
-			value="${meet.detail}" placeholder="입력하세요" />	
+		<textarea name="detail" rows="10" 
+			class="form-control" 
+			placeholder="내용을 입력하세요" >${meet.detail}</textarea>
 	</div>
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">결 정 사 항</span>
 		</div>
-		<input name="decision" class="form-control" 
-			value="${meet.decision}" placeholder="입력하세요" />	
+		<textarea name="decision" rows="5" 
+			class="form-control" 
+			placeholder="내용을 입력하세요" >${meet.decision}</textarea>
 	</div>
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">특 이 사 항</span>
 		</div>
-		<input name="etc" class="form-control" 
-			value="${meet.etc}" placeholder="입력하세요" />	
-	</div>
+		<textarea name="etc" rows="5" 
+			class="form-control" 
+			placeholder="내용을 입력하세요" >${meet.etc}</textarea>
+		</div>
 	 
 
-			
-	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">첨부 파일</span>
@@ -128,7 +132,7 @@ $(document).ready(function(){
 	</div> 	
 	
 	
-					
+	<br>				
 	<div style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="등록" id="regBtn"/>
@@ -138,7 +142,7 @@ $(document).ready(function(){
  	
 	</form>
 </div>
-
+</div>
        
        
        
