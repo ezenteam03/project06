@@ -153,21 +153,21 @@
 		
 <div class="input-group mb-3">				
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">작성자</span>
+		<span class="bg-success text-white input-group-text">작성자</span>
 	</div>
 	<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
 			value="${risk.name }" placeholder="작성자입력하세요"/>		
 </div>	
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">작 성 일</span>
+		<span class="bg-warning text-white input-group-text">작 성 일</span>
 	</div>
 		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
 </div>
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">제 목</span>
+		<span class="bg-success text-white input-group-text">제 목</span>
 		</div>
 		<input name="title" class="form-control" id="title"
 			value="${risk.title}"  
@@ -175,7 +175,7 @@
 </div>
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">수정일</span>
+		<span class="bg-warning text-white input-group-text">수정일</span>
 	</div>
 		<input class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.chdate}'/>" />	
@@ -192,7 +192,7 @@
 
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">첨부 파일</span>
+		<span class="bg-success text-white input-group-text">첨부 파일</span>
 	</div>
 		<input class="form-control fileInfo" name="fnames" id="fnames"
 			value="${risk.filenames[0]}" />	
@@ -206,7 +206,7 @@
 	
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
-		<span class="bg-info text-white input-group-text">해결방안 작성일</span>
+		<span class="bg-success text-white input-group-text">해결방안 작성일</span>
 	</div>
 		<input  class="form-control"  readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.cdate}'/>"  />	
@@ -222,11 +222,12 @@
 
 	<div style="text-align:right;">
 	<input style="float:right;" type="button" class="btn btn-success"
-			value="해결방안 저장" id="cuptBt"/>			
-		<input style="float:right;" type="button" class="btn btn-warning"
-			value="수정" id="uptBtn"/>					
-		<input style="float:right;" type="button" class="btn btn-info"
 			value="뒤로가기" id="goMain"/>	
+	<input style="float:right;" type="button" class="btn bg-warning"
+			value="해결방안 저장" id="cuptBt"/>			
+		<input style="float:right;" type="button" class="btn btn-info"
+			value="수정" id="uptBtn"/>					
+		
 	</div>
 	
 	<br>
