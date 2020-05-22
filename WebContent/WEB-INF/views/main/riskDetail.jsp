@@ -9,14 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.css" >
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
-<script src="${path}/a00_com/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -132,67 +133,67 @@
 	});
 		
 </script>
+<style type="text/css">
+.input-group-text{width:100%;}
+.input-group-prepend{width:20%;}
+</style>
 </head>
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
-	<section id="main-content">
-      <section class="wrapper">
-		<div id="all">
-        <div class="row">
-         <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-
+	
+      
+   <div class="jumbotron text-left" style="margin-left:200px;">  
+    	<h4><i class="fa fa-th"></i>&ensp;게시판 상세</h4>
+    </div>
+<div class="container">
 	<form method="post"  enctype="multipart/form-data" id="form"
-	action="${path}/risk.do?method=comment">
+		action="${path}/risk.do?method=comment">
 	<input name="ino" type="hidden" value="${risk.ino }"/>
-	
-	
-	
-<div class="input-group mb-3">	
-		<div class="input-group-prepend">
-			<span class="input-group-text">작성자</span>
-		</div>
-		<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
-			value="${risk.name }" placeholder="작성자입력하세요"/>	
-			
-		<div class="input-group-prepend">
-			<span class="input-group-text">작 성 일</span>
-		</div>
+		
+<div class="input-group mb-3">				
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">작성자</span>
+	</div>
+	<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
+			value="${risk.name }" placeholder="작성자입력하세요"/>		
+</div>	
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">작 성 일</span>
+	</div>
 		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
-			value="<fmt:formatDate type='both' value='${risk.wdate }'/>" 
-			 />	
-	
-	</div>		
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">제 목</span>
+			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
+</div>
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">제 목</span>
 		</div>
 		<input name="title" class="form-control" id="title"
 			value="${risk.title}"  
 			placeholder="제목입력하세요" />	
-		<div class="input-group-prepend">
-			<span class="input-group-text">수정일</span>
-		</div>
+</div>
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">수정일</span>
+	</div>
 		<input class="form-control" readonly="readonly"  style="background-color: #ffffff;"
 			value="<fmt:formatDate type='both' value='${risk.chdate}'/>" />	
 		 
-	</div>  	
+</div>  	
 		
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">내 용</span>
-		</div>
-		<textarea name="detail" rows="10" style="resize:none" id="detail"
-			class="form-control" 
-			placeholder="내용입력하세요" >${risk.detail}</textarea>		 
-	</div> 
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">내 용</span>
+	</div>
+	<textarea name="detail" rows="10" style="resize:none" id="detail"
+			class="form-control" placeholder="내용입력하세요" >${risk.detail}</textarea>		 
+</div> 
 
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">첨부 파일</span>
-		</div>
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">첨부 파일</span>
+	</div>
 		<input class="form-control fileInfo" name="fnames" id="fnames"
 			value="${risk.filenames[0]}" />	
 		<div class="custom-file">
@@ -200,28 +201,24 @@
 				class="custom-file-input" id="file01"/>
 			<label class="custom-file-label" for="file01">
 			변경할려면 파일을 선택하세요!</label>
-		</div>			
-		 
-	</div> 	
+		</div>				 
+</div> 	
 	
-
-	<div class="input-group mb-3">	
-						
-		<div class="input-group-prepend">
-			<span class="input-group-text">해결방안 작성일</span>
-		</div>
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">해결방안 작성일</span>
+	</div>
 		<input  class="form-control"  readonly="readonly"  style="background-color: #ffffff;"
-			value="<fmt:formatDate type='both' value='${risk.cdate}'/>" 
-			 />	
-	</div>	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">해결방안</span>
-		</div>
+			value="<fmt:formatDate type='both' value='${risk.cdate}'/>"  />	
+</div>	
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-info text-white input-group-text">해결방안</span>
+	</div>
 		<textarea name="coment"  rows="5" style="resize:none" id="coment"
 			class="form-control" 
 			placeholder="내용입력하세요" >${risk.coment}</textarea>		 
-	</div> 
+</div> 
 
 	<div style="text-align:right;">
 	<input style="float:right;" type="button" class="btn btn-success"
@@ -271,7 +268,7 @@
        <td class="text-left" >
        		<c:forEach varStatus="sts" 
         		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
-        	</c:forEach> ${comment.detail}      		         	
+        	</c:forEach>${comment.detail}      		         	
        </td>
         
      
@@ -289,7 +286,7 @@
 	</form>
 
 	</div>
-	</div></div></div></section></section>
+
 	
 <footer class="site-footer">
       <div class="text-center">
@@ -313,9 +310,7 @@
     <!--footer end-->	
 	</section>
 </body>
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
-<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.css" >
+
 
 <style type="text/css">
 	.input-group-text{width:100%;}
