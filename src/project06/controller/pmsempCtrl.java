@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.SendpassMailService;
 import project06.service.pmsempService;
+import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 import project06.vo.pmsempSch;
 
@@ -77,9 +78,21 @@ public class pmsempCtrl {
 	}
 	// PM 팀원 추가
 	@RequestMapping(params="method=insemp")
-	public String ins(pmsemp inse) {
+	public String ins(pmsemp inse, Model d, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+		pmsempSch pmssch = new pmsempSch();
+		
+		inse.setPno(pmsm.getPno());
 		service.insPm(inse);
-		return "forward:/PMSemp.do?method=empList";
+		
+		request.setAttribute("pmsempsch", pmssch);
+		d.addAttribute("elist", service.insList(pmssch));
+		//return "forward:/PMSemp.do?method=empList";
+		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")

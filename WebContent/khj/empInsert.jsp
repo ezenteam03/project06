@@ -40,6 +40,7 @@
   <script type="text/javascript">
 	  $(document).ready(function(){
 			 $("#insBtn").click(function(){
+				 $("#insphone").val("${emp.phone}");
 				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
 				 $("form").submit(); 
 			 });
@@ -48,12 +49,7 @@
 			$("[name=curPage]").val(no);
 			$("form").submit();
 		 }
-	 	
-		 function enoclick(no){
-			 if($("input:radio[id=eno"+no+"]").is(":checked")){
-				 $("input:radio[id=phone"+no+"]").attr("checked",true);
-			 }
-		 }
+	 
 
 
   </script> 
@@ -77,6 +73,7 @@
                 	<span style="float:right; margin-right:10px;">
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
+	                	<input type="hidden" name="phone" id="insphone" value="${emp.phone}" />
                 	</span>
                 </div>
                 <thead>
@@ -93,7 +90,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach var="empl" items="${elist}" varStatus="sts">
+                  <c:forEach var="empl" items="${elist}">
                   <tr>
                     <th>${empl.eno}</th>
                     <td>${empl.name}</td>
@@ -102,10 +99,21 @@
                     <td style="width:200px;">${empl.email}</td>
                     <th>${empl.phone}</th>
                     <th style="width:150px;">${empl.cname}</th>
-                    <th><input type="radio" name="eno" id="eno${sts.index}" onclick="javascript:enoclick(${sts.index})" value="${empl.eno}" />
-                    <input type="radio" name="phone" id="phone${sts.index}" value="${empl.phone}" style="visibility: hidden;" /></th>
+                    <th><input type="radio" name="eno" value="${empl.eno}" id="" /></th>
                   </tr>
-                  </c:forEach> 
+                  </c:forEach>
+                  <c:forEach var="empl" items="${hlist}">
+                  <tr style="display:none;">
+                    <th>${empl.eno}</th>
+                    <td>${empl.name}</td>
+                    <td>${empl.grade}</td>
+                    <th>${empl.dept}</th>
+                    <td style="width:200px;">${empl.email}</td>
+                    <th>${empl.phone}</th>
+                    <th style="width:150px;">${empl.cname}</th>
+                    <th><input type="radio" name="eno" value="${empl.eno}" id="" /></th>
+                  </tr>
+                  </c:forEach>  
                 </tbody>
               </table>
               </form>

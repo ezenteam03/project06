@@ -45,12 +45,12 @@ $(document).ready(function(){
 	
 	--%>
 	$("#goMain").click(function(){
-		$(location).attr("href","${path}/notice.do?method=list");			
+		$(location).attr("href","${path}/meet.do?method=list");			
 	});	
 	
 	$("#uptBtn").click(function(){
 		if(confirm("수정하시겠습니까?")){
-			$("form").attr("action","${path}/notice.do?method=update");
+			$("form").attr("action","${path}/meet.do?method=update");
 			$("form").submit();
 		}
 	});
@@ -60,7 +60,7 @@ $(document).ready(function(){
 	$("#delBtn").click(function(){
 		if(confirm("삭제하시겠습니까?")){
 			var nno = $("input[name=nno]").val();
-			$(location).attr("href","${path}/notice.do?method=delete&nno="+nno);					
+			$(location).attr("href","${path}/meet.do?method=delete&nno="+nno);					
 		}
 	});
 	
