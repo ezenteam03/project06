@@ -152,7 +152,7 @@ $(document).ready(function(){
        
      
         
-
+</section>
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
