@@ -85,23 +85,8 @@ $(document).ready(function(){
 
 <div class="container">
 	<form method="post"  enctype="multipart/form-data" >
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="bg-info text-white input-group-text">글번호</span>
-		</div>
-		<input name="nno" class="form-control" readonly="readonly"
-			value="${notice.nno}"/>	
-		
-	</div>	
-	<div class="input-group mb-3">	
-		
-		
-		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">조회수 </span>
-		</div>
-		<input  class="form-control" readonly="readonly" style="background:white;"
-			 value="${notice.views}" />	
-	</div>		
+	
+	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">제 목</span>
@@ -109,8 +94,24 @@ $(document).ready(function(){
 		<input name="title" class="form-control"
 			value="${notice.title}"  
 			placeholder="제목입력하세요" />	
-		 
-	</div>  	
+	</div>
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend ">
+			<span class="bg-info text-white input-group-text">글번호</span>
+		</div>
+		<input name="nno" class="form-control" readonly="readonly"
+			value="${notice.nno}"/>	
+	</div>	
+	
+	<div class="input-group mb-3">	
+		<div class="input-group-prepend">
+			<span class="bg-info text-white input-group-text">조회수 </span>
+		</div>
+		<input  class="form-control" readonly="readonly" style="background:white;"
+			 value="${notice.views}" />	
+	</div>		
+	 
+	 	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">등록일</span>
