@@ -1,5 +1,6 @@
 SELECT * FROM PMSEMP;
-SELECT * FROM PMSMEMBER;
+SELECT * FROM PMSMEMBER
+ORDER BY mno;
 SELECT pe.ENO, pe.NAME, pe.GRADE, pm.MDIV, pc.CNAME 
 FROM pmsemp pe, pmsmember pm, PMSCODES pc
 WHERE pe.ENO = pm.MNO 
@@ -152,3 +153,16 @@ FROM (
 	)
 WHERE NOT grade = '사원'
 ORDER BY eno ASC;
+
+SELECT * FROM PMSEMP;
+SELECT * FROM PMSMEMBER
+WHERE pno=1003
+ORDER BY mno;
+SELECT * FROM PMSLOG;
+
+--참여인원
+SELECT rownum cnt, e.eno, e.name, e.grade, m.wcon, CASE WHEN l.state = 0 THEN '로그아웃' ELSE '로그인' END AS state
+			FROM PMSEMP e, PMSMEMBER m, PMSLOG l WHERE e.eno=m.mno AND m.mno=l.mno
+				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
+					AND m.pno=1003
+				ORDER BY m.mno	

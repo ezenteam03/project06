@@ -247,16 +247,16 @@
 	<div id="comment">
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text">댓글</span>
+			<span class="bg-info text-white input-group-text">댓글</span>
 		</div>	
 		<textarea  rows="5" style="resize:none; "
 			class="form-control" name="detail"
 			placeholder="내용입력하세요" >${comment.detail}</textarea>	
-		<div class="input-group-append">
-			<button class="input-group-text" id="cmtBtn">입력</button>
-		</div>		 
+			 
 	</div> 
-	
+	<div style="text-align:right;" >
+			<button class="btn bg-warning" id="cmtBtn">입력</button>
+	</div>	
 	<div class="col-md-12 mt">
             <div class="content-panel">
    <table class="table table-hover">

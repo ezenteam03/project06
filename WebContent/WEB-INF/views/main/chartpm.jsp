@@ -239,18 +239,21 @@
 				                return dateFormat(format, point.end);
 				              }
 				        }
-				      },/* {
+				      }, {
 			        title: {
-				          text: '진행도',
+				          text: '상태',
 				        },
 				        labels: {
-				        	formatter: function() {
-				                var point = this.point,
-				                  number = point.completed * 100;
-				                return number + '%';
-				              }
+				          format: '{point.owner}'
 				        }
-				      } */]
+				      },{
+			        title: {
+				          text: '초과일',
+				        },
+				        labels: {
+				          format: '{point.owner}'
+				        }
+				      }]
 			    }
 			  };
 				var cInfo = {
