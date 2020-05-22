@@ -24,7 +24,7 @@ public interface MeetDao {
 	public void deleteFile(int mnno);
 	public Meet getMeet(int mnno);
 	// 파일 다운로드 정보 
-	public ArrayList<String> fnames(int mnno);
+	public String fnames(int mnno);
 	public void uptFileInfo(HashMap hm);
 	public void insFileInfo(HashMap hm);
 	public void uptReadCnt(int mnno);
