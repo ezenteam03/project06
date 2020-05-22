@@ -33,7 +33,7 @@
  	
  	
  	<insert id="insert" parameterType="meet">
-	 	insert into pmsmeeting values(pmsmeeting_seq.nextval,#{topic},#{detail},#{decision},null,0,sysdate,null,sysdate,#{loc},#{people},0,10000017,1001);
+	 	insert into pmsmeeting values(pmsmeeting_seq.nextval,#{topic},#{detail},#{decision},null,0,sysdate,null,sysdate,#{loc},#{people},34,10000017,1001)
  	</insert>
  	
  	

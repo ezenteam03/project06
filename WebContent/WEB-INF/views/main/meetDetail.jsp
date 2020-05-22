@@ -136,10 +136,19 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>
-		<textarea name="detail" rows="10" 
+		<textarea name="detail" rows="5" 
 			class="form-control" 
-			placeholder="내용입력하세요" >${notice.detail}</textarea>		 
+			placeholder="내용입력하세요" >${meet.detail}</textarea>		 
 	</div> 
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="bg-info text-white input-group-text">기타</span>
+		</div>
+		<textarea name="etc" rows="5" 
+			class="form-control" 
+			placeholder="내용입력하세요" >${meet.etc}</textarea>		 
+	</div> 
+
 	
 	<br>
 	<div style="text-align:right;">

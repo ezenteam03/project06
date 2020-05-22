@@ -53,15 +53,15 @@ public class MeetService {
 		
 		return dao.list(sch);
 	}
-	public void insert(Meet ins) {
+	public void insert(Meet insert) {
 		
-		dao.insert(ins);
+		dao.insert(insert);
 		// 파일 업로드 내용..
-		for(MultipartFile report:ins.getReport()) {
+		//for(MultipartFile report:insert.getReport()) {
 			// 물리적 파일 정리
-			upload(report);
+		//	upload(report);
 			
-		}
+		//}
 	}
 	public void update(Meet update) {
 		

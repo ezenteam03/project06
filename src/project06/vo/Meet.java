@@ -47,7 +47,7 @@ public class Meet {
 	
 	// 파일 등록 처리 객체
 	private MultipartFile[] report;
-	private ArrayList<String> filenames;
+	private String filenames;
 	// 파일 로딩 정보 가지고 오기
 	private String[] fnames;
 	
@@ -59,10 +59,10 @@ public class Meet {
 	public void setReport(MultipartFile[] report) {
 		this.report = report;
 	}
-	public ArrayList<String> getFilenames() {
+	public String getFilenames() {
 		return filenames;
 	}
-	public void setFilenames(ArrayList<String> filenames) {
+	public void setFilenames(String filenames) {
 		this.filenames = filenames;
 	}
 	public String[] getFnames() {
@@ -92,7 +92,11 @@ public class Meet {
 	public String getResult() {
 		return decision;
 	}
-	public void setResult(String decision) {
+	
+	public String getDecision() {
+		return decision;
+	}
+	public void setDecision(String decision) {
 		this.decision = decision;
 	}
 	public String getEtc() {

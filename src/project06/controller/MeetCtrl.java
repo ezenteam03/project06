@@ -1,5 +1,7 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,13 +39,28 @@ public class MeetCtrl {
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
 	@RequestMapping(params="method=insert")
-	public String insert(Meet insert) {
-		System.out.println("등록 제목:"+insert.getTopic());
-		System.out.println("파일 로딩:"+
-		insert.getReport()[0].getOriginalFilename());
+	public String insert(HttpServletRequest request) {
+		Meet insert = new Meet();
+		
+		insert.setTopic(request.getParameter("topic"));
+		insert.setDetail(request.getParameter("detail"));
+		insert.setEtc("etc");
+		insert.setDecision("decision");
+		insert.setFilenames(request.getParameter("filenames"));
+		insert.setLoc("서울");
+		insert.setPeople("홍길동 외 1명");
+		
+		//System.out.println("등록 제목:"+insert.getTopic());
+		//System.out.println("파일 로딩:"+request.getParameter("filenames"));
+		//System.out.println("파일 로딩:"+
+		//insert.getReport()[0].getOriginalFilename());
+		
 		service.insert(insert);
 		insert.setTopic("");
 		insert.setDetail("");
+		insert.setEtc("");
+		insert.setDecision("");
+		
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
 	@RequestMapping(params="method=update")
