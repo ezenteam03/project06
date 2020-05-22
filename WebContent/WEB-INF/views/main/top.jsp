@@ -356,13 +356,13 @@ th{text-align:center;}
           </li>
           <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/notice.do?method=list">
-              <i class="fa fa-book"></i>
+              <i class="fa fa-bullhorn"></i>
               <span>공지사항</span>
               </a>
           </li>
           <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/meet.do?method=list">
-              <i class="fa fa-tasks"></i>
+              <i class="fa fa-book"></i>
               <span>회의록</span>
               </a>
           </li>
