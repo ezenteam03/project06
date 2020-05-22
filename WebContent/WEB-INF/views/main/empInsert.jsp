@@ -74,7 +74,6 @@
 	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
 	                	<input type="button" class="sch-btn" value="Search" />
 	                	<input type="hidden" name="phone" id="insphone" value="${emp.phone}" />
-	                	<input type="hidden" name="pno" value="1001" />
                 	</span>
                 </div>
                 <thead>
@@ -91,16 +90,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach var="emp" items="${elist}">
+                  <c:forEach var="empl" items="${elist}">
                   <tr>
-                    <th>${emp.eno}</th>
-                    <td>${emp.name}</td>
-                    <td>${emp.grade}</td>
-                    <th>${emp.dept}</th>
-                    <td style="width:200px;">${emp.email}</td>
-                    <th>${emp.phone}</th>
-                    <th style="width:150px;">${emp.cname}</th>
-                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
+                    <th>${empl.eno}</th>
+                    <td>${empl.name}</td>
+                    <td>${empl.grade}</td>
+                    <th>${empl.dept}</th>
+                    <td style="width:200px;">${empl.email}</td>
+                    <th>${empl.phone}</th>
+                    <th style="width:150px;">${empl.cname}</th>
+                    <th><input type="radio" name="eno" value="${empl.eno}" id="" /></th>
                   </tr>
                   </c:forEach> 
                 </tbody>

@@ -129,7 +129,14 @@ public class pmsempService {
 		public void insPm(pmsemp insertPm) {
 			int isMem = rep.memCheck(insertPm);
 			if(isMem==0) {
+				System.out.println(makePass("1234qwer!"));
 				insertPm.setPass(makePass("1234qwer!"));
+				
+				System.out.println("get eno : "+insertPm.getEno());
+				System.out.println("get phone : "+insertPm.getPhone());
+				System.out.println("get pass : "+insertPm.getPass());
+				System.out.println("get pno : "+insertPm.getPno());
+				
 				rep.insPNum(insertPm);
 			}else{
 				rep.updPNum(insertPm);
