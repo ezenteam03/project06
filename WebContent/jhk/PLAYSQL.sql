@@ -7,7 +7,15 @@ AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
 
 DELETE FROM pmsproject
-WHERE pno = 1027;
+WHERE pno = 102;
+
+SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
+		 pem.name
+		FROM PMSPROJECT pp, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
+		WHERE pem.mno = pp.mno
+		AND pem.mno = 10000010
+		AND pp.pdiv = 11;
 
 SELECT * FROM PMStask;
 SELECT * FROM PMSEMP pe, PMSMEMBER pm;
