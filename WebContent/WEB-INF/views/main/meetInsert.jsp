@@ -84,7 +84,7 @@ $(document).ready(function(){
 		action="${path}/meet.do?method=insert">
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">안 건</span>
+			<span class="bg-success text-white input-group-text">안 건</span>
 		</div>
 		<input name="topic" class="form-control" 
 			value="${meet.topic}" placeholder="안건을 입력하세요" />	

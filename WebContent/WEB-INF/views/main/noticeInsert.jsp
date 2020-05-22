@@ -84,7 +84,7 @@ $(document).ready(function(){
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">제 목</span>
+			<span class="bg-success text-white input-group-text">제 목</span>
 		</div>
 		<input name="title" class="form-control" 
 			value="${notice.title}" placeholder="제목입력하세요" />	
