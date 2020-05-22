@@ -91,10 +91,14 @@ $(document).ready(function(){
     <!--main content start-->
  
      
-        
+       <section id="main-content">
+      <section class="wrapper">
+        <div id="all">
+             
+				
+      <h3 style="margin-left:10%;"><i class="fa fa-book"></i>&ensp;  회의록</h3>
        
-       <h4><i class="fa fa-book"></i>&ensp;  희의록 작성 </h4>
-       <hr>
+                <br><br>
 
 <div class="container">
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
@@ -113,16 +117,18 @@ $(document).ready(function(){
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>
-		<input name="detail" class="form-control" 
-			value="${meet.detail}" placeholder="입력하세요" />	
+		<textarea name="detail" rows="10" 
+			class="form-control" 
+			placeholder="내용을 입력하세요" >${meet.detail}</textarea>
 	</div>
 	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">결 정 사 항</span>
 		</div>
-		<input name="decision" class="form-control" 
-			value="${meet.decision}" placeholder="입력하세요" />	
+		<textarea name="decision" rows="3" 
+			class="form-control" 
+			placeholder="내용을 입력하세요" >${meet.decision}</textarea>
 	</div>
 	
 	<div class="input-group mb-3">
@@ -159,7 +165,7 @@ $(document).ready(function(){
  	
 	</form>
 </div>
-
+</div>
        
        
        
@@ -169,7 +175,7 @@ $(document).ready(function(){
        
      
         
-
+</section>
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
