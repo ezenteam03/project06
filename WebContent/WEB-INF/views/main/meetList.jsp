@@ -112,7 +112,7 @@ function goPage(no){
               <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
-               <h4><i class="fa fa-book"></i>&ensp;  희의록 작성 </h4>
+               <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
        			<hr>
                 <br>
                 <form:form class="form" commandName="msch" method="post" >

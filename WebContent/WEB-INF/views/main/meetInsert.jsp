@@ -10,43 +10,22 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
-  <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-  <style type="text/css">
-	.sch{width:25%;}
-  </style>
- 	<script src="${path}/a00_com/jquery.min.js"></script>
-	<script src="${path}/a00_com/popper.min.js"></script>
-	<script src="${path}/a00_com/bootstrap.min.js"></script>
-	<script src="${path}/a00_com/jquery-ui.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
 
-  <!-- Favicons -->
-  <link href="${path}/Dashio/img/favicon.png" rel="icon">
-  <link href="${path}/Dashio/img/apple-touch-icon.png" rel="apple-touch-icon">
+<style type="text/css">
+	.input-group-text{width:100%;}
+	.input-group-prepend{width:20%;}
+</style>
+<script src="${path}/a00_com/jquery.min.js"></script>
+<script src="${path}/a00_com/popper.min.js"></script>
+<script src="${path}/a00_com/bootstrap.min.js"></script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="${path}/Dashio/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--external css-->
-  <link href="${path}/Dashio/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link href="${path}/Dashio/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="${path}/Dashio/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="${path}/Dashio/lib/advanced-datatable/css/DT_bootstrap.css" />
-  <!-- Custom styles for this template -->
-  <link href="${path}/Dashio/css/style.css" rel="stylesheet">
-  <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <style>
 #all{
