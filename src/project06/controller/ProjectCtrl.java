@@ -61,6 +61,7 @@ public class ProjectCtrl {
 		//프로젝트 추가
 		prservice.proIns(insp);
 		//방금 추가한 프로젝트를 불러오기
+		System.out.println("프로젝트 추가 mno : "+mno);
 		insertedp = prservice.getProjectformno(mno); 
 		
 		inspe.setEno(mno);
