@@ -39,7 +39,7 @@
   ======================================================= -->
 </head>
 <script type="text/javascript">
-function goNoti() {
+function goNot() {
 	$(location).attr("href","${path}/notice.do?method=list");
 }
 function goNoti(num) {
@@ -47,7 +47,7 @@ function goNoti(num) {
 	$("#noti").attr("action","${path}/notice.do?method=detail");
 	$("#noti").submit();
 }
-function goMeet() {
+function goMee() {
 	$(location).attr("href","${path}/meet.do?method=list");
 }
 function goMeet(num) {
@@ -55,7 +55,7 @@ function goMeet(num) {
 	$("#meet").attr("action","${path}/meet.do?method=detail");
 	$("#meet").submit();
 }
-function goIssue() {
+function goIssu() {
 	$(location).attr("href","${path}/risk.do?method=list");
 }
 function goIssue(num) {
@@ -160,7 +160,7 @@ function goIssue(num) {
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
-          	<h4 onclick="goNoti()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
+          	<h4 onclick="goNot()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -173,7 +173,7 @@ function goIssue(num) {
                 </thead>
                 <tbody>
                 <c:forEach var="notice" items="${nlist}">
-                  <tr>
+                  <tr onclick="goNoti(${notice.nno})">
                     <td>${notice.nno }</td>
                     <td>${notice.title }</td>
                     <td>${notice.writer }</td>
@@ -182,7 +182,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
+              <h4 onclick="goMee()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -195,7 +195,7 @@ function goIssue(num) {
                 </thead>
                 <tbody>
                   <c:forEach var="meet" items="${mlist}">
-                  <tr>
+                  <tr onclick="goMeet(${meet.mnno})">
                     <td>${meet.mnno }</td>
                     <td>${meet.topic }</td>
                     <td>${meet.writer }</td>
@@ -204,7 +204,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
+              <h4 onclick="goIssu()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -217,7 +217,7 @@ function goIssue(num) {
                 </thead>
                 <tbody>
                   <c:forEach var="issue" items="${ilist}">
-                  <tr>
+                  <tr onclick="goIssue(${issue.ino})">
                     <td>${issue.ino }</td>
                     <td>${issue.solve==1?"해결완료":"미해결" }</td>
                     <td>${issue.writer }</td>
@@ -226,7 +226,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
+              <h4 onclick="goIssu()"><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
               <hr>
           	<table class="table">
                 <thead>
@@ -239,7 +239,7 @@ function goIssue(num) {
                 </thead>
                 <tbody>
                   <c:forEach var="re" items="${rlist}">
-                  <tr>
+                  <tr onclick="goIssu(${re.ino})">
                     <td>${re.rno }</td>
                     <td>${re.ino }</td>
                     <td>${re.writer }</td>
