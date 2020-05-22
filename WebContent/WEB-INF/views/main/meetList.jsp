@@ -113,30 +113,36 @@ function goPage(no){
 					<input type="hidden" name="curPage"/>
 				</form>
                <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
-       			<hr>
-                <br>
+       			<br>
                 <form:form class="form" commandName="msch" method="post" >
   				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
 				
 				<br>
 				
 				<div class="input-group lb-3">	
-				<div style="float:left; width:40%;"class="input-group-prepend ">
-					<span class="input-group-text "> 총 : ${msch.count} 건</span>
-				</div>
-				
-				<div style="float:right; width:20%;" class="input-group-append">
-				<span class="input-group-text">페이지 크기:</span>
-				<form:select path="pageSize" class="form-control">
-					<form:option value="3">3</form:option >
-					<form:option value="5">5</form:option >
-					<form:option value="10">10</form:option >
-					<form:option value="20">20</form:option >
-					<form:option value="30">30</form:option >
-				</form:select> 
-				</div>
-			</div> 
-			
+		<!--<div style="float:left; width:40%;" class="input-group-prepend ">
+			  <span class="input-group-text "> 총 : ${nsch.count} 건</span>
+		</div>-->
+		
+		<div style="float:left; width:10%; margin-left:1%;" class="input-group-append">
+			<span class="input-group-text">페이지 크기:</span>
+			<form:select path="pageSize" class="form-control">
+				<form:option value="3">3</form:option >
+				<form:option value="5">5</form:option >
+				<form:option value="10">10</form:option >
+				<form:option value="20">20</form:option >
+				<form:option value="30">30</form:option >
+			</form:select> 
+		</div>
+		
+		<div style="float:right;margin-right:1%; " class="input-group-prepend ">
+			<nav class="navbar navbar-expand-sm  navbar-dark">
+  				<form:input class="form-control mr-sm-2 sch" 
+	    			path="topic" placeholder="제목" />
+	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+	    	</nav>
+  		</div>
+	</div>  
 			
 			<hr>
 			
@@ -179,11 +185,7 @@ function goPage(no){
 	</div>   
     <br>
                 
-    <nav style="width:20%;  margin-left:auto; margin-right:auto;" class="navbar navbar-expand-sm  navbar-dark">
-		<form:input class="form-control mr-sm-2 sch" 
-			path="topic" placeholder="제목" />
-		<button class="btn btn-success" type="submit">Search</button>&nbsp;
-	</nav>
+   
     </form:form> 
     
     <!-- c:if 어쩌고-->

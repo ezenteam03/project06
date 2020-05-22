@@ -128,6 +128,7 @@
 			<h2 class="form-login-heading">FIND PASSWORD</h2>
 			
 			<div class="login-wrap">
+				<label>8~20자리,영문,숫자,특수문자 조합해서 만드세요</label><br>
 				<label>새 비밀번호</label>
 				<input type="password" class="form-control" id="pass01" placeholder="새 비밀번호를 입력하세요" autofocus>
 				

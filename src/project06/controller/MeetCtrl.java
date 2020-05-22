@@ -1,5 +1,7 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,22 @@ public class MeetCtrl {
 		d.addAttribute("mlist", service.list(sch));
 		return "WEB-INF\\views\\main\\meetList.jsp";
 	}
+	// 상세페이지
+	@RequestMapping(params="method=detail")
+	public String detail(@RequestParam("mnno") int mnno, Model d) {
+		System.out.println("detail mno"+mnno);
+		d.addAttribute("meet", service.getMeet(mnno));
+		return "WEB-INF\\views\\main\\meetDetail.jsp";
+	}
+	// 수정
+	@RequestMapping(params="method=update")
+	public String update(Meet upt) {
+		service.update(upt);
+		System.out.println("update 실행");
+		return "forward:/meet.do?method=detail";
+	}	
+
+
 	@RequestMapping(params="method=Ajaxlist")
 	public String ajaxlist(MeetSch sch, Model d) {
 		d.addAttribute("mlist", service.list(sch));
@@ -37,31 +55,36 @@ public class MeetCtrl {
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
 	@RequestMapping(params="method=insert")
-	public String insert(Meet insert) {
-		System.out.println("등록 제목:"+insert.getTopic());
-		System.out.println("파일 로딩:"+
-		insert.getReport()[0].getOriginalFilename());
+	public String insert(HttpServletRequest request) {
+		Meet insert = new Meet();
+		
+		insert.setTopic(request.getParameter("topic"));
+		insert.setDetail(request.getParameter("detail"));
+		insert.setEtc(request.getParameter("etc"));
+		insert.setDecision(request.getParameter("decision"));
+		insert.setFilenames(request.getParameter("filenames"));
+		insert.setLoc(request.getParameter("loc"));
+		insert.setPeople(request.getParameter("people"));
+		
+		//System.out.println("등록 제목:"+insert.getTopic());
+		//System.out.println("파일 로딩:"+request.getParameter("filenames"));
+		//System.out.println("파일 로딩:"+
+		//insert.getReport()[0].getOriginalFilename());
+		
 		service.insert(insert);
 		insert.setTopic("");
 		insert.setDetail("");
+		insert.setEtc("");
+		insert.setDecision("");
+		
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
-	@RequestMapping(params="method=update")
-	public String update(Meet upt) {
-		service.update(upt);
-		return "forward:/Meet.do?method=detail";
-	}	
 	@RequestMapping(params="method=delete")
 	public String delete(@RequestParam("mnno") int mnno) {
 		service.deleteMeet(mnno);
 		return "redirect:/Meet.do?method=list";
 	}
-	
-	@RequestMapping(params="method=detail")
-	public String detail(@RequestParam("mnno") int mnno, Model d) {
-		d.addAttribute("meet", service.getMeet(mnno));
-		return "WEB-INF\\views\\main\\meetDetail.jsp";
-	}
+
 	// 다운로드 처리.
 	@RequestMapping(params="method=download")
 	public String download(@RequestParam("fname") String fname, 

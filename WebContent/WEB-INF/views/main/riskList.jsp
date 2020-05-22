@@ -75,7 +75,6 @@
 </script>
 <style>
 .jumbotron{background-color:#22D6B2; }
-.pagination{margin-left:1%;float:left; }
 #regBtn{margin: 20px; }
 .Rtable{margin-top: 20%}
 /*#F3969A*/
@@ -168,20 +167,21 @@
       </c:forEach>
     </tbody>
   </table>  
-
-<!-- 페이징 -->
 	
-	 <ul class="pagination" >
-	  <li class="page-item"><a class="page-link"href="javascript:goPage(${rsch.startBlock-1});">&laquo;</a></li>
-	  <c:forEach var="cnt" begin="${rsch.startBlock }" end="${rsch.endBlock}">
-	  <li class="page-item ${rsch.curPage==cnt?'active':''}">
-	  	<a class="page-link" href="javascript:goPage(${cnt })">${cnt }</a></li>
-	  </c:forEach>
-	  <li class="page-item"><a class="page-link" href="javascript:goPage(${(rsch.endBlock==rsch.pageCount)?
-							rsch.endBlock:rsch.endBlock+1});">&raquo;</a></li>
-	</ul>
+<!-- 페이징 -->
+	 <div style="text-align:center; margin-left:auto; margin-right:auto; ">  
+		 <ul class="pagination justify-content-center" >
+		  	<li class="page-item"><a class="page-link"href="javascript:goPage(${rsch.startBlock-1});">&laquo;</a></li>
+		  <c:forEach var="cnt" begin="${rsch.startBlock }" end="${rsch.endBlock}">
+			  <li class="page-item ${rsch.curPage==cnt?'active':''}">
+			  	<a class="page-link" href="javascript:goPage(${cnt })">${cnt }</a></li>
+		  </c:forEach>
+		  <li class="page-item"><a class="page-link" href="javascript:goPage(${(rsch.endBlock==rsch.pageCount)?
+								rsch.endBlock:rsch.endBlock+1});">&raquo;</a></li>
+		</ul>
+	</div>
 	<div align="right">
-    <button  class="btn btn-info" id="regBtn" type="button">작성</button>
+   	 <button  class="btn btn-theme" id="regBtn" type="button"><i class="fa fa-check"></i>글쓰기</button>
 	</div>
 
   </form:form>

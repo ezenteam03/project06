@@ -33,7 +33,7 @@
  	
  	
  	<insert id="insert" parameterType="meet">
-	 	insert into pmsmeeting values(pmsmeeting_seq.nextval,#{topic},#{detail},#{decision},null,0,sysdate,null,sysdate,#{loc},#{people},0,10000017,1001);
+	 	insert into pmsmeeting values(pmsmeeting_seq.nextval,#{topic},#{detail},#{decision},#{etc},0,sysdate,null,sysdate,#{loc},#{people},34,10000017,1001)
  	</insert>
  	
  	
@@ -52,14 +52,8 @@
  	
  	<update id="updateMeet" parameterType="meet">
 		UPDATE pmsmeeting
-		   SET topic = #{topic},
-		   	   detail = #{detail},
-		   	   decision = #{decision},
-		   	   etc = #{etc},
-		   	   a.mno=m.eno = #{a.mno=m.eno},
-		   	   chdate = sysdate
-		   	 
-		 WHERE mnno = #{mnno}
+		   SET topic = #{topic}
+		   	   WHERE mnno = #{mnno}
  	</update> 
 
   	<delete id="deleteMeet" parameterType="int">
@@ -68,7 +62,7 @@
  	</delete> 	
 
  	
-	<!-- 파일 업로드	 -->
+	<!-- 파일 업로드	a.mno=m.eno = #{a.mno=m.eno} -->
 	<insert id="insertRepo" parameterType="String"> 
  		insert into PMSBFILE values(pmsbfile_seq.nextval,null,pmsissue_seq.currval, 
  			#{fname}, sysdate)

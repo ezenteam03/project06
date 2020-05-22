@@ -39,7 +39,7 @@
   ======================================================= -->
 </head>
 <script type="text/javascript">
-function goNoti() {
+function goNot() {
 	$(location).attr("href","${path}/notice.do?method=list");
 }
 function goNoti(num) {
@@ -47,7 +47,7 @@ function goNoti(num) {
 	$("#noti").attr("action","${path}/notice.do?method=detail");
 	$("#noti").submit();
 }
-function goMeet() {
+function goMee() {
 	$(location).attr("href","${path}/meet.do?method=list");
 }
 function goMeet(num) {
@@ -55,7 +55,7 @@ function goMeet(num) {
 	$("#meet").attr("action","${path}/meet.do?method=detail");
 	$("#meet").submit();
 }
-function goIssue() {
+function goIssu() {
 	$(location).attr("href","${path}/risk.do?method=list");
 }
 function goIssue(num) {
@@ -159,7 +159,7 @@ function goIssue(num) {
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
-          	<h4 onclick="goNoti()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
+          	<h4 onclick="goNot()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
               <form method="post" id="noti"><input type="hidden" name="nno"/></form>
           	<table class="table">
@@ -182,7 +182,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
+              <h4 onclick="goMee()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
               <form method="post" id="meet"><input type="hidden" name="mnno"/></form>
           	<table class="table">
@@ -205,7 +205,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
+              <h4 onclick="goIssu()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
               <form method="post" id="issue"><input type="hidden" name="ino"/></form>
           	<table class="table">
@@ -228,7 +228,7 @@ function goIssue(num) {
                 </c:forEach>
                 </tbody>
               </table><br><br><br>
-              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
+              <h4 onclick="goIssu()"><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
               <hr>
           	<table class="table">
                 <thead>

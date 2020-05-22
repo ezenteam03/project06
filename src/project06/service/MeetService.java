@@ -53,21 +53,21 @@ public class MeetService {
 		
 		return dao.list(sch);
 	}
-	public void insert(Meet ins) {
+	public void insert(Meet insert) {
 		
-		dao.insert(ins);
+		dao.insert(insert);
 		// 파일 업로드 내용..
-		for(MultipartFile report:ins.getReport()) {
+		//for(MultipartFile report:insert.getReport()) {
 			// 물리적 파일 정리
-			upload(report);
+		//	upload(report);
 			
-		}
+		//}
 	}
 	public void update(Meet update) {
 		
 		dao.updateMeet(update);
 		// 파일 수정 정보 처리
-		upload2(update);
+		//upload2(update);
 	}	
 	public void deleteMeet(int mnno) {
 		dao.deleteMeet(mnno);
@@ -161,11 +161,11 @@ public class MeetService {
 	public Meet getMeet(int mnno) {
 		// 조회수 카운트업..
 		dao.uptReadCnt(mnno);
-		System.out.println("파일의 갯수:"+dao.fnames(mnno).size());
+		System.out.println("파일의 갯수:"+dao.fnames(mnno));
 		Meet d = dao.getMeet(mnno);
 		System.out.println(d.getWriter());
 		d.setFilenames(dao.fnames(mnno));
-		System.out.println(d.getFilenames().size());
+		System.out.println(d.getFilenames());
 		return d;
 	}
 	
