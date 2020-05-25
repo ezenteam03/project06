@@ -69,7 +69,10 @@ public class MeetService {
 		// 파일 수정 정보 처리
 		//upload2(update);
 	}	
-	
+	public void deleteMeet(int mnno) {
+		dao.deleteMeet(mnno);
+		dao.deleteFile(mnno);
+	}
 	
 	
 	@Value("${upload}")

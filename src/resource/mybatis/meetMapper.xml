@@ -52,17 +52,14 @@
  	
  	<update id="updateMeet" parameterType="meet">
 		UPDATE pmsmeeting
-		   SET topic = #{topic},
-		   	   people = #{people},
-		   	   loc = #{loc},
-		   	   detail = #{detail},
-		   	   decision = #{decision},
-		   	   etc = #{etc},
-		   	   chdate = sysdate
+		   SET topic = #{topic}
 		   	   WHERE mnno = #{mnno}
  	</update> 
 
-  		
+  	<delete id="deleteMeet" parameterType="int">
+		DELETE FROM pmsmeeting
+		 WHERE mnno = #{mnno}
+ 	</delete> 	
 
  	
 	<!-- 파일 업로드	a.mno=m.eno = #{a.mno=m.eno} -->

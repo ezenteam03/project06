@@ -76,8 +76,6 @@ public class MeetCtrl {
 		insert.setDetail("");
 		insert.setEtc("");
 		insert.setDecision("");
-	
-		
 		
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
