@@ -20,6 +20,7 @@
 	<script src="${path}/a00_com/popper.min.js"></script>
 	<script src="${path}/a00_com/bootstrap.min.js"></script>
 	<script src="${path}/a00_com/jquery-ui.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -61,6 +62,7 @@
 
 </style>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	<%-- 
 	
@@ -72,6 +74,13 @@ $(document).ready(function(){
 			$(location).attr("href","${path}/notice.do?method=insForm");
 		//}
 	});
+	
+	var noti="${noti};"
+	if(noti==1){
+		$("regBtn").css('display','none');
+	}
+	
+	
 	$("#pageSize").change(function(){
 		$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
 							// 나오게 처리..
@@ -181,7 +190,8 @@ function goPage(no){
              
              
         <!-- c:if 어쩌고-->
-          <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+          <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!=5"
+          style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br>
             </div>
            
@@ -296,5 +306,11 @@ function goPage(no){
     });
   </script>
 </body>
+<script>
+var vm = new Vue({
+	el:"#reg",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 
 </html>
