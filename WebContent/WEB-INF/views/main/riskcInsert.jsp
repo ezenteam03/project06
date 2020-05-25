@@ -119,7 +119,7 @@
 </div>
 </div>	
 </div>
-</div></section></section></section>
+</div></section></section>
 
   <!--script for this page-->
   <script type="text/javascript">

@@ -237,7 +237,7 @@
 	<form method="post" enctype="multipart/form-data" id="cform"
 	 	action="${path}/risk.do?method=cinsert">	
 	     <input name="refno" type="hidden"
-			 value="0" />	 	
+			 value="${empty comment.refno?0:comment.refno}" />	 	
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 		  	
 	  	 <input name="mno" type="hidden"
@@ -274,7 +274,7 @@
         
      
         <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>
-        <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno},${risk.ino})"
+        <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno})"
 			value="댓글"  />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
@@ -330,11 +330,11 @@ function cpopup(rno) {
 function coment(rno){
 	cpopup(rno);
 };
-function ccpopup(rno,ino) { 
-	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=500, left=300, top=100");
+function ccpopup(rno) { 
+	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno, "2", "width=780, height=500, left=300, top=100");
 }
-function ccoment(rno,ino){
-	ccpopup(rno,ino);
+function ccoment(rno){
+	ccpopup(rno);
 };
 
 

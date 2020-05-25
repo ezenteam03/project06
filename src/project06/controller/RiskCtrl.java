@@ -140,9 +140,7 @@ public class RiskCtrl {
 		}	
 		// 대댓창 열기
 		@RequestMapping(params="method=cinsForm")
-		public String cinsertForm(Comment c) {
-			System.out.println(c.getRno());
-			c.setRefno(c.getRno());
+		public String cinsertForm() {
 			return "WEB-INF\\views\\main\\commentIns.jsp";
 		}
 		// 대댓글입력
