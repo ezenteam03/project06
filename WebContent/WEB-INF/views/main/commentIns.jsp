@@ -21,15 +21,25 @@
 		<%-- 
 		
 		--%>
+	
+		var isD= "${param.detail}";
+		if(isD!=""){
+			alert("등록이 되었습니다");
+			opener.parent.location.reload();
+			window.close();
+			
+		}
+	});
+		
 </script>
 </head>
 <body>
 <form method="post" enctype="multipart/form-data" id="cform"
 	 	action="${path}/risk.do?method=ccinsert">	
 	     <input name="refno" type="hidden"
-			 value="${empty comment.refno?0:comment.refno}" />	 	
+			 value="${comment.refno}" />	 	
 	     <input name="ino" type="hidden"
-			 value="${risk.ino}" />	 		  	
+			 value="${param.ino}" />	 		  	
 	  	 <input name="mno" type="hidden"
 			 value="${mno}" />		  		
 	<!-- 댓글 -->
@@ -40,7 +50,7 @@
 		</div>	
 		<textarea  rows="5" style="resize:none; "
 			class="form-control" name="detail"
-			placeholder="내용입력하세요${comment.ino}" >${comment.detail}</textarea>	
+			placeholder="내용입력하세요" >${comment.detail}</textarea>	
 			 
 	</div> 
 	<div style="text-align:right;" >
