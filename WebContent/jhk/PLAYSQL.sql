@@ -15,7 +15,7 @@ SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/m
 		FROM PMSPROJECT pp, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm WHERE pe.eno = pm.mno) pem
 		WHERE pem.mno = pp.mno
-		AND pem.mno = 10000010
+		AND pem.mno = 10000005
 		AND pp.pdiv = 11;
 
 SELECT * FROM PMStask;
@@ -68,19 +68,57 @@ AND pt.mno = pem.mno;
  */
 SELECT * FROM PMSEMP pe, PMSMEMBER pm
 WHERE pe.eno = pm.mno;
-SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+
+SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL)) || pt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
 WHERE pe.eno = pm.mno) pem
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
+AND pp.pno = 1001
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
---AND pp.pno = 1002
 --AND pt.tname LIKE '%'||'웹'||'%'
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
+--테스트용
+SELECT * FROM pmstask
+WHERE pno = 1001
+CONNECT BY PRIOR tno = refno
+START WITH refno = 0;
+SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
+FROM
+  (SELECT rank() over (partition BY refno ORDER BY tno) r,
+                tno, tname, refno
+  FROM pmstask)
+   CONNECT BY PRIOR tno = refno 
+  START WITH refno =0;
+ ---- 프로젝트 최종 완성본??
+ SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+FROM PMSPROJECT pp, PMSTASK pt, 
+(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+WHERE pe.eno = pm.mno) pem,
+(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
+FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
+tno, tname, refno FROM pmstask)
+   CONNECT BY PRIOR tno = refno 
+  START WITH refno =0) prt
+WHERE pp.pno = pt.pno
+AND pt.mno = pem.mno
+AND pt.tno = prt.tno
+AND pp.pno = 1001
+--AND pt.refno <= 0
+--AND pem.eno = 10000015
+--AND pt.tname LIKE '%'||'웹'||'%'
+START WITH pt.refno=0
+CONNECT BY PRIOR pt.tno = pt.refno;
+ ----
+ SELECT rank() over (partition BY refno ORDER BY tno) r,
+                tno, tname, refno
+  FROM pmstask; 
+
 --팀원 작업 내역
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
@@ -165,4 +203,4 @@ SELECT rownum cnt, e.eno, e.name, e.grade, m.wcon, CASE WHEN l.state = 0 THEN '�
 			FROM PMSEMP e, PMSMEMBER m, PMSLOG l WHERE e.eno=m.mno AND m.mno=l.mno
 				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
 					AND m.pno=1003
-				ORDER BY m.mno	
+				ORDER BY m.mno

@@ -3,6 +3,7 @@ package project06.vo;
 import java.util.Date;
 
 public class Chart {
+	private int level; //레벨
 	private String tname; //업무명
 	private int tno;	//업무번호
 	private int refno;	//부모업무번호
@@ -14,6 +15,13 @@ public class Chart {
 	private int edate;	//업무종료일-프로젝트시작일
 	private double prog;	//진행도/100
 	private String name;	//담당자 이름
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public String getTname() {
 		return tname;
 	}
