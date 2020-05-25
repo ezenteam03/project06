@@ -17,9 +17,4 @@ public interface DashTeamDao {
 	public DashProject getProject(int pno);
 	public ArrayList<DashTask> plist(int mno);
 	public ArrayList<DashTeam> teamlist(int pno);
-	public ArrayList<Integer> ilist();
-	public int t1(int pno);
-	public int t2(int pno);
-	public int t3(int pno);
-	public int t4(int pno);
 }

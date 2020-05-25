@@ -20,7 +20,6 @@
 		 <typeAlias alias="dashTask" type="project06.vo.DashTask"/> 
 		 <typeAlias alias="dashTeam" type="project06.vo.DashTeam"/> 
 		 <typeAlias alias="dashPro" type="project06.vo.DashProject"/> 
-		 <typeAlias alias="dashCeo" type="project06.vo.DashCeo"/> 
 		 
 		 <!-- Jin -->
 		 <typeAlias alias="pmsMember" type="project06.vo.PmsMember"/> 

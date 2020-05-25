@@ -46,8 +46,11 @@ public class DashTeamCtrl {
 		} else if(emp.getMdiv()==7) {
 			return "WEB-INF\\views\\main\\top.jsp";
 		} else {
-			d.addAttribute("clist", service.clist());
-			return "WEB-INF\\views\\main\\dashceo.jsp";
+			d.addAttribute("nlist", service.nlist(emp.getPno()));
+			d.addAttribute("mlist", service.mlist(emp.getPno()));
+			d.addAttribute("ilist", service.ilist(emp.getPno()));
+			d.addAttribute("rlist", service.rlist(emp.getPno()));
+			return "WEB-INF\\views\\main\\index.jsp";
 		}	
 	}
 	

@@ -29,6 +29,8 @@
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
+  <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -36,28 +38,17 @@
     License: https://templatemag.com/license/
   ======================================================= -->
   <style type="text/css">
-  .chart {float: left; width: 30%; height: 230px; text-align: center;}
+  .chart {float: left; width: 33.33%; height: 230px; text-align: center;}
 .chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
   </style>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/path/to/jquery.easy-pie-chart.js"></script>
 <script>
-$(function() {
-	$('.chart').easyPieChart({
-		barColor: '#f16529', //차트가 그려질 색 
-    	trackColor: '#ccc', // 차트가 그려지는 트랙의 기본 배경색(chart1 의 회색부분) 
-    	scaleColor: '#fff', // 차트 테두리에 그려지는 기준선 (chart2 의 테두리 선) 
-    	lineCap: 'butt', // 차트 선의 모양 chart1 butt / chart2 round / chart3 square 
-    	lineWidth: 30, // 차트 선의 두께 
-    	size: 200, // 차트크기
-    	animate: 1000, // 그려지는 시간 
-    	onStart: $.noop, 
-    	onStop: $.noop
-	});
-	
-});
+    $(function() {
+        $('.chart').easyPieChart({
+            //your options goes here
+        });
+    });
 </script>
 </head>
 <script type="text/javascript">
@@ -86,45 +77,86 @@ function goIssue() {
             <div class="border-head" style="margin-top:20px;">
               <h3>프로젝트 현황</h3>
             </div>
-            <c:forEach var="ceo" items="${clist}">
+            
             <div class="custom-bar-chart" style="height:180px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>${ceo.pro.pname}</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${ceo.pro.pm }</h4></div>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
             	<br>            		
             	<br>
             	<br>            		
-              <c:choose>
-					<c:when test="${ceo.pro.grade==0 }">
-						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
-			                  <span class="sr-only">40% Complete (success)</span>
-			                </div>
-			              </div>
-					</c:when>
-					<c:when test="${ceo.pro.grade==1 }">
-						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
-			                  <span class="sr-only">40% Complete (success)</span>
-			                </div>
-			              </div>
-					</c:when>
-					<c:otherwise>
-						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
-			                  <span class="sr-only">40% Complete (success)</span>
-			                </div>
-			              </div>
-					</c:otherwise>
-				</c:choose>       
-            	<div width="49%" style="float:left;margin-left:50px"><h4>${ceo.pro.prog} %</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${ceo.pro.edate}"/> 마감</h4></div>
+              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                  <span class="sr-only">40% Complete (success)</span>
+                </div>
+              </div>
+            	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
             </div>	
-            <div class="chart chart1" data-percent="${ceo.cp }" style="height:230px;width:30%;float:left;margin-left:50px;"><span class="title">완료업무수 : ${ceo.ccnt }</span><br><span class="title">${ceo.cp } %</span></div>	
-            <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
-            <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
-            <div style="clear:both; height:0; overflow:hidden;"></div>
-            </c:forEach>
-                        
+            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%</div>
+            <!-- <div id="chartContainer1" style="height: 370px; width: 30%;float:left;margin-left:50px;"></div>
+            <script type="text/javascript">
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+        		animationEnabled: true,
+        		title: {
+        			text: "총 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 79.45, label: "잔여업무"},
+        				{y: 20.55, label: "완료"}
+        			]
+        		}]
+        	});
+        	chart1.render();
+            </script>
+            <div id="chartContainer2" style="height: 370px; width: 30%;float:left;"></div>
+            <script type="text/javascript">
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+        		animationEnabled: true,
+        		title: {
+        			text: "미완료 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 79.45, label: "착수전"},
+        				{y: 20.55, label: "진행중"}
+        			]
+        		}]
+        	});
+        	chart2.render();
+            </script>
+            <div id="chartContainer3" style="height: 370px; width: 30%;float:left;margin-right:50px;"></div>
+            <script type="text/javascript">
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+        		animationEnabled: true,
+        		title: {
+        			text: "총 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 59.45, label: "기한내 완수"},
+        				{y: 20.55, label: "기한초과"},
+        				{y: 20.00, label: "기한미도달"}
+        			]
+        		}]
+        	});
+        	chart3.render();
+            </script>
+             -->
+            
+            
             <!--custom chart end-->
             
           </div>
@@ -254,7 +286,7 @@ function goIssue() {
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  
+  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
 
   <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
