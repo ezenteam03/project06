@@ -75,4 +75,7 @@ public interface pmsempRep {
 	// Jin
 	public int pmsEmpPassCounter(pmsemp emp);
 	public int pmsEmpPass(pmsemp emp);
+	
+	// 사원만보기
+	public ArrayList<pmsemp> pmsElist(pmsemp emp);
 }

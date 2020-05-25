@@ -24,7 +24,9 @@
 	.input-group-prepend{width:20%;}
 	.tdiv-text{text-align:center; font-size:20px; width:120px; background:white; float:left;}
 	.div-Btn{height:40px; margin-left:10px;}
-
+#all{
+	padding:2%;
+}
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -212,6 +214,9 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
+	
+	<section id="main-content">
+      <section class="wrapper">
 
 <div class="jumbotron text-left" style="margin-left:200px;">
 <div style="float:left;">
@@ -228,8 +233,9 @@
 		    	</ul>
 	    	</div>
 </div>
-
+<div id="all">
 <div class="container">
+
 	<form method="post"  enctype="multipart/form-data" >
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
@@ -242,12 +248,21 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">담 당 자</span>
 		</div>
-		<input name="writer" class="form-control" readonly style="background:white;"
+		 
+		<input name="writer" class="form-control" readonly style="background:white; width:500px;"
 			value="${task.mno}" 
 			placeholder="" />	
-		
+			<c:if test="${mdiv == 4 || mdiv == 6}">
+			<select class="sel-grade" name="mno" style="padding:10px; font-size:0.9em; margin-left:15px; outline:none;">
+					<option value="${task.mno}" selected></option>     
+	                   <c:forEach var="pm" items="${pmsElist}">   		      		
+							<option value="${pm.eno}">${pm.name} ${pm.grade}</option>               		      		
+	                   </c:forEach>
+	        </select>
+            
+		</c:if>
 	</div>	
-	<div class="input-group mb-3">	
+	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="input-group-text">상위업무번호</span>
 		</div>
@@ -410,6 +425,8 @@
 	</div>
 	</form>
 </div>	
+</div>
+</section></section>
 </section>
 
 </body>

@@ -113,6 +113,9 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
+	
+	<section id="main-content">
+      <section class="wrapper">
 
 <div class="jumbotron text-left" style="margin-left:200px;">
   <h2><i class="fa fa-angle-right"></i> 업무등록 </h2>
@@ -143,44 +146,42 @@
 		<input name="tname" class="form-control" 
 			value="" placeholder="입력하세요" />	
 	</div>
-	
+
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">시작일</span>
 		</div>
-		<div class="col-md-3 col-xs-11" style="float:left;">
-				  <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="" class="input-append date dpYears">
-					 <input type="text" name="sdate" readonly size="16" class="form-control" style="background:white;">
+				  <div style="width:350px;"data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="" class="input-append date dpYears">
+				
+					 <input type="text" name="sdate" readonly size="16" class="form-control" style="background:white; width:350px;">
 					<span class="input-group-btn add-on">
 					 <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 				 </span>
+			
 			</div>
-		</div>
+
 			<!-- value="<fmt:formatDate type='both' value='${board.credte }'/>"/> -->
-			<br><br><br>
+
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">마감일</span>
 		</div>
-		<div class="col-md-3 col-xs-11">
-				  <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="" class="input-append date dpYears">
-					 <input type="text" name="edate" readonly size="16" class="form-control" style="background:white;">
+
+				  <div style="width:350px;" data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="" class="input-append date dpYears">
+					 <input type="text" name="edate" readonly size="16" class="form-control" style="background:white;
+					 width:350px; ">
 					<span class="input-group-btn add-on">
 					 <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
 				 </span>
 			</div>
-		</div>
-			
-
-					
-					  
-				
-		
-		
+		<br>
 	</div>		
-	<div class="input-group-prepend" style="width:555px;">
+	<div class="input-group-prepend" style="width:363px;">
 			<span class="bg-info text-white input-group-text">담당자</span>
-			<input class="form-control" style="width:845px;" name="mno"
-			placeholder="" value=""/>	
+			<select class="sel-grade" name="mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
+                    <c:forEach var="pm" items="${pmsElist}">
+						<option value="${pm.eno}">${pm.name} ${pm.grade}</option>               		
+                    </c:forEach>
+            </select>
 	</div>
 		<br>
 		
@@ -215,6 +216,7 @@
  	
 	</form>
 </div>
+</section></section>
 
 </section>
   <!-- js placed at the end of the document so the pages load faster -->

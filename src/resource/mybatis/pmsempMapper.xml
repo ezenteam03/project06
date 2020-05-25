@@ -74,33 +74,6 @@
 		from pmsmember 
 		where mno=#{eno}
 	</select>
-	<!-- pms에 등록안된 경우 CEO로등록 -->
-	<insert id="insertCeo1" parameterType="pmsemp">
-		 insert into pmsmember 
-		 	values(#{eno}, #{pass}, 2, #{phone}, null)
-	</insert>
- 	<!-- 기존 CEO 권한변경 -->
-	<update id="updatepmsCeo2" parameterType="pmsemp">
-		UPDATE pmsmember
-		SET mdiv=9
-		WHERE mdiv=2
-	</update>
-	<update id="updatepmsCeo3" parameterType="pmsemp">
-		UPDATE pmsemp
-		SET grade='사원'
-		WHERE grade='대표이사'
-	</update>
- 	<!-- CEO설정 -->
-	<update id="updatepmsCeo1" parameterType="pmsemp">
-		UPDATE pmsmember
-		SET mdiv=2
-		WHERE mno=#{eno}
-	</update>
-	<update id="updatepmsCeo4" parameterType="pmsemp">
-		UPDATE pmsemp
-		SET grade='대표이사'
-		WHERE eno=#{eno}
-	</update>
 	<!-- pms에 등록안된 경우 CTO로등록 -->
 	<insert id="insertMem1" parameterType="pmsemp">
 		 insert into pmsmember 
@@ -277,6 +250,15 @@
 	<select id="pmsEmpPass" resultMap="pmsEmpPassResult" parameterType="int">
 		SELECT eno FROM pmsemp WHERE eno=#{eno} AND name=#{name} AND email=#{email}
 	</select>
+	
+	
+<!-- 팀원만 보기 -->
+	<select id="pmsElist" resultMap="pmsempResult" parameterType="pmsemp">
+	 	SELECT pe.eno, pm.MDIV, pe.name, pe.GRADE
+		FROM pmsmember pm, pmsemp pe
+		WHERE pm.MDIV = 5
+		AND pe.eno = pm.mNO
+ 	</select>
 	
 	
 	

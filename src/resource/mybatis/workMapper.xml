@@ -83,13 +83,14 @@
 		 WHERE tno = #{tno}
  	</delete>
  	
- 	<!-- 제목, 내용수정  / 결재, 반려
+ 	<!-- 제목, 내용, 담당자 수정  / 결재, 반려
  	pstart = #{pstart},
 	pend = #{pend}-->
  	<update id="updateTask" parameterType="task">
 		UPDATE PMSTASK
 		   SET tname = #{tname},
-		   	   detail = #{detail}   
+		   	   detail = #{detail},
+		   	   mno = #{mno}   
 		 WHERE tno = #{tno}
  	</update> 
  	<update id="upDetail" parameterType="task">

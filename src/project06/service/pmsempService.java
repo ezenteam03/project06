@@ -269,4 +269,8 @@ public class pmsempService {
 				return result;
 			}
 		}
+		
+		public ArrayList<pmsemp> pmsElist(pmsemp emp) {
+			return rep.pmsElist(emp);
+		}
 }

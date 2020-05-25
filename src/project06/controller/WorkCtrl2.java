@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.WorkService2;
+import project06.service.pmsempService;
 import project06.vo.PmsMember;
 import project06.vo.Task;
 import project06.vo.TaskSch;
+import project06.vo.pmsemp;
 
 @Controller
 @RequestMapping("/task.do")
@@ -23,6 +25,9 @@ public class WorkCtrl2 {
  
 		@Autowired(required=false)
 		private WorkService2 service;
+		
+		@Autowired(required=false)
+		private pmsempService peservice;
 		
 		@RequestMapping(params="method=list")
 		public String list(@ModelAttribute("tsch") TaskSch sch, Model d,HttpServletRequest request) {
@@ -127,13 +132,26 @@ public class WorkCtrl2 {
 		}
 		
 		@RequestMapping(params="method=insForm")
-		public String insertForm() {
+		public String insertForm(Model d, HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			pmsemp emp =(pmsemp)session.getAttribute("emp");
+			
+			d.addAttribute("pmsElist",peservice.pmsElist(emp));
+			
+			
+			
 			return "WEB-INF\\views\\main\\workInsert2.jsp";
 		}
 		
 		@RequestMapping(params="method=insert")
 		public String insert(Task ins, Model d, HttpServletRequest request) {
-
+			HttpSession session = request.getSession();
+			pmsemp emp =(pmsemp)session.getAttribute("emp");
+			
+			//d.addAttribute("pmsElist",peservice.pmsElist(emp));
+			//d.addAttribute("pName",emp.getName());
+			
+			
 			service.insert(ins);
 			return "redirect:/task.do?method=list";
 		}
@@ -148,8 +166,15 @@ public class WorkCtrl2 {
 			HttpSession session = request.getSession();
 
 			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+
+			pmsemp pe =(pmsemp)session.getAttribute("emp");
 			
+			d.addAttribute("pmsElist",peservice.pmsElist(pe));
+			
+			d.addAttribute("grade", pe.getGrade());
+			d.addAttribute("mname", pe.getName());
 			d.addAttribute("mno", emp.getMno());
+			
 			d.addAttribute("mdiv", emp.getMdiv());
 
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
