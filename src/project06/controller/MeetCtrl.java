@@ -76,14 +76,12 @@ public class MeetCtrl {
 		insert.setDetail("");
 		insert.setEtc("");
 		insert.setDecision("");
+	
+		
 		
 		return "WEB-INF\\views\\main\\meetInsert.jsp";
 	}
-	@RequestMapping(params="method=delete")
-	public String delete(@RequestParam("mnno") int mnno) {
-		service.deleteMeet(mnno);
-		return "redirect:/Meet.do?method=list";
-	}
+	
 
 	// 다운로드 처리.
 	@RequestMapping(params="method=download")

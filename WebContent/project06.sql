@@ -1233,8 +1233,9 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(�
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(공연)(웹)','- 공연 요청 리스트(50%) &#10;- 공연 요청 - 코멘트 작성(50%) &#10;',null,'2020/05/27','2020/05/29', 0,NULL,NULL,21,10000028);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(후기)(웹)','- 후기 모음 게시판(50%) &#10;- 후기 클릭 후 코멘트 작성(50%) &#10;',null,'2020/05/29','2020/06/01', 0,NULL,NULL,21,10000028);
 
-SELECT * FROM pmstask;
-
+select count(*) from pmstask where pno=1001 and tdiv=24 and pdate-edate>0;
+SELECT * FROM PMStask;
+UPDATE pmsmember SET pno=NULL WHERE mno=10000010;
 select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng
  		from pmstask p, pmscodes c
  		where p.tdiv=c.cno
@@ -1248,4 +1249,8 @@ select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-m
  		order by p.tno ASC;
 select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
  		from pmsproject p, pmsemp e
- 		where pno=1001;	
+ 		where pno=1001 AND p.mno=e.eno;	
+select e.eno,e.name
+ 		from pmsemp e,pmsmember m, pmsproject p
+ 		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno; 		
+ 

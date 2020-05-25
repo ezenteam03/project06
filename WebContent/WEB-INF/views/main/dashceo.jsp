@@ -29,14 +29,36 @@
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
-  <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
-
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style type="text/css">
+  .chart {float: left; width: 30%; height: 230px; text-align: center;}
+.chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
+  </style>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
+
+<script>
+$(function() {
+	$('.chart').easyPieChart({
+		barColor: '#f16529', //차트가 그려질 색 
+    	trackColor: '#ccc', // 차트가 그려지는 트랙의 기본 배경색(chart1 의 회색부분) 
+    	scaleColor: '#fff', // 차트 테두리에 그려지는 기준선 (chart2 의 테두리 선) 
+    	lineCap: 'butt', // 차트 선의 모양 chart1 butt / chart2 round / chart3 square 
+    	lineWidth: 30, // 차트 선의 두께 
+    	size: 200, // 차트크기
+    	animate: 1000, // 그려지는 시간 
+    	onStart: $.noop, 
+    	onStop: $.noop
+	});
+	
+});
+</script>
 </head>
 <script type="text/javascript">
 function goNoti() {
@@ -59,96 +81,54 @@ function goIssue() {
     <section id="main-content">
       <section class="wrapper" style="margin-top:0;">
         <div class="row">
-          <div class="col-lg-9 main-chart">
+          <div class="col-lg-9 main-chart" style="background-color:white;">
             <!--CUSTOM CHART START -->
-            <div class="border-head">
+            <div class="border-head" style="margin-top:20px;">
               <h3>프로젝트 현황</h3>
             </div>
-            
+            <c:forEach var="ceo" items="${clist}">
             <div class="custom-bar-chart" style="height:180px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${ceo.pro.pname}</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${ceo.pro.pm }</h4></div>
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">40% Complete (success)</span>
-                </div>
-              </div>
-            	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-            </div>
-            <div class="grey-panel pn donut-chart">
-                  <div class="grey-header">
-                    <h5>총 업무수 : 43 개</h5>
-                  </div>
-                  <canvas id="serverstatus01" height="120" width="120"></canvas>
-                  <script>
-                    var doughnutData = [{
-                        value: 53,
-                        color: "#FF6B6B"
-                      },
-                      {
-                        value: 47,
-                        color: "#fdfdfd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                      <p>완료<br/>업무수 :</p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                      <h2>53%</h2>
-                    </div>
-                  </div>
-                </div>
-                <!-- /grey-panel -->
-              </div>
-              <div class="grey-panel pn donut-chart">
-                  <div class="grey-header">
-                    <h5>미완료 업무수 : 20 개</h5>
-                  </div>
-                  <canvas id="serverstatus01" height="120" width="120"></canvas>
-                  <script>
-                    var doughnutData = [{
-                        value: 20,
-                        color: "#FF6B6B"
-                      },
-                      {
-                        value: 80,
-                        color: "#fdfdfd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                      <p>진행중<br/>업무수 :</p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                      <h2>20%</h2>
-                    </div>
-                  </div>
-                </div>
-                <!-- /grey-panel -->
-              </div>  
-              <div id="morris">
-              	<div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Chart Example 4</h4>
-                <div class="panel-body">
-                  <div id="hero-donut" class="graph"></div>
-                </div>
-              </div>
-            </div>
-              </div>
+              <c:choose>
+					<c:when test="${ceo.pro.grade==0 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:when test="${ceo.pro.grade==1 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:otherwise>
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:otherwise>
+				</c:choose>       
+            	<div width="49%" style="float:left;margin-left:50px"><h4>${ceo.pro.prog} %</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${ceo.pro.edate}"/> 마감</h4></div>
+            </div>	
+            <div class="chart chart1" data-percent="${ceo.cp }" style="height:230px;width:30%;float:left;margin-left:50px;"><span class="title">완료업무수 : ${ceo.ccnt }</span><br><span class="title">${ceo.cp } %</span></div>	
+            <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
+            <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
+            <div style="clear:both; height:0; overflow:hidden;"></div>
+            </c:forEach>
+                        
             <!--custom chart end-->
-            <div style="float:right;margin-right:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
+            
           </div>
-
+			<div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
         
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
@@ -274,7 +254,7 @@ function goIssue() {
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+  
 
   <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -289,108 +269,7 @@ function goIssue() {
   <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
   <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
   <script type="text/javascript">
-  var Script = function () {
-
-      //morris chart
-
-      $(function () {
-        // data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type
-        var tax_data = [
-             {"period": "2011 Q3", "licensed": 3407, "sorned": 660},
-             {"period": "2011 Q2", "licensed": 3351, "sorned": 629},
-             {"period": "2011 Q1", "licensed": 3269, "sorned": 618},
-             {"period": "2010 Q4", "licensed": 3246, "sorned": 661},
-             {"period": "2009 Q4", "licensed": 3171, "sorned": 676},
-             {"period": "2008 Q4", "licensed": 3155, "sorned": 681},
-             {"period": "2007 Q4", "licensed": 3226, "sorned": 620},
-             {"period": "2006 Q4", "licensed": 3245, "sorned": null},
-             {"period": "2005 Q4", "licensed": 3289, "sorned": null}
-        ];
-        Morris.Line({
-          element: 'hero-graph',
-          data: tax_data,
-          xkey: 'period',
-          ykeys: ['licensed', 'sorned'],
-          labels: ['Licensed', 'Off the road'],
-          lineColors:['#4ECDC4','#ed5565']
-        });
-
-        Morris.Donut({
-          element: 'hero-donut',
-          data: [
-            {label: '기한내완료', value: 50 },
-            {label: '기한초과', value: 20 },
-            {label: '기한미도달', value: 30 }
-          ],
-            colors: ['#3498db', '#2980b9', '#34495e'],
-          formatter: function (y) { return y + "%" }
-        });
-
-        Morris.Area({
-          element: 'hero-area',
-          data: [
-            {period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647},
-            {period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
-            {period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
-            {period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
-            {period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
-            {period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
-            {period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
-            {period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
-            {period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
-            {period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
-          ],
-
-            xkey: 'period',
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['iPhone', 'iPad', 'iPod Touch'],
-            hideHover: 'auto',
-            lineWidth: 1,
-            pointSize: 5,
-            lineColors: ['#4a8bc2', '#ff6c60', '#a9d86e'],
-            fillOpacity: 0.5,
-            smooth: true
-        });
-
-        Morris.Bar({
-          element: 'hero-bar',
-          data: [
-            {device: 'iPhone', geekbench: 136},
-            {device: 'iPhone 3G', geekbench: 137},
-            {device: 'iPhone 3GS', geekbench: 275},
-            {device: 'iPhone 4', geekbench: 380},
-            {device: 'iPhone 4S', geekbench: 655},
-            {device: 'iPhone 5', geekbench: 1571}
-          ],
-          xkey: 'device',
-          ykeys: ['geekbench'],
-          labels: ['Geekbench'],
-          barRatio: 0.4,
-          xLabelAngle: 35,
-          hideHover: 'auto',
-          barColors: ['#ac92ec']
-        });
-
-        new Morris.Line({
-          element: 'examplefirst',
-          xkey: 'year',
-          ykeys: ['value'],
-          labels: ['Value'],
-          data: [
-            {year: '2008', value: 20},
-            {year: '2009', value: 10},
-            {year: '2010', value: 5},
-            {year: '2011', value: 5},
-            {year: '2012', value: 20}
-          ]
-        });
-
-        $('.code-example').each(function (index, el) {
-          eval($(el).text());
-        });
-      });
-
-  }();
+  
   </script>
 </body>
 

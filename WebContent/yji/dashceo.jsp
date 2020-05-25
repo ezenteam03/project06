@@ -29,14 +29,36 @@
   <!-- Custom styles for this template -->
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
-  <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
-
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style type="text/css">
+  .chart {float: left; width: 30%; height: 230px; text-align: center;}
+.chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
+  </style>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
+
+<script>
+$(function() {
+	$('.chart').easyPieChart({
+		barColor: '#f16529', //차트가 그려질 색 
+    	trackColor: '#ccc', // 차트가 그려지는 트랙의 기본 배경색(chart1 의 회색부분) 
+    	scaleColor: '#fff', // 차트 테두리에 그려지는 기준선 (chart2 의 테두리 선) 
+    	lineCap: 'butt', // 차트 선의 모양 chart1 butt / chart2 round / chart3 square 
+    	lineWidth: 30, // 차트 선의 두께 
+    	size: 200, // 차트크기
+    	animate: 1000, // 그려지는 시간 
+    	onStart: $.noop, 
+    	onStop: $.noop
+	});
+	
+});
+</script>
 </head>
 <script type="text/javascript">
 function goNoti() {
@@ -59,108 +81,55 @@ function goIssue() {
     <section id="main-content">
       <section class="wrapper" style="margin-top:0;">
         <div class="row">
-          <div class="col-lg-9 main-chart">
+          <div class="col-lg-9 main-chart" style="background-color:white;">
             <!--CUSTOM CHART START -->
-            <div class="border-head">
-              
-              <h3>내 프로젝트 현황</h3>
+            <div class="border-head" style="margin-top:20px;">
+              <h3>프로젝트 현황</h3>
             </div>
+            <c:forEach var="ceo" items="${clist}">
             <div class="custom-bar-chart" style="height:180px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
+            	<div width="49%" style="float:left;margin-left:50px;"><h4>${ceo.pro.pname}</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${ceo.pro.pm }</h4></div>
             	<br>            		
             	<br>
             	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">40% Complete (success)</span>
-                </div>
-              </div>
-            	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-            </div>
-            <div class="border-head">
-              <h3>세부 업무 현황</h3>
-            </div>
-            <div class="custom-bar-chart" style="height:800px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>요구사항 정의서 작성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (success)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>데이터베이스 설계 및 생성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-12 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 설계</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                  <span class="sr-only">50% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>50% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 구현</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              <div width="49%" style="float:left;margin-left:50px;"><h4>10% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-22 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>테스트</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>시작 전</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            </div>
+              <c:choose>
+					<c:when test="${ceo.pro.grade==0 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:when test="${ceo.pro.grade==1 }">
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:when>
+					<c:otherwise>
+						<div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
+			                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${ceo.pro.prog}%">
+			                  <span class="sr-only">40% Complete (success)</span>
+			                </div>
+			              </div>
+					</c:otherwise>
+				</c:choose>       
+            	<div width="49%" style="float:left;margin-left:50px"><h4>${ceo.pro.prog} %</h4></div>
+            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${ceo.pro.edate}"/> 마감</h4></div>
+            </div>	
+            <div class="chart chart1" data-percent="${ceo.cp }" style="height:230px;width:30%;float:left;margin-left:50px;"><span class="title">완료업무수 : ${ceo.ccnt }</span><br><span class="title">${ceo.cp } %</span></div>	
+            <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
+            <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
+            <div style="clear:both; height:0; overflow:hidden;"></div>
+            </c:forEach>
+                        
             <!--custom chart end-->
+            
           </div>
+			<div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
+        
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
@@ -285,7 +254,7 @@ function goIssue() {
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+  
 
   <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -299,7 +268,9 @@ function goIssue() {
   <!--script for this page-->
   <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
   <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
+  <script type="text/javascript">
   
+  </script>
 </body>
 
 </html>

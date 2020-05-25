@@ -75,8 +75,11 @@ public class DashTeamService {
 				prog += plist.get(i).getProg()*plist.get(i).getTleng();
 			}
 		}
-		prog = (int) prog/tleng;
-		int dprog = (int)(dleng/tleng);
+		int dprog=0;
+		if(tleng!=0) {
+			prog = (int) prog/tleng;
+			dprog = (int)(dleng/tleng);
+		} 		
 		if(prog+10<dprog&&p.getGrade()==0) p.setGrade(1);
 		p.setProg(prog);
 		System.out.println(p.getGrade());
@@ -116,5 +119,30 @@ public class DashTeamService {
 			teaml.add(team);
 		}
 		return teaml;
+	}
+	public ArrayList<DashCeo> clist() {
+		ArrayList<DashCeo> ceolist = new ArrayList<DashCeo>();
+		ArrayList<Integer> ilist = dao.ilist();
+		for(int i=0; i<ilist.size(); i++) {
+			DashCeo c = new DashCeo();
+			int total = dao.t1(ilist.get(i));
+			int done = dao.t2(ilist.get(i));
+			int cp = (int)(done*100/total);
+			int dcnt = total-done-dao.t3(ilist.get(i));
+			int dp = (int)(dcnt*100/(total-done));
+			int ocnt = dao.t4(ilist.get(i));
+			int op = (int)(ocnt*100/done);
+			
+			c.setPno(ilist.get(i));
+			c.setPro(getProject(ilist.get(i)));
+			c.setCcnt(done);
+			c.setCp(cp);
+			c.setDcnt(dcnt);
+			c.setDp(dp);
+			c.setOcnt(ocnt);
+			c.setOp(op);
+			ceolist.add(c);
+		}
+		return ceolist;
 	}
 }
