@@ -44,6 +44,22 @@
 			 value="${mno}" />		  		
 	<!-- 댓글 -->
 	<div id="comment">
+	<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-success text-white input-group-text">제 목</span>
+		</div>
+		<input name="title" class="form-control" id="title"
+			value="${risk.title}"  
+			placeholder="제목입력하세요" />	
+	</div>
+	<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-success text-white input-group-text">제 목</span>
+		</div>
+		<input name="title" class="form-control" id="title"
+			value="${risk.title}"  
+			placeholder="제목입력하세요" />	
+	</div>
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-info text-white input-group-text">댓글</span>
