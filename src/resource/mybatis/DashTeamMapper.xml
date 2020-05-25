@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="t4" resultType="int" parameterType="int">
-		select count(*) from pmstask where pno=#{pno} and tdiv=24 and pdate-edate>0
+		select count(*) from pmstask where pno=#{pno} and tdiv=24 and pdate-edate<![CDATA[ < ]]>0
 	</select>
 	
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
