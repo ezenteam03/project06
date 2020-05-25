@@ -37,7 +37,7 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+
 <style>
 .popup_btn a {
   display: inline-block;
