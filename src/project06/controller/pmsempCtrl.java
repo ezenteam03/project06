@@ -113,8 +113,17 @@ public class pmsempCtrl {
 	}
 	// PM 팀원 삭제
 	@RequestMapping(params="method=delete")
-	public String delete(pmsemp del) {
+	public String delete(pmsemp del, Model d, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+		pmsempSch pmssch = new pmsempSch();	
+		del.setPno(pmsm.getPno());
 		service.delete(del);
+		request.setAttribute("pmsempsch", pmssch);	
+		d.addAttribute("pmdlist", service.pmempList(pmssch));
 		return "forward:/PMSemp.do?method=delForm";
 	}
 	// 인사 사원리스트 불러오기, *****수정 필요함*****

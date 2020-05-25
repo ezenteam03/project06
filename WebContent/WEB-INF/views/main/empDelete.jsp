@@ -43,7 +43,9 @@
 				 $("#setForm").attr("action","${path}/PMSemp.do?method=delete");
 				 $("#setForm").submit(); 
 			 });
-			 
+	  $("#goInsBtn").click(function(){
+		  $(location).attr("href","${path}/PMSemp.do?method=empList") 
+	  });
 	  });
 	  
 	  function goPage(no){
@@ -103,6 +105,19 @@
                     <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
                   </tr>
                   </c:forEach> 
+                 <%--  <c:forEach var="emp" items="${pmdlist}">
+                  <tr style="display:none;">
+                    <th>${emp.eno}</th>
+                    <td>${emp.name}</td>
+                    <td>${emp.grade}</td>
+                    <th>${emp.dept}</th>
+                    <td style="width:200px;">${emp.email}</td>
+                    <th>${emp.phone}</th>
+                    <th style="width:150px;">${emp.cname}</th>
+                    <th>${emp.pno}</th>
+                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
+                  </tr>
+                  </c:forEach>  --%>
                 </tbody>
               </table>
               </form>
@@ -128,6 +143,8 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
+               	<button type="button" class="btn btn-success" 
+		           			id="goInsBtn" style="margin-right:20px;">팀원추가이동</button>
 		           <button type="button" class="btn btn-danger" 
 		           			id="delBtn" style="margin-right:20px;">삭제</button>
 		           <button type="button" class="btn btn-default">이전</button>
