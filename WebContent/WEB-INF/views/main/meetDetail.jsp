@@ -85,7 +85,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">안건</span>
 		</div>
-		<input name="topic" class="form-control"
+		<input name="topic" class="form-control" style="background:white;"
 			value="${meet.topic}"  
 			placeholder="안건을 입력하세요" />	
 	</div>
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">작성자</span>
 		</div>
-		<input name="writer" class="form-control"
+		<input name="writer" class="form-control" style="background:white;"
 			value="${meet.writer}"  
 			placeholder="안건을 입력하세요" />	
 	</div>
@@ -103,7 +103,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend ">
 			<span class="bg-info text-white input-group-text">회의참석자</span>
 		</div>
-		<input name="people" class="form-control"
+		<input name="people" class="form-control" style="background:white;"
 			value="${meet.people}"/>	
 	</div>
 	
@@ -111,7 +111,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend ">
 			<span class="bg-info text-white input-group-text">회의장소</span>
 		</div>
-		<input name="loc" class="form-control" readonly="readonly"
+		<input name="loc" class="form-control" readonly="readonly" style="background:white;"
 			value="${meet.loc}"/>	
 	</div>	
 	
@@ -119,7 +119,7 @@ $(document).ready(function(){
 		<div class="input-group-prepend ">
 			<span class="bg-info text-white input-group-text">글번호</span>
 		</div>
-		<input name="mnno" class="form-control" readonly="readonly"
+		<input name="mnno" class="form-control" readonly="readonly" style="background:white;"
 			value="${meet.mnno}"/>	
 	</div>	
 	
@@ -144,13 +144,13 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">등록일</span>
 		</div>
-		<input class="form-control" readonly="readonly"
+		<input class="form-control" readonly="readonly" style="background:white;"
 			value="<fmt:formatDate type='both' value='${meet.wdate }'/>"/>	
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">수정일</span>
 		</div>
-		<input class="form-control" readonly="readonly"
-			value="<fmt:formatDate type='both' value='${meet.chdate }'/>" />	
+		<input class="form-control" readonly="readonly" style="background:white;"
+			value="<fmt:formatDate type='both' value='${meet.chdate}'/>" />	
 	</div>
 				
 	<div class="input-group mb-3">
@@ -179,6 +179,20 @@ $(document).ready(function(){
 			class="form-control" 
 			placeholder="없음" >${meet.etc}</textarea>		 
 	</div> 
+	
+	<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-success text-white input-group-text">첨부 파일</span>
+	</div>
+		<input class="form-control fileInfo" name="fnames" id="fnames"
+			value="${meet.filenames[0]}" />	
+		<div class="custom-file">
+			<input type="file" name="report" 
+				class="custom-file-input" id="file01"/>
+			<label class="custom-file-label" for="file01">
+			변경하려면 파일을 선택하세요!</label>
+		</div>				 
+</div> 	
 
 	
 	<br>
