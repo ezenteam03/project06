@@ -118,6 +118,7 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=comment";
 		}
+		// 댓글 삭제
 		@RequestMapping(params="method=delete")
 		public String delete(@RequestParam("rno") int rno) {
 			service.deleteComment(rno);
@@ -137,14 +138,19 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=detail";
 		}	
+		// 대댓창 열기
+		@RequestMapping(params="method=cinsForm")
+		public String cinsertForm() {
+			return "WEB-INF\\views\\main\\commentIns.jsp";
+		}
 		// 대댓글입력
-			@RequestMapping(params="method=ccinsert")
-			public String ccinsert(Comment insert) {
+		@RequestMapping(params="method=ccinsert")
+		public String ccinsert(Comment insert) {
 				
-				service.cinsert(insert);
+			service.cinsert(insert);
 				
-				return "WEB-INF\\views\\main\\riskDetail.jsp";
-			}
+			return "WEB-INF\\views\\main\\commentIns.jsp";
+		}
 		
 	
 }

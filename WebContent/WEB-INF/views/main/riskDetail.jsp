@@ -331,7 +331,7 @@ function coment(rno){
 	cpopup(rno);
 };
 function ccpopup(rno) { 
-	window.open("http://localhost:5080/project06_git/risk.do?method=ccinsert&rno="+rno, "1", "width=780, height=500, left=300, top=100");
+	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno, "2", "width=780, height=500, left=300, top=100");
 }
 function ccoment(rno){
 	ccpopup(rno);
