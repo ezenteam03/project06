@@ -123,10 +123,14 @@ public class DashTeamService {
 	public ArrayList<DashCeo> clist() {
 		ArrayList<DashCeo> ceolist = new ArrayList<DashCeo>();
 		ArrayList<Integer> ilist = dao.ilist();
+		System.out.println("clist service");
 		for(int i=0; i<ilist.size(); i++) {
+			System.out.println("i : "+i);
 			DashCeo c = new DashCeo();
 			int total = dao.t1(ilist.get(i));
+			System.out.println(total);
 			int done = dao.t2(ilist.get(i));
+			System.out.println(done);
 			int cp = (int)(done*100/total);
 			int dcnt = total-done-dao.t3(ilist.get(i));
 			int dp = (int)(dcnt*100/(total-done));

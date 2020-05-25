@@ -10,7 +10,7 @@
  	<resultMap type="dashRe" id="reResult"/>
  	<resultMap type="dashTask" id="taskResult"/>
  	<resultMap type="dashTeam" id="teamResult"/>
-
+	
 	
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
 		SELECT nno,title,writer,wdate
