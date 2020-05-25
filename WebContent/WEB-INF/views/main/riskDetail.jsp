@@ -158,13 +158,6 @@
 	</div>
 	<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
 			value="${risk.name }" placeholder="작성자입력하세요"/>		
-</div>	
-<div class="input-group mb-3">		
-	<div class="input-group-prepend">
-		<span class="bg-warning text-white input-group-text">작 성 일</span>
-	</div>
-		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
-			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
 </div>
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
@@ -173,7 +166,15 @@
 		<input name="title" class="form-control" id="title"
 			value="${risk.title}"  
 			placeholder="제목입력하세요" />	
+</div>	
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-warning text-white input-group-text">작 성 일</span>
+	</div>
+		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
+			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
 </div>
+
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
 		<span class="bg-warning text-white input-group-text">수정일</span>
@@ -259,21 +260,18 @@
 			<button class="btn bg-warning" id="cmtBtn">입력</button>
 	</div>	
 	<div class="col-md-12 mt">
-            <div class="content-panel">
-   <table class="table table-hover">
-   
-      <c:forEach var="comment" items="${clist}">
-    
-      <tr class="text-center">
-      <td class="num">${comment.name}</td>
-       <!-- 댓글 들여쓰기 -->
-       <td class="text-left" >
-       		<c:forEach varStatus="sts" 
-        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
-        	</c:forEach>${comment.detail}      		         	
-       </td>
-        
-     
+    	<div class="content-panel">
+  			 <table class="table table-hover">  
+  			 <tbody>
+   			   <c:forEach var="comment" items="${clist}">
+				<tr class="text-center">
+     			 <td class="num">${comment.name}</td>
+     				  <!-- 댓글 들여쓰기 -->
+			       <td class="text-left" >
+			       		<c:forEach varStatus="sts" 
+			        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
+			        	</c:forEach>${comment.detail}      		         	
+			       </td>             
         <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>
         <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno},${risk.ino})"
 			value="댓글"  />	</td>
@@ -281,7 +279,7 @@
       </tr>
    
       </c:forEach>
-    
+    </tbody>
   </table>  
 </div></div>
 </div>
