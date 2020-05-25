@@ -93,16 +93,21 @@ public class pmsempCtrl {
 		pmsempSch pmssch = new pmsempSch();	
 		inse.setPno(pmsm.getPno());
 		service.insPm(inse);		
-		request.setAttribute("pmsempsch", pmssch);
+		request.setAttribute("pmsempsch", pmssch);	
 		d.addAttribute("elist", service.insList(pmssch));
-		//return "forward:/PMSemp.do?method=empList";
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")
-	public String pmlist(@ModelAttribute("pmsempsch") 
-		pmsempSch sch, Model d, HttpServletRequest request) {
-		sch.setPno(1001);
+	public String pmlist(@ModelAttribute("pmsempsch") pmsempSch sch, Model d, HttpServletRequest request) {	
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+		pmsempSch pmssch = new pmsempSch();
+		sch.setPno(pmsm.getPno());
+		request.setAttribute("pmsempsch", pmssch);
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
