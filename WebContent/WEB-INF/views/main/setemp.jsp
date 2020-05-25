@@ -174,24 +174,36 @@
                 </form>
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
-	               <c:set var = "empS" sessionScope="" />
-	               <c:chose>
-	               <c:when test="${empS.mdiv==6}">
 	              	   <input type="button" class="btn btn-danger" 
 		           				id="ceoBtn" style="margin-right:20px;" value="CEO 설정"/>
-		           </c:when>
-		           <c:when test="${empS.mdiv==2}">
 	             	   <input type="button" class="btn btn-primary" 
 		           				id="ctoBtn" style="margin-right:20px;" value="CTO 설정"/>
-		           </c:when>
-		           <c:when test="${empS.mdiv==2&&empS.mdiv==3}">
 			           <input type="button" class="btn btn-success" 
 			           			id="pmBtn" style="margin-right:20px;" value="PM 설정" />
-			       </c:when>
-			       </c:chose>
 			           <button type="button" class="btn btn-default"
 			           			id="preBtn">이전</button>
-      
+			           			
+			        <%-- 
+			        <c:choose>
+					<c:when test="${empty mem.mem_id}">	
+						<li><a href="SCenter">고객센터</a></li>
+						<li><a href="login">로그인</a></li>
+					</c:when>
+					<c:when test="${mem.mem_id == 'admin'}">
+						<li id="lo">로그아웃</li>
+						<li><a href="SCenter">고객센터</a></li>	
+						<li><a href="admin">관리자</a></li>
+					</c:when>
+					<c:otherwise>
+						<li id="lo">로그아웃</li>
+						<li><a href="SCenter">고객센터</a></li>
+						<li><a href="MyPage">마이페이지</a></li>
+						<li>${mem.mem_id}님 환영합니다.</li>
+					</c:otherwise>
+					</c:choose> 
+					--%>
+
+			           
 		           </div>
 		        </div>
             </div>
