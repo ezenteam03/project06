@@ -36,34 +36,44 @@
 });
 		
 </script>
+<style type="text/css">
+	.input-group-text{width:100%;}
+	.input-group-prepend{width:15%;}
+</style>
 </head>
 <body>
-<div class="overlay">
-	<div >
-			
+<div class="overlay">		
 		<form method="post"  enctype="multipart/form-data" action="${path}/risk.do?method=cupdate">
 			<input name="rno" type="hidden" value="${comment.rno}"/>	
-		<h2 class="form-login-heading">댓글 수정</h2>
-		<div class="login-wrap">
-			<label>작성자</label>
+		<h2>댓글 수정</h2>
+			
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="bg-info text-white input-group-text">작성자</span>
+			</div>
 			<input type="text" class="form-control" value="${comment.name}" readonly="readonly"/>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="bg-info text-white input-group-text">작성일</span>
+			</div>
+			<input type="text" class="form-control" value="<fmt:formatDate type='both'  value='${comment.wdate}'/>" readonly="readonly"/>
 			
-			<br>
-			<label>작성일</label><br>
-			<fmt:formatDate type='both'  value='${comment.wdate}'/>
-			
-			<br>
-			
-			<label>댓글 내용</label>
+		</div>			
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="bg-info text-white input-group-text">댓글 내용</span></div>
 				<textarea  rows="2" style="resize:none" 
 					class="form-control" name="detail"
 					placeholder="내용입력하세요" >${comment.detail}</textarea>	
-			<input type="button" id="insbt" value="수정"/>					
-			<input type="button" id="delbt" value="삭제"/>					
-		</div>
+		</div>	
+			<input style="float:right;margin-left:5px " class="btn btn-success" type="button" id="delbt" value="삭제"/>		
+			<input style="float:right;" class="btn btn-success" type="button" id="insbt" value="수정"/>
+								
+							
+		
 			
-		</form>
-	</div>
+	</form>
 </div>
 </body>
 <script type="text/javascript">

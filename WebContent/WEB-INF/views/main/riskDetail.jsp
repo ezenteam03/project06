@@ -141,7 +141,8 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
-	
+	 <section id="main-content">
+      <section class="wrapper">
       
    <div class="jumbotron text-left" style="margin-left:200px;">  
     	<h4><i class="fa fa-th"></i>&ensp;게시판 상세</h4>
@@ -287,7 +288,7 @@
 	</form>
 
 	</div>
-
+</section></section>
 	
 <footer class="site-footer">
       <div class="text-center">
@@ -337,8 +338,8 @@ function ccoment(rno,ino){
 	ccpopup(rno,ino);
 };
 
-
-
+//
+//+"&name="+'name'+"&detail="+detail
 	
 </script>
 </html>
