@@ -113,7 +113,7 @@ function goPage(no){
         <div class="row">
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
-            <div class="content-panel">
+            <div class="content-panel" id="reg">
               <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
@@ -190,7 +190,7 @@ function goPage(no){
              
              
         <!-- c:if 어쩌고-->
-          <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!=5"
+          <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!=5||mdiv!=9"
           style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br>
             </div>

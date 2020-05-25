@@ -13,7 +13,7 @@ import project06.vo.NoticeSch;
 public interface NoticeDao{
 	
 	public int totCnt(NoticeSch sch);
-	public ArrayList<Notice> list(NoticeSch sch,HttpServletRequest request);
+	public ArrayList<Notice> list(NoticeSch sch);
 	
 	public void insert(Notice ins);
 	public void updateNotice(Notice upt);

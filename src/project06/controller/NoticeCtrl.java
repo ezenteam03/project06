@@ -36,16 +36,13 @@ public class NoticeCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		if(emp.getMdiv()==5) {
-			d.addAttribute("noti", 1);
-		}
-		d.addAttribute("nlist", service.list(sch,request));
+		
+		d.addAttribute("nlist", service.list(sch));
 		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}
 	@RequestMapping(params="method=Ajaxlist")
-	public String ajaxlist(NoticeSch sch, Model d,HttpServletRequest request) {
-		d.addAttribute("nlist", service.list(sch,request));
+	public String ajaxlist(NoticeSch sch, Model d) {
+		d.addAttribute("nlist", service.list(sch));
 		return "jsonReport";
 	}
 	
