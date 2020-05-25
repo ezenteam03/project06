@@ -60,12 +60,28 @@
 			}
 		});
 	 });
-		
-	 // PM 버튼
-	 $("#pmBtn").click(function(){		
-		$("#setForm").attr({"action":"${path}/PMSemp.do?method=updatePm"});
-		$("#setForm").submit();
+	 
+	// PM 버튼
+	/* $("#pmBtn").click(function(){		
+       $("#setForm").attr({"action":"${path}/PMSemp.do?method=updatePm"});
+	   $("#setForm").submit();
+	 }); */
+	 
+	 $("#pmBtn").click(function(){			 
+		 Swal.fire({
+			  title:'권한변경 ',
+			  text:"PM으로 권한을 변경하시겠습니까?",
+			  icon: 'info',
+			  showCancelButton: true
+		}).then((result) => {
+			if (result.value) {
+				$("#setForm").attr({"action":"${path}/PMSemp.do?method=updatePm"});
+				$("#setForm").submit();
+			}
+		});
 	 });
+		
+	
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 
 		$(location).attr("href","${path}/PMSemp.do?method=list") 

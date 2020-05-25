@@ -57,12 +57,7 @@ $(document).ready(function(){
 	$(".custom-file-input").on("change",function(){
 		$(this).next(".custom-file-label").text($(this).val());
 	});	
-	$("#delBtn").click(function(){
-		if(confirm("삭제하시겠습니까?")){
-			var nno = $("input[name=nno]").val();
-			$(location).attr("href","${path}/meet.do?method=delete&nno="+nno);					
-		}
-	});
+	
 	
 });
 
@@ -190,9 +185,7 @@ $(document).ready(function(){
 	<div style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="수정" id="uptBtn"/>
-		<input type="button" class="btn btn-danger"
-			value="삭제" id="delBtn"/>		
-			
+		
 		<input type="button" class="btn btn-success"
 			value="조회 화면으로" id="goMain"/>
 	</div>

@@ -21,7 +21,7 @@ public interface MeetDao {
 	public void deleteMeet(int mnno);	
 	// 파일 정보 등록..
 	public void insertRepo(String fname);
-	public void deleteFile(int mnno);
+	
 	public Meet getMeet(int mnno);
 	// 파일 다운로드 정보 
 	public String fnames(int mnno);
