@@ -30,13 +30,26 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
-
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style type="text/css">
+  .chart {float: left; width: 33.33%; height: 230px; text-align: center;}
+.chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/path/to/jquery.easy-pie-chart.js"></script>
+<script>
+    $(function() {
+        $('.chart').easyPieChart({
+            //your options goes here
+        });
+    });
+</script>
 </head>
 <script type="text/javascript">
 function goNoti() {
@@ -59,12 +72,12 @@ function goIssue() {
     <section id="main-content">
       <section class="wrapper" style="margin-top:0;">
         <div class="row">
-          <div class="col-lg-9 main-chart">
+          <div class="col-lg-9 main-chart" style="background-color:white;">
             <!--CUSTOM CHART START -->
-            <div class="border-head">
-              
-              <h3>내 프로젝트 현황</h3>
+            <div class="border-head" style="margin-top:20px;">
+              <h3>프로젝트 현황</h3>
             </div>
+            
             <div class="custom-bar-chart" style="height:180px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>PMS 시스템 개발</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM 김대중</h4></div>
@@ -78,89 +91,77 @@ function goIssue() {
               </div>
             	<div width="49%" style="float:left;margin-left:50px"><h4>40% 진행중</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-            </div>
-            <div class="border-head">
-              <h3>세부 업무 현황</h3>
-            </div>
-            <div class="custom-bar-chart" style="height:800px;">
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>요구사항 정의서 작성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (success)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>데이터베이스 설계 및 생성</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>100% 완료</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-12 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 설계</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                  <span class="sr-only">50% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>50% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>화면 구현</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              <div width="49%" style="float:left;margin-left:50px;"><h4>10% 진행중</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-05-22 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            	<div width="49%" style="float:left;margin-left:50px;"><h4>테스트</h4></div>
-            	<div width="49%" style="text-align:right;float:right;"><h4></h4></div>
-            	<br>            		
-            	<br>
-            	<br>            		
-              <div class="progress progress-striped" style="margin-left:50px;margin-right:50px;">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                  <span class="sr-only">100% Complete (warning)</span>
-                </div>
-              </div>
-              	<div width="49%" style="float:left;margin-left:50px;"><h4>시작 전</h4></div>
-            	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>2020-06-08 마감</h4></div>
-              <br>
-              <br>
-              <br>
-            </div>
+            </div>	
+            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%</div>
+            <!-- <div id="chartContainer1" style="height: 370px; width: 30%;float:left;margin-left:50px;"></div>
+            <script type="text/javascript">
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+        		animationEnabled: true,
+        		title: {
+        			text: "총 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 79.45, label: "잔여업무"},
+        				{y: 20.55, label: "완료"}
+        			]
+        		}]
+        	});
+        	chart1.render();
+            </script>
+            <div id="chartContainer2" style="height: 370px; width: 30%;float:left;"></div>
+            <script type="text/javascript">
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+        		animationEnabled: true,
+        		title: {
+        			text: "미완료 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 79.45, label: "착수전"},
+        				{y: 20.55, label: "진행중"}
+        			]
+        		}]
+        	});
+        	chart2.render();
+            </script>
+            <div id="chartContainer3" style="height: 370px; width: 30%;float:left;margin-right:50px;"></div>
+            <script type="text/javascript">
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+        		animationEnabled: true,
+        		title: {
+        			text: "총 업무수 : "
+        		},
+        		data: [{
+        			type: "pie",
+        			startAngle: 0,
+        			yValueFormatString: "##0.00\"%\"",
+        			indexLabel: "{label} {y}",
+        			dataPoints: [
+        				{y: 59.45, label: "기한내 완수"},
+        				{y: 20.55, label: "기한초과"},
+        				{y: 20.00, label: "기한미도달"}
+        			]
+        		}]
+        	});
+        	chart3.render();
+            </script>
+             -->
+            
+            
             <!--custom chart end-->
+            
           </div>
+			<div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
+        
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
@@ -299,7 +300,9 @@ function goIssue() {
   <!--script for this page-->
   <script src="${path}/Dashio/lib/sparkline-chart.js"></script>
   <script src="${path}/Dashio/lib/zabuto_calendar.js"></script>
+  <script type="text/javascript">
   
+  </script>
 </body>
 
 </html>
