@@ -87,7 +87,7 @@ function goIssue() {
               <h3>프로젝트 현황</h3>
             </div>
             <c:forEach var="ceo" items="${clist}">
-            <div class="custom-bar-chart" style="height:180px;">
+            <div class="custom-bar-chart" style="height:180px;margin-top:10px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>${ceo.pro.pname}</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${ceo.pro.pm }</h4></div>
             	<br>            		
@@ -122,13 +122,13 @@ function goIssue() {
             <div class="chart chart1" data-percent="${ceo.cp }" style="height:230px;width:30%;float:left;margin-left:50px;"><span class="title">완료업무수 : ${ceo.ccnt }</span><br><span class="title">${ceo.cp } %</span></div>	
             <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
             <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
-            <div style="clear:both; height:0; overflow:hidden;"></div>
+            <div style="clear:both; height:10px; overflow:hidden;"></div>
             </c:forEach>
-                        
+            <div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>            
             <!--custom chart end-->
             
           </div>
-			<div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>
+			
         
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************

@@ -10,7 +10,27 @@
  	<resultMap type="dashRe" id="reResult"/>
  	<resultMap type="dashTask" id="taskResult"/>
  	<resultMap type="dashTeam" id="teamResult"/>
+	<resultMap type="int" id="intResult"/>
 	
+	<select id="ilist2" resultMap="intResult">
+		select pno from pmsproject order by pno asc
+	</select>
+	
+	<select id="t1" resultType="int" parameterType="int">
+		select count(*) from pmstask where pno=#{pno}
+	</select>
+	
+	<select id="t2" resultType="int" parameterType="int">
+		select count(*) from pmstask where pno=#{pno} and tdiv=24
+	</select>
+	
+	<select id="t3" resultType="int" parameterType="int">
+		select count(*) from pmstask where pno=#{pno} and prog=0
+	</select>
+	
+	<select id="t4" resultType="int" parameterType="int">
+		select count(*) from pmstask where pno=#{pno} and tdiv=24 and pdate-edate <![CDATA[ > ]]> 0
+	</select>
 	
  	<select id="nlist" resultMap="noticeResult" parameterType="int" >
 		SELECT nno,title,writer,wdate
