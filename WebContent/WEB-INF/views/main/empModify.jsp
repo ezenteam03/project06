@@ -42,14 +42,41 @@
   <script type="text/javascript">
   $(document).ready(function(){
 	 // 수정 버튼
-	 $("#modBtn").click(function(){		
+	 /* $("#modBtn").click(function(){		
 		$("form").attr("action","${path}/PMSemp.do?method=mbtn");
 		$("form").submit();
+	 }); */
+	 $("#modBtn").click(function(){			 
+		 Swal.fire({
+			  title:'수정 ',
+			  text:"사원정보를 수정하시겠습니까?",
+			  icon: 'info',
+			  showCancelButton: true
+		}).then((result) => {
+			if (result.value) {
+				$("form").attr("action","${path}/PMSemp.do?method=mbtn");
+				$("form").submit();
+			}
+		});
 	 });
 	 // 퇴사 버튼
-	 $("#delBtn").click(function(){
+	 /* $("#delBtn").click(function(){
 		$("form").attr("action","${path}/PMSemp.do?method=dbtn");
 		$("form").submit();
+	 }); */
+	 $("#delBtn").click(function(){			 
+		 Swal.fire({
+			  title:'퇴사 ',
+			  text:"퇴사처리를 진행하시겠습니까?",
+			  icon: 'info',
+			  showCancelButton: true
+		}).then((result) => {
+			if (result.value) {
+				$("form").attr("action","${path}/PMSemp.do?method=dbtn");
+				$("form").submit();
+				$(location).attr("href","${path}/PMSemp.do?method=empmList")
+			}
+		});
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 

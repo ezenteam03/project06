@@ -40,13 +40,15 @@
   <script type="text/javascript">
 	  $(document).ready(function(){
 			 $("#delBtn").click(function(){
-				 $("form").attr("action","${path}/PMSemp.do?method=delete");
-				 $("form").submit(); 
+				 $("#setForm").attr("action","${path}/PMSemp.do?method=delete");
+				 $("#setForm").submit(); 
 			 });
+			 
 	  });
+	  
 	  function goPage(no){
 			$("[name=curPage]").val(no);
-			$("form").submit();
+			$("#setForm").submit();
 		 }
 
 
@@ -63,7 +65,7 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
+              <form method="post" id="setForm">
               <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>

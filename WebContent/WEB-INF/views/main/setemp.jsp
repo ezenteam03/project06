@@ -41,6 +41,19 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
+	  $("#ceoBtn").click(function(){			 
+			 Swal.fire({
+				  title:'권한변경 ',
+				  text:"CEO로 권한을 변경하시겠습니까?",
+				  icon: 'info',
+				  showCancelButton: true
+			}).then((result) => {
+				if (result.value) {
+					$("#setForm").attr("action","${path}/PMSemp.do?method=updateCeo");
+					$("#setForm").submit();
+				}
+			});
+		 });
 	 // CTO 버튼
 	/*  $("#ctoBtn").click(function(){		
 		$("#setForm").attr("action","${path}/PMSemp.do?method=update");
@@ -161,6 +174,8 @@
                 </form>
 	            <div class="" style="text-align:right;">
 	               <div style="display:inline-block; ">
+	              	   <input type="button" class="btn btn-danger" 
+		           				id="ceoBtn" style="margin-right:20px;" value="CEO 설정"/>
 	             	   <input type="button" class="btn btn-primary" 
 		           				id="ctoBtn" style="margin-right:20px;" value="CTO 설정"/>
 			           <input type="button" class="btn btn-success" 

@@ -39,14 +39,28 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-			 $("#insBtn").click(function(){
+			 /* $("#insBtn").click(function(){
 				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
 				 $("form").submit(); 
+			 }); */
+			 $("#insBtn").click(function(){			 
+				 Swal.fire({
+					  title:'팀원추가 ',
+					  text:"해당 직원을 팀원으로 추가하시겠습니까?",
+					  icon: 'info',
+					  showCancelButton: true
+				}).then((result) => {
+					if (result.value) {
+						$("#setForm").attr("action","${path}/PMSemp.do?method=insemp");
+						 $("#setForm").submit(); 
+					}
+				});
 			 });
 		  });
+	  	 
 		 function goPage(no){
 			$("[name=curPage]").val(no);
-			$("form").submit();
+			$("#setForm").submit();
 		 }
 	 	
 		 function enoclick(no){
@@ -69,7 +83,7 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
+              <form method="post" id="setForm">
               <input type="hidden" name="curPage"/>
               <table class="table table-hover">
                 <div>

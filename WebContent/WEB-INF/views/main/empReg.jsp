@@ -45,11 +45,24 @@
 			 $(location).attr("href","${path}/PMSemp.do?method=empmList")
 		 }
 	 }
+	 
 	 // 등록 버튼
-	 $("#regBtn").click(function(){
+	 /* $("#regBtn").click(function(){
 		if(confirm("등록합니다")){
 			$("form").submit();
 		} 
+	 }); */
+	 $("#regBtn").click(function(){		 
+		 Swal.fire({
+			  title:'사원등록 ',
+			  text:"사원등록을 하시겠습니까?",
+			  icon: 'info',
+			  showCancelButton: true
+		}).then((result) => {
+			if (result.value) {
+				$("form").submit();
+			}
+		});
 	 });
 	 // 이전 버튼
 	 $("#preBtn").click(function(){		 

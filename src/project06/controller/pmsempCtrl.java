@@ -55,6 +55,12 @@ public class pmsempCtrl {
 		d.addAttribute("plist",service.getPlist());
 		return "WEB-INF\\views\\main\\setemp.jsp";
 	}
+	// CEO 권한 설정
+	@RequestMapping(params="method=updateCeo")
+	public String updateCeo(pmsemp uptCeo) {
+		service.updateCeo(uptCeo);
+		return "forward:/PMSemp.do?method=setForm";
+	}
 	// CTO 권한 설정
 	@RequestMapping(params="method=update")
 	public String update(pmsemp upt) {
