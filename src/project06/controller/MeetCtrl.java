@@ -70,7 +70,7 @@ public class MeetCtrl {
 		insert.setDecision(request.getParameter("decision"));
 		insert.setFilenames(request.getParameter("filenames"));
 		insert.setLoc(request.getParameter("loc"));
-		insert.setFnames(request.getParameter("fnames"));
+	
 		insert.setPeople(request.getParameter("people"));
 		
 		//System.out.println("등록 제목:"+insert.getTopic());
@@ -84,7 +84,7 @@ public class MeetCtrl {
 		insert.setEtc("");
 		insert.setDecision("");
 		insert.setFilenames("");
-		insert.setFnames("");
+		
 	
 		
 		
