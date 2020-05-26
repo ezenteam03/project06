@@ -102,7 +102,7 @@ $(document).ready(function(){
 	
 	
 	<br>
-	<div id="regg" v-if="mdiv!=5||mdiv!=9" style="text-align:right;">
+	<div style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="등록" id="regBtn"/>
 		<input type="button" class="btn btn-success"
@@ -216,10 +216,5 @@ $(document).ready(function(){
   </script>
  
 </body>
-<script>
-var vm = new Vue({
-	el:"#regg",
-	data:{mdiv:${infor_M.mdiv}}
-});
-</script>
+
 </html>

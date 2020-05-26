@@ -134,7 +134,7 @@ $(document).ready(function(){
 	</div> 
 	
 	<br>
-	<div style="text-align:right;">
+	<div id="regg" v-if="mdiv!=5" style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="수정" id="uptBtn"/>
 		<input type="button" class="btn btn-danger"
@@ -254,5 +254,10 @@ $(document).ready(function(){
     });
   </script>
 </body>
-
+<script>
+var vm = new Vue({
+	el:"#regg",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 </html>

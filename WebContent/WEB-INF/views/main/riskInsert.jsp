@@ -43,10 +43,11 @@
 		var isT= "${param.title}";
 		var isD= "${param.detail}";
 		if(isT!=""){
+			
 			alert("등록이 되었습니다");
 			$(location).attr("href","${path}/risk.do?method=list");	
 			
-		}
+		}		
 		
 		
 		$("#regBtn").click(function(){		
@@ -54,7 +55,7 @@
 				$("form").submit();				
 		}			
 		});	
-		$("#goMain").click(function(){
+		$("#goMain").click(function(){			
 			if(confirm("조회 화면 이동 합니다.")){
 				$(location).attr("href","${path}/risk.do?method=list");			
 			}

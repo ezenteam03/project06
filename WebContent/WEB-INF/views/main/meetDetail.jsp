@@ -196,7 +196,7 @@ $(document).ready(function(){
 
 	
 	<br>
-	<div style="text-align:right;">
+	<div id="meetRe" v-if="mdiv!==2&&mdiv!==3" style="text-align:right;">
 		<input type="button" class="btn btn-info"
 			value="수정" id="uptBtn"/>
 		
@@ -314,5 +314,10 @@ $(document).ready(function(){
     });
   </script>
 </body>
-
+<script>
+var vm = new Vue({
+	el:"#meetRe",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 </html>

@@ -123,6 +123,7 @@ function goIssue() {
             <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
             <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
             <div style="clear:both; height:10px; overflow:hidden;"></div>
+            <hr>
             </c:forEach>
             <div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>            
             <!--custom chart end-->
