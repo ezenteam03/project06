@@ -44,15 +44,6 @@ public class pmsempCtrl {
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("pmsempsch") pmsempSch sch,
 			Model d, HttpServletRequest request) {
-		
-		//pmsempSch sch = new pmsempSch();
-		sch.setName(request.getParameter("name"));
-		sch.setDept(request.getParameter("dept"));
-		sch.setGrade(request.getParameter("grade"));
-		System.out.println(sch.getName());
-		System.out.println(sch.getDept());
-		System.out.println(sch.getGrade());
-		
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
@@ -99,7 +90,8 @@ public class pmsempCtrl {
 	}
 	// PM 팀원 추가
 	@RequestMapping(params="method=insemp")
-	public String ins(pmsemp inse, Model d, HttpServletRequest request) {
+	public String ins(@ModelAttribute("pmsempsch") pmsempSch sch
+			,pmsemp inse, Model d, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
@@ -109,7 +101,7 @@ public class pmsempCtrl {
 		inse.setPno(pmsm.getPno());
 		service.insPm(inse);		
 		request.setAttribute("pmsempsch", pmssch);	
-		d.addAttribute("elist", service.insList(pmssch));
+		d.addAttribute("elist", service.insList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
