@@ -83,12 +83,13 @@
  			#{fname}, sysdate)
 	</insert>
 	<resultMap type="String" id="strMap"/> 
+	<!-- 파일 화면 출력 -->
  	<select id="fnames" resultMap="strMap" parameterType="int">
  		SELECT fname 
  		FROM PMSBFILE		
  		WHERE ino=#{ino}
  	</select> 
-	
+	<!-- 업로드된 파일 수정 -->
 	<update id="uptFileInfo" parameterType="java.util.HashMap">
 		UPDATE PMSBFILE
 			SET fname = #{tar},
@@ -96,6 +97,7 @@
 	    WHERE ino = ${ino}
 		AND fname = #{org}	    	
 	</update> 	
+	<!-- 수정된 내용 업로드 -->
  	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
  		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${ino},
  			#{tar}, sysdate)

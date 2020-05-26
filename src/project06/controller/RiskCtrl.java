@@ -98,7 +98,7 @@ public class RiskCtrl {
 		public String download(@RequestParam("fname") String fname, 
 								Model d) {
 			// 탑재할 모델명은 파일명으로 설정..
-			
+			System.out.println("다운로드할 파일명:"+fname);
 			d.addAttribute("downloadFile", fname);
 			
 			return "download"; // 컨터이너에서 선언한 viewer명..

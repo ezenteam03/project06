@@ -23,18 +23,10 @@ public class DownloadViewer extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, 
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// TODO Auto-generated method stub
-		// 요청으로 온 file명은 model이름을 downloadviewer한테 호출한다
-		// 모델명은 downloadFile, 실제 파일명을 할당 처리..
-		//		model.addAttribute("downloadFile", 파일명);
 		// 1. controller에서 전달되어온 파일명으로 파일객체 할당
 		String fname = (String)model.get("downloadFile");
 		//		1) 파일을 객체로 생성 처리하여 전달 준비
 		File file = new File(upload+fname);
-		System.out.println("### viewer에 오신 것을 환영합니다. ###");
-		System.out.println("전체 파일명 : "+file.getPath());
-		System.out.println("파일명 : "+file.getName());
-		System.out.println("파일길이 : "+(int)file.length());
 		// 2. 다운로드 처리를 위한 response 객체 설정
 		//	1) 파일다운을 처리하기 위한 contentType설정
 		response.setContentType("application/download; charset=UTF-8");
@@ -43,7 +35,6 @@ public class DownloadViewer extends AbstractView {
 		//		-한글파일명을 위한 encoding처리
 		fname = URLEncoder.encode(fname,"utf-8").replaceAll("\\+", " ");
 		// 3. Header 정보 설정
-		// filename = "파일명"
 		response.setHeader("Content-Disposition", 
 				"attachment;filename=\""+fname+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
