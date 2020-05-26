@@ -47,7 +47,7 @@
 			alert("등록이 되었습니다");
 			$(location).attr("href","${path}/risk.do?method=list");	
 			
-		}	
+		}		
 		
 		
 		$("#regBtn").click(function(){		
