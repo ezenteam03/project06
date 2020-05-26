@@ -1,6 +1,7 @@
 package project06.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,10 +174,19 @@ public class WorkCtrl2 {
 			
 			d.addAttribute("grade", pe.getGrade());
 			d.addAttribute("mname", pe.getName());
+			
 			d.addAttribute("mno", emp.getMno());
 			
 			d.addAttribute("mdiv", emp.getMdiv());
 
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
+		}
+		
+		// http://localhost:5080/project06_git/task.do?method=applist
+
+		@RequestMapping(params="method=applist") 
+		public String perforlist(Task sch, Model d) {
+			d.addAttribute("wlist", service.workList(sch));
+			return "WEB-INF\\views\\main\\pfSearch.jsp";
 		}
 }

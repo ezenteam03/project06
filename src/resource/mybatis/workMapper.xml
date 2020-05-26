@@ -165,7 +165,14 @@
 	tdiv NUMBER NOT NULL, /* 결재구분 */
 	mno NUMBER NOT NULL /* 사원번호 */
  	 -->
- 	
+ 	<select id="workList" resultMap="taskResult" parameterType="task">
+	 	SELECT * 
+		FROM testtask
+		WHERE 1=1
+		<if test="tname!=null and tname!=''">
+			and tname like '%'||#{tname}||'%'
+		</if> 
+ 	</select>
  	
 </mapper>	
 

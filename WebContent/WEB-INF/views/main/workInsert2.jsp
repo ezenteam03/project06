@@ -117,9 +117,7 @@
 	<section id="main-content">
       <section class="wrapper">
 
-<div class="jumbotron text-left" style="margin-left:200px;">
-  <h2><i class="fa fa-angle-right"></i> 업무등록 </h2>
-</div>
+
 <div class="container">
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
 	<form method="post" enctype="multipart/form-data" 

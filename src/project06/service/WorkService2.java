@@ -157,4 +157,8 @@ public class WorkService2 {
 	}
 	
 	
+	public ArrayList<Task> workList(Task sch){
+		return dao.workList(sch);
+	}
+	
 }

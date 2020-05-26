@@ -218,11 +218,11 @@
 	<section id="main-content">
       <section class="wrapper">
 
-<div class="jumbotron text-left" style="margin-left:200px;">
+<div class="" style="margin-left:200px;">
 <div style="float:left;">
-  <h2><i class="fa fa-angle-right"></i> 업무상세 </h2>
+
   </div>
-  <div style="margin-left:200px; width:300px; height:50px; margin-bottom:50px;">
+  <div style="margin-left:80px; width:300px; height:50px; margin-bottom:50px;">
 	    		<span>업무 진행률 기준</span>
 		    		<ul>
 		    		<li>- 요구사항분석 10%</li>

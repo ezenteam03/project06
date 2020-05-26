@@ -14,6 +14,7 @@ public interface WorkDao2 {
 	public int totCnt(TaskSch sch);
 	public ArrayList<Task> list(TaskSch sch);
 	public ArrayList<Task> slist(TaskSch sch);
+	public ArrayList<Task> workList(Task sch);
 
 	public void updateTask(Task upt);
 	
