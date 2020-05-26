@@ -17,6 +17,7 @@ public interface WorkDao2 {
 	public ArrayList<Task> slist(TaskSch sch);
 	public ArrayList<Task> workList(Task sch);
 	public ArrayList<Task> nameList(Task sch);
+	public ArrayList<Task> getrefno(Task sch);
 
 	public void updateTask(Task upt);
 	

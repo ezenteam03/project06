@@ -269,8 +269,9 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">상위업무번호</span>
 		</div>
+		<c:forEach var="rf" items="${ref}"></c:forEach>
 		<input name="refno" class="form-control" readonly style="background:white;"
-			value="${task.refno}" 
+			value="${task.refno}"
 			placeholder="" />	
 		
 	</div>	
