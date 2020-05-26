@@ -1,6 +1,7 @@
 package project06.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,12 @@ public class MeetCtrl {
 	private MeetService service;
 	
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("msch") MeetSch sch, Model d) {
+	public String list(@ModelAttribute("msch") MeetSch sch, Model d,HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
 		d.addAttribute("mlist", service.list(sch));
 		return "WEB-INF\\views\\main\\meetList.jsp";
 	}
@@ -64,6 +70,7 @@ public class MeetCtrl {
 		insert.setDecision(request.getParameter("decision"));
 		insert.setFilenames(request.getParameter("filenames"));
 		insert.setLoc(request.getParameter("loc"));
+		insert.setFnames(request.getParameter("fnames"));
 		insert.setPeople(request.getParameter("people"));
 		
 		//System.out.println("등록 제목:"+insert.getTopic());
@@ -76,6 +83,8 @@ public class MeetCtrl {
 		insert.setDetail("");
 		insert.setEtc("");
 		insert.setDecision("");
+		insert.setFilenames("");
+		insert.setFnames("");
 	
 		
 		

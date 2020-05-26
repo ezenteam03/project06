@@ -185,7 +185,7 @@ $(document).ready(function(){
 		<span class="bg-success text-white input-group-text">첨부 파일</span>
 	</div>
 		<input class="form-control fileInfo" name="fnames" id="fnames"
-			value="${meet.filenames[0]}" />	
+			value="${meet.filenames}" />	
 		<div class="custom-file">
 			<input type="file" name="report" 
 				class="custom-file-input" id="file01"/>
