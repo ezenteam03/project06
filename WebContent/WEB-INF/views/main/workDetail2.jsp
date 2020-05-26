@@ -248,13 +248,16 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">담 당 자</span>
 		</div>
-		 
+		
+			
+		
+
 		<input name="writer" class="form-control" readonly style="background:white; width:500px;"
-			value="${task.mno}" 
-			placeholder="" />	
+			value="${task.name}" 
+			placeholder="" />
 			<c:if test="${mdiv == 4 || mdiv == 6}">
 			<select class="sel-grade" name="mno" style="padding:10px; font-size:0.9em; margin-left:15px; outline:none;">
-					<option value="${task.mno}" selected></option>     
+					<option value="${task.mno}" selected>담당자 변경</option>     
 	                   <c:forEach var="pm" items="${pmsElist}">   		      		
 							<option value="${pm.eno}">${pm.name} ${pm.grade}</option>               		      		
 	                   </c:forEach>

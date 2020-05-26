@@ -189,17 +189,7 @@ function go(no){
          </c:forEach>
         </tbody>
       </table>
-   
-            </div>
-           
-          </div>
-          
-          <!-- /col-md-12 -->
-        </div>
-        <!-- row -->
-        
-        <br>
-        <div style="text-align:center; float:left; margin-left:600px;">
+      <div style="text-align:center;  ">
 		<ul class="pagination justify-content-center" style="margin:20px 0">
 	    <li class="page-item">
 	    <a class="page-link" href="javascript:goPage(${tsch.startBlock-1})">Previous</a></li>
@@ -216,6 +206,17 @@ function go(no){
 	      	 <div>
 	          <button type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
 	         </div>
+   
+            </div>
+           
+          </div>
+          
+          <!-- /col-md-12 -->
+        </div>
+        <!-- row -->
+        
+        <br>
+        
 
     </div>
      

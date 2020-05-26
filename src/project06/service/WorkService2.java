@@ -150,6 +150,7 @@ public class WorkService2 {
 	}
 	public Task getTask(int no) {
 		// 업무 상세화면
+		
 		Task d =  dao.getTask(no);
 		//System.out.println("파일의 갯수:"+dao.fnames(no).size());
 		//d.setFilenames(dao.fnames(no));
@@ -159,6 +160,10 @@ public class WorkService2 {
 	
 	public ArrayList<Task> workList(Task sch){
 		return dao.workList(sch);
+	}
+	
+	public ArrayList<Task> nameList(Task sch){
+		return dao.nameList(sch);
 	}
 	
 }

@@ -73,8 +73,9 @@
  	<select id="getTask" 
  		resultType="task" parameterType="int">
  		SELECT *
- 		FROM PMSTASK
- 		WHERE tno = #{tno}
+		FROM PMSTASK pmt, pmsemp pe
+		WHERE tno = #{tno}
+		AND pmt.mno = pe.eno
  	</select>
  	
  	<!-- 삭제 -->
@@ -167,12 +168,22 @@
  	 -->
  	<select id="workList" resultMap="taskResult" parameterType="task">
 	 	SELECT * 
-		FROM testtask
+		FROM pmstask
 		WHERE 1=1
 		<if test="tname!=null and tname!=''">
 			and tname like '%'||#{tname}||'%'
 		</if> 
  	</select>
+ 	
+ 	<select id="nameList" resultMap="taskResult" 
+ 		parameterType="tsch">
+	 	SELECT pt.mno , pe.eno, pe.name
+		FROM pmstask pt, pmsemp pe
+		WHERE pt.mno = #{mno}
+		AND pe.eno = #{eno}
+ 	</select>
+ 	
+
  	
 </mapper>	
 

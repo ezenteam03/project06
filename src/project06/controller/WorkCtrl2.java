@@ -160,8 +160,10 @@ public class WorkCtrl2 {
 		
 		
 		@RequestMapping(params="method=detail")
-		public String detail(@RequestParam("tno") int no, Model d, HttpServletRequest request) {
+		public String detail(@RequestParam("tno") int no,Task sch, Model d, HttpServletRequest request) {
 			
+		
+			d.addAttribute("nlist", service.nameList(sch));
 			d.addAttribute("task", service.getTask(no));
 			
 			HttpSession session = request.getSession();

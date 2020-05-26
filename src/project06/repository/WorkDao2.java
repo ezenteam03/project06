@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import project06.vo.PmsMember;
 import project06.vo.Task;
 import project06.vo.TaskSch;
 
@@ -15,6 +16,7 @@ public interface WorkDao2 {
 	public ArrayList<Task> list(TaskSch sch);
 	public ArrayList<Task> slist(TaskSch sch);
 	public ArrayList<Task> workList(Task sch);
+	public ArrayList<Task> nameList(Task sch);
 
 	public void updateTask(Task upt);
 	
