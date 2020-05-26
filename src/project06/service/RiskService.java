@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import project06.repository.RiskDao;
@@ -20,6 +21,7 @@ import project06.vo.Comment;
 import project06.vo.PmsMember;
 import project06.vo.Risk;
 import project06.vo.RiskSch;
+import project06.vo.Task;
 
 @Service
 public class RiskService {
@@ -219,6 +221,11 @@ public class RiskService {
 		
 		dao.updatecomment(cupdate);		
 	
+	}
+	public  ArrayList<Risk> andlist(Risk sch) {
+		
+		return dao.andlist(sch);		
+		
 	}
 }
 

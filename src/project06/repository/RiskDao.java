@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import project06.vo.Comment;
 import project06.vo.Risk;
@@ -37,4 +38,6 @@ public interface RiskDao {
 	public void updatecomment(Comment cupt);
 	// 조회수
 	public void uptReadCnt(int ino);
+	
+	public ArrayList<Risk> andlist(Risk sch);
 }

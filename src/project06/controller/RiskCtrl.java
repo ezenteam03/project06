@@ -15,6 +15,7 @@ import project06.vo.Comment;
 import project06.vo.PmsMember;
 import project06.vo.Risk;
 import project06.vo.RiskSch;
+import project06.vo.Task;
 
 
 @Controller
@@ -155,7 +156,13 @@ public class RiskCtrl {
 			return "WEB-INF\\views\\main\\commentIns.jsp";
 		}
 		
-	
+		// http://localhost:5080/project06_git/risk.do?method=applist
+
+		@RequestMapping(params="method=applist") 
+		public String andlist(Risk sch, Model d) {
+			d.addAttribute("andlist", service.andlist(sch));
+			return "WEB-INF\\views\\main\\andRisk.jsp";
+		}
 }
 
 
