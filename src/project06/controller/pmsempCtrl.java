@@ -17,6 +17,7 @@ import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 import project06.vo.pmsempSch;
 
+
 @Controller
 @RequestMapping("/PMSemp.do")
 public class pmsempCtrl {
@@ -41,11 +42,25 @@ public class pmsempCtrl {
 	
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("pmsempsch") 
-		pmsempSch sch, Model d, HttpServletRequest request) {
+	public String list(@ModelAttribute("pmsempsch") pmsempSch sch,
+			Model d, HttpServletRequest request) {
+		
+		//pmsempSch sch = new pmsempSch();
+		sch.setName(request.getParameter("name"));
+		sch.setDept(request.getParameter("dept"));
+		sch.setGrade(request.getParameter("grade"));
+		System.out.println(sch.getName());
+		System.out.println(sch.getDept());
+		System.out.println(sch.getGrade());
+		
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
+	@RequestMapping(params="method=Ajaxlist")
+	public String ajaxlist(pmsempSch sch, Model d) {
+		d.addAttribute("elist", service.pmsempList(sch));
+		return "jsonReport";
+	}	
 	// CEO, CTO 권한설정 페이지 이동
 	@RequestMapping(params="method=setForm")
 	public String setemp(@RequestParam("peno") int eno, Model d) {
