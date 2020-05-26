@@ -74,7 +74,7 @@
 		from pmsmember 
 		where mno=#{eno}
 	</select>
-		<!-- pms에 등록안된 경우 CEO로등록 -->
+	<!-- pms에 등록안된 경우 CEO로등록 -->
 	<insert id="insertCeo1" parameterType="pmsemp">
 		 insert into pmsmember 
 		 	values(#{eno}, #{pass}, 2, #{phone}, null)
