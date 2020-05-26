@@ -26,10 +26,10 @@ public interface RiskDao {
 	
 	public void comupdate(Risk upt2);
 	// 업로드
-	public void insertRepo(String fname);
-	public ArrayList<String> fnames(int ino);
-	public void uptFileInfo(HashMap hm);
-	public void insFileInfo(HashMap hm);
+	public void insertRepo(String fname);		// 파일업로드
+	public ArrayList<String> fnames(int ino);	// 내용출력
+	public void uptFileInfo(HashMap hm);		// 업로드된 파일 수정
+	public void insFileInfo(HashMap hm);		// 수정된 내용 업로드
 	// 댓글
 	public ArrayList<Comment> clist(RiskSch sch);
 	public void deleteComment(int rno);	
