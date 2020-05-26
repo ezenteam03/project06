@@ -67,11 +67,12 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <table class="table table-hover">
-              <form:form class="form" commandName="pmsempsch" method="post" >
+              	<form:form class="form" commandName="pmsempsch" method="post" >
 				<form:hidden path="curPage"/>             
                 <div>
-               	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
-               					사원 목록</span>
+               		<span style="font-size:25px; margin-left:10px;">
+               			<i class="fa fa-angle-right"></i>
+               						사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
                 	<select class="schdiv" id="selsch">
                 		<option value="name">이름</option >
@@ -80,8 +81,6 @@
                 	</select>
                 		<!-- 검색창 -->
                 		<form:input class="sch-bar search" path="name" placeholder="검색"/>
-                		<%-- <form:input class="sch-bar" path="dept" placeholder="부서 검색"/>
-                		<form:input class="sch-bar" path="grade" placeholder="직급 검색"/> --%>
 	                	<!-- 검색버튼 -->
 	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
