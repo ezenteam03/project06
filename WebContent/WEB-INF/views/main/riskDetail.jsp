@@ -136,6 +136,7 @@
 <style type="text/css">
 .input-group-text{width:100%;}
 .input-group-prepend{width:20%;}
+
 </style>
 </head>
 <body>
@@ -259,8 +260,8 @@
 	<div style="text-align:right;" >
 			<button class="btn bg-warning" id="cmtBtn">입력</button>
 	</div>	
-	<div class="col-md-12 mt">
-    	<div class="content-panel">
+	<div class="col-md-12 mt" style="width:100%">
+    	<div class="content-panel" style="padding: 0px; ">
   			 <table class="table table-hover">  
   			 <tbody>
    			   <c:forEach var="comment" items="${clist}">

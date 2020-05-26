@@ -43,8 +43,8 @@
 
 
 	<insert id="insert" parameterType="risk">
-		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,#{title},
-		#{detail},0,null,sysdate,null,null,#{pno},#{mno})
+		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,NVL(#{title},'내용없음'),
+		NVL(#{detail},'내용없음'),0,null,sysdate,null,null,#{pno},#{mno})
 	</insert>
 	
 	<select id="getRisk" 

@@ -54,9 +54,10 @@ public class RiskCtrl {
 	@RequestMapping(params="method=insert")
 	public String insert(Risk insert) {
 		
-		service.insert(insert);
+		service.insert(insert);	
 		
 		return "WEB-INF\\views\\main\\riskInsert.jsp";
+		
 	}
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("ino") int ino, Model d,HttpServletRequest request) {
