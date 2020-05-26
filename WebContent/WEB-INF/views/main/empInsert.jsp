@@ -56,6 +56,9 @@
 					}
 				});
 			 });
+			 $("#goDelBtn").click(function(){
+				  $(location).attr("href","${path}/PMSemp.do?method=delForm") 
+			  });
 		  });
 	  	 
 		 function goPage(no){
@@ -145,6 +148,8 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
+             	  <button type="button" class="btn btn-danger" 
+		           			id="goDelBtn" style="margin-right:20px;">팀원삭제이동</button>
 		           <button type="button" class="btn btn-success" 
 		           			id="insBtn" style="margin-right:20px;">추가</button>
 		           <button type="button" class="btn btn-default">이전</button>

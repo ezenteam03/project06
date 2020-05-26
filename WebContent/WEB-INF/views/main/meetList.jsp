@@ -108,7 +108,7 @@ function goPage(no){
         <div class="row">
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
-            <div class="content-panel">
+            <div id="goIS" class="content-panel">
               <form method="post">
 					<input type="hidden" name="curPage"/>
 				</form>
@@ -189,7 +189,8 @@ function goPage(no){
     </form:form> 
     
     <!-- c:if 어쩌고-->
-          <button id="regBtn" type="button" class="btn btn-theme" style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
+          <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!==2&&mdiv!==3"
+          style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br> 
             </div>
            
@@ -304,5 +305,10 @@ function goPage(no){
     });
   </script>
 </body>
-
+<script>
+var vm = new Vue({
+	el:"#goIS",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 </html>
