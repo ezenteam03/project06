@@ -67,7 +67,7 @@
  	
 	<!-- 파일 업로드	a.mno=m.eno = #{a.mno=m.eno} -->
 	<insert id="insertRepo" parameterType="String"> 
- 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,pmsissue_seq.currval, 
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,pmsmeeting_seq.currval,null, 
  			#{fname}, sysdate)
 	</insert>
 	<resultMap type="String" id="strMap"/> 

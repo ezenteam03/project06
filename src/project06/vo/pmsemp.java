@@ -22,10 +22,17 @@ public class pmsemp {
 		private String pass;	// 비밀번호		(pmsmember)
 		private int mdiv;		// 권한구분		(pmsmember)
 		private String wcon;	// 희망연락처		(pmsmember)
+		private int cnt;		// 페이징 처리 글번호
 		private String schEmp;
 
 		
 		
+		public int getCnt() {
+			return cnt;
+		}
+		public void setCnt(int cnt) {
+			this.cnt = cnt;
+		}
 		public String getSchEmp() {
 			return schEmp;
 		}

@@ -91,7 +91,8 @@
 			success:function(data){
 				
 				var todayOrigin = sdatestr; 
-				var today = sdatestr; 
+				var today = sdatestr;
+				var currentDay = new Date(); //현재 날짜
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -99,6 +100,12 @@
 				today.setUTCSeconds(0);
 				today.setUTCMilliseconds(0);
 				today = today.getTime();
+				
+				currentDay.setUTCHours(0);
+				currentDay.setUTCMinutes(0);
+				currentDay.setUTCSeconds(0);
+				currentDay.setUTCMilliseconds(0);
+				currentDay = currentDay.getTime();
 				
 				// data.모델명
 				var clist = data.chartlist;
@@ -112,6 +119,7 @@
 					end: today+(((deadlinestr-sdatestr)/day) * day),
 					completed : 0,
 	            	owner: "${project.name}",
+	            	description : '025',
 	            	y: 0,
 				});
 				
@@ -129,6 +137,7 @@
 						completed : chart.prog,
 						owner : ""+chart.name+"",
 						collapsed : true,
+						description : chart.level,
 						y : idx+1,
 						});
 				});
@@ -139,7 +148,7 @@
 				var tooltipInfo = {
 				        pointFormatter: function () {
 				            var point = this,
-				                format = '%e. %b',
+				                format = '%e',
 				                completed = point.completed,
 				                status = (completed * 100) + '%',
 				                lines;
@@ -196,7 +205,20 @@
 				          text: '작업명',
 				        },
 				        labels: {
-				          format: '{point.name}'
+				        	align: 'left',
+					          useHTML: true,
+					          formatter: function() {
+					                var point = this.point;
+					                var space = '&nbsp;';
+					                var description = point.description;
+					                level = description.toString();
+					                level = level.substring(0,1);
+					                for(var idx=0;idx<level;idx++){
+					                	space+='&nbsp;&nbsp;';
+					                }
+					                var name = space+point.name;
+					                return name;
+					              }
 				        }
 				      }, {
 			        title: {
@@ -214,7 +236,7 @@
 				                var point = this.point,
 				                  days = (1000 * 60 * 60 * 24),
 				                  number = (point.end - point.start) / days;
-				                return Math.ceil(number);
+				                return Math.ceil(number)+'일';
 				              }
 				        }
 			      },{
@@ -224,7 +246,7 @@
 				        labels: {
 				        	formatter: function() {
 				                var point = this.point,
-				                format = '%e. %b';
+				                format = '%y/%m/%d';
 				                return dateFormat(format, point.start);
 				              }
 				        }
@@ -235,22 +257,59 @@
 				        labels: {
 				        	formatter: function() {
 				                var point = this.point,
-				                format = '%e. %b';
+				                format = '%y/%m/%d';
 				                return dateFormat(format, point.end);
 				              }
 				        }
-				      },/* {
+				      },{
 			        title: {
-				          text: '진행도',
+				          text: '상태',
 				        },
 				        labels: {
 				        	formatter: function() {
-				                var point = this.point,
-				                  number = point.completed * 100;
-				                return number + '%';
-				              }
+				        		var point = this.point;
+				                var result = '';
+				                var description = point.description;
+				                tdiv = description.toString();
+				                tdiv = tdiv.substring(1);
+				                
+				                switch(tdiv){
+				                case '21' : result+='진행중'; break;
+				                case '22' : result+='결제대기'; break;
+				                case '23' : result+='반려'; break;
+				                case '24' : result+='완료'; break;
+				                default : result+='-'; break;
+				                }
+				                return result;
+				              } 
+				          //format: '{point.owner}'
 				        }
-				      } */]
+				      },{
+			        title: {
+				          text: '남은일수',
+				        },
+				        labels: {
+				        	 formatter: function() {
+				                var point = this.point;
+				                var result = '';
+				                var description = point.description;
+				                tdiv = description.toString();
+				                tdiv = tdiv.substring(1);
+				                var excessDate = Math.round(-(point.end-currentDay)/day);
+				                if(tdiv=='24' || tdiv=='25'){
+				                	result='-';
+				                }else{
+				                	if(excessDate<=0) {
+					                	excessDate = Math.abs(excessDate);
+					                	result+=excessDate+'일';
+					                }
+					                else result=excessDate+'일 초과';
+				                }
+					                
+				                return result;
+				              } 
+				        }
+				      }]
 			    }
 			  };
 				var cInfo = {

@@ -1,4 +1,7 @@
 SELECT * FROM PMSEMP;
+UPDATE pmsemp
+SET EMAIL = 'pkmon2d@gmail.com'
+WHERE eno = 10000005;
 SELECT * FROM PMSMEMBER
 ORDER BY mno;
 SELECT pe.ENO, pe.NAME, pe.GRADE, pm.MDIV, pc.CNAME 
@@ -82,6 +85,7 @@ AND pp.pno = 1001
 --AND pt.tname LIKE '%'||'웹'||'%'
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
+
 --테스트용
 SELECT * FROM pmstask
 WHERE pno = 1001
@@ -118,27 +122,63 @@ CONNECT BY PRIOR pt.tno = pt.refno;
  SELECT rank() over (partition BY refno ORDER BY tno) r,
                 tno, tname, refno
   FROM pmstask; 
-
---팀원 작업 내역
+--팀원 작업 내역(전)
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pt.tno = #{refno}
+		UNION all
+		SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
+		FROM PMSPROJECT pp, PMSTASK pt, 
+		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
+		WHERE pe.eno = pm.mno) pem
+		WHERE pp.pno = pt.pno
+		AND pt.mno = pem.mno
+		AND pp.pno = #{pno}
+		AND pem.eno = #{mno}
+		AND pt.refno = #{refno}
+		START WITH pt.refno=0
+		CONNECT BY PRIOR pt.tno = pt.refno;
+--팀원 작업 내역(후)
+SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
-WHERE pe.eno = pm.mno) pem
+WHERE pe.eno = pm.mno) pem,
+(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
+FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
+tno, tname, refno FROM pmstask)
+   CONNECT BY PRIOR tno = refno 
+  START WITH refno =0) prt
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
+AND pt.tno = prt.tno
 AND pp.pno = 1001
 AND pt.tno = 1009
+START WITH pt.refno=0
+CONNECT BY PRIOR pt.tno = pt.refno
 --AND pt.refno = 1009
 --AND pem.eno = 10000005
 UNION all
-SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
-WHERE pe.eno = pm.mno) pem
+WHERE pe.eno = pm.mno) pem,
+(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
+FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
+tno, tname, refno FROM pmstask)
+   CONNECT BY PRIOR tno = refno 
+  START WITH refno =0) prt
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
+AND pt.tno = prt.tno
 AND pp.pno = 1001
 AND pem.eno = 10000016
 AND pt.refno = 1009
@@ -204,3 +244,9 @@ SELECT rownum cnt, e.eno, e.name, e.grade, m.wcon, CASE WHEN l.state = 0 THEN '�
 				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
 					AND m.pno=1003
 				ORDER BY m.mno
+			;
+		SELECT * FROM pmsemp;
+		SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+			(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
+			FROM pmsemp a 
+			WHERE 1=1 ;

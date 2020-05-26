@@ -25,15 +25,15 @@
 		<if test="name!=null and name!=''">
 		and name LIKE '%'||#{name}||'%'
 		</if>
-		<if test="name!=null and name!=''">
-		or grade LIKE '%'||#{name}||'%'
+		<if test="grade!=null and grade!=''">
+		and grade LIKE '%'||#{grade}||'%'
 		</if>
-		<if test="name!=null and name!=''">
-		OR dept LIKE '%'||#{name}||'%'
+		<if test="dept!=null and dept!=''">
+		and dept LIKE '%'||#{dept}||'%'
 		</if>
  	</select> 	
  	<!-- CEO, CTO 사원리스트 불러오기 -->
- 	<select id="pmsempList" resultMap="pmsempResult"  parameterType="pmsemp">
+ 	<select id="pmsempList" resultMap="pmsempResult"  parameterType="pmsempsch">
  		SELECT *
  		FROM(
 			SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
@@ -44,11 +44,11 @@
 			<if test="name!=null and name!=''">
 			and name LIKE '%'||#{name}||'%'
 			</if>
-			<if test="name!=null and name!=''">
-			or grade LIKE '%'||#{name}||'%'
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
 			</if>
-			<if test="name!=null and name!=''">
-			OR dept LIKE '%'||#{name}||'%'
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
 			</if>
 			ORDER BY a.eno asc)
 		WHERE cnt BETWEEN #{start} AND #{end}
