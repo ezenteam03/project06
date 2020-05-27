@@ -17,6 +17,7 @@ public interface RiskDao {
 	public int ctotCnt(RiskSch sch);
 
 	public ArrayList<Risk> list(RiskSch sch);
+	public ArrayList<Risk> pnolist(RiskSch sch);
 	
 	public void insert(Risk ins);
 	public void cinsert(Comment ins);

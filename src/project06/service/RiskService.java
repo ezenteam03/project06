@@ -79,6 +79,11 @@ public class RiskService {
 		
 		return dao.list(sch);
 	}
+	public ArrayList<Risk> pnolist(RiskSch sch){
+		
+		return dao.pnolist(sch);
+	}
+	
 	public void insert(Risk ins) {
 			
 		dao.insert(ins);

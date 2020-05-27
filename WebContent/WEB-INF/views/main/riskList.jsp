@@ -120,9 +120,9 @@
 					</div>
 					 <div style="float:left; margin-right: 5px">
 					<form:select path="pno" class="form-control" style="width:100px;float:left; ">
-			
-					<form:option value="1001">1001</form:option>
-					<form:option value="1002">1002</form:option>	
+						<form:option value="1001">1001</form:option>									
+						<form:option value="1002">1002</form:option>									
+									
 					 </form:select>	
 					 </div>
 				 </div>
