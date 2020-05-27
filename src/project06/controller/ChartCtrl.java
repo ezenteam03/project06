@@ -21,6 +21,19 @@ public class ChartCtrl {
 	@Autowired(required=false)
 	private ProjectService pservice;
 	
+	// http://localhost:6080/project06_git/chart.do?method=admin
+	@RequestMapping(params="method=admin")
+	public String chartadmin(HttpServletRequest request, Model d) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		int pno = Integer.parseInt(request.getParameter("pno"));
+		d.addAttribute("project", pservice.getProject(pno));		
+		
+		return "WEB-INF\\views\\main\\chartadmin.jsp";
+	}
+		
 	// http://localhost:6080/project06_git/chart.do?method=pm
 	@RequestMapping(params="method=pm")
 	public String chartpm(HttpServletRequest request, Model d) {
@@ -46,6 +59,16 @@ public class ChartCtrl {
 		
 		return "WEB-INF\\views\\main\\charttm.jsp";
 	}
+	
+	// http://localhost:6080/project06_git/chart.do?method=ajaxdataadmin
+		@RequestMapping(params="method=ajaxdataadmin")
+		public String chtDataadmin(HttpServletRequest request, Model d) {
+			int pno = Integer.parseInt(request.getParameter("pno"));
+			d.addAttribute("project", pservice.getProject(pno));
+			
+			d.addAttribute("chartlist", cservice.chartList(pno));
+			return "pageJsonReport";
+		}
 	
 	// http://localhost:6080/project06_git/chart.do?method=ajaxdata
 	@RequestMapping(params="method=ajaxdata")

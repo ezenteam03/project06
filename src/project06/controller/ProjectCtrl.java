@@ -1,8 +1,5 @@
 package project06.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.ProjectService;
 import project06.service.pmsempService;
@@ -39,7 +35,7 @@ public class ProjectCtrl {
 		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 		
 		emp.setMdiv(pmsm.getMdiv());
-		System.out.println("검증용 mdiv "+emp.getMdiv());
+		//모든 사원이 프로젝트에 참여중일 경우 사원이 없음을 표시하는 로직 필요
 		//현재 프로젝트에 소속되어있지 않은 대리급 이상 사원리스트 호출
 		d.addAttribute("elist", peservice.insList(emp));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
