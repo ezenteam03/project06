@@ -56,12 +56,101 @@
 
 <script type="text/javascript">
 	var mdiv = "${infor_M.mdiv}"
+	var currentDate = new Date();
+	var day = 1000 * 60 * 60 * 24;
+	currentDate.setUTCHours(0);
+	currentDate.setUTCMinutes(0);
+	currentDate.setUTCSeconds(0);
+	currentDate.setUTCMilliseconds(0);
+	currentDate = currentDate.getTime();
+	
 	$(document).ready(function(){
-		$("#regBtn").click(function(){	
-			if(confirm("등록합니다.")){
-				$("#commentForm").attr("action","${path}/project.do?method=proins");
-				$("#commentForm").submit();				
-			}			
+		$("#regBtn").click(function(){
+			Swal.fire({
+				  title: '프로젝트 추가',// 큰 문자열
+				  text: "기입하신 정보대로 등록하시겠습니까?",//작은 문자열
+				  icon: 'info',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes!'
+				}).then((result) => {
+				  if (result.value) {
+					var sdatestr = $("[name=pro_sdate]").val();
+					var deadlinestr = $("[name=pro_dline]").val();
+					//console.log(sdatestr);
+					//console.log(deadlinestr);
+					if(sdatestr != ''){
+					var sdate = new Date(sdatestr);
+					sdate = sdate.getTime();
+					console.log("sdate:"+sdate);
+					
+					}
+					if(deadlinestr != ''){
+					var deadline = new Date(deadlinestr);
+					deadline = deadline.getTime();
+					console.log("deadline:"+deadline);
+					console.log("currentDate:"+currentDate);
+					console.log(currentDate>sdate);
+					console.log(currentDate>deadline);
+					console.log(deadline<sdate);
+					}
+				
+					if($("[name=pro_pname]").val()=='' || $("[name=pro_pname]").val()==null){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '프로젝트 명을 입력해주세요.',
+					      'error'
+					    )
+					}else if($("[name=pro_sdate]").val()=='' || $("[name=pro_sdate]").val()==null){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '시작일을 입력해주세요.',
+					      'error'
+					    )
+					}else if($("[name=pro_dline]").val()=='' || $("[name=pro_dline]").val()==null){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '종료일을 입력해주세요.',
+					      'error'
+					    )
+					}else if(currentDate>sdate){ 1590 > 1546
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '시작일은 오늘날짜보다 이후여야 합니다.',
+					      'error'
+					    )
+					}else if(currentDate>deadline){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '종료일은 오늘날짜보다 이후여야 합니다.',
+					      'error'
+					    )
+					}else if(deadline<sdate){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '종료일은 시작일보다 이후여야 합니다.',
+					      'error'
+					    )
+					}else if($("[name=pro_mname]").val()=='' || $("[name=pro_mname]").val()==null){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      'PM을 선택해주세요.',
+					      'error'
+					    )
+					}else if($("[name=pro_detail]").val()=='' || $("[name=pro_detail]").val()==null){
+						Swal.fire(
+					      '입력 데이터 문제',
+					      '상세내용을 입력해주세요.',
+					      'error'
+					    )
+					}else{
+					// Yes 버튼 클릭시 수행 코드
+			    	$("#commentForm").attr("action","${path}/project.do?method=proins");
+					$("#commentForm").submit();	
+					}
+				  }
+				})
 		});	
 		$("#goMain").click(function(){
 			if(confirm("조회 화면 이동 합니다.")){
@@ -69,14 +158,14 @@
 			}
 		});
 		
-		$("#promem").click(function(){
+		$("#selPm").click(function(){
 			selectpm();
 			//$(location).attr("href","${path}/logList.do?method=list");
 		});
 	});
 	
 	function selectpm() { 
-		window.open("http://localhost:6080/project06_git/project.do?method=selectpm&mdiv="+mdiv, "SelectPM", "width=780, height=500, left=300, top=100");
+		window.open("http://localhost:6080/project06_git/project.do?method=selectpm&mdiv="+mdiv, "SelectPM", "width=780, height=520, left=300, top=100");
 	}
 </script>
   
@@ -92,10 +181,7 @@
     <section id="main-content">
       <section class="wrapper" style="height:300px; margin-top:0;">
          <!-- FORM VALIDATION -->
-          <form class="cmxform form-horizontal style-form" id="commentForm" method="post">
-          
-          
-              	
+     <form class="cmxform form-horizontal style-form" id="commentForm" method="post">
         <div class="row mt">
           <div class="col-lg-12">
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;"> 프로젝트 추가</i></h4>
@@ -111,8 +197,8 @@
                   </div>
 					<div class="form-group">
 					  <label class="control-label col-lg-2">시작일</label>
-					  <div class="col-md-3 col-xs-11">
-					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
+					  <div class="col-md-2 col-xs-11">
+					    <div data-date-viewmode="years" data-date-format="yyyy/mm/dd" data-date="${sysDate}" class="input-append date dpYears">
 					    
 					      <input type="text" name="pro_sdate" readonly size="16" class="form-control">
 					      
@@ -125,8 +211,8 @@
 					</div>
    					<div class="form-group">
 					  <label class="control-label col-lg-2">종료일</label>
-					  <div class="col-md-3 col-xs-11">
-					    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="${sysDate}" class="input-append date dpYears">
+					  <div class="col-md-2 col-xs-11">
+					    <div data-date-viewmode="years" data-date-format="yyyy/mm/dd" data-date="${sysDate}" class="input-append date dpYears">
 					    
 					      <input type="text" name="pro_dline" readonly size="16" class="form-control">
 					      
@@ -139,15 +225,13 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-			        <ul class="nav pull-left top-menu" style="padding : 0 0 0 20px;">
-			          <li><a class="logout" id="promem" style="cursor:pointer;">참여인원</a></li>
-			        </ul>
-                    <select class="sel-grade" name="pro_mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
-                    	<c:forEach var="empl" items="${elist}">
-						<option value="${empl.eno}">${empl.name} ${empl.grade}</option>                    		
-                    	</c:forEach>
-                    </select>
-                    
+                    <div class="col-md-2 col-xs-5">
+                      <input type="hidden" name="pro_mno"/>
+                      <input class=" form-control" id="pname" name="pro_mname" minlength="2" type="text" required />
+                      <span class="input-group-btn add-on">
+	                      <input type="button" class="btn btn-info" value="선택" id="selPm"/>
+			        </span>
+                    </div>
                   </div>
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">프로젝트 개요</label>

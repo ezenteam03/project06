@@ -65,6 +65,14 @@
 		$("#curPage").val(no);
 		$("#selecpmForm").submit();
 	}
+	
+	function selpm(no){
+		var eno = $('#pm_eno'+no).val();
+		var ename = $('#pmname_grade'+no).val();
+		$('[name=pro_mno]',opener.document).val(eno);
+		$('[name=pro_mname]',opener.document).val(ename);
+		self.close();
+	}
 </script>
 </head>
 
@@ -108,17 +116,22 @@
 				<tbody>
 					<c:forEach var="log" items="${loglist }">
 						<tr>
-							<td align="center">${log.name }</td>
-							<td align="center">${log.grade }</td>
+							<td align="center" style="vertical-align: middle;">${log.name }</td>
+							<td align="center" style="vertical-align: middle;">${log.grade }</td>
 							<c:choose>
 							<c:when test="${not empty log.wcon }">
-							<td align="center">${log.wcon }</td>
+							<td align="center" style="vertical-align: middle;">${log.wcon }</td>
 							</c:when>
 							<c:otherwise>
-							<td align="center">${log.phone }</td>
+							<td align="center" style="vertical-align: middle;">${log.phone }</td>
 							</c:otherwise>
 							</c:choose>
-							<td align="center">선택</td>
+							<td align="center">
+							<input type="hidden" id="pm_eno${log.eno}" value="${log.eno}" />
+							<input type="hidden" id="pmname_grade${log.eno}" value="${log.name} ${log.grade}" />
+							<input type="button" class="btn btn-info" value="선택" id="selPm${log.eno}" 
+							onclick="javascript:selpm(${log.eno})" style="padding:3px 5px 3px 5px;"/>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>	
