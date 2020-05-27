@@ -6,6 +6,6 @@
 <fmt:requestEncoding value="utf-8"/>  
 {"andlist":
 	[<c:forEach var="risk" items="${andlist}" varStatus="sts">
-		{"ino":${risk.ino},"title":"${risk.title}","name":"${risk.name}","wdate":"${risk.wdate}","views":${risk.views}}
+		{"ino":${risk.ino},"title":"${risk.title}","name":"${risk.name}","views":${risk.views},"pno":"${risk.pno}"}
 		<c:if test="${!sts.last}">,</c:if></c:forEach>
 ]}

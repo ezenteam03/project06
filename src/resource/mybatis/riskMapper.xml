@@ -110,16 +110,23 @@
 	
 	<select id="andlist" resultMap="riskResult" parameterType="rsch" >
 
-		SELECT pa.*
-		FROM (SELECT p.*,pm.NAME FROM PMSEMP pm,PMSISSUE p WHERE pm.ENO =p.MNO ORDER BY p.ino ) pa
-		WHERE 1=1 
-		<if test="title != null and title != ''">
-		and title like '%'||#{title}||'%'
-		</if>
+		SELECT p.ino,p.title,pm.NAME,p.VIEWS ,p.pno
+		FROM PMSEMP pm,PMSISSUE p
+		WHERE pm.ENO =p.MNO
 		ORDER BY ino DESC
 
 	</select>
 </mapper>	
+
+
+
+
+
+
+
+
+
+
 
 
 
