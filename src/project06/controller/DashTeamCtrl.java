@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import project06.service.*;
 import project06.vo.*;
@@ -51,11 +51,15 @@ public class DashTeamCtrl {
 		}	
 	}
 	
-	public String isLogin(String page, HttpServletRequest request) {
+	@RequestMapping(params="method=go")
+	public String go(@ModelAttribute("pno") int pno,@ModelAttribute("proc") int proc,Model d, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("mno")==null) {
-			return "WEB-INF\\views\\main\\login.jsp";
-		} 
-		return page;
+		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		emp.setPno(pno);
+		session.setAttribute("infor_M", emp);
+		if(proc==1) {
+			return "forward:/chart.do?method=pm";
+		}
+		return "";
 	}
 }

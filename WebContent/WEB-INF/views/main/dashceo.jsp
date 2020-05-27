@@ -56,20 +56,38 @@ $(function() {
     	onStart: $.noop, 
     	onStop: $.noop
 	});
-	
 });
 </script>
 </head>
 <script type="text/javascript">
-function goNoti() {
-	$(location).attr("href","${path}/notice.do?method=list");
+function goNoti(num) {
+	$("[name=pno]").val(num);
+	$("[name=proc]").val(4);
+	$("#pnoForm").attr("action","${path}/DashTeam.do?method=go");
+	$("#pnoForm").submit();
 }
-function goMeet() {
-	$(location).attr("href","${path}/meet.do?method=list");
+function goMeet(num) {
+	$("[name=pno]").val(num);
+	$("[name=proc]").val(3);
+	$("#pnoForm").attr("action","${path}/DashTeam.do?method=go");
+	$("#pnoForm").submit();
 }
-function goIssue() {
-	$(location).attr("href","${path}/risk.do?method=list");
+function goIssue(num) {
+	$("[name=pno]").val(num);
+	$("[name=proc]").val(2);
+	$("#pnoForm").attr("action","${path}/DashTeam.do?method=go");
+	$("#pnoForm").submit();
 }
+function goGant(num) {
+	$("[name=pno]").val(num);
+	$("[name=proc]").val(1);
+	$("#pnoForm").attr("action","${path}/DashTeam.do?method=go");
+	$("#pnoForm").submit();
+}
+function newPro() {
+	$(location).attr("href","${path}/project.do?method=insert");
+}
+
 </script>
 <body>
   <section id="container">
@@ -81,13 +99,14 @@ function goIssue() {
     <section id="main-content">
       <section class="wrapper" style="margin-top:0;">
         <div class="row">
-          <div class="col-lg-9 main-chart" style="background-color:white;">
+          <div class="col-lg-9 main-chart" style="background-color:white;width:100%;">
             <!--CUSTOM CHART START -->
             <div class="border-head" style="margin-top:20px;">
               <h3>프로젝트 현황</h3>
             </div>
+            <form id="pnoForm" method="post"><input type="hidden" name="pno"/><input type="hidden" name="proc"/></form>
             <c:forEach var="ceo" items="${clist}">
-            <div class="custom-bar-chart" style="height:180px;margin-top:10px;">
+            <div class="custom-bar-chart" style="height:130px;margin-top:10px;">
             	<div width="49%" style="float:left;margin-left:50px;"><h4>${ceo.pro.pname}</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4>PM ${ceo.pro.pm }</h4></div>
             	<br>            		
@@ -118,16 +137,33 @@ function goIssue() {
 				</c:choose>       
             	<div width="49%" style="float:left;margin-left:50px"><h4>${ceo.pro.prog} %</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${ceo.pro.edate}"/> 마감</h4></div>
-            </div>	
-            <div class="chart chart1" data-percent="${ceo.cp }" style="height:230px;width:30%;float:left;margin-left:50px;"><span class="title">완료업무수 : ${ceo.ccnt }</span><br><span class="title">${ceo.cp } %</span></div>	
-            <div class="chart chart1" data-percent="${ceo.dp }" style="height:230px;width:30%;float:left;"><span class="title">진행중 업무수 : ${ceo.dcnt }</span><br><span class="title">${ceo.dp } %</span></div>	
-            <div class="chart chart1" data-percent="${ceo.op }" style="height:230px;width:30%;float:left;margin-right:50px;"><span class="title">기한초과업무수 : ${ceo.ocnt }</span><br><span class="title">${ceo.op } %</span></div>
+            </div>
+            <div style="float:right;margin-right:50px;margin-top:20px;">
+            <button style="margin-right:200px;" onclick="goGant(${ceo.pno })" type="button" class="btn btn-theme"> 간트차트 보기 </button>
+            <button style="margin-right:200px;" onclick="goNoti(${ceo.pno })" type="button" class="btn btn-theme"> 공지사항 보기 </button>
+            <button style="margin-right:200px;" onclick="goMeet(${ceo.pno })" type="button" class="btn btn-theme"> 회의록 보기 </button>
+            <button style="margin-right:130px;" onclick="goIssue(${ceo.pno })" type="button" class="btn btn-theme"> 이슈리스트 보기 </button>
+            </div>
+            <div style="clear:both; height:10px; overflow:hidden;"></div>	
+            <div class="chart" data-percent="${ceo.cp }" style="float: left; width: 30%; height: 230px; text-align: center;margin-left:50px;"><br><span class="title">총업무 : ${ceo.total }</span><span class="title">완료업무 : ${ceo.ccnt }</span><span class="title">${ceo.cp } %</span></div>	
+            <div class="chart" data-percent="${ceo.dp }" style="float: left; width: 30%; height: 230px; text-align: center;"><br><span class="title">미완료업무 : ${ceo.total-ceo.ccnt }</span><span class="title">진행중 업무 : ${ceo.dcnt }</span><span class="title">${ceo.dp } %</span></div>	
+            <div class="chart" data-percent="${ceo.op }" style="float: left; width: 30%; height: 230px; text-align: center;"><br><span class="title">완료업무 : ${ceo.ccnt }</span><span class="title">기한초과업무 : ${ceo.ocnt }</span><span class="title">${ceo.op } %</span></div>
             <div style="clear:both; height:10px; overflow:hidden;"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <hr>
             </c:forEach>
-            <div style="float:right;margin-right:50px;margin-top:50px;"><button id="regBtn" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>            
+            <div style="float:right;margin-right:50px;margin-top:50px;"><button onclick="newPro()" type="button" class="btn btn-theme"> 프로젝트 추가 </button></div>            
             <!--custom chart end-->
-            
+            <div style="clear:both; height:10px; overflow:hidden;"></div>
+            <br>
+            <br>
+            <br>
+            <hr>
           </div>
 			
         
@@ -135,97 +171,7 @@ function goIssue() {
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
-          <div class="col-lg-3 ds">
-          	<h4 onclick="goNoti()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
-              <hr>
-          	<table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>제목</th>
-                    <th style="width:70px;">작성자</th>
-                    <th style="width:70px;">작성일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="notice" items="${nlist}">
-                  <tr>
-                    <td>${notice.nno }</td>
-                    <td>${notice.title }</td>
-                    <td>${notice.writer }</td>
-                    <td>${notice.wdate }일전</td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table><br><br><br>
-              <h4 onclick="goMeet()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
-              <hr>
-          	<table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>제목</th>
-                    <th style="width:70px;">작성자</th>
-                    <th style="width:70px;">작성일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach var="meet" items="${mlist}">
-                  <tr>
-                    <td>${meet.mnno }</td>
-                    <td>${meet.topic }</td>
-                    <td>${meet.writer }</td>
-                    <td>${meet.wdate }일전</td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table><br><br><br>
-              <h4 onclick="goIssue()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
-              <hr>
-          	<table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>해결여부</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach var="issue" items="${ilist}">
-                  <tr>
-                    <td>${issue.ino }</td>
-                    <td>${issue.solve==1?"해결완료":"미해결" }</td>
-                    <td>${issue.writer }</td>
-                    <td>${issue.wdate }일전</td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table><br><br><br>
-              <h4><i class="fa fa-angle-right"></i> 이슈리스트 최근 댓글</h4>
-              <hr>
-          	<table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>이슈번호</th>
-                    <th>댓글 작성자</th>
-                    <th>작성일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach var="re" items="${rlist}">
-                  <tr>
-                    <td>${re.rno }</td>
-                    <td>${re.ino }</td>
-                    <td>${re.writer }</td>
-                    <td>${re.wdate }일전</td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table><br>
           
-          </div>
           <!-- /col-lg-3 -->
         </div>
         <!-- /row -->

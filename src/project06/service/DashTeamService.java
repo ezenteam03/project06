@@ -141,6 +141,7 @@ public class DashTeamService {
 			
 			c.setPno(ilist.get(i));
 			c.setPro(getProject(ilist.get(i)));
+			c.setTotal(total);
 			c.setCcnt(done);
 			c.setCp(cp);
 			c.setDcnt(dcnt);

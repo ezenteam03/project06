@@ -3,6 +3,7 @@ package project06.vo;
 public class DashCeo {
 	private int pno;
 	private DashProject pro;
+	private int total;
 	private int cp;
 	private int ccnt;
 	private int dp;
@@ -20,6 +21,12 @@ public class DashCeo {
 	}
 	public void setPro(DashProject pro) {
 		this.pro = pro;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
 	}
 	public int getCp() {
 		return cp;

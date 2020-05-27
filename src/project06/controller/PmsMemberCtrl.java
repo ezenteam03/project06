@@ -79,11 +79,11 @@ public class PmsMemberCtrl {
 		if(mno!=0) {
 			ck = 1;
 			m.addAttribute("ck",ck);
-			return "WEB-INF\\views\\main\\dashteam.jsp";
+			return "forward:/DashTeam.do?method=list";
 		}else {
 			ck = 2;
 			m.addAttribute("ck",ck);
-			return "WEB-INF\\views\\main\\dashteam.jsp";
+			return "forward:/DashTeam.do?method=list";
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class PmsMemberCtrl {
 		int ck = 3;
 		m.addAttribute("ck",ck);
 
-		return "WEB-INF\\views\\main\\dashteam.jsp";
+		return "forward:/DashTeam.do?method=list";
 	}
 	
 	@RequestMapping(params="method=logout")
