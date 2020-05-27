@@ -32,35 +32,31 @@
 <script src="${path}/a00_com/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		<%-- 
-		
-		--%>
+
 		var wsocket;
 		$("h2").text("채팅");
 		$("#sendBtn").click(function(){
 			sendMsg();
 		});
 		$("#msg").keyup(function(e){
-			//alert(e.keyCode);
+			
 			if(e.keyCode==13){
 				sendMsg();
 			}
 		});
 		$("#exitBtn").click(function(){
 			wsocket.send("msg:"+$("#id").val()+":연결 접속 종료했습니다.");
-			wsocket.close(); // handler의 접속 종료와 연결되어 있음 
+			wsocket.close();
 		});
 		function sendMsg(){
 			var id=$("#id").val();//보내는 사람 id
 			var msg=$("#msg").val();//보내는 메시지
-			// 서버 handler에 데이터 전송..
-			// handleTextMessage(WebSocketSession session, TextMessage message)
-			// 를 호출 메시지는 TextMessage 객체를 통해서 전달
+			
 			wsocket.send("msg:"+id+":"+msg)
 			$("#msg").val("");$("#msg").focus();
 		}
 		$("#id").keyup(function(e){
-			//alert(e.keyCode);
+			
 			if(e.keyCode==13){
 				start();
 				$("#msg").focus();
@@ -71,20 +67,11 @@
 		});
 		function start(){
 			if(confirm("채팅창 접속합니다!")){
-				// new WebSocket("")
-				// ws:// protocol : 웹소켓통신 언어로 데이터 처리.
-				// //211.238.140.48:5080/${path}/ :특정한 서버 주소
-				// /chat-ws.do : 연동되는 socket 통신 handler 모듈의
-				//     url 패턴 <websocket:mapping handler="chatHandler" path="/chat-ws.do"
-				//     @Controller("chatHandler")
+				
 				wsocket = new WebSocket("ws://192.168.4.112:5080/${path}/chat-ws.do");
-				// 객체가 생성되는 순간 접속을 처리된다.
-				// # 기본 처리 메서드 선언..
-				// 1. 접속시 처리 후, 처리할 메서드.
-				//    서버의 handeler를 처리한 후에 내용..
-				wsocket.onopen=function(evt){
-					
-					//alert("서버에 연결되었습니다..");
+				
+				wsocket.onopen=function(evt){					
+				
 					console.log(evt);
 					wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다.");
 				};
@@ -133,8 +120,8 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">아이디</span>
 		</div>
-		<input id="id" class="form-control" 
-			placeholder="접속할 아이디를 입력하세요" />	
+		<input id="id" class="form-control" readonly="readonly"  style="background-color: #ffffff;"
+			value="${emp.name}" />	
 		<input type="button" class="btn btn-info"
 			value="채팅입장" id="enterBtn"/>
 		<input type="button" class="btn btn-success"

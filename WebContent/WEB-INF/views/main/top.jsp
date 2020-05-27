@@ -170,7 +170,7 @@ th{text-align:center;}
 		//window.open("http://192.168.4.230:7080/project06_git/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
 	}
 	function chatPopup() { 
-		window.open("http://localhost:5080/project06_git/chat.do?method=chat", "chat", "width=780, height=500, left=300, top=100");
+		window.open("http://localhost:5080/project06_git/chatting.do", "chat", "width=850, height=600, left=300, top=100");
 		//http://192.168.4.230:7080/project06_git/main.do
 		//window.open("http://192.168.4.230:7080/project06_git/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
 	}
@@ -318,7 +318,7 @@ th{text-align:center;}
       <!--logo end-->
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
+          <li v-if="mdiv==7||mdiv==4||mdiv==5"><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
           <li><a class="logout" href="#pop01">개인정보</a></li>
         <!--   <li><a class="logout" href="#pop03">참여인원</a></li>	-->
           <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
