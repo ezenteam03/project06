@@ -55,6 +55,7 @@
 
 
 <script type="text/javascript">
+	var mdiv = "${infor_M.mdiv}"
 	$(document).ready(function(){
 		$("#regBtn").click(function(){	
 			if(confirm("등록합니다.")){
@@ -66,8 +67,17 @@
 			if(confirm("조회 화면 이동 합니다.")){
 				$(location).attr("href","${path}/DashTeam.do?method=list");			
 			}
-		});	
+		});
+		
+		$("#promem").click(function(){
+			selectpm();
+			//$(location).attr("href","${path}/logList.do?method=list");
+		});
 	});
+	
+	function selectpm() { 
+		window.open("http://localhost:6080/project06_git/project.do?method=selectpm&mdiv="+mdiv, "SelectPM", "width=780, height=500, left=300, top=100");
+	}
 </script>
   
 </head>
@@ -129,8 +139,8 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-			        <ul class="nav pull-left top-menu">
-			          <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
+			        <ul class="nav pull-left top-menu" style="padding : 0 0 0 20px;">
+			          <li><a class="logout" id="promem" style="cursor:pointer;">참여인원</a></li>
 			        </ul>
                     <select class="sel-grade" name="pro_mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
                     	<c:forEach var="empl" items="${elist}">
