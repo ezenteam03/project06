@@ -54,9 +54,9 @@
 	    }
 	     
 	    $("#ckSave").change(function(){ 	
-	        if($("#ckSave").is(":checked")){ 	
+	        if($("#ckSave").is(":checked")){ // 사원번호 저장 체크
 	            setCookie("key", $("#mno").val(), 1);
-	        }else{ // ID 저장하기 체크 해제 시,
+	        }else{ // 사원번호 저장 체크 해제
 	            deleteCookie("key");			
 	        }
 	    });
