@@ -81,7 +81,7 @@ function goIssue(num) {
 function goGant(num) {
 	$("[name=pno]").val(num);
 	$("[name=proc]").val(1);
-	$("#pnoForm").attr("action","${path}/DashTeam.do?method=go");
+	$("#pnoForm").attr("action","${path}/chart.do?method=admin");
 	$("#pnoForm").submit();
 }
 function newPro() {
