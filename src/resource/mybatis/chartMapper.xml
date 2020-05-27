@@ -29,7 +29,7 @@
 		WHERE pe.eno = pm.mno) pem,
 		(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 		FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
-		tno, tname, refno FROM pmstask)
+		tno, tname, refno FROM pmstask WHERE pno = #{pno})
 		   CONNECT BY PRIOR tno = refno 
 		  START WITH refno =0) prt
 		WHERE pp.pno = pt.pno
@@ -56,7 +56,7 @@
 		WHERE pe.eno = pm.mno) pem,
 		(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 		FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
-		tno, tname, refno FROM pmstask)
+		tno, tname, refno FROM pmstask WHERE pno = #{pno})
 		   CONNECT BY PRIOR tno = refno 
 		  START WITH refno =0) prt
 		WHERE pp.pno = pt.pno
@@ -74,7 +74,7 @@
 		WHERE pe.eno = pm.mno) pem,
 		(SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 		FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
-		tno, tname, refno FROM pmstask)
+		tno, tname, refno FROM pmstask WHERE pno = #{pno})
 		   CONNECT BY PRIOR tno = refno 
 		  START WITH refno =0) prt
 		WHERE pp.pno = pt.pno
