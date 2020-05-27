@@ -33,6 +33,7 @@ public class RiskCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		System.out.println(emp.getPno());
 		if(emp.getPno()==1001) {
 			d.addAttribute("ri", 1);
 		}else if(emp.getPno()==1002) {
