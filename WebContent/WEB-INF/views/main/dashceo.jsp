@@ -39,25 +39,10 @@
   .chart {float: left; width: 30%; height: 230px; text-align: center;}
 .chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
   </style>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
 
-<script>
-$(function() {
-	$('.chart').easyPieChart({
-		barColor: '#f16529', //차트가 그려질 색 
-    	trackColor: '#ccc', // 차트가 그려지는 트랙의 기본 배경색(chart1 의 회색부분) 
-    	scaleColor: '#fff', // 차트 테두리에 그려지는 기준선 (chart2 의 테두리 선) 
-    	lineCap: 'butt', // 차트 선의 모양 chart1 butt / chart2 round / chart3 square 
-    	lineWidth: 30, // 차트 선의 두께 
-    	size: 200, // 차트크기
-    	animate: 1000, // 그려지는 시간 
-    	onStart: $.noop, 
-    	onStop: $.noop
-	});
-});
-</script>
+
+
+
 </head>
 <script type="text/javascript">
 function goNoti(num) {
@@ -104,6 +89,24 @@ function newPro() {
             <div class="border-head" style="margin-top:20px;">
               <h3>프로젝트 현황</h3>
             </div>
+            <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+			<script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
+			<script>
+$(function() {
+	$('.chart').easyPieChart({
+		barColor: '#f16529', //차트가 그려질 색 
+    	trackColor: '#ccc', // 차트가 그려지는 트랙의 기본 배경색(chart1 의 회색부분) 
+    	scaleColor: '#fff', // 차트 테두리에 그려지는 기준선 (chart2 의 테두리 선) 
+    	lineCap: 'butt', // 차트 선의 모양 chart1 butt / chart2 round / chart3 square 
+    	lineWidth: 30, // 차트 선의 두께 
+    	size: 200, // 차트크기
+    	animate: 1000, // 그려지는 시간 
+    	onStart: $.noop, 
+    	onStop: $.noop
+	});
+});
+</script>
             <form id="pnoForm" method="post"><input type="hidden" name="pno"/><input type="hidden" name="proc"/></form>
             <c:forEach var="ceo" items="${clist}">
             <div class="custom-bar-chart" style="height:130px;margin-top:10px;">
