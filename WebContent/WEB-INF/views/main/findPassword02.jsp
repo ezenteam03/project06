@@ -82,7 +82,7 @@
 	    	}			
 		});
 		
-		var ck = "${ck}"
+		var ck = "${ck}";
 		if(ck == 1){
 			Swal.fire({
 				  title:'비밀번호',
