@@ -30,7 +30,7 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
-
+<script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/

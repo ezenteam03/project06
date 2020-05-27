@@ -29,7 +29,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://code.highcharts.com/gantt/highcharts-gantt.js"></script>
 <script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
-
+<script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
 <!-- Favicons -->
 <link href="${path}/Dashio/img/favicon.png" rel="icon">
 <link href="${path}/Dashio/img/apple-touch-icon.png" rel="apple-touch-icon">
