@@ -308,6 +308,7 @@ th{text-align:center;}
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
+    <div id="show">
     <header class="header black-bg">
 
       <div class="sidebar-toggle-box">
@@ -317,8 +318,8 @@ th{text-align:center;}
       <a href="#" class="logo"><img src="${path}/Jin/img/logo1-1.png" style="width:35px;height:35px;margin-top:-5px;">&nbsp;&nbsp;&nbsp;<b>Project<span>&nbsp;&nbsp;&nbsp;${proName }</span></b></a>
       <!--logo end-->
       <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <li v-if="mdiv==7||mdiv==4||mdiv==5"><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
+        <ul id="show2" class="nav pull-right top-menu">
+          <li v-if="mdiv==6||mdiv==4||mdiv==5"><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
           <li><a class="logout" href="#pop01">개인정보</a></li>
         <!--   <li><a class="logout" href="#pop03">참여인원</a></li>	-->
           <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
@@ -335,7 +336,7 @@ th{text-align:center;}
     <aside>
       <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
-        <ul id="show" class="sidebar-menu" id="nav-accordion">
+        <ul  class="sidebar-menu" id="nav-accordion">
          <li>
          <img src="${path}/Jin/img/logo1-1.png" style="width:100px;height:100px;margin-left:40px;">
          <br>
@@ -402,9 +403,10 @@ th{text-align:center;}
         </ul>
         <!-- sidebar menu end-->
       </div>
+   
     </aside>
     <!--sidebar end-->
-    
+ </div>   
 <div id="pop01" class="overlay">
 	<div class="popup">
 		<a href="#none" class="close">&times;</a>
@@ -500,6 +502,7 @@ th{text-align:center;}
 var vm = new Vue({
 	el:"#show",
 	data:{mdiv:${infor_M.mdiv}}
+
 });
 </script>
 </html>

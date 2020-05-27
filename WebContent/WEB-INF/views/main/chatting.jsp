@@ -88,7 +88,6 @@
 					// 서버단에서 접속 종료 후, 처리할 front단 내용
 					alert("접속 종료합니다!");
 					$("#chatMessageArea").text("");
-					$("#id").val("");
 					$("#id").focus();
 				};
 			}			
