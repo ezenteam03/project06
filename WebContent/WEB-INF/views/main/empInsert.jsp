@@ -109,7 +109,6 @@
 	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
                 </div>
-                </form:form>
                 <thead>
                 <!-- hidden속성으로 PM과 동일한 프로젝트 넘버가 등록된 사용자만 불러오기 -->
                   <tr>
@@ -138,6 +137,7 @@
                   </tr>
                   </c:forEach> 
                 </tbody>
+              </form:form>  
               </table>
               <!-- pagination -->
 	          <div align="center">
