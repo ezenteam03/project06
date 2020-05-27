@@ -10,8 +10,9 @@ WHERE pe.ENO = pm.MNO
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
 
-DELETE FROM pmsproject
-WHERE pno = 102;
+DELETE FROM pmsproject 
+WHERE pno = 1003 
+;
 
 SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,
 		 pem.name
@@ -256,14 +257,3 @@ ORDER BY mno;
 SELECT * FROM PMSLOG;
 
 --참여인원
-SELECT rownum cnt, e.eno, e.name, e.grade, m.wcon, CASE WHEN l.state = 0 THEN '로그아웃' ELSE '로그인' END AS state
-			FROM PMSEMP e, PMSMEMBER m, PMSLOG l WHERE e.eno=m.mno AND m.mno=l.mno
-				AND login=(SELECT max(login) FROM pmslog WHERE mno=m.mno)
-					AND m.pno=1003
-				ORDER BY m.mno
-			;
-		SELECT * FROM pmsemp;
-		SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-			FROM pmsemp a 
-			WHERE 1=1 ;
