@@ -68,7 +68,7 @@
 		function start(){
 			if(confirm("채팅창 접속합니다!")){
 				
-				wsocket = new WebSocket("ws://192.168.4.112:7080/${path}/chat-ws.do");
+				wsocket = new WebSocket("ws://192.168.4.112:5080/${path}/chat-ws.do");
 				
 				wsocket.onopen=function(evt){					
 				
@@ -120,8 +120,8 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text">아이디</span>
 		</div>
-		<input id="id" class="form-control" 
-			placeholder="접속할 아이디를 입력하세요" />	
+		<input id="id" class="form-control" readonly="readonly"  style="background-color: #ffffff;"
+			value="${emp.name}" />	
 		<input type="button" class="btn btn-info"
 			value="채팅입장" id="enterBtn"/>
 		<input type="button" class="btn btn-success"
