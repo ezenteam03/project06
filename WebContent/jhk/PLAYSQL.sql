@@ -106,13 +106,13 @@ FROM PMSPROJECT pp, PMSTASK pt,
 WHERE pe.eno = pm.mno) pem,
 (SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
-tno, tname, refno FROM pmstask)
+tno, tname, refno FROM pmstask WHERE pno = 1002)
    CONNECT BY PRIOR tno = refno 
   START WITH refno =0) prt
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 AND pt.tno = prt.tno
-AND pp.pno = 1001
+AND pp.pno = 1002
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
 --AND pt.tname LIKE '%'||'웹'||'%'
@@ -121,7 +121,8 @@ CONNECT BY PRIOR pt.tno = pt.refno;
  ----
  SELECT rank() over (partition BY refno ORDER BY tno) r,
                 tno, tname, refno
-  FROM pmstask; 
+  FROM pmstask
+ WHERE pno = 1001; 
 --팀원 작업 내역(전)
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name

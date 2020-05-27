@@ -129,7 +129,9 @@
 					</div>
                   <div class="form-group ">
                     <label for="curl" class="control-label col-lg-2">PM</label>
-                    
+			        <ul class="nav pull-left top-menu">
+			          <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
+			        </ul>
                     <select class="sel-grade" name="pro_mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
                     	<c:forEach var="empl" items="${elist}">
 						<option value="${empl.eno}">${empl.name} ${empl.grade}</option>                    		
