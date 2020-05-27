@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project06.service.NoticeService;
 import project06.vo.Notice;
 import project06.vo.NoticeSch;
-import project06.vo.PmsMember;
+import project06.vo.Risk;
 
 @Controller
 @RequestMapping("/notice.do")
@@ -75,6 +75,12 @@ public class NoticeCtrl {
 	public String detail(@RequestParam("nno") int no, Model d) {
 		d.addAttribute("notice", service.getNotice(no));
 		return "WEB-INF\\views\\main\\noticeDetail.jsp";
+	}
+	//http://localhost:5080/project06_git/notice.do?method=applist
+	@RequestMapping(params="method=applist") 
+	public String andlist(Notice sch, Model d) {
+		d.addAttribute("andlist", service.andlist(sch));
+		return "WEB-INF\\views\\main\\andNotice.jsp";
 	}
 	
 }

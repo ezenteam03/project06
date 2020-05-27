@@ -2,11 +2,8 @@ package project06.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import project06.repository.NoticeDao;
 import project06.vo.Notice;
@@ -126,6 +123,11 @@ public class NoticeService {
 			
 			return n;
 		}
+	
+		public  ArrayList<Notice> andlist(Notice sch) {
 		
+		return dao.andlist(sch);		
+		
+	}	
 	
 }

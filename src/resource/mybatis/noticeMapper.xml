@@ -72,6 +72,18 @@
 		 WHERE nno = #{no}
  	</delete> 	
  	
+ 	<select id="andlist" resultMap="noticeResult" parameterType="nsch">
+ 		
+ 		SELECT title
+ 		FROM pmsnotice
+ 		WHERE 1=1
+		<if test="title!=null and title!=''">
+		and title like '%'||#{title}||'%'
+		</if>
+		ORDER BY nno DESC
+ 
+ 	</select>
+ 	
  	
 </mapper>	
 

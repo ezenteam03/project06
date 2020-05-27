@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import project06.vo.Notice;
 import project06.vo.NoticeSch;
+import project06.vo.Risk;
 
 @Repository
 public interface NoticeDao{
@@ -22,6 +23,7 @@ public interface NoticeDao{
 	public Notice getNotice(int no);
 	public void uptReadCnt(int no);
 	
+	public ArrayList<Notice> andlist(Notice sch);
 	
 	
 	
