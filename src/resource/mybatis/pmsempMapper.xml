@@ -136,6 +136,19 @@
 		SET mdiv=4, pno=#{pno}
 		WHERE mno=#{eno}
 	</update>
+	<update id="updatePm3" parameterType="pmsemp">
+		UPDATE pmstask
+		SET mno=#{eno}
+		WHERE mno=
+			(select p.mno 
+			from pmsproject p 
+			where p.pno=#{pno})
+	</update>
+	<update id="updatePm4" parameterType="pmsemp">
+		UPDATE pmsproject
+		SET mno=#{eno}
+		WHERE pno=#{pno}
+	</update>
  	<!-- PM 팀원 추가 리스트 -->
  	<select id="insList" resultMap="pmsempResult" parameterType="pmsempsch">
  	<!-- SELECT *

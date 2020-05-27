@@ -102,16 +102,13 @@ public class pmsempService {
 				rep.updatePm2(updatePm);
 				// 새로운 PM Member등록
 				updatePm.setPass(makePass("1234qwer!"));
-				System.out.println("service eno:"+updatePm.getEno());
-				System.out.println("service pass:"+updatePm.getPass());
-				System.out.println("service phone:"+updatePm.getPhone());
-				System.out.println("service pno:"+updatePm.getPno());
-				System.out.println("service mdiv:"+updatePm.getMdiv());
 				rep.insertMem2(updatePm);
 			}else{
 				rep.updatePm2(updatePm);
 				rep.updatePm1(updatePm);	
 			}
+			rep.updatePm3(updatePm);
+			rep.updatePm4(updatePm);
 		}
 		
 		// PM 추가리스트

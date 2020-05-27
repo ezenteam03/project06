@@ -39,6 +39,8 @@ public interface pmsempRep {
 	// PM설정
 	public void updatePm1(pmsemp uptPm);
 	public void updatePm2(pmsemp uptPm);
+	public void updatePm3(pmsemp uptPm);
+	public void updatePm4(pmsemp uptPm);
 	// PM 추가 리스트
 	public ArrayList<pmsemp> insList(pmsempSch sch);
 	public ArrayList<pmsemp> insList2(pmsemp sch); //임시로 추가
