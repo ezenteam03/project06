@@ -59,7 +59,12 @@ public class DashTeamCtrl {
 		session.setAttribute("infor_M", emp);
 		if(proc==1) {
 			return "forward:/chart.do?method=pm";
+		} else if(proc==2) {
+			return "forward:/risk.do?method=list";
+		} else if(proc==3) {
+			return "forward:/meet.do?method=list";
+		} else {
+			return "forward:/notice.do?method=list";
 		}
-		return "";
 	}
 }
