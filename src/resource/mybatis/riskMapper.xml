@@ -22,6 +22,11 @@
 		</if>		
 	 </select>
 	 
+	<select id="pnolist" resultType="int" parameterType="risk">
+		SELECT pno FROM PMSISSUE
+		group BY pno
+	</select>
+	 
 	<select id="list" resultMap="riskResult" parameterType="rsch" >
 	select *
 		from(
