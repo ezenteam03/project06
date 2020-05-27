@@ -47,7 +47,7 @@ public class RiskCtrl {
 		d.addAttribute("rlist", service.list(sch,request));
 		d.addAttribute("pnolist",service.pnolist(sch));
 		System.out.println(service.pnolist(sch));	
-		System.out.println(service.list(sch,request));	
+	
 		return "WEB-INF\\views\\main\\riskList.jsp";
 	}
 	@RequestMapping(params="method=insForm")
