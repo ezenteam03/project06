@@ -39,8 +39,22 @@
   <script src="${path}/a00_com/popper.min.js"></script>
   <script src="${path}/a00_com/bootstrap.min.js"></script>
   <script src="${path}/a00_com/jquery-ui.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
   <script type="text/javascript">
   $(document).ready(function(){
+	  $("#ceoBtn").click(function(){			 
+			 Swal.fire({
+				  title:'권한변경 ',
+				  text:"CEO로 권한을 변경하시겠습니까?",
+				  icon: 'info',
+				  showCancelButton: true
+			}).then((result) => {
+				if (result.value) {
+					$("#setForm").attr("action","${path}/PMSemp.do?method=updateCeo");
+					$("#setForm").submit();
+				}
+			});
+		 });
 	 // CTO 버튼
 	/*  $("#ctoBtn").click(function(){		
 		$("#setForm").attr("action","${path}/PMSemp.do?method=update");
@@ -159,14 +173,17 @@
                   </div>
                 </div>
                 </form>
-	            <div class="" style="text-align:right;">
+	            <div id="btn" style="text-align:right;">
 	               <div style="display:inline-block; ">
-	             	   <input type="button" class="btn btn-primary" 
+	              	   <input type="button" class="btn btn-danger" v-if="mdiv==6"
+		           				id="ceoBtn" style="margin-right:20px;" value="CEO 설정"/>
+	             	   <input type="button" class="btn btn-primary" v-if="mdiv==2"
 		           				id="ctoBtn" style="margin-right:20px;" value="CTO 설정"/>
-			           <input type="button" class="btn btn-success" 
+			           <input type="button" class="btn btn-success" v-if="mdiv==2||mdiv==3"
 			           			id="pmBtn" style="margin-right:20px;" value="PM 설정" />
 			           <button type="button" class="btn btn-default"
 			           			id="preBtn">이전</button>
+      
 		           </div>
 		        </div>
             </div>
@@ -191,4 +208,10 @@
   <!--script for this page-->
   
 </body>
+<script>
+var vm = new Vue({
+	el:"#btn",
+	data:{mdiv:${infor_M.mdiv}}
+});
+</script>
 </html>

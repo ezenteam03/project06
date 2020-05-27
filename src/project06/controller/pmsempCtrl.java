@@ -17,6 +17,7 @@ import project06.vo.PmsMember;
 import project06.vo.pmsemp;
 import project06.vo.pmsempSch;
 
+
 @Controller
 @RequestMapping("/PMSemp.do")
 public class pmsempCtrl {
@@ -41,11 +42,16 @@ public class pmsempCtrl {
 	
 	// CEO, CTO 사원 리스트 불러오기
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("pmsempsch") 
-		pmsempSch sch, Model d, HttpServletRequest request) {
+	public String list(@ModelAttribute("pmsempsch") pmsempSch sch,
+			Model d, HttpServletRequest request) {
 		d.addAttribute("elist", service.pmsempList(sch));
 		return "WEB-INF\\views\\main\\userList.jsp";
 	}
+	@RequestMapping(params="method=Ajaxlist")
+	public String ajaxlist(pmsempSch sch, Model d) {
+		d.addAttribute("elist", service.pmsempList(sch));
+		return "jsonReport";
+	}	
 	// CEO, CTO 권한설정 페이지 이동
 	@RequestMapping(params="method=setForm")
 	public String setemp(@RequestParam("peno") int eno, Model d) {
@@ -54,6 +60,12 @@ public class pmsempCtrl {
 		d.addAttribute("pemp", service.getemp(eno));
 		d.addAttribute("plist",service.getPlist());
 		return "WEB-INF\\views\\main\\setemp.jsp";
+	}
+	// CEO 권한 설정
+	@RequestMapping(params="method=updateCeo")
+	public String updateCeo(pmsemp uptCeo) {
+		service.updateCeo(uptCeo);
+		return "forward:/PMSemp.do?method=setForm";
 	}
 	// CTO 권한 설정
 	@RequestMapping(params="method=update")
@@ -78,7 +90,8 @@ public class pmsempCtrl {
 	}
 	// PM 팀원 추가
 	@RequestMapping(params="method=insemp")
-	public String ins(pmsemp inse, Model d, HttpServletRequest request) {
+	public String ins(@ModelAttribute("pmsempsch") pmsempSch sch
+			,pmsemp inse, Model d, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
@@ -87,23 +100,37 @@ public class pmsempCtrl {
 		pmsempSch pmssch = new pmsempSch();	
 		inse.setPno(pmsm.getPno());
 		service.insPm(inse);		
-		request.setAttribute("pmsempsch", pmssch);
-		d.addAttribute("elist", service.insList(pmssch));
-		//return "forward:/PMSemp.do?method=empList";
+		request.setAttribute("pmsempsch", pmssch);	
+		d.addAttribute("elist", service.insList(sch));
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기
 	@RequestMapping(params="method=delForm")
-	public String pmlist(@ModelAttribute("pmsempsch") 
-		pmsempSch sch, Model d, HttpServletRequest request) {
-		sch.setPno(1001);
+	public String pmlist(@ModelAttribute("pmsempsch") pmsempSch sch, Model d, HttpServletRequest request) {	
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+		pmsempSch pmssch = new pmsempSch();
+		sch.setPno(pmsm.getPno());
+		request.setAttribute("pmsempsch", pmssch);
 		d.addAttribute("pmdlist", service.pmempList(sch));
 		return "WEB-INF\\views\\main\\empDelete.jsp";
 	}
 	// PM 팀원 삭제
 	@RequestMapping(params="method=delete")
-	public String delete(pmsemp del) {
+	public String delete(pmsemp del, Model d, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+		pmsempSch pmssch = new pmsempSch();	
+		del.setPno(pmsm.getPno());
 		service.delete(del);
+		request.setAttribute("pmsempsch", pmssch);	
+		d.addAttribute("pmdlist", service.pmempList(pmssch));
 		return "forward:/PMSemp.do?method=delForm";
 	}
 	// 인사 사원리스트 불러오기, *****수정 필요함*****

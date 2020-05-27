@@ -1,5 +1,8 @@
 package project06.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project06.service.NoticeService;
 import project06.vo.Notice;
 import project06.vo.NoticeSch;
+import project06.vo.PmsMember;
 
 @Controller
 @RequestMapping("/notice.do")
@@ -25,8 +29,14 @@ public class NoticeCtrl {
 	
 	
 	@RequestMapping(params="method=list")
-	public String list(@ModelAttribute("nsch") NoticeSch sch, Model d) {
+	public String list(@ModelAttribute("nsch") NoticeSch sch, Model d,HttpServletRequest request) {
 		System.out.println("검문소:"+sch.getCurPage());
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mno")==null) {
+			return "WEB-INF\\views\\main\\login.jsp";
+		}
+		
 		d.addAttribute("nlist", service.list(sch));
 		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}

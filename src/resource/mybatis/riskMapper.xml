@@ -43,8 +43,8 @@
 
 
 	<insert id="insert" parameterType="risk">
-		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,#{title},
-		#{detail},0,null,sysdate,null,null,#{pno},#{mno})
+		INSERT INTO PMSISSUE VALUES(pmsissue_seq.nextval,NVL(#{title},'내용없음'),
+		NVL(#{detail},'내용없음'),0,null,sysdate,null,null,#{pno},#{mno})
 	</insert>
 	
 	<select id="getRisk" 
@@ -83,12 +83,13 @@
  			#{fname}, sysdate)
 	</insert>
 	<resultMap type="String" id="strMap"/> 
+	<!-- 파일 화면 출력 -->
  	<select id="fnames" resultMap="strMap" parameterType="int">
  		SELECT fname 
  		FROM PMSBFILE		
  		WHERE ino=#{ino}
  	</select> 
-	
+	<!-- 업로드된 파일 수정 -->
 	<update id="uptFileInfo" parameterType="java.util.HashMap">
 		UPDATE PMSBFILE
 			SET fname = #{tar},
@@ -96,11 +97,23 @@
 	    WHERE ino = ${ino}
 		AND fname = #{org}	    	
 	</update> 	
+	<!-- 수정된 내용 업로드 -->
  	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
  		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${ino},
  			#{tar}, sysdate)
 	</insert>
 	
+	<select id="andlist" resultMap="riskResult" parameterType="rsch" >
+
+		SELECT pa.*
+		FROM (SELECT p.*,pm.NAME FROM PMSEMP pm,PMSISSUE p WHERE pm.ENO =p.MNO ORDER BY p.ino ) pa
+		WHERE 1=1 
+		<if test="title != null and title != ''">
+		and title like '%'||#{title}||'%'
+		</if>
+		ORDER BY ino DESC
+
+	</select>
 </mapper>	
 
 

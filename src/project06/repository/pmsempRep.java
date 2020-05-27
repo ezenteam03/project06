@@ -22,6 +22,13 @@ public interface pmsempRep {
 	public ArrayList<String> getDlist();
 	// PMSmember에 등록됐는지 확인
 	public int memCheck(pmsemp ckmem);
+	// CEO PMS등록
+	public void insertCeo1(pmsemp insCeo1);
+	// CEO설정
+	public void updatepmsCeo1(pmsemp uptCeo);
+	public void updatepmsCeo2();
+	public void updatepmsCeo3();
+	public void updatepmsCeo4(pmsemp uptCeo);
 	// CTO PMS등록
 	public void insertMem1(pmsemp insMem1);
 	// CTO설정
@@ -68,4 +75,7 @@ public interface pmsempRep {
 	// Jin
 	public int pmsEmpPassCounter(pmsemp emp);
 	public int pmsEmpPass(pmsemp emp);
+	
+	// 사원만보기
+	public ArrayList<pmsemp> pmsElist(pmsemp emp);
 }

@@ -8,77 +8,29 @@ DROP SEQUENCE pmsissue_seq;
 DROP SEQUENCE pmsreply_seq; 
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
-select DISTINCT grade 
-		from pmsemp
-		order by grade ASC;
-	select DISTINCT dept
-		from pmsemp
-		WHERE dept IS NOT null
-		order by dept ASC;
-	select pno 
-		from pmsproject
-		order by pno asc ;
-	
-	SELECT * FROM (
-		SELECT rownum cnt, e.name, e.grade, m.wcon, 
-		CASE WHEN l.state = 0 
-		THEN '로그아웃' 
-		ELSE '로그인' END AS state
-		FROM PMSEMP e, PMSMEMBER m, PMSLOG l 
-		WHERE e.eno=m.mno 
-		AND m.mno=l.mno
-		AND login=(SELECT max(login) 
-				   FROM pmslog 
-				   WHERE mno=m.mno)
-		AND m.pno=1002
-		AND e.name like '%'||''||'%' 
-		ORDER BY m.mno);	
-	SELECT*FROM pmsmember;
-				
-	
-	
-SELECT *
-FROM (
-SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9 
-		AND b.pno is NULL
-		UNION ALL
-		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-				c.CNAME,b.pno
-		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-		where b.mno is NULL AND c.cno=9)
-		ORDER BY eno ASC;
-	SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9 
-		AND b.pno is NULL
-		UNION ALL
-		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-				c.CNAME,b.pno
-		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-		where b.mno is NULL AND c.cno=9;
-	
-	SELECT * FROM pmsemp
-	WHERE 1=1
-	and name LIKE '%'||'김'||'%'
-	or grade LIKE '%'||''||'%'
-	OR dept LIKE '%'||''||'%'
-	ORDER BY eno  asc;
 
-			SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			(select c.CNAME from pmsmember b, pmscodes c where a.eno=b.mno and b.mdiv=c.cno) cname 
-			FROM pmsemp a 
-			WHERE NOT a.grade LIKE '%'||'대표이사'||'%'
-			and name LIKE '%'||'김'||'%'
-			or grade LIKE '%'||'김'||'%'
-			OR dept LIKE '%'||'김'||'%'
-			ORDER BY a.eno ASC;
-		SELECT *
+
+/*
+			and name LIKE '%'||''||'%'
+			and grade LIKE '%'||''||'%'
+			and dept LIKE '%'||''||'%'
+*/
+			/*
+			<if test="name!=null and name!=''">
+			and name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
+			</if>
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
+			</if>
+			*/
+
+
+	SELECT *
+ 	FROM(
+			SELECT *
 			FROM (
 			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 			c.CNAME,b.pno
@@ -86,26 +38,20 @@ SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,
 			WHERE a.eno = b.mno and b.mdiv=c.cno
 			AND c.cno =9 
 			AND b.pno is NULL
-			UNION ALL 
+			and a.name LIKE '%'||''||'%'
+			and a.grade LIKE '%'||''||'%'
+			and a.dept LIKE '%'||''||'%'
+			UNION ALL
 			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
 					c.CNAME,b.pno
 			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-			where b.mno is NULL AND c.cno=9
-			ORDER BY eno asc);
-	
+			where b.mno is NULL 
+			AND c.cno=9
+			and a.name LIKE '%'||''||'%'
+			and a.grade LIKE '%'||''||'%'
+			and a.dept LIKE '%'||''||'%')
+			ORDER BY eno ASC);
 
-SELECT *
-	FROM(
-		select rownum cnt, b.* 
-		from pmsemp b
-		where 1=1
-		ORDER siblings BY NO DESC )
-		WHERE cnt BETWEEN #{start} AND #{end};	
-
-		select count(*) 
-		from pmsemp
-		where 1=1
-		and eno like '%'||''||'%';	
 
 ALTER TABLE PMSCODES
 	DROP
@@ -1073,7 +1019,7 @@ INSERT INTO pmscodes values(32,30,'결재신청');
 INSERT INTO pmscodes values(33,30,'반려');
 INSERT INTO pmscodes values(34,30,'결재완료');
 --사원정보
-insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','Moon2017@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'문재인',null,'대표이사','010-8270-6064','rujane99@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'박근혜',null,'전무','010-6634-1032','Park2013@gmail.com');
 insert into pmsemp values(pmsemp_seq.nextval,'이명박',null,'기술이사','010-0224-1025','MB2008@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'노무현','인사과','과장','010-8586-8894','MH2003@daum.net');
@@ -1133,28 +1079,28 @@ UPDATE pmsmember SET pno=1002 WHERE mno=10000006;
 --로그인히스토리 정보
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085032','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000001);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000003);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085132','yyyymmddhh24miss'),to_date('20200503202232','yyyymmddhh24miss'),10000004);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000005);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000006);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000007);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000008);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000010);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000011);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000012);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085232','yyyymmddhh24miss'),to_date('20200503202332','yyyymmddhh24miss'),10000013);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085332','yyyymmddhh24miss'),to_date('20200503202532','yyyymmddhh24miss'),10000015);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085432','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000016);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085532','yyyymmddhh24miss'),to_date('20200503202032','yyyymmddhh24miss'),10000017);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085632','yyyymmddhh24miss'),to_date('20200503202132','yyyymmddhh24miss'),10000019);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000020);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000021);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085732','yyyymmddhh24miss'),to_date('20200503202432','yyyymmddhh24miss'),10000022);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085832','yyyymmddhh24miss'),to_date('20200503202632','yyyymmddhh24miss'),10000023);
 INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000024);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085232','yyyymmddhh24miss'),null,10000005);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085332','yyyymmddhh24miss'),null,10000015);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085432','yyyymmddhh24miss'),null,10000016);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085532','yyyymmddhh24miss'),null,10000017);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085632','yyyymmddhh24miss'),null,10000019);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085732','yyyymmddhh24miss'),null,10000022);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085832','yyyymmddhh24miss'),null,10000023);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,to_date('20200504085932','yyyymmddhh24miss'),null,10000024);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000006);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000011);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000012);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000021);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000025);
-INSERT INTO pmslog values(pmslog_seq.nextval,1,sysdate,null,10000028);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000025);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000026);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000027);
+INSERT INTO pmslog values(pmslog_seq.nextval,0,to_date('20200503085932','yyyymmddhh24miss'),to_date('20200503202732','yyyymmddhh24miss'),10000028);
 --공지사항 정보
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 주제 선정에 대한 회의 일정 공지','5월 4일 오후 1시 30분, 507호 강의실에서 주제 선정에 관한 회의를 개최할 예정입니다. ',to_date('2020-05-01','yyyy-mm-dd'),null,20,1001,10000003);
 insert into pmsnotice values(pmsnotice_seq.nextval,'프로젝트 역할 분담에 대한 회의 일정 공지','5월 4일 오후 5시 30분, 507호 강의실에서 프로젝트 역할 분담에 대한 회의를 개최합니다.',to_date('2020-05-04','yyyy-mm-dd'),null,17,1001,10000005);
@@ -1195,9 +1141,9 @@ insert into PMSISSUE values(pmsissue_seq.nextval,'파일 통합','화면 구현 
 insert into PMSISSUE values(pmsissue_seq.nextval,'이미지 경로','화면구현 통합(연결) 이미지 경로 설정',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000017);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'update','결재상세 페이지 update과정에서 VO를 통해서 int 값을 받는 중 오버로딩 과정에서 변수의 수가 같아 int값을넘기지 못하는 문제 발생',0,null,to_date('2020-05-22','YYYY-MM-DD'),null,null,1001,10000016);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'insert','결제 정보를 insert한 뒤 포인트 적립이나 차감을 할 때 방금 결제된 결제번호가 필요한데 결제번호를 못 넘기는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000015);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-15','YYYY-MM-DD'),null,null,1001,10000024);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000022);		
-insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-16','YYYY-MM-DD'),null,null,1001,10000023);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'로그인 문제','문의하기 새글작성 클릭시 로그인이 되어있는 상태에서도 로그인하라는 alert창 뜨는 문제',0,null,to_date('2020-05-24','YYYY-MM-DD'),null,null,1001,10000024);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'쿠폰 테이블','전체 회원에 쿠폰을 증정할 때 새로운 쿠폰을 등록하고 부여할 경우 coupon 테이블에 check constraint 때문에 문제발생',0,null,to_date('2020-05-25','YYYY-MM-DD'),null,null,1001,10000022);		
+insert into PMSISSUE values(pmsissue_seq.nextval,'결제화면','결제 화면에서 쿠폰 사용 시 총 결제금액 산출의 업데이트 문제 팝업창과 부모창 간의 실시간 업데이트시 부모창 업데이트 후 자식창 업데이트 하면 변경값 반영이 안됨',0,null,to_date('2020-05-27','YYYY-MM-DD'),null,null,1001,10000023);		
 
 insert into PMSISSUE values(pmsissue_seq.nextval,'결제시스템','결재 시스템을 데이테 베이스와 연동하는 부분에서 오류가 발생하는데 이유를 모르겠습니다. 400에러라 출력이 되며 자세한 내용은 파일을 첨부하겠습니다.',0,null,to_date('2020-05-05','YYYY-MM-DD'),null,null,1002,10000006);		
 insert into PMSISSUE values(pmsissue_seq.nextval,'역할 분배문제','신청과 결제가 두사람에게 분배되어 있는것을 확인 일의 효율성을 위해서라도 역할의 재분배가 필요해 보입니다.',0,null,to_date('2020-05-09','YYYY-MM-DD'),null,null,1002,10000011);		
@@ -1225,107 +1171,107 @@ INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 0, '테스트', '테스�
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 설계', 'DB 설계',null, '2020/05/04','2020/05/09',100,to_date('2020-05-07','yyyy-mm-dd'),NULL,24,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1002, '데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',100,to_date('2020-05-12','yyyy-mm-dd'),NULL,24,10000005);
 
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '사원정보', '사원정보 시스템 개발 ',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 총괄관리', '총괄관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '사원정보', '사원정보 시스템 개발 ',null, '2020/05/08','2020/06/01',50,to_date('2020-05-19','yyyy-mm-dd'),NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 총괄관리', '총괄관리 시스템 개발',null, '2020/05/08','2020/06/01',80,to_date('2020-05-16','yyyy-mm-dd'),NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 통합관리', '통합관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 일정관리', '일정관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 자원관리', '자원관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 의사소통관리', '의사소통관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 리스크관리', '리스크관리 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 의사소통관리', '의사소통관리 시스템 개발',null, '2020/05/08','2020/06/01',25,to_date('2020-05-15','yyyy-mm-dd'),NULL,21,10000005);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1001, 1003, '프로젝트 리스크관리', '리스크관리 시스템 개발',null, '2020/05/08','2020/06/01',50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000005);
 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(웹)','- 로그인(50%) : 사원번호/비밀번호 입력 후 DB와 일치하면 로그인 &#10;- 로그아웃(50%) : 메인화면 이동 및 로그인 세션 정보 삭제',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-11','yyyy-mm-dd'),NULL,24,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '번호 찾기(웹)','- 이름/이메일 -> 일치하는 사원번호 출력 &#10;- 사원번호/이름/이메일(인증번호) -> 비밀번호 재설정(변경)',null,'2020/05/12','2020/05/16', 100,to_date('2020-05-17','yyyy-mm-dd'),NULL,24,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '개인정보(웹)','- 내 프로젝트 팀원 확인 &#10;- 개인정보 -> 입력 정보 확인 및 수정',null,'2020/05/16','2020/05/20', 100,to_date('2020-05-19','yyyy-mm-dd'),NULL,24,10000015);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(앱)','- 사원번호/비밀번호 입력 -> 로그인 &#10;- 로그아웃 -> 메인화면 이동 / 로그인 세션 정보 삭제',null,'2020/05/20','2020/05/24', 0,NULL,NULL,21,10000015);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '로그인/로그아웃(앱)','- 사원번호/비밀번호 입력 -> 로그인 &#10;- 로그아웃 -> 메인화면 이동 / 로그인 세션 정보 삭제',null,'2020/05/20','2020/05/24', 10,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '번호 찾기(앱)','- 이름/이메일 -> 일치하는 사원번호 출력 &#10;- 사원번호/이름/이메일(인증번호) -> 비밀번호 재설정(변경)',null,'2020/05/24','2020/05/28', 0,NULL,NULL,21,10000015);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1007, '개인정보(앱)','- 내 프로젝트 팀원 확인 &#10;- 개인정보 -> 입력 정보 확인 및 수정',null,'2020/05/28','2020/06/01', 0,NULL,NULL,21,10000015);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(웹)','- CEO - 직원리스트 - CTO 설정 및 변경',null,'2020-05-08','2020-05-15', 0,NULL,NULL,21,10000016);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 추가(웹)','- 프로젝트 추가(팀원이 아닌 사원중 한명 팀장 지정)',null,'2020-05-08','2020-05-14', 0,NULL,NULL,21,10000017);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(웹)','- CEO - 직원리스트 - CTO 설정 및 변경',null,'2020-05-08','2020-05-15', 100,to_date('2020-05-16','yyyy-mm-dd'),NULL,24,10000016);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 추가(웹)','- 프로젝트 추가(팀원이 아닌 사원중 한명 팀장 지정)',null,'2020-05-08','2020-05-14', 100,to_date('2020-05-13','yyyy-mm-dd'),NULL,24,10000017);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 결재 / 반려(웹)','- PM 대시보드 - 프로젝트 완수 결재신청 (50%)&#10;- CEO / CTO 대시보드 - 프로젝트 완료 결재 / 반려 (50%)',null,'2020-05-24','2020-06-01', 0,NULL,NULL,21,10000019);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 총괄(웹)','- CEO / CTO 대시보드 - 전체 프로젝트 진행률 등',null,'2020-05-08','2020-05-13', 0,NULL,NULL,21,10000019);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(앱)','- CEO - 직원리스트 - CTO 설정 및 변경',null,'2020-05-08','2020-05-15', 0,NULL,NULL,21,10000016);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, '프로젝트 총괄(웹)','- CEO / CTO 대시보드 - 전체 프로젝트 진행률 등',null,'2020-05-08','2020-05-13', 100,to_date('2020-05-14','yyyy-mm-dd'),NULL,24,10000019);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1008, 'CTO 선정(앱)','- CEO - 직원리스트 - CTO 설정 및 변경',null,'2020-05-08','2020-05-15', 100,to_date('2020-05-15','yyyy-mm-dd'),NULL,24,10000016);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '대시보드(웹)','- PM 대시보드 - 프로젝트 진행률(개인별) 등 (50%)&#10;- 팀원 대시보드 -해당 프로젝트 전체 진행률 / 일정 등 (50%)',null,'2020-05-14','2020-05-23', 0,NULL,NULL,21,10000019);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(웹)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 0,NULL,NULL,21,10000016);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM (웹)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 0,NULL,NULL,21,10000022);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '대시보드(웹)','- PM 대시보드 - 프로젝트 진행률(개인별) 등 (50%)&#10;- 팀원 대시보드 -해당 프로젝트 전체 진행률 / 일정 등 (50%)',null,'2020-05-14','2020-05-23', 50,to_date('2020-05-19','yyyy-mm-dd'),NULL,21,10000019);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(웹)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000016);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM (웹)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000022);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / 팀원 (웹)','- 팀원 - 업무 리스트(내업무)(50%)&#10;- 팀원 - 업무 리스트 상세 - 진행률 갱신 / 결재 신청 (50%)&#10;',null,'2020-05-23','2020-06-01', 0,NULL,NULL,21,10000022);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(앱)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 0,NULL,NULL,21,10000016);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM(앱)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 0,NULL,NULL,21,10000022);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, 'PM 선정(앱)','- CEO / CTO - 직원리스트(50%)&#10;- CEO / CTO - 직원리스트 - 프로젝트 팀장 설정 및 변경 (50%)',null,'2020-05-15','2020-05-23', 50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000016);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / PM(앱)','- PM - 업무 리스트(30%)&#10;- PM - 업무 리스트 - 새 업무 추가 (시작일/종료일/담당자 지정 등) (30%)&#10;- PM - 업무 리스트 상세 - 반려사유, 결재/반려 처리(결재 신청된 사항만), 삭제 (40%)',null,'2020-05-08','2020-05-23', 50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000022);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1009, '업무관리 / 팀원(앱)','- 팀원 - 업무 리스트(내업무)(50%)&#10;- 팀원 - 업무 리스트 상세 - 진행률 갱신 / 결재 신청 (50%)&#10;',null,'2020-05-23','2020-06-01', 0,NULL,NULL,21,10000022);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1010, '일정관리 CEO / CTO (웹)','- CEO / CTO - 프로젝트 간트챠트',null,'2020-05-15','2020-05-22', 0,NULL,NULL,21,10000017);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1010, '일정관리 CEO / CTO (웹)','- CEO / CTO - 프로젝트 간트챠트',null,'2020-05-15','2020-05-22', 100,to_date('2020-05-21','yyyy-mm-dd'),NULL,22,10000017);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1010, '일정관리 PM / 팀원 (웹) ','- PM - 프로젝트 간트챠트  (50%)&#10;- 팀원 - 프로젝트 간트챠트 (50%)',null,'2020-05-22','2020-06-01', 0,NULL,NULL,21,10000017);
 
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1011, '인적자원관리 (웹) ','- 사원리스트  (50%)&#10;- 팀장권한 프로젝트 팀원 설정 및 변경 (50%)',null,'2020-05-24','2020-06-01', 0,NULL,NULL,21,10000016);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1011, '인적자원관리 (앱) ','- 사원리스트  (50%)&#10;- 팀장권한 프로젝트 팀원 설정 및 변경 (50%)',null,'2020-05-24','2020-06-01', 0,NULL,NULL,21,10000016);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 게시판 리스트 (웹)','- CEO / CTO / PM / 팀원 - 공지사항 게시판 리스트  (50%)&#10;- CEO / CTO / PM / 팀원 - 회의록 게시판 리스트 (50%)',null,'2020-05-08','2020-05-14', 0,NULL,NULL,21,10000023);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 작성(웹)','- CEO / CTO / PM - 공지사항 작성 페이지  (50%)&#10;- PM / 팀원 - 회의록 작성 페이지 (파일 업로드 가능) (50%)',null,'2020-05-14','2020-05-20', 0,NULL,NULL,21,10000023);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 게시판 리스트 (웹)','- CEO / CTO / PM / 팀원 - 공지사항 게시판 리스트  (50%)&#10;- CEO / CTO / PM / 팀원 - 회의록 게시판 리스트 (50%)',null,'2020-05-08','2020-05-14', 100,to_date('2020-05-15','yyyy-mm-dd'),NULL,24,10000023);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 작성(웹)','- CEO / CTO / PM - 공지사항 작성 페이지  (50%)&#10;- PM / 팀원 - 회의록 작성 페이지 (파일 업로드 가능) (50%)',null,'2020-05-14','2020-05-20', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,22,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 상세 (PM/팀원) (웹)','- 팀원 - 공지사항 상세페이지 (조회만 가능)  (50%)&#10;- PM / 팀원 - 회의록 게시판 상세 (수정/파일 업로드 가능) (50%)',null,'2020-05-20','2020-05-26', 0,NULL,NULL,21,10000023);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1012, '공지사항 / 회의록 상세 (CEO/CTO/PM) (웹)','- CEO / CTO / PM - 공지사항 상세페이지 (수정/삭제 가능) (50%)&#10;- CEO / CTO - 회의록 게시판 상세 (조회만 가능) (50%)',null,'2020-05-26','2020-06-01', 0,NULL,NULL,21,10000023);
 
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (웹)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 0,NULL,NULL,21,10000023);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (웹)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000023);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 0,NULL,NULL,21,10000023);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000023);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (웹)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,24,10000024);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (웹)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000024);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈리스트 / 추가 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 리스트  (50%)&#10;- PM /팀원 - 리스크관리 - 이슈리스트 추가 (50%)',null,'2020-05-08','2020-05-19', 100,to_date('2020-05-19','yyyy-mm-dd'),NULL,24,10000024);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1001, 1013, '이슈 상세화면 (앱)','- CEO / CTO / PM / 팀원 - 리스크관리 - 이슈리스트 상세 (댓글 가능) (50%)&#10;- PM - 리스크관리 - 이슈리스트 상세 (해결방안/댓글 가능) (50%)',null,'2020-05-20','2020-06-01', 0,NULL,NULL,21,10000024);
 
 -- TNO 쇼모꼬 화면설계 1044 ~...
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '화면설계', '쇼모꼬 화면을 설계',null, '2020/05/04', '2020/05/08',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '데이터베이스', '쇼모꼬 DB설계 및 생성',null, '2020/05/04','2020/05/14',0,NULL,NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '화면설계', '쇼모꼬 화면을 설계',null, '2020/05/04', '2020/05/08',100,to_date('2020-05-08','yyyy-mm-dd'),NULL,24,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '데이터베이스', '쇼모꼬 DB설계 및 생성',null, '2020/05/04','2020/05/14',100,to_date('2020-05-15','yyyy-mm-dd'),NULL,21,10000006);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '화면구현', '쇼모꼬 설계된 웹/앱 화면 구현',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
 INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 0, '테스트', '쇼모꼬 테스트',null, '2020/06/01','2020/06/08',0,NULL,NULL,21,10000006);
 
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이터베이스 설계', 'DB 설계',null, '2020/05/04','2020/05/09',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',0,NULL,NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이터베이스 설계', 'DB 설계',null, '2020/05/04','2020/05/09',100,to_date('2020-05-09','yyyy-mm-dd'),NULL,24,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1045, '쇼모꼬 데이터베이스 생성', 'DB 생성',null, '2020/05/09','2020/05/14',100,to_date('2020-05-15','yyyy-mm-dd'),NULL,24,10000006);
 
 -- 1050~1054
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '프로그램 상세내용', '쇼모꼬 프로그램 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '대관신청', '대관신청 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '게시판', '게시판 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '회원가입 / 로그인', '회원가입 / 로그인 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
-INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '관리자 시스템', '관리자 시스템 개발',null, '2020/05/08','2020/06/01',0,NULL,NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '프로그램 상세내용', '쇼모꼬 프로그램 시스템 개발',null, '2020/05/08','2020/06/01',25,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '대관신청', '대관신청 시스템 개발',null, '2020/05/08','2020/06/01',50,to_date('2020-05-20','yyyy-mm-dd'),NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '게시판', '게시판 시스템 개발',null, '2020/05/08','2020/06/01',37,to_date('2020-05-19','yyyy-mm-dd'),NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '회원가입 / 로그인', '회원가입 / 로그인 시스템 개발',null, '2020/05/08','2020/06/01',66,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000006);
+INSERT INTO PMSTASK VALUES (pmstask_seq.nextval, 1002, 1046, '관리자 시스템', '관리자 시스템 개발',null, '2020/05/08','2020/06/01',28,to_date('2020-05-19','yyyy-mm-dd'),NULL,21,10000006);
 
 
 ----- 1050
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(리스트/상세화면)(웹)','- 카테고리별 공연 정보 리스트(사진포함 요약정보)(25%) &#10;- 직접 검색시 / 카테고리 선택시 - 공연 리스트 정렬 기준선택 (최저가 / 최신순 /인기순)(25%) &#10;- 공연 선택시 해당 항목 상세 내역 확인(25%) &#10;- 날짜 인원 선택 후 예매 버튼(25%)',null,'2020/05/08','2020/05/20', 0,NULL,NULL,21,10000011);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(리스트/상세화면)(웹)','- 카테고리별 공연 정보 리스트(사진포함 요약정보)(25%) &#10;- 직접 검색시 / 카테고리 선택시 - 공연 리스트 정렬 기준선택 (최저가 / 최신순 /인기순)(25%) &#10;- 공연 선택시 해당 항목 상세 내역 확인(25%) &#10;- 날짜 인원 선택 후 예매 버튼(25%)',null,'2020/05/08','2020/05/20', 100,to_date('2020-05-21','yyyy-mm-dd'),NULL,24,10000011);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(결제)(웹)','- 결제창 - 쿠폰사용 - 보유쿠폰목록/사용여부(팝업창)(30%) &#10;- 결제창 - 포인트 사용 - 보유포인트/사용 결정(30%) &#10;- 결제시스템 연결 - 최종 결제 버튼 누르면 결제 시스템 연동(40%)  ',null,'2020/05/21','2020/06/01', 0,NULL,NULL,21,10000011);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(리스트/상세화면) (앱)','- 카테고리별 공연 정보 리스트(사진포함 요약정보)(25%) &#10;- 직접 검색시 / 카테고리 선택시 - 공연 리스트 정렬 기준선택 (최저가 / 최신순 /인기순)(25%) &#10;- 공연 선택시 해당 항목 상세 내역 확인(25%) &#10;- 날짜 인원 선택 후 예매 버튼(25%)',null,'2020/05/08','2020/05/20', 0,NULL,NULL,21,10000011);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(리스트/상세화면) (앱)','- 카테고리별 공연 정보 리스트(사진포함 요약정보)(25%) &#10;- 직접 검색시 / 카테고리 선택시 - 공연 리스트 정렬 기준선택 (최저가 / 최신순 /인기순)(25%) &#10;- 공연 선택시 해당 항목 상세 내역 확인(25%) &#10;- 날짜 인원 선택 후 예매 버튼(25%)',null,'2020/05/08','2020/05/20', 80,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000011);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1050, '프로그램 상세(결제)(앱)','- 결제창 - 쿠폰사용 - 보유쿠폰목록/사용여부(팝업창)(30%) &#10;- 결제창 - 포인트 사용 - 보유포인트/사용 결정(30%) &#10;- 결제시스템 연결 - 최종 결제 버튼 누르면 결제 시스템 연동(40%)  ',null,'2020/05/21','2020/06/01', 0,NULL,NULL,21,10000011);
 
 
 
 ----- 1051
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(리스트/약관)(웹)','- 소극장 대관 현황 리스트(50%) &#10;- 대관신청 - 대관신청 form / 대관신청 약관(50%) &#10;',null,'2020/05/08','2020/05/20', 0,NULL,NULL,21,10000012);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(대관료/티켓수익배분)(웹)','- 대관신청-대관료/ 티켓수익배분 선택(100%)  ',null,'2020/05/21','2020/06/01', 0,NULL,NULL,21,10000012);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(리스트/약관)(앱)','- 소극장 대관 현황 리스트(50%) &#10;- 대관신청 - 대관신청 form / 대관신청 약관(50%) &#10;',null,'2020/05/08','2020/05/20', 0,NULL,NULL,21,10000012);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(리스트/약관)(웹)','- 소극장 대관 현황 리스트(50%) &#10;- 대관신청 - 대관신청 form / 대관신청 약관(50%) &#10;',null,'2020/05/08','2020/05/20', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,24,10000012);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(대관료/티켓수익배분)(웹)','- 대관신청-대관료/ 티켓수익배분 선택(100%)  ',null,'2020/05/21','2020/06/01', 20,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000012);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(리스트/약관)(앱)','- 소극장 대관 현황 리스트(50%) &#10;- 대관신청 - 대관신청 form / 대관신청 약관(50%) &#10;',null,'2020/05/08','2020/05/20', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,24,10000012);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1051, '대관신청(대관료/티켓수익배분)(앱)','- 대관신청-대관료/ 티켓수익배분 선택(100%)  ',null,'2020/05/21','2020/06/01', 0,NULL,NULL,21,10000012);
 
 
 ----- 1052
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공지사항 게시판(웹)','- 공지사항 게시판(리스트형)(50%) &#10;- 공지사항 게시판 - 내용 상세페이지(50%) &#10;',null,'2020/05/08','2020/05/12', 0,NULL,NULL,21,10000021);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '문의 게시판(웹)','- 문의게시판 리스트(30%) &#10;- 문의게시판 글쓰기(비밀번호로 lock 여부 설정)(30%) &#10;- 문의게시판 - 내용 상세 페이지(40%)',null,'2020/05/13','2020/05/18', 0,NULL,NULL,21,10000021);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공연 게시판(웹)','- 공연 요청리스트(리스트형)(30%) &#10;- 공연 요청 글쓰기(30%) &#10;- 공연 요청 - 내용 상세 페이지(40%)',null,'2020/05/18','2020/05/23', 0,NULL,NULL,21,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공지사항 게시판(웹)','- 공지사항 게시판(리스트형)(50%) &#10;- 공지사항 게시판 - 내용 상세페이지(50%) &#10;',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-13','yyyy-mm-dd'),NULL,24,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '문의 게시판(웹)','- 문의게시판 리스트(30%) &#10;- 문의게시판 글쓰기(비밀번호로 lock 여부 설정)(30%) &#10;- 문의게시판 - 내용 상세 페이지(40%)',null,'2020/05/13','2020/05/18', 100,to_date('2020-05-19','yyyy-mm-dd'),NULL,24,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공연 게시판(웹)','- 공연 요청리스트(리스트형)(30%) &#10;- 공연 요청 글쓰기(30%) &#10;- 공연 요청 - 내용 상세 페이지(40%)',null,'2020/05/18','2020/05/23', 30,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000021);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '동행찾기 게시판(웹)','- 동행 찾기 게시판(리스트형)(30%) &#10;- 동행찾기 게시판 - 상세페이지(댓글)(30%) &#10;- 동행찾기 글쓰기(40%)',null,'2020/05/24','2020/06/01', 0,NULL,NULL,21,10000021);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공지사항 게시판(앱)','- 공지사항 게시판(리스트형)(50%) &#10;- 공지사항 게시판 - 내용 상세페이지(50%) &#10;',null,'2020/05/08','2020/05/12', 0,NULL,NULL,21,10000021);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '문의 게시판(앱)','- 문의게시판 리스트(30%) &#10;- 문의게시판 글쓰기(비밀번호로 lock 여부 설정)(30%) &#10;- 문의게시판 - 내용 상세 페이지(40%)',null,'2020/05/13','2020/05/18', 0,NULL,NULL,21,10000021);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공연 게시판(앱)','- 공연 요청리스트(리스트형)(30%) &#10;- 공연 요청 글쓰기(30%) &#10;- 공연 요청 - 내용 상세 페이지(40%)',null,'2020/05/18','2020/05/23', 0,NULL,NULL,21,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공지사항 게시판(앱)','- 공지사항 게시판(리스트형)(50%) &#10;- 공지사항 게시판 - 내용 상세페이지(50%) &#10;',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-14','yyyy-mm-dd'),NULL,24,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '문의 게시판(앱)','- 문의게시판 리스트(30%) &#10;- 문의게시판 글쓰기(비밀번호로 lock 여부 설정)(30%) &#10;- 문의게시판 - 내용 상세 페이지(40%)',null,'2020/05/13','2020/05/18', 100,to_date('2020-05-21','yyyy-mm-dd'),NULL,22,10000021);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '공연 게시판(앱)','- 공연 요청리스트(리스트형)(30%) &#10;- 공연 요청 글쓰기(30%) &#10;- 공연 요청 - 내용 상세 페이지(40%)',null,'2020/05/18','2020/05/23', 10,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000021);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1052, '동행찾기 게시판(앱)','- 동행 찾기 게시판(리스트형)(30%) &#10;- 동행찾기 게시판 - 상세페이지(댓글)(30%) &#10;- 동행찾기 글쓰기(40%)',null,'2020/05/24','2020/06/01', 0,NULL,NULL,21,10000021);
 
 
 
 ----- 1053
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '회원가입 / 탈퇴(웹)','- 개인 정보 입력(ID/PASSWORD/이름/이메일(본인확인)/전화번호/성별/생년월일/주소(50%) &#10;- 탈퇴 안내문/PASSWORD 입력/ 불편사항/건의사항 입력 -> 탈퇴신청(50%) &#10;',null,'2020/05/08','2020/05/15', 0,NULL,NULL,21,10000025);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '로그인 / 로그아웃(웹)','- ID/PASSWORD 입력 -> 로그인/ 메인 로그인 -> 로그아웃 변경(50%) &#10;- 로그아웃 후 로그아웃 -> 로그인 변경/로그인 정보 삭제(50%) &#10;',null,'2020/05/16','2020/05/22', 0,NULL,NULL,21,10000025);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '아이디 / 비밀번호 찾기(웹)','- 이름/이메일 -> 일치하는 아이디 출력(50%) &#10;- 아이디/이름/이메일(인증번호) -> 비밀번호 재설정(변경)(50%) &#10;',null,'2020/05/23','2020/06/01', 0,NULL,NULL,21,10000025);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '회원가입 / 탈퇴(앱)','- 개인 정보 입력(ID/PASSWORD/이름/이메일(본인확인)/전화번호/성별/생년월일/주소(50%) &#10;- 탈퇴 안내문/PASSWORD 입력/ 불편사항/건의사항 입력 -> 탈퇴신청(50%) &#10;',null,'2020/05/08','2020/05/15', 0,NULL,NULL,21,10000025);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '로그인 / 로그아웃(앱)','- ID/PASSWORD 입력 -> 로그인/ 메인 로그인 -> 로그아웃 변경(50%) &#10;- 로그아웃 후 로그아웃 -> 로그인 변경/로그인 정보 삭제(50%) &#10;',null,'2020/05/16','2020/05/22', 0,NULL,NULL,21,10000025);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '회원가입 / 탈퇴(웹)','- 개인 정보 입력(ID/PASSWORD/이름/이메일(본인확인)/전화번호/성별/생년월일/주소(50%) &#10;- 탈퇴 안내문/PASSWORD 입력/ 불편사항/건의사항 입력 -> 탈퇴신청(50%) &#10;',null,'2020/05/08','2020/05/15', 100,to_date('2020-05-14','yyyy-mm-dd'),NULL,24,10000025);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '로그인 / 로그아웃(웹)','- ID/PASSWORD 입력 -> 로그인/ 메인 로그인 -> 로그아웃 변경(50%) &#10;- 로그아웃 후 로그아웃 -> 로그인 변경/로그인 정보 삭제(50%) &#10;',null,'2020/05/16','2020/05/22', 100,to_date('2020-05-20','yyyy-mm-dd'),NULL,24,10000025);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '아이디 / 비밀번호 찾기(웹)','- 이름/이메일 -> 일치하는 아이디 출력(50%) &#10;- 아이디/이름/이메일(인증번호) -> 비밀번호 재설정(변경)(50%) &#10;',null,'2020/05/23','2020/06/01', 20,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000025);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '회원가입 / 탈퇴(앱)','- 개인 정보 입력(ID/PASSWORD/이름/이메일(본인확인)/전화번호/성별/생년월일/주소(50%) &#10;- 탈퇴 안내문/PASSWORD 입력/ 불편사항/건의사항 입력 -> 탈퇴신청(50%) &#10;',null,'2020/05/08','2020/05/15', 100,to_date('2020-05-15','yyyy-mm-dd'),NULL,24,10000025);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '로그인 / 로그아웃(앱)','- ID/PASSWORD 입력 -> 로그인/ 메인 로그인 -> 로그아웃 변경(50%) &#10;- 로그아웃 후 로그아웃 -> 로그인 변경/로그인 정보 삭제(50%) &#10;',null,'2020/05/16','2020/05/22', 100,to_date('2020-05-21','yyyy-mm-dd'),NULL,24,10000025);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1053, '아이디 / 비밀번호 찾기(앱)','- 이름/이메일 -> 일치하는 아이디 출력(50%) &#10;- 아이디/이름/이메일(인증번호) -> 비밀번호 재설정(변경)(50%) &#10;',null,'2020/05/23','2020/06/01', 0,NULL,NULL,21,10000025);
 
 ----- 1054
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '회원관리(웹)','- 회원 정보 확인(30%) &#10;- 결제 취소내역 확인 및 제제(30%) &#10;- 탈퇴처리(40%)',null,'2020/05/08','2020/05/12', 0,NULL,NULL,21,10000028);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '공연관리(웹)','- 카테고리 별 공연 리스트(30%) &#10;- 공연 수정/삭제(30%) &#10;- 공연 추가(40%)',null,'2020/05/13','2020/05/17', 0,NULL,NULL,21,10000028);
-INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '대관관리(웹)','- 대관신청 리스트(30%) &#10;- 대관신청 상세 - 코멘트 / 처리여부(30%) &#10;- 대관 테이블 데이터 입력(40%)',null,'2020/05/17','2020/05/20', 0,NULL,NULL,21,10000028);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '회원관리(웹)','- 회원 정보 확인(30%) &#10;- 결제 취소내역 확인 및 제제(30%) &#10;- 탈퇴처리(40%)',null,'2020/05/08','2020/05/12', 100,to_date('2020-05-14','yyyy-mm-dd'),NULL,24,10000028);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '공연관리(웹)','- 카테고리 별 공연 리스트(30%) &#10;- 공연 수정/삭제(30%) &#10;- 공연 추가(40%)',null,'2020/05/13','2020/05/17', 100,to_date('2020-05-19','yyyy-mm-dd'),NULL,24,10000028);
+INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '대관관리(웹)','- 대관신청 리스트(30%) &#10;- 대관신청 상세 - 코멘트 / 처리여부(30%) &#10;- 대관 테이블 데이터 입력(40%)',null,'2020/05/17','2020/05/20', 50,to_date('2020-05-21','yyyy-mm-dd'),NULL,21,10000028);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(공지사항)(웹)','- 공지사항 게시판 리스트(30%) &#10;- 공지사항 수정/삭제(30%) &#10;- 공지사항 추가(40%)',null,'2020/05/21','2020/05/24', 0,NULL,NULL,21,10000028);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(문의)(웹)','- 1:1 문의 리스트(50%) &#10;- 1:1 문의 처리 - 코멘트 작성(50%) &#10;',null,'2020/05/25','2020/05/27', 0,NULL,NULL,21,10000028);
 INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(공연)(웹)','- 공연 요청 리스트(50%) &#10;- 공연 요청 - 코멘트 작성(50%) &#10;',null,'2020/05/27','2020/05/29', 0,NULL,NULL,21,10000028);
@@ -1333,5 +1279,17 @@ INSERT INTO PMSTASK values(pmstask_seq.nextval, 1002, 1054, '게시판 관리(�
 
 SELECT * FROM pmstask;
 
-	
-	
+select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,0) dleng
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=10000015
+ 		order by p.tno asc;
+ select p.tno,p.tname,to_char(p.sdate,'yyyy-mm-dd') sdate,to_char(p.edate,'yyyy-mm-dd') edate, p.prog,to_char(p.pdate,'yyyy-mm-dd') pdate, c.cname tdiv, edate-sdate tleng, nvl2(pdate,pdate-sdate,sysdate-sdate) dleng
+ 		from pmstask p, pmscodes c
+ 		where p.tdiv=c.cno
+ 		and p.mno=10000005
+ 		and p.refno=0
+ 		order by p.tno ASC;
+select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
+ 		from pmsproject p, pmsemp e
+ 		where pno=1001;	

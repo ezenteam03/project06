@@ -2,6 +2,8 @@ package project06.repository;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 
 import project06.vo.Notice;

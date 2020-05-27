@@ -21,6 +21,7 @@
 				padding-left:10px;}
 	  .sch-btn{width: 100px; height: 40px; border-radius: 10px; outline: none;
     			border-color: black; background-color: black; color: white;}
+      .schdiv{width:80px; height:38px; border-radius:10px; outline:none;}
   </style>
   <!-- Favicons -->
   <link href="${path}/Dashio/img/favicon.png" rel="icon">
@@ -45,6 +46,9 @@
 			 $("#modBtn").click(function(){		 
 				$(location).attr("href","${path}/PMSemp.do?method=modForm") 
 			 }); 
+			 $("#selsch").change(function(){
+				  $(".search").attr({"id":this.value,"name":this.value});
+			  });
 	  });
 	  function go(eno){
 		  $(location).attr("href",
@@ -70,19 +74,26 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
-              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
+              	<form:form class="form" commandName="pmsempsch" method="post" >
+				<form:hidden path="curPage"/>             
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
-                					사원 목록</span>
+               		<span style="font-size:25px; margin-left:10px;">
+               			<i class="fa fa-angle-right"></i>
+               						사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
-	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
+                	<select class="schdiv" id="selsch">
+                		<option value="name">이름</option >
+						<option value="grade">직급</option >
+						<option value="dept">부서</option >
+                	</select>
+                		<!-- 검색창 -->
+                		<form:input class="sch-bar search" path="name" placeholder="검색"/>
+	                	<!-- 검색버튼 -->
 	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
-                </div>
-              
-
+                </div>  
+                </form:form>
                 <thead>
                   <tr>
                     <th>사원번호</th>
@@ -106,7 +117,6 @@
                   </c:forEach> 
                 </tbody>
               </table>
-              </form>
               <!-- pagination -->
 	          <div align="center">
 			    <ul class="pagination pagination-sm">

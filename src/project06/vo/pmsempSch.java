@@ -7,6 +7,8 @@ public class pmsempSch {
 	private int mdiv;
 	private int pno;
 	private String name;
+	private String dept;
+	private String grade;
 	
 	// 2. 페이징 처리
 	private int count; // 총데이터 건수
@@ -22,6 +24,18 @@ public class pmsempSch {
 	
 
 	
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public String getName() {
 		return name;
 	}

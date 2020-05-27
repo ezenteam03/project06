@@ -40,7 +40,7 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+
 <style>
 .popup_btn a {
   display: inline-block;
@@ -379,7 +379,7 @@ th{text-align:center;}
               </a>
           </li>        
           <li class="sub-menu" v-if="mdiv==4">
-          	<a href="${path}/PMSemp.do?method=empList">
+          	<a href="${path}/PMSemp.do?method=delForm">
               <i class="fa fa-group"></i>
               <span>인적자원관리</span>
               </a>

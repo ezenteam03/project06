@@ -40,9 +40,9 @@ public class Risk {
 	}
 	// 파일 등록 처리 객체
 	private MultipartFile[] report;
-	private ArrayList<String> filenames;
+	private ArrayList<String> filenames; 
 	// 파일 로딩 정보 가지고 오기
-	private String[] fnames;
+	private String[] fnames;  
 	
 	
 	

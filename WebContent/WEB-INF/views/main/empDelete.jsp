@@ -21,6 +21,7 @@
 					padding-left:10px;}
 		.sch-btn{width: 100px; height: 40px; border-radius: 10px; outline: none;
     				border-color: black; background-color: black; color: white;}
+    	.schdiv{width:80px; height:38px; border-radius:10px; outline:none;}
 	</style>
   <!-- Favicons -->
   <link href="${path}/Dashio/img/favicon.png" rel="icon">
@@ -40,13 +41,20 @@
   <script type="text/javascript">
 	  $(document).ready(function(){
 			 $("#delBtn").click(function(){
-				 $("form").attr("action","${path}/PMSemp.do?method=delete");
-				 $("form").submit(); 
+				 $("#setForm").attr("action","${path}/PMSemp.do?method=delete");
+				 $("#setForm").submit(); 
 			 });
+	  $("#goInsBtn").click(function(){
+		  $(location).attr("href","${path}/PMSemp.do?method=empList") 
 	  });
+	  $("#selsch").change(function(){
+		  $(".search").attr({"id":this.value,"name":this.value});
+	  });
+	  });
+	  
 	  function goPage(no){
 			$("[name=curPage]").val(no);
-			$("form").submit();
+			$("#setForm").submit();
 		 }
 
 
@@ -63,16 +71,26 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
-              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
+              	<form:form class="form" commandName="pmsempsch" method="post" id="setForm">
+                <form:hidden path="curPage"/>
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 삭제</span>
+                	<span style="font-size:25px; margin-left:10px;">
+                		<i class="fa fa-angle-right"></i>
+                					팀원 삭제</span>
                 	<span style="float:right; margin-right:10px;">
-	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
-	                	<input type="button" class="sch-btn" value="Search" />
+                	<select class="schdiv" id="selsch">
+                		<option value="name">이름</option >
+						<option value="grade">직급</option >
+						<option value="dept">부서</option >
+                	</select>
+                		<!-- 검색창 -->
+                		<form:input class="sch-bar search" path="name" placeholder="검색"/>
+	                	<!-- 검색버튼 -->
+	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
                 </div>
+                </form:form>
                 <thead>
                 <!-- hidden속성으로 PM과 동일한 프로젝트 넘버가 등록된 사용자만 불러오기 -->
                   <tr>
@@ -101,9 +119,21 @@
                     <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
                   </tr>
                   </c:forEach> 
+                 <%--  <c:forEach var="emp" items="${pmdlist}">
+                  <tr style="display:none;">
+                    <th>${emp.eno}</th>
+                    <td>${emp.name}</td>
+                    <td>${emp.grade}</td>
+                    <th>${emp.dept}</th>
+                    <td style="width:200px;">${emp.email}</td>
+                    <th>${emp.phone}</th>
+                    <th style="width:150px;">${emp.cname}</th>
+                    <th>${emp.pno}</th>
+                    <th><input type="radio" name="eno" value="${emp.eno}" id="" /></th>
+                  </tr>
+                  </c:forEach>  --%>
                 </tbody>
               </table>
-              </form>
               <!-- pagination -->
 	           <div align="center">
 			    <ul class="pagination pagination-sm">
@@ -126,6 +156,8 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
+               	<button type="button" class="btn btn-success" 
+		           			id="goInsBtn" style="margin-right:20px;">팀원추가이동</button>
 		           <button type="button" class="btn btn-danger" 
 		           			id="delBtn" style="margin-right:20px;">삭제</button>
 		           <button type="button" class="btn btn-default">이전</button>

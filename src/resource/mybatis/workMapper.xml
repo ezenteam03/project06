@@ -73,8 +73,9 @@
  	<select id="getTask" 
  		resultType="task" parameterType="int">
  		SELECT *
- 		FROM PMSTASK
- 		WHERE tno = #{tno}
+		FROM PMSTASK pmt, pmsemp pe
+		WHERE tno = #{tno}
+		AND pmt.mno = pe.eno
  	</select>
  	
  	<!-- 삭제 -->
@@ -83,13 +84,14 @@
 		 WHERE tno = #{tno}
  	</delete>
  	
- 	<!-- 제목, 내용수정  / 결재, 반려
+ 	<!-- 제목, 내용, 담당자 수정  / 결재, 반려
  	pstart = #{pstart},
 	pend = #{pend}-->
  	<update id="updateTask" parameterType="task">
 		UPDATE PMSTASK
 		   SET tname = #{tname},
-		   	   detail = #{detail}   
+		   	   detail = #{detail},
+		   	   mno = #{mno}   
 		 WHERE tno = #{tno}
  	</update> 
  	<update id="upDetail" parameterType="task">
@@ -164,7 +166,24 @@
 	tdiv NUMBER NOT NULL, /* 결재구분 */
 	mno NUMBER NOT NULL /* 사원번호 */
  	 -->
+ 	<select id="workList" resultMap="taskResult" parameterType="task">
+	 	SELECT * 
+		FROM pmstask
+		WHERE 1=1
+		<if test="tname!=null and tname!=''">
+			and tname like '%'||#{tname}||'%'
+		</if> 
+ 	</select>
  	
+ 	<select id="nameList" resultMap="taskResult" 
+ 		parameterType="tsch">
+	 	SELECT pt.mno , pe.eno, pe.name
+		FROM pmstask pt, pmsemp pe
+		WHERE pt.mno = #{mno}
+		AND pe.eno = #{eno}
+ 	</select>
+ 	
+
  	
 </mapper>	
 

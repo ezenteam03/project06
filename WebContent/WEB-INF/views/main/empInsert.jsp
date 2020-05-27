@@ -21,6 +21,7 @@
 					padding-left:10px;}
 		.sch-btn{width: 100px; height: 40px; border-radius: 10px; outline: none;
     				border-color: black; background-color: black; color: white;}
+    	.schdiv{width:80px; height:38px; border-radius:10px; outline:none;}
 	</style>
   <!-- Favicons -->
   <link href="${path}/Dashio/img/favicon.png" rel="icon">
@@ -39,14 +40,34 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-			 $("#insBtn").click(function(){
+			 /* $("#insBtn").click(function(){
 				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
 				 $("form").submit(); 
+			 }); */
+			 $("#insBtn").click(function(){			 
+				 Swal.fire({
+					  title:'팀원추가 ',
+					  text:"해당 직원을 팀원으로 추가하시겠습니까?",
+					  icon: 'info',
+					  showCancelButton: true
+				}).then((result) => {
+					if (result.value) {
+						$("#setForm").attr("action","${path}/PMSemp.do?method=insemp");
+						 $("#setForm").submit(); 
+					}
+				});
 			 });
+			 $("#goDelBtn").click(function(){
+				  $(location).attr("href","${path}/PMSemp.do?method=delForm") 
+			  });
+			 $("#selsch").change(function(){
+				  $(".search").attr({"id":this.value,"name":this.value});
+			  });
 		  });
+	  	 
 		 function goPage(no){
 			$("[name=curPage]").val(no);
-			$("form").submit();
+			$("#setForm").submit();
 		 }
 	 	
 		 function enoclick(no){
@@ -69,16 +90,26 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post">
-              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
+              	<form:form class="form" commandName="pmsempsch" method="post" id="setForm">
+           	    <form:hidden path="curPage"/>  
                 <div>
-                	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>팀원 추가</span>
+                	<span style="font-size:25px; margin-left:10px;">
+                		<i class="fa fa-angle-right"></i>
+                					팀원 추가</span>
                 	<span style="float:right; margin-right:10px;">
-	                	<input type="text" class="sch-bar" name="" id="" placeholder="Search"/>
-	                	<input type="button" class="sch-btn" value="Search" />
+                	<select class="schdiv" id="selsch">
+                		<option value="name">이름</option >
+						<option value="grade">직급</option >
+						<option value="dept">부서</option >
+                	</select>
+                		<!-- 검색창 -->
+                		<form:input class="sch-bar search" path="name" placeholder="검색"/>
+	                	<!-- 검색버튼 -->
+	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
                 </div>
+                </form:form>
                 <thead>
                 <!-- hidden속성으로 PM과 동일한 프로젝트 넘버가 등록된 사용자만 불러오기 -->
                   <tr>
@@ -108,7 +139,6 @@
                   </c:forEach> 
                 </tbody>
               </table>
-              </form>
               <!-- pagination -->
 	          <div align="center">
 			    <ul class="pagination pagination-sm">
@@ -131,6 +161,8 @@
           <!-- change button -->
             <div class="showback" style="text-align:right;">
                <div style="display:inline-block; ">
+             	  <button type="button" class="btn btn-danger" 
+		           			id="goDelBtn" style="margin-right:20px;">팀원삭제이동</button>
 		           <button type="button" class="btn btn-success" 
 		           			id="insBtn" style="margin-right:20px;">추가</button>
 		           <button type="button" class="btn btn-default">이전</button>

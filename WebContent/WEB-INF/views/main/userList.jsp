@@ -21,6 +21,7 @@
 				padding-left:10px;}
 	  .sch-btn{width: 100px; height: 40px; border-radius: 10px; outline: none;
     			border-color: black; background-color: black; color: white;}
+      .schdiv{width:80px; height:38px; border-radius:10px; outline:none;}
   </style>
   <!-- Favicons -->
   <link href="${path}/Dashio/img/favicon.png" rel="icon">
@@ -38,10 +39,9 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
-		$("#schBtn").click (function(){
-			$("#setForm").attr("action","${path}/PMSemp.do?method=list");
-			$("#setForm").submit();
-		});
+		  $("#selsch").change(function(){
+			  $(".search").attr({"id":this.value,"name":this.value});
+		  });
 	  });
 	 function goPage(no){
 		$("[name=curPage]").val(no);
@@ -66,23 +66,26 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">     
             <div class="content-panel">
-              <form method="post" action="" id="setForm">
-              <input type="hidden" name="curPage"/>
               <table class="table table-hover">
+              	<form:form class="form" commandName="pmsempsch" method="post" >
+				<form:hidden path="curPage"/>             
                 <div>
-               	<span style="font-size:25px; margin-left:10px;"><i class="fa fa-angle-right"></i>
-               					사원 목록</span>
+               		<span style="font-size:25px; margin-left:10px;">
+               			<i class="fa fa-angle-right"></i>
+               						사원 목록</span>
                 	<span style="float:right; margin-right:10px;">
+                	<select class="schdiv" id="selsch">
+                		<option value="name">이름</option >
+						<option value="grade">직급</option >
+						<option value="dept">부서</option >
+                	</select>
                 		<!-- 검색창 -->
-	                	<input type="text" 
-	                		class="sch-bar" name="name" id="" 
-	                		placeholder="이름, 부서, 직급 검색"/>
+                		<form:input class="sch-bar search" path="name" placeholder="검색"/>
 	                	<!-- 검색버튼 -->
-	                	<input type="button"  
-	                		class="sch-btn" name="" id="schBtn"
-	                		 value="Search" />
+	                	<input type="submit" class="sch-btn" value="Search" />
                 	</span>
-                </div>        
+                </div>  
+                </form:form>      
                 <thead>
                   <tr>
                     <th>사원번호</th>
@@ -108,7 +111,7 @@
                   </c:forEach> 
                 </tbody>
               </table>
-              </form>
+              
               <!-- pagination -->
 	          <div align="center">
 			    <ul class="pagination pagination-sm">

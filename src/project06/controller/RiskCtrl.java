@@ -15,6 +15,7 @@ import project06.vo.Comment;
 import project06.vo.PmsMember;
 import project06.vo.Risk;
 import project06.vo.RiskSch;
+import project06.vo.Task;
 
 
 @Controller
@@ -54,9 +55,10 @@ public class RiskCtrl {
 	@RequestMapping(params="method=insert")
 	public String insert(Risk insert) {
 		
-		service.insert(insert);
+		service.insert(insert);	
 		
 		return "WEB-INF\\views\\main\\riskInsert.jsp";
+		
 	}
 	@RequestMapping(params="method=detail")
 	public String detail(@RequestParam("ino") int ino, Model d,HttpServletRequest request) {
@@ -97,7 +99,7 @@ public class RiskCtrl {
 		public String download(@RequestParam("fname") String fname, 
 								Model d) {
 			// 탑재할 모델명은 파일명으로 설정..
-			
+			System.out.println("다운로드할 파일명:"+fname);
 			d.addAttribute("downloadFile", fname);
 			
 			return "download"; // 컨터이너에서 선언한 viewer명..
@@ -118,6 +120,7 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=comment";
 		}
+		// 댓글 삭제
 		@RequestMapping(params="method=delete")
 		public String delete(@RequestParam("rno") int rno) {
 			service.deleteComment(rno);
@@ -137,16 +140,29 @@ public class RiskCtrl {
 			
 			return "forward:/risk.do?method=detail";
 		}	
+		// 대댓창 열기
+		@RequestMapping(params="method=cinsForm")
+		public String cinsertForm(Comment c) {
+			System.out.println(c.getRno());
+			c.setRefno(c.getRno());
+			return "WEB-INF\\views\\main\\commentIns.jsp";
+		}
 		// 대댓글입력
-			@RequestMapping(params="method=ccinsert")
-			public String ccinsert(Comment insert) {
+		@RequestMapping(params="method=ccinsert")
+		public String ccinsert(Comment insert) {
 				
-				service.cinsert(insert);
+			service.cinsert(insert);
 				
-				return "WEB-INF\\views\\main\\riskDetail.jsp";
-			}
+			return "WEB-INF\\views\\main\\commentIns.jsp";
+		}
 		
-	
+		// http://localhost:5080/project06_git/risk.do?method=applist
+
+		@RequestMapping(params="method=applist") 
+		public String andlist(Risk sch, Model d) {
+			d.addAttribute("andlist", service.andlist(sch));
+			return "WEB-INF\\views\\main\\andRisk.jsp";
+		}
 }
 
 

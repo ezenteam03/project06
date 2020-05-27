@@ -41,20 +41,19 @@
 		
 		--%>		
 		var isT= "${param.title}";
-		var isD= "${param.detail}";
-		if(isT!=""){
-			alert("등록이 되었습니다");
-			$(location).attr("href","${path}/risk.do?method=list");	
 			
+		if(isT!=""){				
+			alert("등록이 되었습니다");
+			$(location).attr("href","${path}/risk.do?method=list");				
 		}
 		
 		
 		$("#regBtn").click(function(){		
 			if(confirm("등록합니다.")){
-				$("form").submit();				
-		}			
+				$("form").submit();					
+			}
 		});	
-		$("#goMain").click(function(){
+		$("#goMain").click(function(){			
 			if(confirm("조회 화면 이동 합니다.")){
 				$(location).attr("href","${path}/risk.do?method=list");			
 			}
@@ -71,6 +70,8 @@
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
+	 <section id="main-content">
+      <section class="wrapper">
 	<div class="jumbotron text-left" style="margin-left:200px;">  
     	<h4><i class="fa fa-th"></i>&ensp;게시판 등록</h4>
     </div>
@@ -118,7 +119,7 @@
 	</div>
 	</form>
 	</div>
-	
+	</section></section>
 
 
 <footer class="site-footer">
@@ -142,31 +143,6 @@
     </footer>
     <!--footer end-->
 </section>
-
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
-  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--script for this page-->
-  <script src="${path}/Dashio/lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-daterangepicker/date.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-daterangepicker/moment.min.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-  <script src="${path}/Dashio/lib/advanced-form-components.js"></script>
-  <!--common script for all pages-->
-  <script src="${path}/Dashio/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script type="text/javascript">
-    $(document).ready(function() {
-    });
-  </script>
-
 </body>
 </html>
 

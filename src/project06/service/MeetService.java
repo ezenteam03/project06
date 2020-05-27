@@ -57,22 +57,19 @@ public class MeetService {
 		
 		dao.insert(insert);
 		// 파일 업로드 내용..
-		//for(MultipartFile report:insert.getReport()) {
+		for(MultipartFile report:insert.getReport()) {
 			// 물리적 파일 정리
-		//	upload(report);
+			upload(report);
 			
-		//}
+		}
 	}
 	public void update(Meet update) {
 		
 		dao.updateMeet(update);
 		// 파일 수정 정보 처리
-		//upload2(update);
+			upload2(update);
 	}	
-	public void deleteMeet(int mnno) {
-		dao.deleteMeet(mnno);
-		dao.deleteFile(mnno);
-	}
+	
 	
 	
 	@Value("${upload}")

@@ -55,6 +55,23 @@ public class pmsempService {
 		public ArrayList<String> getDlist(){
 			return rep.getDlist();
 		}
+		// 기존 CEO 권한변경 후 새로운 CEO에게 권한 부여
+		public void updateCeo(pmsemp updateCeo) {
+			int isMem = rep.memCheck(updateCeo);
+			if(isMem==0) {
+				// 기존 CEO권한 변경
+				rep.updatepmsCeo2();
+				rep.updatepmsCeo3();
+				// 새로운 CEO Member등록
+				updateCeo.setPass(makePass("1234qwer!"));
+				rep.insertCeo1(updateCeo);
+			}else{
+				rep.updatepmsCeo2();
+				rep.updatepmsCeo3();
+				rep.updatepmsCeo1(updateCeo);	
+				rep.updatepmsCeo4(updateCeo);	
+			}
+		}
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
@@ -251,5 +268,9 @@ public class pmsempService {
 				System.out.println(result);
 				return result;
 			}
+		}
+		
+		public ArrayList<pmsemp> pmsElist(pmsemp emp) {
+			return rep.pmsElist(emp);
 		}
 }

@@ -25,15 +25,15 @@
 		<if test="name!=null and name!=''">
 		and name LIKE '%'||#{name}||'%'
 		</if>
-		<if test="name!=null and name!=''">
-		or grade LIKE '%'||#{name}||'%'
+		<if test="grade!=null and grade!=''">
+		and grade LIKE '%'||#{grade}||'%'
 		</if>
-		<if test="name!=null and name!=''">
-		OR dept LIKE '%'||#{name}||'%'
+		<if test="dept!=null and dept!=''">
+		and dept LIKE '%'||#{dept}||'%'
 		</if>
  	</select> 	
  	<!-- CEO, CTO 사원리스트 불러오기 -->
- 	<select id="pmsempList" resultMap="pmsempResult"  parameterType="pmsemp">
+ 	<select id="pmsempList" resultMap="pmsempResult"  parameterType="pmsempsch">
  		SELECT *
  		FROM(
 			SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
@@ -44,11 +44,11 @@
 			<if test="name!=null and name!=''">
 			and name LIKE '%'||#{name}||'%'
 			</if>
-			<if test="name!=null and name!=''">
-			or grade LIKE '%'||#{name}||'%'
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
 			</if>
-			<if test="name!=null and name!=''">
-			OR dept LIKE '%'||#{name}||'%'
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
 			</if>
 			ORDER BY a.eno asc)
 		WHERE cnt BETWEEN #{start} AND #{end}
@@ -74,6 +74,33 @@
 		from pmsmember 
 		where mno=#{eno}
 	</select>
+	<!-- pms에 등록안된 경우 CEO로등록 -->
+	<insert id="insertCeo1" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{eno}, #{pass}, 2, #{phone}, null)
+	</insert>
+ 	<!-- 기존 CEO 권한변경 -->
+	<update id="updatepmsCeo2" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=9
+		WHERE mdiv=2
+	</update>
+	<update id="updatepmsCeo3" parameterType="pmsemp">
+		UPDATE pmsemp
+		SET grade='사원'
+		WHERE grade='대표이사'
+	</update>
+ 	<!-- CEO설정 -->
+	<update id="updatepmsCeo1" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=2
+		WHERE mno=#{eno}
+	</update>
+	<update id="updatepmsCeo4" parameterType="pmsemp">
+		UPDATE pmsemp
+		SET grade='대표이사'
+		WHERE eno=#{eno}
+	</update>
 	<!-- pms에 등록안된 경우 CTO로등록 -->
 	<insert id="insertMem1" parameterType="pmsemp">
 		 insert into pmsmember 
@@ -110,8 +137,8 @@
 		WHERE mno=#{eno}
 	</update>
  	<!-- PM 팀원 추가 리스트 -->
- 	<select id="insList" resultMap="pmsempResult" parameterType="pmsemp">
- 	SELECT *
+ 	<select id="insList" resultMap="pmsempResult" parameterType="pmsempsch">
+ 	<!-- SELECT *
  	FROM(
 			SELECT *
 			FROM (
@@ -127,7 +154,43 @@
 			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
 			where b.mno is NULL AND c.cno=9)
 			ORDER BY eno ASC)
-	WHERE cnt BETWEEN #{start} AND #{end}
+	WHERE cnt BETWEEN #{start} AND #{end} -->
+	SELECT *
+ 	FROM(
+			SELECT *
+			FROM (
+			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+			c.CNAME,b.pno
+			FROM pmsemp a, pmsmember b, pmscodes c
+			WHERE a.eno = b.mno and b.mdiv=c.cno
+			AND c.cno =9 
+			AND b.pno is NULL
+			<if test="name!=null and name!=''">
+			and name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
+			</if>
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
+			</if>
+			UNION ALL
+			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+					c.CNAME,b.pno
+			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+			where b.mno is NULL 
+			AND c.cno=9
+			<if test="name!=null and name!=''">
+			and name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
+			</if>
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
+			</if>)
+			ORDER BY eno ASC)
+	WHERE cnt BETWEEN #{start} AND #{end} 
  	</select>
  	<!-- PM 팀원 추가 리스트임시 -->
  	<select id="insList2" resultMap="pmsempResult" parameterType="pmsemp">
@@ -161,7 +224,7 @@
 		 	values(#{eno}, #{pass}, 5, #{phone}, #{pno})
 	</insert>
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
- 	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsemp">
+ 	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsempsch">
  	SELECT *
  		FROM(
 		SELECT rownum cnt, a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
@@ -170,6 +233,15 @@
 		WHERE a.eno = b.mno and b.mdiv=c.cno
 		AND b.pno=#{pno}
 		AND b.mdiv=5
+		<if test="name!=null and name!=''">
+		and a.name LIKE '%'||#{name}||'%'
+		</if>
+		<if test="grade!=null and grade!=''">
+		and a.grade LIKE '%'||#{grade}||'%'
+		</if>
+		<if test="dept!=null and dept!=''">
+		and a.dept LIKE '%'||#{dept}||'%'
+		</if>
 		ORDER BY eno ASC)
 	WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
@@ -250,6 +322,15 @@
 	<select id="pmsEmpPass" resultMap="pmsEmpPassResult" parameterType="int">
 		SELECT eno FROM pmsemp WHERE eno=#{eno} AND name=#{name} AND email=#{email}
 	</select>
+	
+	
+<!-- 팀원만 보기 -->
+	<select id="pmsElist" resultMap="pmsempResult" parameterType="pmsemp">
+	 	SELECT pe.eno, pm.MDIV, pe.name, pe.GRADE
+		FROM pmsmember pm, pmsemp pe
+		WHERE pm.MDIV = 5
+		AND pe.eno = pm.mNO
+ 	</select>
 	
 	
 	

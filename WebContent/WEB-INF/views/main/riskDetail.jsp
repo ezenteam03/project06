@@ -136,12 +136,14 @@
 <style type="text/css">
 .input-group-text{width:100%;}
 .input-group-prepend{width:20%;}
+
 </style>
 </head>
 <body>
 <section id="container">
 	<jsp:include page="top.jsp"/>
-	
+	 <section id="main-content">
+      <section class="wrapper">
       
    <div class="jumbotron text-left" style="margin-left:200px;">  
     	<h4><i class="fa fa-th"></i>&ensp;게시판 상세</h4>
@@ -157,13 +159,6 @@
 	</div>
 	<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
 			value="${risk.name }" placeholder="작성자입력하세요"/>		
-</div>	
-<div class="input-group mb-3">		
-	<div class="input-group-prepend">
-		<span class="bg-warning text-white input-group-text">작 성 일</span>
-	</div>
-		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
-			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
 </div>
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
@@ -172,7 +167,15 @@
 		<input name="title" class="form-control" id="title"
 			value="${risk.title}"  
 			placeholder="제목입력하세요" />	
+</div>	
+<div class="input-group mb-3">		
+	<div class="input-group-prepend">
+		<span class="bg-warning text-white input-group-text">작 성 일</span>
+	</div>
+		<input  class="form-control" readonly="readonly"  style="background-color: #ffffff;"
+			value="<fmt:formatDate type='both' value='${risk.wdate }'/>"  />		
 </div>
+
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
 		<span class="bg-warning text-white input-group-text">수정일</span>
@@ -237,7 +240,7 @@
 	<form method="post" enctype="multipart/form-data" id="cform"
 	 	action="${path}/risk.do?method=cinsert">	
 	     <input name="refno" type="hidden"
-			 value="${empty comment.refno?0:comment.refno}" />	 	
+			 value="0" />	 	
 	     <input name="ino" type="hidden"
 			 value="${risk.ino}" />	 		  	
 	  	 <input name="mno" type="hidden"
@@ -257,37 +260,34 @@
 	<div style="text-align:right;" >
 			<button class="btn bg-warning" id="cmtBtn">입력</button>
 	</div>	
-	<div class="col-md-12 mt">
-            <div class="content-panel">
-   <table class="table table-hover">
-   
-      <c:forEach var="comment" items="${clist}">
-    
-      <tr class="text-center">
-      <td class="num">${comment.name}</td>
-       <!-- 댓글 들여쓰기 -->
-       <td class="text-left" >
-       		<c:forEach varStatus="sts" 
-        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
-        	</c:forEach>${comment.detail}      		         	
-       </td>
-        
-     
+	<div class="col-md-12 mt" style="width:100%">
+    	<div class="content-panel" style="padding: 0px; ">
+  			 <table class="table table-hover">  
+  			 <tbody>
+   			   <c:forEach var="comment" items="${clist}">
+				<tr class="text-center">
+     			 <td class="num">${comment.name}</td>
+     				  <!-- 댓글 들여쓰기 -->
+			       <td class="text-left" >
+			       		<c:forEach varStatus="sts" 
+			        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
+			        	</c:forEach>${comment.detail}      		         	
+			       </td>             
         <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>
-        <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno})"
+        <td class="num"><input type="button" class="btn btn-info" onclick="ccoment(${comment.rno},${risk.ino})"
 			value="댓글"  />	</td>
 		<td class="num2"><fmt:formatDate type='both' value='${comment.wdate}'/></td>
       </tr>
    
       </c:forEach>
-    
+    </tbody>
   </table>  
 </div></div>
 </div>
 	</form>
 
 	</div>
-
+</section></section>
 	
 <footer class="site-footer">
       <div class="text-center">
@@ -330,15 +330,15 @@ function cpopup(rno) {
 function coment(rno){
 	cpopup(rno);
 };
-function ccpopup(rno) { 
-	window.open("http://localhost:5080/project06_git/risk.do?method=ccinsert&rno="+rno, "1", "width=780, height=500, left=300, top=100");
+function ccpopup(rno,ino) { 
+	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=500, left=300, top=100");
 }
-function ccoment(rno){
-	ccpopup(rno);
+function ccoment(rno,ino){
+	ccpopup(rno,ino);
 };
 
-
-
+//
+//+"&name="+'name'+"&detail="+detail
 	
 </script>
 </html>
