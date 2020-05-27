@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import project06.vo.EmpLogSch;
 import project06.vo.pmsemp;
 import project06.vo.pmsempSch;
 
@@ -43,7 +44,8 @@ public interface pmsempRep {
 	public void updatePm4(pmsemp uptPm);
 	// PM 추가 리스트
 	public ArrayList<pmsemp> insList(pmsempSch sch);
-	public ArrayList<pmsemp> insList2(pmsemp sch); //임시로 추가
+	public int selectpmCount(pmsempSch Sch); //프로젝트 참여하지 않은 대리급 이상 사원 수
+	public ArrayList<pmsemp> selectpm(pmsempSch sch); //프로젝트 참여하지 않은 대리급 이상 사원리스트
 	// PM 팀원 추가
 	public void updPNum(pmsemp upn);
 	public void insPNum(pmsemp ipn);

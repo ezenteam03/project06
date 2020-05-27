@@ -218,14 +218,30 @@ ORDER BY a.eno ASC;
 --pmsemp로 
 SELECT * 
 FROM (
-		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON, 
 		c.CNAME,b.pno
 		FROM pmsemp a, pmsmember b, pmscodes c
 		WHERE a.eno = b.mno and b.mdiv=c.cno
 		AND c.cno =9 
 		AND b.pno is NULL
 		UNION ALL
-		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON, 
+				c.CNAME,b.pno
+		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+		where b.mno is NULL AND c.cno=9
+	)
+WHERE NOT grade = '사원'
+ORDER BY eno ASC;
+SELECT count(*) 
+FROM (
+		SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
+		c.CNAME,b.pno
+		FROM pmsemp a, pmsmember b, pmscodes c
+		WHERE a.eno = b.mno and b.mdiv=c.cno
+		AND c.cno =9 
+		AND b.pno is NULL
+		UNION ALL
+		select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
 				c.CNAME,b.pno
 		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
 		where b.mno is NULL AND c.cno=9
@@ -233,8 +249,6 @@ FROM (
 WHERE NOT grade = '사원'
 ORDER BY eno ASC;
 
-SELECT * FROM PMSEMP;
-SELECT * FROM PMSMEMBER
 WHERE pno=1003
 ORDER BY mno;
 SELECT * FROM PMSLOG;

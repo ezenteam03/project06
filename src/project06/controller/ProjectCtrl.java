@@ -6,13 +6,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project06.service.ProjectService;
 import project06.service.pmsempService;
+import project06.vo.EmpLogSch;
 import project06.vo.PmsMember;
 import project06.vo.Project;
 import project06.vo.pmsemp;
+import project06.vo.pmsempSch;
 
 
 @Controller
@@ -31,15 +35,16 @@ public class ProjectCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		pmsemp emp =(pmsemp)session.getAttribute("emp");
 		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 		
-		emp.setMdiv(pmsm.getMdiv());
+		pmsempSch empsch = new pmsempSch();
+		empsch.setMdiv(pmsm.getMdiv());
 		//모든 사원이 프로젝트에 참여중일 경우 사원이 없음을 표시하는 로직 필요
 		//현재 프로젝트에 소속되어있지 않은 대리급 이상 사원리스트 호출
-		d.addAttribute("elist", peservice.insList(emp));
+		d.addAttribute("elist", peservice.selectpm(empsch));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
 	}
+	
 	//
 	@RequestMapping(params="method=proins")
 	public String proIns(HttpServletRequest request) {
@@ -66,5 +71,12 @@ public class ProjectCtrl {
 		peservice.updatePm(inspe);
 		
 		return "WEB-INF\\views\\main\\dashceo.jsp";
+	}
+	
+	@RequestMapping(params="method=selectpm")
+	public String logList(@ModelAttribute("pmsempSch") pmsempSch sch, Model m, @RequestParam("mdiv") int mdiv) {
+		sch.setPno(mdiv);
+		m.addAttribute("loglist", peservice.selectpm(sch));
+		return "WEB-INF\\views\\main\\selectpm.jsp";
 	}
 }

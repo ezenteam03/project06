@@ -205,25 +205,55 @@
 			ORDER BY eno ASC)
 	WHERE cnt BETWEEN #{start} AND #{end} 
  	</select>
- 	<!-- PM 팀원 추가 리스트임시 -->
- 	<select id="insList2" resultMap="pmsempResult" parameterType="pmsemp">
-		SELECT *
+ 	<!-- PM선정 리스트 총인원 -->
+ 	<select id="selectpmCount" resultType="int" parameterType="pmsempsch">
+		SELECT count(*)
 		FROM (
-		SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-		c.CNAME,b.pno
-		FROM pmsemp a, pmsmember b, pmscodes c
-		WHERE a.eno = b.mno and b.mdiv=c.cno
-		AND c.cno =9 
-		AND b.pno is NULL
-		UNION ALL
-		select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+				SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
 				c.CNAME,b.pno
-		from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-		where b.mno is NULL AND c.cno=9)
+				FROM pmsemp a, pmsmember b, pmscodes c
+				WHERE a.eno = b.mno and b.mdiv=c.cno
+				AND c.cno =9 
+				AND b.pno is NULL
+				UNION ALL
+				select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
+						c.CNAME,b.pno
+				from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+				where b.mno is NULL AND c.cno=9
+			)
 		<if test="mdiv==2 or mdiv==3 or mdiv==6">
 		WHERE NOT grade = '사원'
 		</if>
+		<if test="name!=null and name!=''">
+		AND name like '%'||#{name}||'%'
+		</if>
 		ORDER BY eno ASC
+	</select>
+ 	<!-- PM 팀원 추가 리스트(PM선정) -->
+ 	<select id="selectpm" resultMap="pmsempResult" parameterType="pmsempsch">
+ 	SELECT *
+ 		FROM(
+			SELECT *
+			FROM (
+			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
+			c.CNAME,b.pno
+			FROM pmsemp a, pmsmember b, pmscodes c
+			WHERE a.eno = b.mno and b.mdiv=c.cno
+			AND c.cno =9 
+			AND b.pno is NULL
+			UNION ALL
+			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, b.WCON,  
+					c.CNAME,b.pno
+			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+			where b.mno is NULL AND c.cno=9)
+			<if test="mdiv==2 or mdiv==3 or mdiv==6">
+			WHERE NOT grade = '사원'
+			</if>
+			<if test="name!=null and name!=''">
+				AND name like '%'||#{name}||'%'
+			</if>
+			ORDER BY eno ASC)
+	WHERE cnt BETWEEN #{start} AND #{end}		
  	</select>
  	<!-- pms등록된 직원 팀원추가 -->
  	<update id="updPNum" parameterType="pmsemp">
