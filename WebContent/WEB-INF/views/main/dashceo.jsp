@@ -39,7 +39,7 @@
   .chart {float: left; width: 30%; height: 230px; text-align: center;}
 .chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
   </style>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src="${path}/Dashio/lib/rendro-easy-pie-chart-97b5824/dist/jquery.easypiechart.min.js"></script>
 
