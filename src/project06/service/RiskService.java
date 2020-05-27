@@ -203,6 +203,7 @@ public class RiskService {
 	public void cinsert(Comment ins) {
 		
 		dao.cinsert(ins);
+
 			
 	}
 	// 댓글 삭제

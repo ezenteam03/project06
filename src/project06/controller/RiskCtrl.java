@@ -115,10 +115,10 @@ public class RiskCtrl {
 		// 댓글입력
 		@RequestMapping(params="method=cinsert")
 		public String cinsert(Comment insert) {
-			
-			service.cinsert(insert);
-			
-			return "forward:/risk.do?method=comment";
+
+			service.cinsert(insert);			
+			insert.setDetail("");
+			return "redirect:/risk.do?method=comment";
 		}
 		// 댓글 삭제
 		@RequestMapping(params="method=delete")
