@@ -52,8 +52,7 @@
 				
 		$("#cmtBtn").click(function(){		
 			alert("등록이 되었습니다");
-			$("#cform").submit();
-												
+			$("#cform").submit();												
 		});	
 
 		
@@ -253,7 +252,7 @@
 			<span class="bg-info text-white input-group-text">댓글</span>
 		</div>	
 		<textarea  rows="5" style="resize:none; "
-			class="form-control" name="detail"
+			class="form-control" name="detail" id="detxt"
 			placeholder="내용입력하세요" >${comment.detail}</textarea>	
 			 
 	</div> 
