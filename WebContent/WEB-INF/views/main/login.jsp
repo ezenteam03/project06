@@ -107,14 +107,16 @@
 	function setCookie(cookieName, value, exdays){		// 쿠키 설정
 	    var exdate = new Date();						// 날짜 데이터
 	    exdate.setDate(exdate.getDate() + exdays);		// 보관 날짜 +
-	    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+	    var cookieValue = escape(value) + ((exdays==null) 
+	    		? "" : "; expires=" + exdate.toGMTString());
 	    document.cookie = cookieName + "=" + cookieValue;
 	}
 	 
 	function deleteCookie(cookieName){					// 쿠키 삭제
 	    var expireDate = new Date();					// 날짜 데이터
 	    expireDate.setDate(expireDate.getDate() - 1);	
-	    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+	    document.cookie = cookieName + "= " + "; expires="
+	    						+ expireDate.toGMTString();
 	}
 	 
 	function getCookie(cookieName) {					// 쿠키 가져오기
