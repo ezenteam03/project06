@@ -318,7 +318,7 @@ th{text-align:center;}
       <!--logo end-->
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
+          <li v-if="mdiv==7||mdiv==4||mdiv==5"><a class="logout" id="chat" style="cursor:pointer;">채팅</a></li>
           <li><a class="logout" href="#pop01">개인정보</a></li>
         <!--   <li><a class="logout" href="#pop03">참여인원</a></li>	-->
           <li><a class="logout" id="po03" style="cursor:pointer;">참여인원</a></li>
