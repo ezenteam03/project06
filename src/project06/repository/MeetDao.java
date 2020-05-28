@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import project06.vo.Meet;
 import project06.vo.MeetSch;
+import project06.vo.Notice;
 
 
 @Repository
@@ -29,6 +30,7 @@ public interface MeetDao {
 	public void insFileInfo(HashMap hm);
 	public void uptReadCnt(int mnno);
 	
+	public ArrayList<Meet> andlist(Meet sch);
 	
 }
 

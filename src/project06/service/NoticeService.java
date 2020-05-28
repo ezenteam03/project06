@@ -124,6 +124,8 @@ public class NoticeService {
 			return n;
 		}
 	
+		
+	// 안드로이드 리스트 출력	
 		public  ArrayList<Notice> andlist(Notice sch) {
 		
 		return dao.andlist(sch);		

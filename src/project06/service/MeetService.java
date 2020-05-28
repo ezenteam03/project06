@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import project06.repository.MeetDao;
 import project06.vo.Meet;
 import project06.vo.MeetSch;
+import project06.vo.Notice;
 
 @Service
 public class MeetService {
@@ -165,5 +166,12 @@ public class MeetService {
 		System.out.println(d.getFilenames());
 		return d;
 	}
+	
+	// 안드로이드 리스트 출력	
+		public  ArrayList<Meet> andlist(Meet sch) {
+		
+		return dao.andlist(sch);		
+			
+		}	
 	
 }
