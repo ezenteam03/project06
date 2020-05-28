@@ -18,6 +18,7 @@ import project06.vo.PmsMember;
 import project06.vo.Task;
 import project06.vo.TaskSch;
 import project06.vo.pmsemp;
+import project06.vo.pmsempSch;
 
 @Controller
 @RequestMapping("/task.do")
@@ -32,7 +33,13 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=list")
 		public String list(@ModelAttribute("tsch") TaskSch sch, Model d,HttpServletRequest request) {
-			HttpSession session = request.getSession();
+			
+		HttpSession session = request.getSession();
+			
+			PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+			pmsempSch pmssch = new pmsempSch();
+			
+			d.addAttribute("pno",pmsm.getPno());
 		
 		  if(session.getAttribute("mno")==null) { 
 			  return "WEB-INF\\views\\main\\login.jsp"; }
@@ -133,10 +140,18 @@ public class WorkCtrl2 {
 		}
 		
 		@RequestMapping(params="method=insForm")
-		public String insertForm(Model d, HttpServletRequest request) {
+		public String insertForm(pmsemp ins,Model d, HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			pmsemp emp =(pmsemp)session.getAttribute("emp");
 			
+			PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+			pmsempSch pmssch = new pmsempSch();
+			
+			d.addAttribute("pno",pmsm.getPno());
+
+			pmsemp emp =(pmsemp)session.getAttribute("emp");
+	
+			emp.setPno(pmsm.getPno());
+
 			d.addAttribute("pmsElist",peservice.pmsElist(emp));
 			
 			
@@ -149,10 +164,6 @@ public class WorkCtrl2 {
 			HttpSession session = request.getSession();
 			pmsemp emp =(pmsemp)session.getAttribute("emp");
 			
-			//d.addAttribute("pmsElist",peservice.pmsElist(emp));
-			//d.addAttribute("pName",emp.getName());
-			
-			
 			service.insert(ins);
 			return "redirect:/task.do?method=list";
 		}
@@ -162,24 +173,36 @@ public class WorkCtrl2 {
 		@RequestMapping(params="method=detail")
 		public String detail(@RequestParam("tno") int no,Task sch, Model d, HttpServletRequest request) {
 			
-		
-			d.addAttribute("nlist", service.nameList(sch));
-			d.addAttribute("task", service.getTask(no));
+			
+			//d.addAttribute("nlist", service.nameList(sch));
+			
+			
+
+			Task Taskinfo = service.getTask(no);
+			
 			
 			HttpSession session = request.getSession();
 
-			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-
 			pmsemp pe =(pmsemp)session.getAttribute("emp");
+			
+			PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
+			
+			pe.setPno(pmsm.getPno());
 			
 			d.addAttribute("pmsElist",peservice.pmsElist(pe));
 			
 			d.addAttribute("grade", pe.getGrade());
 			d.addAttribute("mname", pe.getName());
 			
-			d.addAttribute("mno", emp.getMno());
+			d.addAttribute("mno", pmsm.getMno());
 			
-			d.addAttribute("mdiv", emp.getMdiv());
+			d.addAttribute("mdiv", pmsm.getMdiv());
+			
+			sch.setRefno(Taskinfo.getRefno());
+			System.out.println("ref : "+Taskinfo.getRefno());
+			
+			d.addAttribute("task", service.getTask(no));
+			d.addAttribute("ref",service.getrefno(sch));
 
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
 		}

@@ -78,6 +78,12 @@
 		AND pmt.mno = pe.eno
  	</select>
  	
+ 	<select id="getrefno" resultType="task" parameterType="tsch">
+ 		SELECT tname
+		FROM pmstask
+		where tno = #{refno}
+ 	</select>
+ 	
  	<!-- 삭제 -->
  	<delete id="deleteTask" parameterType="int">
 		DELETE FROM PMSTASK
@@ -167,9 +173,10 @@
 	mno NUMBER NOT NULL /* 사원번호 */
  	 -->
  	<select id="workList" resultMap="taskResult" parameterType="task">
-	 	SELECT * 
-		FROM pmstask
-		WHERE 1=1
+	 	SELECT *
+		FROM pmstask , pmsemp
+		WHERE mno = eno
+		and 1=1
 		<if test="tname!=null and tname!=''">
 			and tname like '%'||#{tname}||'%'
 		</if> 

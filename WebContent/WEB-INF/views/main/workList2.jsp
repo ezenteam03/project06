@@ -70,11 +70,7 @@ $(document).ready(function(){
 	
 	$("#regBtn").click(function(){
 
-		if(mdiv != 4 && mdiv != 6){
-			alert("권한이 없습니다.");
-		}else{
-			$(location).attr("href","${path}/task.do?method=insForm");
-		}
+		
 		
 	});
 	$("#pageSize").change(function(){
@@ -85,6 +81,15 @@ $(document).ready(function(){
 	
 	$
 });
+function insgo(no){
+	var mdiv = "${tsch.mdiv}";
+	
+	if(mdiv != 4 && mdiv != 6){
+		alert("권한이 없습니다.");
+	}else{
+		$(location).attr("href","${path}/task.do?method=insForm&pno="+no);
+	}
+}
 function goPage(no){
 	$("[name=curPage]").val(no);
 	$("form").attr("method","post").submit();
@@ -113,7 +118,7 @@ function go(no){
           <div class="col-md-12 mt">
             <div class="content-panel">
             <div style="float:left;">
-             <h4><i class="fa fa-bullhorn"></i>&ensp;  업무현황 </h4>
+             <h4><i class="fa fa-desktop"></i>&ensp;  업무현황 </h4>
              </div>
              <div style="margin-left:400px; width:300px; height:50px; ">
 	    		<span>업무 진행률 기준</span>
@@ -204,7 +209,7 @@ function go(no){
 	</div>
 
 	      	 <div>
-	          <button type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
+	          <button onclick="insgo(${pno})" type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
 	         </div>
    
             </div>
