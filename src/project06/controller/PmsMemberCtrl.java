@@ -70,22 +70,37 @@ public class PmsMemberCtrl {
 	}
 	
 	@RequestMapping(params="method=information")
-	public String inforCheck(PmsMember member, Model m) {
+	public String inforCheck(PmsMember member, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		System.out.println("PmsMemberCtrl method=information 실행");
 		
 		int mno = service.memberInfor(member);
+		PmsMember infor_M = (PmsMember)session.getAttribute("infor_M");
+		int div = infor_M.getMdiv();
 		
 		int ck = 0;
 		
-		if(mno!=0) {
-			ck = 1;
-			m.addAttribute("ck",ck);
-			return "forward:/DashTeam.do?method=list";
+		if(div != 7) {
+			if(mno!=0) {
+				ck = 1;
+				m.addAttribute("ck",ck);
+				return "forward:/DashTeam.do?method=list";
+			}else {
+				ck = 2;
+				m.addAttribute("ck",ck);
+				return "forward:/DashTeam.do?method=list";
+			}
 		}else {
-			ck = 2;
-			m.addAttribute("ck",ck);
-			return "forward:/DashTeam.do?method=list";
-		}
+			if(mno!=0) {
+				ck = 1;
+				m.addAttribute("ck",ck);
+				return "forward:/PMSemp.do?method=empmList";
+			}else {
+				ck = 2;
+				m.addAttribute("ck",ck);
+				return "forward:/PMSemp.do?method=empmList";
+			}
+		}	
 	}
 	
 	@RequestMapping(params="method=updateInfor")

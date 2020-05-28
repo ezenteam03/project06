@@ -410,7 +410,7 @@ th{text-align:center;}
 <div id="pop01" class="overlay">
 	<div class="popup">
 		<a href="#none" class="close">&times;</a>
-	
+		
 		<form class="form-login" id="inforCheckForm" action="${path}/PmsMember.do?method=information" method="post" style="background-color:#e0e0e0;margin-top:0%">
 
 		<h2 class="form-login-heading">INFORMATION</h2>
