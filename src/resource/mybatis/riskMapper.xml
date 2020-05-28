@@ -109,12 +109,13 @@
 	</insert>
 	
 	<select id="andlist" resultMap="riskResult" parameterType="rsch" >
-
 		SELECT p.ino,p.title,pm.NAME,p.VIEWS ,p.pno
 		FROM PMSEMP pm,PMSISSUE p
 		WHERE pm.ENO =p.MNO
+		<if test="title != null and title != ''">
+		and title like '%'||#{title}||'%'
+		</if>
 		ORDER BY ino DESC
-
 	</select>
 </mapper>	
 
