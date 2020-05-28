@@ -42,15 +42,22 @@ public class ChattingHandler extends TextWebSocketHandler {
 	// 1. 접속 완료 후, 처리할 메서드.
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		users.put(session.getId(), session);
 		// TODO Auto-generated method stub
 		//super.afterConnectionEstablished(session);
 		log(session.getId()+"님 접속합니다!!");
 		// client 추가 처리.(서버에 접속한 client 정보 누적)
-		users.put(session.getId(), session);
+		
 	}	
 	// 2. 메시지를 보낼 때, 처리할 메서드.
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		for(WebSocketSession ws : users.values() ) {
+			// 1. 각 client에게 메시지 전달.
+			ws.sendMessage(message);
+			// 2. 전달하는 메시지 log 처리.
+			log(ws.getId()+"에게 전달 메시지:"+message.getPayload());
+		}
 		// TODO Auto-generated method stub
 		// 특정한 클라이언트에서 온 메시지를 접속한 모든 client에게 전달.
 		log(session.getId()+"에서 온 메시지:"+message.getPayload());
@@ -58,21 +65,18 @@ public class ChattingHandler extends TextWebSocketHandler {
 		// WebSocketSession의 sendMessage()로 전달이 가능하다.
 		// 각 client의 WebSocketSession의 정보는 users.values()로 
 		// 배열 형태로 가지고 있다.
-		for(WebSocketSession ws : users.values() ) {
-			// 1. 각 client에게 메시지 전달.
-			ws.sendMessage(message);
-			// 2. 전달하는 메시지 log 처리.
-			log(ws.getId()+"에게 전달 메시지:"+message.getPayload());
-		}
+		
+		
 	}
 	// 3. 접속 종료시 처리할 메서드.
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		users.remove(session.getId());
 		// TODO Auto-generated method stub
 		// super.afterConnectionClosed(session, status);
 		// 접속 종료한 client를 서버에서 제외 처리..
 		log(session.getId()+" 접속 종료합니다.");
-		users.remove(session.getId());
+	
 		
 	}
 	// 4. 에러가 발생시 처리할 메서드.
