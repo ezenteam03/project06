@@ -321,29 +321,23 @@ public class pmsempService {
 		public ArrayList<pmsemp> pmsElist(pmsemp emp) {
 			return rep.pmsElist(emp);
 		}
+		// 메일전송
 		@Autowired(required=false)
 		private JavaMailSender sender;
 		public void sendMail(int eno,String ran) throws MessagingException {
 			// 1. 멀티미디어형 메일데이터 전송.
 			System.out.println("sendMail 시작");
-			MimeMessage msg = sender.createMimeMessage();
-			
+			MimeMessage msg = sender.createMimeMessage();			
 			// 2. 제목 설정.
-			msg.setSubject("P.M.S 시스템에 등록되셨습니다.");
-			
+			msg.setSubject("P.M.S 시스템에 등록되셨습니다.");			
 			// 3. 수신자 설정.
 			String mail = rep.getMail(eno);
 			System.out.println(mail);
-			msg.setRecipient(RecipientType.TO, new InternetAddress(mail));
-			
+			msg.setRecipient(RecipientType.TO, new InternetAddress(mail));			
 			// 4. 내용 설정
-			String sendNum = "사원번호(아이디) : "+eno+"\n<br>비밀번호 : "+ran;
-			
-			msg.setText(sendNum);
-			
+			String sendNum = "사원번호(아이디) : "+eno+"\n 비밀번호 : "+ran +"\n 로그인 후 개인정보에서 비밀번호 수정 및 희망연락처 수정 바랍니다.";			
+			msg.setText(sendNum);			
 			// 5. 발송 처리..
 			sender.send(msg);
-			
-			// 6. 인증번호 리턴
 		}
 }
