@@ -417,7 +417,7 @@ th{text-align:center;}
 	
 		<div class="login-wrap">
 			<label>사원번호</label>
-			<input type="text" class="form-control" value="${mno}" name="mno" readonly="readonly">
+			<input type="text" class="form-control" value="${infor_M.mno}" name="mno" readonly="readonly">
 			
 			<br>
 			
@@ -443,7 +443,7 @@ th{text-align:center;}
 		<div class="login-wrap">
 		
 			<label>사원번호</label>
-			<input type="text" class="form-control" name="mno" value="${mno}" readonly="readonly">
+			<input type="text" class="form-control" name="mno" value="${infor_M.mno}" readonly="readonly">
 			
 			<br>
 			
@@ -480,7 +480,7 @@ th{text-align:center;}
 			<br>
 				
 			<label>희망 연락처</label>
-				<input type="text" class="form-control" id="con" name="wcon" placeholder="희망 연락처 입력하세요">
+				<input type="text" class="form-control" id="con" name="wcon" value="${infor_M.wcon }" placeholder="희망 연락처 입력하세요">
 			<div>
 				<input type="radio" value="remember-me" name="ck" id="ckPhone" style="margin-left:1%;">전화번호&nbsp;
 				<input type="radio" value="remember-me" name="ck" id="ckMail" style="margin-left:1%;">이메일
