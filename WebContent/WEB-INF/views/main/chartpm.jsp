@@ -68,18 +68,6 @@
 			}
 		});	
 		
-		/*
-			private int pno;
-			private Date sdate;
-			private Date deadline;
-			private String pname;
-			private String detail;
-			private Date cdate;
-			private int pdiv;
-			private int mno;
-			private String name;
-		*/
-		
 		var sdatestr = new Date("${project.sdatestr}");
 		var deadlinestr = new Date("${project.deadlinestr}");
 		
@@ -108,10 +96,12 @@
 				currentDay = currentDay.getTime();
 				
 				// data.모델명
+				// json으로 불러온 chartlist
 				var clist = data.chartlist;
+				// gantt chart에 입력할 데이터 객체배열
 				var dataInfo = [];
 				
-				//(시작일, 종료일, 소요일수, 진행도, 담당자)
+				// dataInfo의 첫번째 객체는 프로젝트 정보 입력
 				dataInfo.push({
 	            	name: '총괄진행',	
 	            	id: '0',
@@ -122,7 +112,7 @@
 	            	description : '025',
 	            	y: 0,
 				});
-				
+				// dataInfo에 chartlist의 업무 정보를 순차적으로 입력
 				$.each(clist,function(idx, chart){
 					dataInfo.push({
 						name: chart.tname, 
@@ -137,13 +127,17 @@
 						y : idx+1,
 						});
 				});
+				// 실제 차트에 들어갈 정보
+				// name에는 차트의 제목(실제로 표시되지 않음), data에는 차트 데이터(dataInfo 객체배열)
 				var seriesInfo = [{
 			        name: '${project.pname}',
 			        data: dataInfo
 			    }];
+				
+				// 툴팁에 들어갈 정보
 				var tooltipInfo = {
 				        pointFormatter: function () {
-				            var point = this,
+				            var point = this, //this는 series-data의 데이터 의미
 				                format = '%e',
 				                completed = point.completed,
 				                status = (completed * 100) + '%',
@@ -183,15 +177,19 @@
 				            }, '');
 				        }
 				    };
+				// 상단에 표시되는 프로젝트 제목
 				var titleInfo = {
 				        text: "${project.pname}"
 			    };
+				
+				// X축에 표시되는 정보(날짜정보, 필수)
 				var xAxisInfo = {
-				        currentDateIndicator: true,
+				        currentDateIndicator: true, //현재 날짜 표시기
 				        min: today + 1 * day, //프로젝트 첫날
 				        max: today + ((deadlinestr-sdatestr)/day) * day, //프로젝트 마지막날
 				};
 				
+				// Y축에 표시되는 정보(기본은 차트데이터명, 선택적 데이터 추가 가능)
 				var yAxisInfo = {
 			    type: 'category',
 			    grid: {      
@@ -278,7 +276,6 @@
 				                }
 				                return result;
 				              } 
-				          //format: '{point.owner}'
 				        }
 				      },{
 			        title: {
@@ -315,13 +312,6 @@
 						xAxis: xAxisInfo,
 						yAxis: yAxisInfo,
 				};
-				console.log(todayOrigin);
-				console.log(today);
-				//console.log(currentDay);
-				//console.log((currentDay-today)/day);
-				console.log(clist);
-				console.log(dataInfo);
-				console.log(cInfo);
 			    dateFormat = Highcharts.dateFormat,
 			    defined = Highcharts.defined,
 			    isObject = Highcharts.isObject,
