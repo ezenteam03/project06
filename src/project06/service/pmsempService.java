@@ -2,7 +2,13 @@ package project06.service;
 
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import project06.repository.pmsempRep;
@@ -55,16 +61,28 @@ public class pmsempService {
 		public ArrayList<String> getDlist(){
 			return rep.getDlist();
 		}
+		String ranNum = "";
+		
 		// 기존 CEO 권한변경 후 새로운 CEO에게 권한 부여
 		public void updateCeo(pmsemp updateCeo) {
+			System.out.println("updateCeo 진입");
 			int isMem = rep.memCheck(updateCeo);
+			System.out.println(isMem);
 			if(isMem==0) {
 				// 기존 CEO권한 변경
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
 				// 새로운 CEO Member등록
-				updateCeo.setPass(makePass("1234qwer!"));
+				ranNum = makePass("");
+				System.out.println(ranNum);
+				updateCeo.setPass(ranNum);				
 				rep.insertCeo1(updateCeo);
+				try {
+					sendMail(updateCeo.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
@@ -302,5 +320,30 @@ public class pmsempService {
 		
 		public ArrayList<pmsemp> pmsElist(pmsemp emp) {
 			return rep.pmsElist(emp);
+		}
+		@Autowired(required=false)
+		private JavaMailSender sender;
+		public void sendMail(int eno,String ran) throws MessagingException {
+			// 1. 멀티미디어형 메일데이터 전송.
+			System.out.println("sendMail 시작");
+			MimeMessage msg = sender.createMimeMessage();
+			
+			// 2. 제목 설정.
+			msg.setSubject("P.M.S 시스템에 등록되셨습니다.");
+			
+			// 3. 수신자 설정.
+			String mail = rep.getMail(eno);
+			System.out.println(mail);
+			msg.setRecipient(RecipientType.TO, new InternetAddress(mail));
+			
+			// 4. 내용 설정
+			String sendNum = "사원번호(아이디) : "+eno+"\n<br>비밀번호 : "+ran;
+			
+			msg.setText(sendNum);
+			
+			// 5. 발송 처리..
+			sender.send(msg);
+			
+			// 6. 인증번호 리턴
 		}
 }

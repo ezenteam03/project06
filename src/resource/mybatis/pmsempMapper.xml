@@ -90,6 +90,10 @@
 		SET grade='사원'
 		WHERE grade='대표이사'
 	</update>
+	<!-- email발송 -->
+	<select id="getMail" resultType="String" parameterType="int">
+		select email from pmsemp where eno=#{eno}
+	</select>
  	<!-- CEO설정 -->
 	<update id="updatepmsCeo1" parameterType="pmsemp">
 		UPDATE pmsmember

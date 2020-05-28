@@ -27,7 +27,6 @@ public class NoticeCtrl {
 	@Autowired(required=false)
 	private NoticeService service;
 	
-	
 	@RequestMapping(params="method=list")
 	public String list(@ModelAttribute("nsch") NoticeSch sch, Model d,HttpServletRequest request) {
 		System.out.println("검문소:"+sch.getCurPage());

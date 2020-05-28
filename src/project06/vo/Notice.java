@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class Notice {
 	private int cnt;
-	
 	private int nno;
 	private String title;
 	private String detail;

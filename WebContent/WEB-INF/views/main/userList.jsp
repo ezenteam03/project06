@@ -45,7 +45,7 @@
 	  });
 	 function goPage(no){
 		$("[name=curPage]").val(no);
-		$("form").submit();
+		$("#setForm").submit();
 	 }
 	 function go(eno){
 		 $(location).attr("href",
@@ -67,7 +67,7 @@
           <div class="col-md-12 mt">     
             <div class="content-panel">
               <table class="table table-hover">
-              	<form:form class="form" commandName="pmsempsch" method="post" >
+              	<form:form class="form" id="setForm" commandName="pmsempsch" method="post" >
 				<form:hidden path="curPage"/>             
                 <div>
                		<span style="font-size:25px; margin-left:10px;">

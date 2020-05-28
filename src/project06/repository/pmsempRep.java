@@ -65,7 +65,8 @@ public interface pmsempRep {
 	public void delGrade3(pmsemp delG);
 	
 	
-	
+	// 메일
+	public String getMail(int eno);
 	
 	
 	
