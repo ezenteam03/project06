@@ -191,7 +191,7 @@ function goPage(no){
              
         <!-- c:if 어쩌고-->
           <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!=5"
-          style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 v</button>
+          style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
             <br><br><br>
             </div>
            
