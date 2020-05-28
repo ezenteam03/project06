@@ -54,6 +54,9 @@ public class MeetService {
 		
 		return dao.list(sch);
 	}
+	public int getTot(MeetSch sch) {
+		return dao.totCnt(sch);
+	}
 	public void insert(Meet insert) {
 		
 		dao.insert(insert);
