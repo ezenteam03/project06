@@ -63,6 +63,8 @@
 		
 		--%>
 		
+		console.log(${pno});
+		
 		$("#regBtn").click(function(){
 			var pno = $("[name=pno]").val();
 			var refno = $("[name=refno]").val();
@@ -128,7 +130,7 @@
 			<span class="bg-info text-white input-group-text">프로젝트번호</span>
 		</div>
 		<input name="pno" class="form-control" 
-			value="" placeholder="입력하세요" />	
+			value="${pno}" placeholder="입력하세요" readonly style="background:white;"/>	
 	</div>  
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 

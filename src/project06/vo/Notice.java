@@ -13,12 +13,7 @@ import java.util.Date;
 
 public class Notice {
 	private int cnt;
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
+	
 	private int nno;
 	private String title;
 	private String detail;
@@ -27,6 +22,13 @@ public class Notice {
 	private int views;
 	private int pno;
 	private int mno;
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getNno() {
 		return nno;
 	}

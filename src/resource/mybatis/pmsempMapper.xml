@@ -373,10 +373,12 @@
 	
 <!-- 팀원만 보기 -->
 	<select id="pmsElist" resultMap="pmsempResult" parameterType="pmsemp">
-	 	SELECT pe.eno, pm.MDIV, pe.name, pe.GRADE
+	 	SELECT pe.eno, pm.MDIV, pe.name, pe.GRADE, pm.pno
 		FROM pmsmember pm, pmsemp pe
 		WHERE pm.MDIV = 5
 		AND pe.eno = pm.mNO
+		AND pm.pno = #{pno}
+		
  	</select>
 	
 	

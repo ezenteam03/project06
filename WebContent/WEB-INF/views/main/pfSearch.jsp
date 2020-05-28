@@ -10,7 +10,7 @@
 	[
 <c:forEach var="work" items="${wlist}" varStatus="sts">
 	{				
-		"tno":${work.tno},"tname":"${work.tname}","tdiv":${work.tdiv}}
+		"tno":${work.tno},"tname":"${work.tname}","tdiv":${work.tdiv},"name":"${work.name}"}
 					<c:if test="${!sts.last}">,</c:if></c:forEach>
 	]
 }

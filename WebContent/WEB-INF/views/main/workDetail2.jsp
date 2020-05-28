@@ -217,12 +217,14 @@
 	
 	<section id="main-content">
       <section class="wrapper">
+      
+     
 
 <div class="" style="margin-left:200px;">
 <div style="float:left;">
-
+ <h3 style=""><i class="fa fa-desktop"></i>&ensp;  업무현황</h3>
   </div>
-  <div style="margin-left:80px; width:300px; height:50px; margin-bottom:50px;">
+  <div style="margin-left:180px; width:300px; height:50px; margin-bottom:50px;">
 	    		<span>업무 진행률 기준</span>
 		    		<ul>
 		    		<li>- 요구사항분석 10%</li>
@@ -253,7 +255,7 @@
 		
 
 		<input name="writer" class="form-control" readonly style="background:white; width:500px;"
-			value="${task.name}" 
+			value="${task.name} ${task.grade}" 
 			placeholder="" />
 			<c:if test="${mdiv == 4 || mdiv == 6}">
 			<select class="sel-grade" name="mno" style="padding:10px; font-size:0.9em; margin-left:15px; outline:none;">
@@ -264,17 +266,20 @@
 	        </select>
             
 		</c:if>
-	</div>	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text">상위업무번호</span>
-		</div>
-		<c:forEach var="rf" items="${ref}"></c:forEach>
-		<input name="refno" class="form-control" readonly style="background:white;"
-			value="${task.refno}"
-			placeholder="" />	
+	</div>
 		
-	</div>	
+	<!-- 상위업무가 있는 업무만  -->
+	<c:forEach var="rf" items="${ref}">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">상위업무명</span>
+			</div>
+			<input name="refno" class="form-control" readonly style="background:white;"
+				value="${rf.tname}"
+				placeholder="" />	
+		</div>	
+	</c:forEach>
+	
 	<div class="input-group mb-3">
 		<!-- 팀원은 수정불가 
 		<div class="input-group-prepend">
