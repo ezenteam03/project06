@@ -52,10 +52,16 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		
 		$("#listSchBtn").click(function(){
 			$("#curPage").val(0);
 			$("#selecpmForm").submit();
+		});
+		
+		$("#selecpmForm").keydown(function(key) {
+			if (key.keyCode == 13) {
+				$("#curPage").val(0);
+				$("#selecpmForm").submit();
+			}
 		});
 
 	});

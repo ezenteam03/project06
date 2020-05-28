@@ -27,8 +27,8 @@
 			<if test="topic!=null and topic!=''">
 			and topic like '%'||#{topic}||'%'
 			</if>
-			ORDER BY mnno DESC) 
-		WHERE cnt BETWEEN #{start} AND #{end}
+			ORDER BY mnno desc) 
+		    WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	
  	

@@ -33,6 +33,7 @@ public class MeetCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
+		d.addAttribute("tot", service.getTot(sch));
 		d.addAttribute("mlist", service.list(sch));
 		return "WEB-INF\\views\\main\\meetList.jsp";
 	}

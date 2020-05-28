@@ -22,7 +22,8 @@
  	<resultMap type="int" id="intResult"/>
  	<resultMap type="chart" id="chartResult"/>
  	<select id="chartList" resultMap="chartResult" parameterType="int">
-		SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, 
+		pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 		FROM PMSPROJECT pp, PMSTASK pt, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
@@ -49,7 +50,8 @@
  	</select>
  	
  	<select id="chartListtm" resultMap="chartResult" parameterType="int">
- 		SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+ 		SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, 
+ 		pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 		FROM PMSPROJECT pp, PMSTASK pt, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm
@@ -67,7 +69,8 @@
 		START WITH pt.refno=0
 		CONNECT BY PRIOR pt.tno = pt.refno
 		UNION all
-		SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+		SELECT LEVEL||pt.tdiv "LEVEL", LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, 
+		pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 		FROM PMSPROJECT pp, PMSTASK pt, 
 		(SELECT * FROM PMSEMP pe, PMSMEMBER pm

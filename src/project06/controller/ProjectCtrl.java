@@ -35,13 +35,7 @@ public class ProjectCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 		
-		pmsempSch empsch = new pmsempSch();
-		empsch.setMdiv(pmsm.getMdiv());
-		//모든 사원이 프로젝트에 참여중일 경우 사원이 없음을 표시하는 로직 필요
-		//현재 프로젝트에 소속되어있지 않은 대리급 이상 사원리스트 호출
-		d.addAttribute("elist", peservice.selectpm(empsch));
 		return "WEB-INF\\views\\main\\projectInsert.jsp";
 	}
 	
@@ -62,7 +56,6 @@ public class ProjectCtrl {
 		//프로젝트 추가
 		prservice.proIns(insp);
 		//방금 추가한 프로젝트를 불러오기
-		System.out.println("프로젝트 추가 mno : "+mno);
 		insertedp = prservice.getProjectformno(mno); 
 		
 		inspe.setEno(mno);
@@ -73,9 +66,12 @@ public class ProjectCtrl {
 		return "WEB-INF\\views\\main\\dashceo.jsp";
 	}
 	
+
 	@RequestMapping(params="method=selectpm")
-	public String logList(@ModelAttribute("pmsempSch") pmsempSch sch, Model m, @RequestParam("mdiv") int mdiv) {
+	public String logList(@ModelAttribute("pmsempSch") pmsempSch sch, 
+			Model m, @RequestParam("mdiv") int mdiv) {
 		sch.setPno(mdiv);
+		//프로젝트에 참여하지 않은 대리급 이상 사원 호출
 		m.addAttribute("loglist", peservice.selectpm(sch));
 		return "WEB-INF\\views\\main\\selectpm.jsp";
 	}
