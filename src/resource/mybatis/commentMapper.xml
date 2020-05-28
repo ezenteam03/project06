@@ -11,8 +11,7 @@
 		SELECT count(*)
 		FROM PMSREPLY			
 	 </select>
- 	<select id="clist" resultMap="commentResult" parameterType="rsch" >
- 	 	
+ 	<select id="clist" resultMap="commentResult" parameterType="rsch" >	 	
  	SELECT level,re.*,e.*
 	FROM PMSREPLY re,PMSEMP e
 	WHERE re.MNO = e.ENO 

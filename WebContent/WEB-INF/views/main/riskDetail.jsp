@@ -269,7 +269,8 @@
      				  <!-- 댓글 들여쓰기 -->
 			       <td class="text-left" >
 			       		<c:forEach varStatus="sts" 
-			        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
+			        		begin="2" end="${comment.level}">&nbsp;&nbsp;&nbsp;&nbsp;
+			        		<c:if test="${comment.level>1 and sts.last}">┗></c:if>	
 			        	</c:forEach>${comment.detail}      		         	
 			       </td>             
         <td class="num" ><input type="button" class="btn btn-info" onclick="coment(${comment.rno})" value="수정"/></td>

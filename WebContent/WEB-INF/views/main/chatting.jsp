@@ -66,12 +66,9 @@
 			start()
 		});
 		function start(){
-			if(confirm("채팅창 접속합니다!")){
-				
-				wsocket = new WebSocket("ws://192.168.4.112:5080/${path}/chat-ws.do");
-				
-				wsocket.onopen=function(evt){					
-				
+			if(confirm("채팅창 접속합니다!")){				
+				wsocket = new WebSocket("ws://192.168.4.112:5080/${path}/chat-ws.do");				
+				wsocket.onopen=function(evt){									
 					console.log(evt);
 					wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다.");
 				};
