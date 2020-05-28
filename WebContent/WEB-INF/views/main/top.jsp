@@ -293,7 +293,7 @@ th{text-align:center;}
 			  showCancelButton: true
 		}).then((result) => {
 			if (result.value) {
-				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${mno});
+				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${infor_M.mno});
 			}
 		});
 	}	
