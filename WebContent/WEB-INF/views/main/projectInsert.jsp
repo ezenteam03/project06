@@ -83,17 +83,11 @@
 					if(sdatestr != ''){
 					var sdate = new Date(sdatestr);
 					sdate = sdate.getTime();
-					console.log("sdate:"+sdate);
 					
 					}
 					if(deadlinestr != ''){
 					var deadline = new Date(deadlinestr);
 					deadline = deadline.getTime();
-					console.log("deadline:"+deadline);
-					console.log("currentDate:"+currentDate);
-					console.log(currentDate>sdate);
-					console.log(currentDate>deadline);
-					console.log(deadline<sdate);
 					}
 				
 					if($("[name=pro_pname]").val()=='' || $("[name=pro_pname]").val()==null){
@@ -227,7 +221,7 @@
                     <label for="curl" class="control-label col-lg-2">PM</label>
                     <div class="col-md-2 col-xs-5">
                       <input type="hidden" name="pro_mno"/>
-                      <input class=" form-control" id="pname" name="pro_mname" minlength="2" type="text" required />
+                      <input class=" form-control" id="pname" name="pro_mname" minlength="2" type="text" required readonly/>
                       <span class="input-group-btn add-on">
 	                      <input type="button" class="btn btn-info" value="선택" id="selPm"/>
 			        </span>

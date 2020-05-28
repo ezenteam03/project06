@@ -30,30 +30,11 @@ public class ChartService {
 			ArrayList<Integer> tmRefno = dao.getRefno(mno); 
 			//tmRefno의 refno수만큼 데이터 입력 객체배열에 차트 정보를 받아서 반환 객체배열에 추가(누적)
 			for(int refno : tmRefno) {
-				System.out.println("pno : "+pno);
-				System.out.println("mno : "+mno);
-				System.out.println("refno : "+refno);
 				clisttm = dao.chartListtm(pno, mno, refno);
 				for(Chart chttm : clisttm) {
 					clisttmfinal.add(chttm);
 				}
 			}
-			//검증용데이터
-			/*
-			for(Chart chttmf : clisttmfinal) {
-				System.out.print("tname : "+chttmf.getTname()+"\t");
-				System.out.print("tno : "+chttmf.getTno()+"\t");
-				System.out.print("refno : "+chttmf.getRefno()+"\t");
-				System.out.print("pno : "+chttmf.getPno()+"\t");
-				System.out.print("pname : "+chttmf.getPname()+"\t");
-				System.out.print("sdateorigin : "+chttmf.getSdateorigin()+"\t");
-				System.out.print("edateorigin : "+chttmf.getEdateorigin()+"\t");
-				System.out.print("sdate : "+chttmf.getSdate()+"\t");
-				System.out.print("edate : "+chttmf.getEdate()+"\t");
-				System.out.print("prog : "+chttmf.getProg()+"\t");
-				System.out.println("name : "+chttmf.getName());
-			}
-			*/
 			return clisttmfinal;
 		}
 }
