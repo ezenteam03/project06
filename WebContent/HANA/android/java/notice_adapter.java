@@ -10,25 +10,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class personal_adapter extends RecyclerView.Adapter<personal_adapter.ViewHolder> {
+public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHolder> {
     // 1. 전체 처리할 ArrayList객체 선언..
-    ArrayList<personal_vo> items = new ArrayList<personal_vo>();
+    ArrayList<notice_vo> items = new ArrayList<notice_vo>();
 
     @NonNull
     @Override
-    public personal_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         // 각각의 화면할 처리할 내용을 inflater(xml을 객체화) 처리 내용..
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View itemView = inflater.inflate(R.layout.personal_list, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.notice_list, viewGroup, false);
 
-        return new personal_adapter.ViewHolder(itemView);
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull personal_adapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         // ArrayList에서 단위객체를 불러와서,
         // viewHolder(화면 view)에 할당처리..
-        personal_vo item = items.get(position);
+        notice_vo item = items.get(position);
         viewHolder.setItem(item);
     }
 
@@ -38,19 +38,19 @@ public class personal_adapter extends RecyclerView.Adapter<personal_adapter.View
         return items.size();
     }
     // 추가되는 단위(VO)를 ArrayList에 할당 처리 메서드..
-    public void addItem(personal_vo item) {
+    public void addItem(notice_vo item) {
         items.add(item);
     }
     // 전체 데이터 객체를 저장..
-    public void setItems(ArrayList<personal_vo> items) {
+    public void setItems(ArrayList<notice_vo> items) {
         this.items = items;
     }
     // 각각의 단위객체 index로 return 처리..
-    public personal_vo getItem(int position) {
+    public notice_vo getItem(int position) {
         return items.get(position);
     }
     // 특정 단위를 객체를 지정한 위치에 저장 처리..
-    public void setItem(int position, personal_vo item) {
+    public void setItem(int position, notice_vo item) {
         items.set(position, item);
     }
     // RecyclerView.ViewHolder를 상속받은 ViewHolder 내부 객체가
@@ -62,13 +62,13 @@ public class personal_adapter extends RecyclerView.Adapter<personal_adapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             // inflate된 화면단위 View를 가져온다.
-            textView = itemView.findViewById(R.id.tv_personal);
+            textView = itemView.findViewById(R.id.tv_notice);
 
         }
 
-        public void setItem(personal_vo item) {
+        public void setItem(notice_vo item) {
             // 화면단위 View에 데이터를 mapping 처리..
-            textView.setText(item.getTopic());
+            textView.setText(item.getTitle());
 
         }
 

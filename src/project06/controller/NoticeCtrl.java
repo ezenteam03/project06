@@ -76,6 +76,8 @@ public class NoticeCtrl {
 		d.addAttribute("notice", service.getNotice(no));
 		return "WEB-INF\\views\\main\\noticeDetail.jsp";
 	}
+	
+	//안드로이드 db 연결
 	//http://localhost:5080/project06_git/notice.do?method=applist
 	@RequestMapping(params="method=applist") 
 	public String andlist(Notice sch, Model d) {

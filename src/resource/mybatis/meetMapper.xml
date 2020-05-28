@@ -84,46 +84,24 @@
 	    WHERE mnno = ${mnno}
 		AND fname = #{org}	    	
 	</update> 	
+ 	
  	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
  		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${mnno},
  			#{tar}, sysdate)
 	</insert>
  
+ 	<select id="andlist" resultMap="meetResult" parameterType="msch">
+ 		
+ 		SELECT topic
+ 		FROM pmsmeeting
+ 		WHERE 1=1
+		<if test="topic!=null and topic!=''">
+		and topic like '%'||#{topic}||'%'
+		</if>
+		ORDER BY mnno DESC
  
+ 	</select>
  
- 
- 
-  	
-<!--  
-  	<insert id="insertRepo" parameterType="String"> 
- 		insert into meetfile values(pmsmeeting_seq.currval, 
- 			#{fname}, sysdate, sysdate, '')
-	</insert>
-  	
-  	<resultMap type="String" id="strMap"/> 
- 	<select id="fnames" resultMap="strMap" parameterType="int">
- 		SELECT fname 
- 		FROM meetfile		
- 		WHERE no=#{no}
- 	</select> 
-  	
-  	<delete id="deleteFile" parameterType="int">
-		DELETE FROM meetfile
-		 WHERE NO = #{no}
- 	</delete>  	
- 
-  	<update id="uptFileInfo" parameterType="java.util.HashMap">
-		UPDATE meetfile
-			SET fname = #{tar},
-	        uptdte= sysdate
-	    WHERE NO = ${no}
-		AND fname = #{org}	    	
-	</update> 	
- 	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
- 		insert into meetfile values(${no}, 
- 			#{tar}, sysdate, sysdate, '')
-	</insert>	
--->
 	
 </mapper>
 

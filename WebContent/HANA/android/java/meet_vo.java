@@ -1,9 +1,9 @@
 package com.example.hfinal;
 
-public class personal_vo {
+public class meet_vo {
     private String topic;
 
-    public personal_vo(String topic) {
+    public meet_vo(String topic) {
         this.topic = topic;
     }
 
@@ -15,6 +15,3 @@ public class personal_vo {
         this.topic = topic;
     }
 }
-
-
-

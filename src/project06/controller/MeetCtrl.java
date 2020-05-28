@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project06.service.MeetService;
 import project06.vo.Meet;
 import project06.vo.MeetSch;
+import project06.vo.Notice;
 
 @Controller
 @RequestMapping("/meet.do")
@@ -102,5 +103,13 @@ public class MeetCtrl {
 		
 		return "download"; // 컨터이너에서 선언한 viewer명..
 	}
+	
+	//안드로이드 db 연결
+	//http://localhost:5080/project06_git/meet.do?method=applist
+	@RequestMapping(params="method=applist") 
+	public String andlist(Meet sch, Model d) {
+		d.addAttribute("andlist", service.andlist(sch));
+		return "WEB-INF\\views\\main\\andMeet.jsp";
+		}
 	
 }

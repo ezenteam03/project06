@@ -16,33 +16,76 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="69dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button2_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="#AFDBD3"
             android:clickable="true"
-            android:text="공지사항"/>
-
+            android:text="공지사항" />
 
 
         <Button
             android:id="@+id/button2_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="#EECED9"
             android:clickable="true"
-            android:text="회의록"/>
+            android:text="회의록" />
 
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CFCFCF"
+        android:padding="15px"
+        android:text="    회의록"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="제목"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/topicET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="13"
+            android:inputType="textPersonName"
+            android:text="" />
+
+        <Button
+            android:id="@+id/searchMeet"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:background="#EFE5FB"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="10dp"
+            android:text="검색" />
     </LinearLayout>
 
     <ScrollView
@@ -53,16 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView2_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#CFCFCF"
-                android:padding="15px"
-                android:text="    회의록"
-                android:textSize="17dp"
-                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ddd"
