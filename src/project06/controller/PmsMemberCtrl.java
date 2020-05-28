@@ -41,6 +41,7 @@ public class PmsMemberCtrl {
 				return "WEB-INF\\views\\main\\login.jsp";
 			} else if(infor_M.getMdiv() == 7) {
 				session.setAttribute("infor_M", infor_M);
+				session.setAttribute("emp", emp);
 				return "forward:/PMSemp.do?method=empmList";
 			} else {
 				session.setAttribute("mno", mno);
