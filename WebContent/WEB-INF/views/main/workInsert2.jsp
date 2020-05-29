@@ -63,7 +63,7 @@
 		
 		--%>
 		
-		console.log(${pno});
+		//console.log(${pno});
 		
 		$("#regBtn").click(function(){
 			var pno = $("[name=pno]").val();
@@ -83,7 +83,7 @@
 			console.log(edate);
 			
 			if(confirm("등록합니다.")){
-				$("form").submit();				
+				$("#insform").submit();				
 			}
 		});	
 		$("#goMain").click(function(){
@@ -91,6 +91,10 @@
 			$(location).attr("href","${path}/task.do?method=list");			
 			//}
 		});	
+		
+		$(".custom-file-input").on("change",function(){
+			$(this).next(".custom-file-label").text($(this).val());
+		});
 		
 		//var refno = "${task.refno}";
 		//var isReg= "${param.tname}";
@@ -122,7 +126,7 @@
 
 <div class="container">
 	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
-	<form method="post" enctype="multipart/form-data" 
+	<form method="post" enctype="multipart/form-data" id="fileForm"
 		action="${path}/task.do?method=insert">
 		
 	<div class="input-group mb-3">
@@ -178,6 +182,7 @@
 	<div class="input-group-prepend" style="width:363px;">
 			<span class="bg-info text-white input-group-text">담당자</span>
 			<select class="sel-grade" name="mno" style="padding:10px; font-size:1.2em; margin-left:15px; outline:none;">
+			
                     <c:forEach var="pm" items="${pmsElist}">
 						<option value="${pm.eno}">${pm.name} ${pm.grade}</option>               		
                     </c:forEach>
@@ -194,17 +199,17 @@
 			class="form-control" 
 			placeholder="내 맘은 덤더러덤더러덤" ></textarea>		 
 	</div> 
-	<div class="input-group mb-3">
+	<div class="input-group mb-3"> 
 		<div class="input-group-prepend">
 			<span class="bg-warning text-white input-group-text">첨부 파일</span>
-		</div>
-		<div class="custom-file">
-			<input type="file" 
-				class="custom-file-input" id="file01"/>
-			<label class="custom-file-label" for="file01">
-			파일 선택</label>
-		</div>		
-	</div> 	
+		</div>			
+			<div class="custom-file" >
+				<input type="file" name="report" class="custom-file-input" id="file01"/>
+				<label class="custom-file-label" for="file01">
+					파일을 선택하세요
+				</label>
+			</div>	 
+	</div>
 	
 			
 	<div style="text-align:right;">

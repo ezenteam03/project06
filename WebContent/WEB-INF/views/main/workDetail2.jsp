@@ -41,7 +41,7 @@
 		var mdiv = "${mdiv}";
 		var tdiv = "${task.tdiv}";
 		
-		var emno = "${mno}";
+		var emno = "${minfo}";
 		var tmno = "${task.mno}";
 		
 		var refno = "${task.refno}";
@@ -86,6 +86,7 @@
 			
 		});
 		$("#uptBtn").click(function(){
+			
 			if(confirm("수정하시겠습니까?")){
 				$("form").attr("action","${path}/task.do?method=update");
 				$("form").submit();
@@ -119,11 +120,7 @@
 		$("#progBtn").click(function(){
 			var prog = $('input[name=prog]').val();
 			
-			console.log("클릭 emno : "+emno);
-			console.log("클릭 tmno : "+tmno);
-			console.log("클릭 mdiv : "+mdiv);
-			console.log("클릭 refno : "+refno);
-			console.log("클릭 tno : "+tno);
+
 			
 			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
 				alert("진행률을 수정 할 수 없는 업무입니다.");
@@ -169,12 +166,7 @@
 			}
 		});
 		$("#divBtn3").click(function(){
-			console.log("클릭 emno : "+emno);
-			console.log("클릭 tmno : "+tmno);
-			console.log("클릭 prog : "+tprog);
-			console.log("클릭 mdiv : "+mdiv);
-			console.log("클릭 refno : "+refno);
-			console.log("클릭 tno : "+tno);
+	
 			
 			if(tdiv==22){
 				if(confirm("결재완료 하시겠습니까?")){
@@ -241,27 +233,24 @@
 	<form method="post"  enctype="multipart/form-data" >
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
-			<span class="input-group-text ">글번호</span>
+			<span class="input-group-text bg-success text-white">글번호</span>
 		</div>
 		<input name="tno" class="form-control" readonly style="background:white;"
 			value="${task.tno}"/>	
 	</div>	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend">
-			<span class="input-group-text">담 당 자</span>
+			<span class="input-group-text bg-success text-white">담 당 자</span>
 		</div>
-		
-			
-		
-
-		<input name="writer" class="form-control" readonly style="background:white; width:500px;"
-			value="${task.name} ${task.grade}" 
-			placeholder="" />
+		<input class="form-control" readonly style="background:white; width:500px;"
+			value="${task.name} ${task.grade}" placeholder="" />
 			<c:if test="${mdiv == 4 || mdiv == 6}">
-			<select class="sel-grade" name="mno" style="padding:10px; font-size:0.9em; margin-left:15px; outline:none;">
-					<option value="${task.mno}" selected>담당자 변경</option>     
-	                   <c:forEach var="pm" items="${pmsElist}">   		      		
-							<option value="${pm.eno}">${pm.name} ${pm.grade}</option>               		      		
+			
+			
+			<select class="sel-grade" name="mem_no" style="padding:10px; font-size:0.9em; margin-left:15px; outline:none;">
+				<option value="${task.mno}" selected>담당자 변경</option>
+	                   <c:forEach var="pe" items="${pmsElist}">   		      		
+							<option value="${pe.eno}">${pe.name} ${pe.grade}</option>               		      		
 	                   </c:forEach>
 	        </select>
             
@@ -272,7 +261,7 @@
 	<c:forEach var="rf" items="${ref}">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text">상위업무명</span>
+				<span class="input-group-text bg-success text-white">상위업무명</span>
 			</div>
 			<input name="refno" class="form-control" readonly style="background:white;"
 				value="${rf.tname}"
@@ -288,7 +277,7 @@
 		<c:if test=""></c:if> 
 		
 		<div class="input-group-prepend" >
-			<span class="input-group-text" >업무명</span>
+			<span class="input-group-text bg-success text-white" >업무명</span>
 		</div>
 		<input name="tname" class="form-control" id="tTitle"
 			value="${task.tname}"  
@@ -316,7 +305,7 @@
 	</div>
 	<div class="input-group mb-3" >
 		<div class="input-group-prepend ">
-			<span class="input-group-text">업 무 내 용</span>
+			<span class="input-group-text bg-info text-white">업 무 내 용</span>
 		</div>
 		<textarea name="detail" rows="10" id="tDetail"
 			class="form-control" 
@@ -324,7 +313,7 @@
 	</div> 
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text">업 무 진 행 도</span>
+			<span class="input-group-text bg-info text-white">업 무 진 행 도</span>
 		</div>
 		<textarea name="updetail" rows="5" style="width:980px;" id="textdetail"
 			class="form-control" 
@@ -405,7 +394,7 @@
 		
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text">반려 사유</span>
+			<span class="input-group-text bg-info text-white">반려 사유</span>
 		</div>
 		<textarea name="coment" rows="3"   style="width:980px;" id="tComent"
 			class="form-control" 

@@ -1,8 +1,10 @@
 package project06.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Task {
 	/*
@@ -38,7 +40,12 @@ public class Task {
 	private String grade;
 	
 	
+	// 파일 등록 처리 객체
 	
+	private MultipartFile[] report;
+	private ArrayList<String> filenames; 
+	// 파일 로딩 정보 가지고 오기
+	private String[] fnames;  
 	
 	
 
@@ -141,6 +148,24 @@ public class Task {
 	}
 	
 
+	public MultipartFile[] getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile[] report) {
+		this.report = report;
+	}
+	public ArrayList<String> getFilenames() {
+		return filenames;
+	}
+	public void setFilenames(ArrayList<String> filenames) {
+		this.filenames = filenames;
+	}
+	public String[] getFnames() {
+		return fnames;
+	}
+	public void setFnames(String[] fnames) {
+		this.fnames = fnames;
+	}
 	
 	
 }

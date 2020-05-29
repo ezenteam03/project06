@@ -79,7 +79,7 @@
  	</select>
  	
  	<select id="getrefno" resultType="task" parameterType="tsch">
- 		SELECT tname
+ 		SELECT tname 
 		FROM pmstask
 		where tno = #{refno}
  	</select>
@@ -93,13 +93,16 @@
  	<!-- 제목, 내용, 담당자 수정  / 결재, 반려
  	pstart = #{pstart},
 	pend = #{pend}-->
+	
  	<update id="updateTask" parameterType="task">
 		UPDATE PMSTASK
 		   SET tname = #{tname},
 		   	   detail = #{detail},
 		   	   mno = #{mno}   
 		 WHERE tno = #{tno}
- 	</update> 
+ 	</update>
+ 	
+ 	 
  	<update id="upDetail" parameterType="task">
 		UPDATE PMSTASK
 		   SET updetail = #{updetail}
@@ -172,6 +175,8 @@
 	tdiv NUMBER NOT NULL, /* 결재구분 */
 	mno NUMBER NOT NULL /* 사원번호 */
  	 -->
+ 	 
+ 	 
  	<select id="workList" resultMap="taskResult" parameterType="task">
 	 	SELECT *
 		FROM pmstask , pmsemp
@@ -182,6 +187,8 @@
 		</if> 
  	</select>
  	
+ 	
+ 	
  	<select id="nameList" resultMap="taskResult" 
  		parameterType="tsch">
 	 	SELECT pt.mno , pe.eno, pe.name
@@ -190,7 +197,10 @@
 		AND pe.eno = #{eno}
  	</select>
  	
-
+	<!-- 파일 업로드	 -->
+	<insert id="insertRepo" parameterType="String"> 
+ 		insert into PMSTFILE values(pmstfile_seq.nextval,pmstask_seq.currval,#{fname}, sysdate)
+	</insert>
  	
 </mapper>	
 

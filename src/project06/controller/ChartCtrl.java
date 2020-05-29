@@ -63,8 +63,6 @@ public class ChartCtrl {
 			HttpSession session = request.getSession();
 			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
 				
-			System.out.println("pno : "+emp.getPno());
-			System.out.println("mno : "+emp.getMno());
 			d.addAttribute("chartlist", cservice.chartListTm(emp.getPno(), emp.getMno()));
 			return "pageJsonReport";
 		}

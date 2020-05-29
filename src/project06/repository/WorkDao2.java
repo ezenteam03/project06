@@ -36,4 +36,7 @@ public interface WorkDao2 {
 	
 	public Task getTask(int no);
 	
+	// 업로드
+	public void insertRepo(String fname);		// 파일업로드
+	
 }

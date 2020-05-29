@@ -84,7 +84,8 @@ public class WorkCtrl2 {
 		
 		
 		@RequestMapping(params="method=update")
-		public String update(Task upt) {
+		public String update(Task upt, @RequestParam("mem_no") int mno) {
+			upt.setMno(mno);
 			service.update(upt);
 			return "forward:/task.do?method=detail";
 		}	
@@ -172,11 +173,7 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=detail")
 		public String detail(@RequestParam("tno") int no,Task sch, Model d, HttpServletRequest request) {
-			
-			
-			//d.addAttribute("nlist", service.nameList(sch));
-			
-			
+
 
 			Task Taskinfo = service.getTask(no);
 			
@@ -194,7 +191,7 @@ public class WorkCtrl2 {
 			d.addAttribute("grade", pe.getGrade());
 			d.addAttribute("mname", pe.getName());
 			
-			d.addAttribute("mno", pmsm.getMno());
+			//d.addAttribute("minfo", pmsm.getMno());
 			
 			d.addAttribute("mdiv", pmsm.getMdiv());
 			
