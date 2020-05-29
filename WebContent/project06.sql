@@ -1254,5 +1254,5 @@ select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
  		where pno=1001 AND p.mno=e.eno;	
 select e.eno,e.name
  		from pmsemp e,pmsmember m, pmsproject p
- 		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno; 		
- 
+ 		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno;
+SELECT * FROM pmsemp; 		
