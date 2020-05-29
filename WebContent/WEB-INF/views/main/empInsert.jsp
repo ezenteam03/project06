@@ -165,7 +165,7 @@
 		           			id="goDelBtn" style="margin-right:20px;">팀원삭제이동</button>
 		           <button type="button" class="btn btn-success" 
 		           			id="insBtn" style="margin-right:20px;">추가</button>
-		           <button type="button" class="btn btn-default">이전</button>
+		      
 	           </div>
 	        </div>
 	      <!-- end -->	      

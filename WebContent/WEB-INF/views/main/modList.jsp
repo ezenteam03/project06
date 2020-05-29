@@ -145,7 +145,7 @@
                 -->
 		           <button type="button" class="btn btn-warning" id="regBtn" 
 		           			style="margin-right:20px;">사원 등록</button>
-		           <button type="button" class="btn btn-default">이전</button>
+		       
 	           </div>
 	        </div>
 	      <!-- end -->	      

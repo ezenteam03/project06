@@ -55,6 +55,19 @@
 				}
 			});
 		 });
+	  $("#hrBtn").click(function(){			 
+			 Swal.fire({
+				  title:'권한변경 ',
+				  text:"인사관리자로 권한을 변경하시겠습니까?",
+				  icon: 'info',
+				  showCancelButton: true
+			}).then((result) => {
+				if (result.value) {
+					$("#setForm").attr("action","${path}/PMSemp.do?method=updateHr");
+					$("#setForm").submit();
+				}
+			});
+		 });
 	 // CTO 버튼
 	/*  $("#ctoBtn").click(function(){		
 		$("#setForm").attr("action","${path}/PMSemp.do?method=update");
@@ -119,7 +132,7 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-angle-right"></i>사원정보 수정</h4>
+              <h4 class="mb"><i class="fa fa-angle-right"></i>권한설정</h4>
               <form class="form-horizontal style-form" method="post" id="setForm">
               <input type="hidden" name="eno" value="${pemp.eno}"/>
               <input type="hidden" name="peno" value="${pemp.eno}"/>
@@ -177,6 +190,8 @@
 	               <div style="display:inline-block; ">
 	              	   <input type="button" class="btn btn-danger" v-if="mdiv==6"
 		           				id="ceoBtn" style="margin-right:20px;" value="CEO 설정"/>
+		           	   <input type="button" class="btn btn-success" v-if="mdiv==6"
+		           				id="hrBtn" style="margin-right:20px;" value="HR 설정"/>
 	             	   <input type="button" class="btn btn-primary" v-if="mdiv==2"
 		           				id="ctoBtn" style="margin-right:20px;" value="CTO 설정"/>
 			           <input type="button" class="btn btn-success" v-if="mdiv==2||mdiv==3"

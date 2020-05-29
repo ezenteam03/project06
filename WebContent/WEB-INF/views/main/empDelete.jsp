@@ -161,7 +161,7 @@
 		           			id="goInsBtn" style="margin-right:20px;">팀원추가이동</button>
 		           <button type="button" class="btn btn-danger" 
 		           			id="delBtn" style="margin-right:20px;">삭제</button>
-		           <button type="button" class="btn btn-default">이전</button>
+
 	           </div>
 	        </div>
 	      <!-- end -->	      
