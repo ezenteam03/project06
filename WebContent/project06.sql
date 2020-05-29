@@ -1003,6 +1003,7 @@ insert into pmsemp values(pmsemp_seq.nextval,'이재명','개발2팀','사원','
 insert into pmsemp values(pmsemp_seq.nextval,'심상정',null,'퇴사','010-4574-7345','Justice3@naver.com');
 insert into pmsemp values(pmsemp_seq.nextval,'안철수','개발3팀','사원','010-2936-6952','VirusAnn@daum.net');
 insert into pmsemp values(pmsemp_seq.nextval,'문희상','개발2팀','사원','010-2378-8963','Mhs45@gmail.com');
+insert into pmsemp values(pmsemp_seq.nextval,'전현규','개발3팀','사원','010-2378-8963','pkmon2d@gmail.com');
 --사용자정보(중간에 추가되는건 프로젝트 정보)
 INSERT INTO pmsmember values(10000001,'1234qwer!',2,'010-8270-6064',null);
 INSERT INTO pmsmember values(10000003,'qwer1234!',3,'010-0224-1025',null);
@@ -1253,5 +1254,5 @@ select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
  		where pno=1001 AND p.mno=e.eno;	
 select e.eno,e.name
  		from pmsemp e,pmsmember m, pmsproject p
- 		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno; 		
- 
+ 		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno;
+SELECT * FROM pmsemp; 		

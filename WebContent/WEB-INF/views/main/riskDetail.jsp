@@ -325,13 +325,13 @@
 <script type="text/javascript">
 
 function cpopup(rno) { 
-	window.open("http://localhost:5080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
+	window.open("http://192.168.4.230:7080/project06_git/risk.do?method=cdetail&rno="+rno, "1", "width=780, height=500, left=300, top=100");
 }
 function coment(rno){
 	cpopup(rno);
 };
 function ccpopup(rno,ino) { 
-	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=500, left=300, top=100");
+	window.open("http://192.168.4.230:7080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=500, left=300, top=100");
 }
 function ccoment(rno,ino){
 	ccpopup(rno,ino);
