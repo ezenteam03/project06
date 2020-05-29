@@ -141,11 +141,11 @@ $(function() {
             	<div width="49%" style="float:left;margin-left:50px"><h4>${ceo.pro.prog} %</h4></div>
             	<div width="49%" style="text-align:right;float:right;margin-right:50px;"><h4><fmt:formatDate value="${ceo.pro.edate}"/> 마감</h4></div>
             </div>
-            <div style="float:right;margin-right:50px;margin-top:20px;">
-            <button style="margin-right:200px;" onclick="goGant(${ceo.pno })" type="button" class="btn btn-theme"> 간트차트 보기 </button>
-            <button style="margin-right:200px;" onclick="goNoti(${ceo.pno })" type="button" class="btn btn-theme"> 공지사항 보기 </button>
-            <button style="margin-right:200px;" onclick="goMeet(${ceo.pno })" type="button" class="btn btn-theme"> 회의록 보기 </button>
-            <button style="margin-right:130px;" onclick="goIssue(${ceo.pno })" type="button" class="btn btn-theme"> 이슈리스트 보기 </button>
+            <div style="width:100%;float:right;margin-top:20px;">
+            <button style="margin-right:17%;float:right;" onclick="goIssue(${ceo.pno })" type="button" class="btn btn-theme"> 이슈리스트 보기 </button>
+            <button style="margin-right:13%;float:right;" onclick="goMeet(${ceo.pno })" type="button" class="btn btn-theme"> 회의록 보기 </button>
+            <button style="margin-right:13%;float:right;" onclick="goNoti(${ceo.pno })" type="button" class="btn btn-theme"> 공지사항 보기 </button>
+            <button style="margin-right:13%;float:right;" onclick="goGant(${ceo.pno })" type="button" class="btn btn-theme"> 간트차트 보기 </button>
             </div>
             <div style="clear:both; height:10px; overflow:hidden;"></div>	
             <div class="chart" data-percent="${ceo.cp }" style="float: left; width: 30%; height: 230px; text-align: center;margin-left:50px;"><br><span class="title">총업무 : ${ceo.total }</span><span class="title">완료업무 : ${ceo.ccnt }</span><span class="title">${ceo.cp } %</span></div>	
