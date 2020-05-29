@@ -26,18 +26,13 @@ public class pmsempCtrl {
 	
 	// CEO, CTO 사원 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=list
-	// CEO, CTO 권한설정 상세 페이지
-	// http://localhost:5080/project06_git/PMSemp.do?method=setForm
 	// PM 추가 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empList
 	// PM 삭제 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=delForm
 	// 인사 사원 리스트
 	// http://localhost:5080/project06_git/PMSemp.do?method=empmList
-	// 인사 사원등록
-	// http://localhost:5080/project06_git/PMSemp.do?method=insForm
-	// 인사 사원정보 수정
-	// http://localhost:5080/project06_git/PMSemp.do?method=modForm
+
 
 	
 	// CEO, CTO 사원 리스트 불러오기

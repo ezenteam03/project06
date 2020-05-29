@@ -80,16 +80,17 @@
 		$(".fileInfo").click(function(){
 			var fname=$(this).val();
 			if(confirm("다운로드하시겠습니까?")){
-				$(location).attr("href",
-					"${path}/task.do?method=download&fname="+fname);	
+				$(location).attr("href","${path}/task.do?method=download&fname="+fname);	
 			}
 			
 		});
 		$("#uptBtn").click(function(){
+			var a = $("[name=mem_no]").val();
 			
+			alert(a);
 			if(confirm("수정하시겠습니까?")){
-				$("form").attr("action","${path}/task.do?method=update");
-				$("form").submit();
+				$("#deForm").attr("action","${path}/task.do?method=update");
+				$("#deForm").submit();
 			}
 		});
 		$(".custom-file-input").on("change",function(){
@@ -108,8 +109,8 @@
 			}
 			else if(confirm("반려사유 다시겠습니까?")){
 				if( tdiv == 23 ){
-					$("form").attr("action","${path}/task.do?method=coment");
-					$("form").submit();
+					$("#deForm").attr("action","${path}/task.do?method=coment");
+					$("#deForm").submit();
 				}else{
 					alert("반려처리 했을 때에만 사유작성 가능합니다.");
 				}
@@ -136,8 +137,8 @@
 				if(tdiv ==22 || tdiv ==24){
 					alert("결재 신청이나 완료된 업무는 진행률 수정이 불가합니다.");
 				}else{
-					$("form").attr("action","${path}/task.do?method=prog");
-					$("form").submit();
+					$("#deForm").attr("action","${path}/task.do?method=prog");
+					$("#deForm").submit();
 				}
 			}
 		});
@@ -148,8 +149,8 @@
 					if(tdiv == 22 ){
 						alert("이미 결재 신청되었습니다.");
 					}else{
-						$("form").attr("action","${path}/task.do?method=upTdiv");
-						$("form").submit();
+						$("#deForm").attr("action","${path}/task.do?method=upTdiv");
+						$("#deForm").submit();
 					}
 				}
 			}
@@ -158,8 +159,8 @@
 			if(tdiv==22){
 				if(confirm("반려 처리 하시겠습니까?")){
 					alert("반려처리 되었습니다.");
-					$("form").attr("action","${path}/task.do?method=upTdiv2");
-					$("form").submit();
+					$("#deForm").attr("action","${path}/task.do?method=upTdiv2");
+					$("#deForm").submit();
 				}
 			}else{
 				alert("신청 여부를 확인 해주세요");
@@ -171,13 +172,13 @@
 			if(tdiv==22){
 				if(confirm("결재완료 하시겠습니까?")){
 					alert("결재완료 되었습니다.");
-					$("form").attr("action","${path}/task.do?method=upTdiv3");
-					$("form").submit();
+					$("#deForm").attr("action","${path}/task.do?method=upTdiv3");
+					$("#deForm").submit();
 				}
 			}else if (emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
 				if(confirm("PM업무 "+tno+"번 결재 하시겠습니까?")){
-					$("form").attr("action","${path}/task.do?method=upTdiv4");
-					$("form").submit();
+					$("#deForm").attr("action","${path}/task.do?method=upTdiv4");
+					$("#deForm").submit();
 				}
 			}else{
 				alert("신청 여부 혹은 진행률을 확인 해주세요");
@@ -190,8 +191,8 @@
 				alert("권한이 없습니다.");
 			}else if(confirm("업무진행 저장 하시겠습니까?")){
 				alert("저장 되었습니다.");
-				$("form").attr("action","${path}/task.do?method=upDetail");
-				$("form").submit();
+				$("#deForm").attr("action","${path}/task.do?method=upDetail");
+				$("#deForm").submit();
 			}
 		});
 		function inNumber(){
@@ -230,7 +231,7 @@
 <div id="all">
 <div class="container">
 
-	<form method="post"  enctype="multipart/form-data" >
+	<form method="post"  enctype="multipart/form-data" id="deForm">
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text bg-success text-white">글번호</span>
@@ -255,7 +256,7 @@
 	        </select>
             
 		</c:if>
-	</div>
+	</div> 
 		
 	<!-- 상위업무가 있는 업무만  -->
 	<c:forEach var="rf" items="${ref}">
@@ -263,7 +264,8 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text bg-success text-white">상위업무명</span>
 			</div>
-			<input name="refno" class="form-control" readonly style="background:white;"
+			<!-- name="refno" -->
+			<input class="form-control" readonly style="background:white;"
 				value="${rf.tname}"
 				placeholder="" />	
 		</div>	

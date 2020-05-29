@@ -9,50 +9,6 @@ DROP SEQUENCE pmsreply_seq;
 DROP SEQUENCE pmsmeeting_seq; 
 DROP SEQUENCE pmsbfile_seq; 
 
-
-/*
-			and name LIKE '%'||''||'%'
-			and grade LIKE '%'||''||'%'
-			and dept LIKE '%'||''||'%'
-*/
-			/*
-			<if test="name!=null and name!=''">
-			and name LIKE '%'||#{name}||'%'
-			</if>
-			<if test="grade!=null and grade!=''">
-			and grade LIKE '%'||#{grade}||'%'
-			</if>
-			<if test="dept!=null and dept!=''">
-			and dept LIKE '%'||#{dept}||'%'
-			</if>
-			*/
-
-
-	SELECT *
- 	FROM(
-			SELECT *
-			FROM (
-			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			c.CNAME,b.pno
-			FROM pmsemp a, pmsmember b, pmscodes c
-			WHERE a.eno = b.mno and b.mdiv=c.cno
-			AND c.cno =9 
-			AND b.pno is NULL
-			and a.name LIKE '%'||''||'%'
-			and a.grade LIKE '%'||''||'%'
-			and a.dept LIKE '%'||''||'%'
-			UNION ALL
-			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-					c.CNAME,b.pno
-			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-			where b.mno is NULL 
-			AND c.cno=9
-			and a.name LIKE '%'||''||'%'
-			and a.grade LIKE '%'||''||'%'
-			and a.dept LIKE '%'||''||'%')
-			ORDER BY eno ASC);
-
-
 ALTER TABLE PMSCODES
 	DROP
 		PRIMARY KEY

@@ -85,7 +85,9 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=update")
 		public String update(Task upt, @RequestParam("mem_no") int mno) {
-			upt.setMno(mno);
+			System.out.println("엠엔오 : "+mno);
+			upt.setMno(mno); 
+			System.out.println("엠엔오 : "+mno);
 			service.update(upt);
 			return "forward:/task.do?method=detail";
 		}	
@@ -191,7 +193,7 @@ public class WorkCtrl2 {
 			d.addAttribute("grade", pe.getGrade());
 			d.addAttribute("mname", pe.getName());
 			
-			//d.addAttribute("minfo", pmsm.getMno());
+			d.addAttribute("minfo", pmsm.getMno());
 			
 			d.addAttribute("mdiv", pmsm.getMdiv());
 			
