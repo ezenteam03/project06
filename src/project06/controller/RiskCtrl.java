@@ -51,7 +51,10 @@ public class RiskCtrl {
 		return "WEB-INF\\views\\main\\riskList.jsp";
 	}
 	@RequestMapping(params="method=insForm")
-	public String insertForm() {
+	public String insertForm(@ModelAttribute("rsch")RiskSch sch, Model d) {
+		
+		d.addAttribute("pnolist",service.pnolist(sch));
+		
 		return "WEB-INF\\views\\main\\riskInsert.jsp";
 	}
 	
