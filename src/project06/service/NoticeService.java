@@ -14,8 +14,7 @@ public class NoticeService {
 	@Autowired(required=false)
 	private NoticeDao dao;
 	public ArrayList<Notice> list(NoticeSch sch){
-				
-				
+				sch.setCount(dao.totCnt(sch));
 				if(sch.getPageSize()==0) {
 					sch.setPageSize(5);
 				}
