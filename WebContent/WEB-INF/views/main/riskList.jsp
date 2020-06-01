@@ -52,12 +52,13 @@
 		if(ri==1||ri==2){
 			$("#pm").css('display', 'none');
 		}
-		if(ri==3){
+		if(ri==3||ri==5){
 			$("#regBtn").css('display', 'none');
 		}
 		$("#pageSize").change(function(){
 			$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
 								// 나오게 처리..
+			$("form").attr("action","${path}/risk.do?method=list");
 			$("form").submit();
 		});
 		
@@ -68,6 +69,7 @@
 	}
 	function goPage(no){
 		$("#curPage").val(no);
+		$("form").attr("action","${path}/risk.do?method=list");
 		$("form").submit();
 	}
 	
@@ -159,11 +161,11 @@
     <tbody>
       <c:forEach var="risk" items="${rlist}">	
       <tr class="text-left" onclick="go(${risk.ino})">
-        <td class="text-left">${risk.cnt}</td>
+        <td class="text-center">${risk.cnt}</td>
         <td class="text-left">${risk.title}</td>
         <td class="text-left">${risk.name}</td>
         <td class="text-left"><fmt:formatDate value="${risk.wdate}"/> </td>
-        <td>${risk.views}</td>
+        <td class="text-center">${risk.views}</td>
       </tr>
       </c:forEach>
     </tbody>

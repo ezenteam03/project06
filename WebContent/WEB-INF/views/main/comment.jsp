@@ -33,13 +33,15 @@
 				window.close();
 		}	
 	});
-
 		var mno="${param.mno}"; // 로그인한 사원번호
 		var cmno="${comment.mno}"; // 작성자 사원번호
-		if(mno!=cmno){
-			alert("수정권한이 없습니다.");
-			window.close();
+		var ri="${ri}";
+		if(ri!=4){			
+			if(mno!=cmno){
+				alert("수정권한이 없습니다.");
+				window.close();
 		}
+	}
 });
 		
 </script>
