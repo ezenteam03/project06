@@ -127,6 +127,11 @@
 		 insert into pmsmember 
 		 	values(#{eno}, #{pass}, 4, #{phone}, #{pno})
 	</insert>
+	<!-- pms에 등록안된 경우 PM으로등록 -->
+	<insert id="insertMem3" parameterType="pmsemp">
+		 insert into pmsmember 
+		 	values(#{eno}, #{pass}, 4, #{phone}, null)
+	</insert>
 	<!-- PM 권한해제 설정 -->
 	<update id="updatePm2" parameterType="pmsemp">
 		UPDATE pmsmember

@@ -48,6 +48,10 @@ public class ProjectCtrl {
 		pmsemp inspe = new pmsemp();
 		Project insertedp = new Project();
 		
+		inspe = peservice.getPmsemp(mno);
+		inspe.setPno(0);
+		peservice.updatePm(inspe);
+		
 		insp.setPname(request.getParameter("pro_pname"));
 		insp.setMno(mno); //프로젝트 매니저 번호
 		insp.setSdatestr(request.getParameter("pro_sdate"));
@@ -58,7 +62,7 @@ public class ProjectCtrl {
 		//방금 추가한 프로젝트를 불러오기
 		insertedp = prservice.getProjectformno(mno); 
 		
-		inspe.setEno(mno);
+		//inspe.setEno(mno);
 		inspe.setPno(insertedp.getPno());
 		//회원의 PM 권한변경 수행
 		peservice.updatePm(inspe);
