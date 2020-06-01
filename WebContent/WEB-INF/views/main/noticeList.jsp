@@ -124,9 +124,6 @@ function goPage(no){
   				
   				<br>
  	<div class="input-group lb-3">	
-		<!--<div style="float:left; width:40%;" class="input-group-prepend ">
-			  <span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>-->
 		
 		<div style="float:left; width:10%; margin-left:1%;" class="input-group-append">
 			<span class="input-group-text">페이지 크기:</span>
