@@ -18,6 +18,9 @@ public class DownloadViewer extends AbstractView {
 	//현재 다운로드할 파일의 위치, 프로젝트에 맞춰 수정이 필요
 	@Value("${upload}")
 	private String upload;
+	
+	@Value("${upload2}")
+	private String upload2;
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, 
@@ -27,11 +30,13 @@ public class DownloadViewer extends AbstractView {
 		String fname = (String)model.get("downloadFile");
 		//		1) 파일을 객체로 생성 처리하여 전달 준비
 		File file = new File(upload+fname);
+		File file2 = new File(upload2+fname);
 		// 2. 다운로드 처리를 위한 response 객체 설정
 		//	1) 파일다운을 처리하기 위한 contentType설정
 		response.setContentType("application/download; charset=UTF-8");
 		//	2) 파일의 길이와 파일명 설정
 		response.setContentLength((int)file.length());
+		response.setContentLength((int)file2.length());
 		//		-한글파일명을 위한 encoding처리
 		fname = URLEncoder.encode(fname,"utf-8").replaceAll("\\+", " ");
 		// 3. Header 정보 설정
@@ -40,14 +45,19 @@ public class DownloadViewer extends AbstractView {
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		// 4. 파일을 InputStream으로 전환하여 response의 OutStream에 탑재하여 전송
 		FileInputStream fis = new FileInputStream(file);
+		FileInputStream fis2 = new FileInputStream(file2);
 		
 		OutputStream out = response.getOutputStream();
 		//	1) FileCopyUils의 copy 메서드를 동해서 전달
 		FileCopyUtils.copy(fis, out);
+		FileCopyUtils.copy(fis2, out);
 		//	2) 전송 완료 처리
 		out.flush();
 //		springweb.z02.util.DownloadViewer
 	}
+	
+	
+	
 
 }
 /*

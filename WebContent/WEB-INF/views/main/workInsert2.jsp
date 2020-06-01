@@ -65,8 +65,13 @@
 		
 		//var pno = "${pno}";
 		//console.log("dd"+pno);
-		//var mdiv = "${mdiv}";
+		var mdiv = "${mdiv}";
 		//console.log("mdiv : "+mdiv);
+		
+		if(mdiv != 6){
+			$("#selecPno").attr('disabled',true);
+			$("#selecPno").css('background','white');
+		}
 		
 		$("#regBtn").click(function(){
 			var pno = $("[name=pno]").val();
@@ -136,15 +141,26 @@
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">프로젝트번호</span>
 		</div>
-		<input name="pno" class="form-control" 
-			value="${pno}" placeholder="입력하세요" readonly style="background:white;"/>	
+		<div id="adminPno">
+			<select class="form-control" style="width:300px;float:left; " name="pno" id="selecPno">
+					<c:forEach items="${pnolist}" var="pno" varStatus="sts" >
+						<option value="${pno }">${pno }</option>									
+					</c:forEach>				
+			</select>	
+		</div>
+
 	</div>  
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 
 			<span class="bg-info text-white input-group-text">상위업무번호</span>
 		</div>
-		<input name="refno" class="form-control" 
-			value="" placeholder="입력하세요" />	
+		
+		<select class="form-control" style="width:300px;float:left; " name="refno">
+					<c:forEach items="${refnolist}" var="ref" varStatus="sts" >
+						<option value="${ref.refno}">${ref.tname} ${ref.refno}</option>									
+					</c:forEach>				
+			</select>	
+
 	</div>  
 	<div class="input-group mb-3">
 		<div class="input-group-prepend"> 

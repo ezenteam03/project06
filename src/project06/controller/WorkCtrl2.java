@@ -1,20 +1,20 @@
 package project06.controller;
 
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+ 
+import project06.service.RiskService;
 import project06.service.WorkService2;
 import project06.service.pmsempService;
 import project06.vo.PmsMember;
+import project06.vo.RiskSch;
 import project06.vo.Task;
 import project06.vo.TaskSch;
 import project06.vo.pmsemp;
@@ -30,6 +30,9 @@ public class WorkCtrl2 {
 		
 		@Autowired(required=false)
 		private pmsempService peservice;
+		
+		@Autowired(required=false)
+		private RiskService riskservice;
 		
 		@RequestMapping(params="method=list")
 		public String list(@ModelAttribute("tsch") TaskSch sch, Model d,HttpServletRequest request) {
@@ -146,11 +149,13 @@ public class WorkCtrl2 {
 		}
 		
 		@RequestMapping(params="method=insForm")
-		public String insertForm(pmsemp ins,Model d, HttpServletRequest request) {
+		public String insertForm(pmsemp ins,Model d, HttpServletRequest request,RiskSch sch, Task tsch) {
 			HttpSession session = request.getSession();
 			
 			PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 			pmsempSch pmssch = new pmsempSch();
+			
+			
 			
 			d.addAttribute("pno",pmsm.getPno());
 			d.addAttribute("mdiv",pmsm.getMdiv());
@@ -165,6 +170,11 @@ public class WorkCtrl2 {
 	
 			emp.setPno(pmsm.getPno());
 			emp.setMdiv(pmsm.getMdiv());
+			tsch.setMdiv(pmsm.getMdiv());
+			
+			
+			d.addAttribute("refnolist",service.refnoList(tsch));
+			d.addAttribute("pnolist",riskservice.pnolist(sch));
 			d.addAttribute("pmsElist",peservice.pmsElist(emp));
 			
 			

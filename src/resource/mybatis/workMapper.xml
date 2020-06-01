@@ -201,7 +201,17 @@
 	<insert id="insertRepo" parameterType="String"> 
  		insert into PMSTFILE values(pmstfile_seq.nextval,pmstask_seq.currval,#{fname}, sysdate)
 	</insert>
- 	
+	
+	<!-- 상위업무 불러오기 -->
+	<select id="refnoList" resultMap="taskResult" parameterType="task">
+		SELECT * FROM
+		pmstask pt, pmsmember pb
+		WHERE pt.mno = pb.mno 
+		AND pb.mdiv = 4
+		<if test="mdiv != 6">
+			AND pt.pno = #{pno}
+		</if>
+ 	</select>
 </mapper>	
 
 
