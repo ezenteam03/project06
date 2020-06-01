@@ -1255,4 +1255,4 @@ select p.pno,p.pname,e.name pm,to_char(deadline,'yyyy-mm-dd') edate
 select e.eno,e.name
  		from pmsemp e,pmsmember m, pmsproject p
  		where e.eno=m.mno and m.pno=1002 and m.pno=p.pno and not m.mno=p.mno;
-SELECT * FROM pmsemp; 		
+SELECT * FROM pmsmember; 		
