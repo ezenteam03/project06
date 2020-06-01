@@ -63,7 +63,10 @@
 		
 		--%>
 		
-		//console.log(${pno});
+		//var pno = "${pno}";
+		//console.log("dd"+pno);
+		//var mdiv = "${mdiv}";
+		//console.log("mdiv : "+mdiv);
 		
 		$("#regBtn").click(function(){
 			var pno = $("[name=pno]").val();
@@ -83,7 +86,7 @@
 			console.log(edate);
 			
 			if(confirm("등록합니다.")){
-				$("#insform").submit();				
+				$("#fileForm").submit();				
 			}
 		});	
 		$("#goMain").click(function(){
