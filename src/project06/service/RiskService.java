@@ -118,21 +118,14 @@ public class RiskService {
 	private String upload; // 업로드할 위치..
 	@Value("${tmpUpload}")
 	private String tmpUpload;// 임시업로드 위치.
-	private void upload(MultipartFile mtf) {
-		
+	private void upload(MultipartFile mtf) {		
 		String fileName=mtf.getOriginalFilename();
-				
 		if(fileName!=null&&!fileName.equals("")) {
 			File tmpFile = new File(tmpUpload+fileName);
-			// 해당 폴드에 동일한 파일이 있으면 삭제 처리
 			if(tmpFile.exists()) tmpFile.delete();
 			try {
-			// Stream으로 온 MultipartFile을 실제 파일로 변경처리.	
 				mtf.transferTo(tmpFile);
 				File orgFile = new File(upload+fileName);		
-			// tmp위치에 있는 파일을 현재 웹서버에 특정할 폴드로 이동.
-			// StandardCopyOption.REPLACE_EXISTING : 기존 동일 파일명이 있을 때,
-			// 마지막에 올린 파일로 변경 처리..
 				Files.copy(tmpFile.toPath(), orgFile.toPath(), 
 							StandardCopyOption.REPLACE_EXISTING);
 								
