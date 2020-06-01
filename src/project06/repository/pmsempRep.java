@@ -37,6 +37,8 @@ public interface pmsempRep {
 	public void updatepmsemp2();
 	// PM PMS등록
 	public void insertMem2(pmsemp insMem2);
+	// Project정보 없이 PMS에 계정 추가
+	public void insertMem3(pmsemp insMem2);
 	// PM설정
 	public void updatePm1(pmsemp uptPm);
 	public void updatePm2(pmsemp uptPm);
