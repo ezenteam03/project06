@@ -125,7 +125,7 @@ public class RiskCtrl {
 
 			service.cinsert(insert);			
 			insert.setDetail("");
-			return "redirect:/risk.do?method=comment";
+			return "forward:/risk.do?method=comment";
 		}
 		// 댓글 삭제
 		@RequestMapping(params="method=delete")
