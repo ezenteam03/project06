@@ -52,7 +52,8 @@
 		if(ri==1||ri==2){
 			$("#pm").css('display', 'none');
 		}
-		if(ri==3||ri==5){
+		var mdiv = "${infor_M.mdiv }"
+		if(mdiv==2||mdiv==3||mdiv==7){
 			$("#regBtn").css('display', 'none');
 		}
 		$("#pageSize").change(function(){
