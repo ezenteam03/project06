@@ -78,20 +78,24 @@
 	<div class="container">
 		<form method="post" enctype="multipart/form-data"
 		 	action="${path}/risk.do?method=insert">
-		 	<input name="mno" type="hidden" value="${mno}"  />			
-		 	<input name="pno" type="hidden" value="${infor_M.pno}"  />				 	
-	 <div id="pm">
+		 	<input name="mno" type="hidden" value="${mno}"  />	
+		 <c:choose >	
+		 <c:when test="${infor_M.pno ne 0}">
+		 	<input name="pno" type="hidden" value="${infor_M.pno}"  />		
+		 </c:when>
+		  <c:otherwise>			 	
+ 	 <div id="pm">
 		 <div style="float:left;"> 
-			<span class="input-group-text" style="height:34px">${param.pno}프로젝트 번호:</span>
+			<span class="input-group-text" style="height:34px">프로젝트 번호:</span>
 		</div>
 		 <div >					 
-			<select class="form-control" style="width:100px;float:left; ">
-				<c:forEach items="${pnolist}" var="pno" varStatus="sts">
-					<option value="${pno}">${pno.pno}</option>									
+			<select class="form-control" style="width:100px;float:left; " name="pno">
+				<c:forEach items="${pnolist}" var="pno" varStatus="sts" >
+					<option value="${pno }">${pno }</option>									
 				</c:forEach>				
 			 </select>	
 		 </div>
-	 </div><br><br>
+	 </div><br><br> </c:otherwise></c:choose>	
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">제 목</span>
