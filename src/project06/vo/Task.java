@@ -34,6 +34,7 @@ public class Task {
 	private String coment;
 	private int tdiv;
 	private int mno;
+	private int mdiv;
 	
 	private int eno;
 	private String name;
@@ -49,6 +50,13 @@ public class Task {
 	
 	
 
+	
+	public int getMdiv() {
+		return mdiv;
+	}
+	public void setMdiv(int mdiv) {
+		this.mdiv = mdiv;
+	}
 	public String getGrade() {
 		return grade;
 	}
@@ -149,7 +157,7 @@ public class Task {
 	
 
 	public MultipartFile[] getReport() {
-		return report;
+		return report; 
 	}
 	public void setReport(MultipartFile[] report) {
 		this.report = report;
