@@ -180,6 +180,10 @@ public class WorkService2 {
 		return dao.nameList(sch);
 	}
 	
+	public ArrayList<Task> refnoList(Task sch){
+		return dao.refnoList(sch);
+	}
+	
 	public ArrayList<Task> getrefno(Task sch){
 		return dao.getrefno(sch);
 	}

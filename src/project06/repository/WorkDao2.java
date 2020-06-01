@@ -18,6 +18,7 @@ public interface WorkDao2 {
 	public ArrayList<Task> workList(Task sch);
 	public ArrayList<Task> nameList(Task sch);
 	public ArrayList<Task> getrefno(Task sch);
+	public ArrayList<Task> refnoList(Task sch);
 
 	public void updateTask(Task upt);
 	
@@ -35,6 +36,7 @@ public interface WorkDao2 {
 	public void deleteTask(int no);	
 	
 	public Task getTask(int no);
+	
 	
 	// 업로드
 	
