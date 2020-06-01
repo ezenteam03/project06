@@ -84,6 +84,7 @@ $(document).ready(function(){
 	$("#pageSize").change(function(){
 		$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
 							// 나오게 처리..
+		$("form").attr("action","${path}/notice.do?method=list");
 		$("form").submit();
 	});
 });
@@ -96,6 +97,7 @@ function go(nno){
 function goPage(no){
 	
 	$("#curPage").val(no);
+	$("form").attr("action","${path}/notice.do?method=list");
 	$("form").submit();
 }
 </script>
@@ -119,10 +121,9 @@ function goPage(no){
 				</form>
 	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <br>
-              <form:form class="form" commandName="nsch" method="post" >
-  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-  				
-  				<br>
+    <form:form class="form" commandName="nsch" method="post" >
+  		<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+  		<br>
  	<div class="input-group lb-3">	
 		
 		<div style="float:left; width:10%; margin-left:1%;" class="input-group-append">

@@ -77,6 +77,7 @@ $(document).ready(function(){
 	$("#pageSize").change(function(){
 		$("#curPage").val(1); // 페이지크기를 바꾸면 초기 첫페이로
 							// 나오게 처리..
+		$("form").attr("action","${path}/meet.do?method=list");
 		$("form").submit();
 	});
 });
@@ -87,6 +88,7 @@ function go(mnno){
 function goPage(no){
 	//alert("이동 번호:"+no);
 	$("#curPage").val(no);
+	$("form").attr("action","${path}/meet.do?method=list");
 	$("form").submit();
 }
 	
