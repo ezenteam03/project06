@@ -49,11 +49,14 @@ public class ChartCtrl {
 	
 	// http://localhost:6080/project06_git/chart.do?method=ajaxdata
 	@RequestMapping(params="method=ajaxdata")
-	public String chtData(HttpServletRequest request, Model d) {
+	public String chtData(HttpServletRequest request,
+			Model d) {
 		HttpSession session = request.getSession();
-		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+		PmsMember emp = 
+		(PmsMember)session.getAttribute("infor_M");
 		
-		d.addAttribute("chartlist", cservice.chartList(emp.getPno()));
+		d.addAttribute("chartlist", 
+				cservice.chartList(emp.getPno()));
 		return "pageJsonReport";
 	}
 	

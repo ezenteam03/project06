@@ -107,13 +107,13 @@ FROM PMSPROJECT pp, PMSTASK pt,
 WHERE pe.eno = pm.mno) pem,
 (SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
-tno, tname, refno FROM pmstask WHERE pno = 1002)
+tno, tname, refno FROM pmstask WHERE pno = 1001)
    CONNECT BY PRIOR tno = refno 
   START WITH refno =0) prt
 WHERE pp.pno = pt.pno
 AND pt.mno = pem.mno
 AND pt.tno = prt.tno
-AND pp.pno = 1002
+AND pp.pno = 1001
 --AND pt.refno <= 0
 --AND pem.eno = 10000015
 --AND pt.tname LIKE '%'||'웹'||'%'
@@ -257,3 +257,12 @@ ORDER BY mno;
 SELECT * FROM PMSLOG;
 
 --참여인원
+
+--프로젝트 추가 실험
+INSERT INTO pmsproject(pno, pname, sdate, deadline, mno, pdiv, detail) 
+VALUES(pmsproject_seq.nextval,'새로운 프로젝트3', '2020/06/03','2020/07/01', 10000009, 11 ,'3');
+
+SELECT * FROM PMSPROJECT WHERE mno=10000009;
+SELECT * FROM pmsmember WHERE mno=10000009;
+SELECT * FROM pmsemp WHERE eno=10000009;
+insert into pmsmember values(10000009, '1234qwer!', 4, '010-6078-9450', 0);
