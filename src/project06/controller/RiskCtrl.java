@@ -33,15 +33,16 @@ public class RiskCtrl {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-		System.out.println(emp.getPno());
 		if(emp.getPno()==1001) {
 			d.addAttribute("ri", 1);
 		}else if(emp.getPno()==1002) {
 			d.addAttribute("ri", 2);
 		}else if(emp.getMdiv()==6) {
 			d.addAttribute("ri", 4);
-		}else {
+		}else if(emp.getMdiv()==2) {
 			d.addAttribute("ri", 3);
+		}else {
+			d.addAttribute("ri", 5);
 		}
 		
 		d.addAttribute("rlist", service.list(sch,request));
@@ -134,7 +135,16 @@ public class RiskCtrl {
 		}
 		// 댓글 상세
 		@RequestMapping(params="method=cdetail")
-		public String cdetail(@RequestParam("rno") int rno, Model d) {
+		public String cdetail(@RequestParam("rno") int rno, Model d,HttpServletRequest request) {
+			
+			HttpSession session = request.getSession();
+			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
+			if(emp.getMdiv()==6) {
+				d.addAttribute("ri", 4);
+			}else {
+				d.addAttribute("ri", 5);
+			}
+			
 			d.addAttribute("comment", service.getComment(rno));
 			return "WEB-INF\\views\\main\\comment.jsp";
 		}
