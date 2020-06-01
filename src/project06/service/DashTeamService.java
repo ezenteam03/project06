@@ -59,28 +59,32 @@ public class DashTeamService {
 		int tleng=0;
 		int prog=0;
 		int dleng=0;
-		for(int i=0; i<plist.size(); i++) {
-			System.out.println("plist.get(i).getGrade() : "+plist.get(i).getGrade());
-			if(plist.get(i).getGrade()<0 && (plist.get(i).getProg() != 100 || !plist.get(i).getTdiv().equals("결재완료"))) {
-				p.setGrade(2);
-				System.out.println(p.getGrade());
-			} 
-			tleng += plist.get(i).getTleng();
-			if(plist.get(i).getTdiv().equals("결재완료")) {
-				dleng += plist.get(i).getTleng();
-				prog += 100*plist.get(i).getTleng();
+		if(plist.size()==0) {
+			prog=0;
+		} else {
+			for(int i=0; i<plist.size(); i++) {
+				System.out.println("plist.get(i).getGrade() : "+plist.get(i).getGrade());
+				if(plist.get(i).getGrade()<0 && (plist.get(i).getProg() != 100 || !plist.get(i).getTdiv().equals("결재완료"))) {
+					p.setGrade(2);
+					System.out.println(p.getGrade());
+				} 
+				tleng += plist.get(i).getTleng();
+				if(plist.get(i).getTdiv().equals("결재완료")) {
+					dleng += plist.get(i).getTleng();
+					prog += 100*plist.get(i).getTleng();
+				}
+				else if(plist.get(i).getDleng()>0) {
+					dleng += plist.get(i).getDleng();
+					prog += plist.get(i).getProg()*plist.get(i).getTleng();
+				}
 			}
-			else if(plist.get(i).getDleng()>0) {
-				dleng += plist.get(i).getDleng();
-				prog += plist.get(i).getProg()*plist.get(i).getTleng();
-			}
+			int dprog=0;
+			if(tleng!=0) {
+				prog = (int) prog/tleng;
+				dprog = (int)(dleng/tleng);
+			} 		
+			if(prog+10<dprog&&p.getGrade()==0) p.setGrade(1);
 		}
-		int dprog=0;
-		if(tleng!=0) {
-			prog = (int) prog/tleng;
-			dprog = (int)(dleng/tleng);
-		} 		
-		if(prog+10<dprog&&p.getGrade()==0) p.setGrade(1);
 		p.setProg(prog);
 		System.out.println(p.getGrade());
 		return p;
