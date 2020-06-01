@@ -94,9 +94,9 @@ $(document).ready(function(){
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">작성자</span>
 		</div>
-		<input name="writer" class="form-control" style="background:white;"
+		<input name="writer" class="form-control" readonly="readonly" style="background:white;"
 			value="${meet.writer}"  
-			placeholder="안건을 입력하세요" />	
+			placeholder="" />	
 	</div>
 	
 	<div class="input-group mb-3">	
