@@ -85,9 +85,6 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=update")
 		public String update(Task upt, @RequestParam("mem_no") int mno) {
-			System.out.println("엠엔오 : "+mno);
-			upt.setMno(mno); 
-			System.out.println("엠엔오 : "+mno);
 			service.update(upt);
 			return "forward:/task.do?method=detail";
 		}	
@@ -115,7 +112,12 @@ public class WorkCtrl2 {
 			return "forward:/task.do?method=detail"; 
 		}
 		@RequestMapping(params="method=upTdiv3")
-		public String upTdiv3(Task upt) {
+		public String upTdiv3(@RequestParam("tno") int no, Task upt) {
+
+			Task Taskinfo = service.getTask(no);
+			
+			upt.setRefno(Taskinfo.getRefno());
+
 			service.upTdiv3(upt);
 			return "forward:/task.do?method=detail"; 
 		}
@@ -131,6 +133,7 @@ public class WorkCtrl2 {
 		}
 		@RequestMapping(params="method=progUdt")
 		public String progUdt(Task upt) {
+			System.out.println("udt실행됨");
 			service.progUdt(upt);
 			return "forward:/task.do?method=detail";
 		}
@@ -150,11 +153,18 @@ public class WorkCtrl2 {
 			pmsempSch pmssch = new pmsempSch();
 			
 			d.addAttribute("pno",pmsm.getPno());
+			d.addAttribute("mdiv",pmsm.getMdiv());
+			
+			//sch.setMno(emp.getMno()); 
+			//sch.setPno(emp.getPno());
+			
+			
+			
 
 			pmsemp emp =(pmsemp)session.getAttribute("emp");
 	
 			emp.setPno(pmsm.getPno());
-
+			emp.setMdiv(pmsm.getMdiv());
 			d.addAttribute("pmsElist",peservice.pmsElist(emp));
 			
 			

@@ -377,11 +377,13 @@
 	
 <!-- 팀원만 보기 -->
 	<select id="pmsElist" resultMap="pmsempResult" parameterType="pmsemp">
-	 	SELECT pe.eno, pm.MDIV, pe.name, pe.GRADE, pm.pno
+	 	SELECT pe.eno, pe.name, pe.GRADE, pm.pno, pm.mdiv
 		FROM pmsmember pm, pmsemp pe
-		WHERE pm.MDIV = 5
+		WHERE pm.mdiv = 5
+		<if test="mdiv!=6">
+			AND pm.pno = #{pno}
+		</if>
 		AND pe.eno = pm.mNO
-		AND pm.pno = #{pno}
 		
  	</select>
 	

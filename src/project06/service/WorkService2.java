@@ -139,8 +139,11 @@ public class WorkService2 {
 	}
 	public void upTdiv3(Task upt) {
 		// 하위업무 결재 / 결재 시 상위업무 진행률 상승
+		System.out.println("1번실행됨");
 		dao.upTdiv3(upt);
+		System.out.println("2번실행됨");
 		dao.progUdt(upt);
+		System.out.println("3번실행됨");
 	}
 	public void upTdiv4(Task upt) {
 		// pm업무 결재완료
