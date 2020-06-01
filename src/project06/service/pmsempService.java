@@ -115,12 +115,14 @@ public class pmsempService {
 			System.out.println("service PM설정");
 			int isMem = rep.memCheck(updatePm);
 			System.out.println("isMem : "+isMem);
+			System.out.println("updatePmpno : "+updatePm.getPno());
 			if(isMem==0) {
 				// 기존 PM권한 변경
 				rep.updatePm2(updatePm);
 				// 새로운 PM Member등록
 				updatePm.setPass(makePass("1234qwer!"));
-				rep.insertMem2(updatePm);
+				if(updatePm.getPno()==0) rep.insertMem3(updatePm);
+				else rep.insertMem2(updatePm);
 			}else{
 				rep.updatePm2(updatePm);
 				rep.updatePm1(updatePm);	
