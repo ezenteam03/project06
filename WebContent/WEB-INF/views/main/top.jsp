@@ -176,7 +176,10 @@ th{text-align:center;}
 	}
 	
 	$(document).ready(function(){
-	
+		var isLogin = ${infor_M.pass};
+		if(isLogin==null) {
+			$(location).attr("href","${path}/main.do");
+		}
 		var check01=0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
