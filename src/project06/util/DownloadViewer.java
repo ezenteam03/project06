@@ -45,12 +45,12 @@ public class DownloadViewer extends AbstractView {
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		// 4. 파일을 InputStream으로 전환하여 response의 OutStream에 탑재하여 전송
 		FileInputStream fis = new FileInputStream(file);
-		FileInputStream fis2 = new FileInputStream(file2);
+		//FileInputStream fis2 = new FileInputStream(file2);
 		
 		OutputStream out = response.getOutputStream();
 		//	1) FileCopyUils의 copy 메서드를 동해서 전달
 		FileCopyUtils.copy(fis, out);
-		FileCopyUtils.copy(fis2, out);
+		//FileCopyUtils.copy(fis2, out);
 		//	2) 전송 완료 처리
 		out.flush();
 //		springweb.z02.util.DownloadViewer
