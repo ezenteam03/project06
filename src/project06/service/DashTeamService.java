@@ -130,19 +130,29 @@ public class DashTeamService {
 		ArrayList<Integer> ilist = dao.ilist2();
 		System.out.println("clist service");
 		for(int i=0; i<ilist.size(); i++) {
+			DashProject p = getProject(ilist.get(i));
 			System.out.println("i : "+i);
 			DashCeo c = new DashCeo();
-			int total = dao.t1(ilist.get(i));
-			System.out.println(total);
-			int done = dao.t2(ilist.get(i));
-			System.out.println(done);
-			int cp = (int)(done*100/total);
-			int dcnt = total-done-dao.t3(ilist.get(i));
-			System.out.println(dcnt);
-			int dp = (int)(dcnt*100/(total-done));
-			int ocnt = dao.t4(ilist.get(i));
-			System.out.println(ocnt);
-			int op = (int)(ocnt*100/done);
+			int total=0;
+			int done=0;
+			int cp=0;
+			int dcnt=0;
+			int dp=0;
+			int ocnt=0;
+			int op=0;
+			if(p.getProg()!=0) {
+				total = dao.t1(ilist.get(i));
+				System.out.println(total);
+				done = dao.t2(ilist.get(i));
+				System.out.println(done);
+				cp = (int)(done*100/total);
+				dcnt = total-done-dao.t3(ilist.get(i));
+				System.out.println(dcnt);
+				dp = (int)(dcnt*100/(total-done));
+				ocnt = dao.t4(ilist.get(i));
+				System.out.println(ocnt);
+				op = (int)(ocnt*100/done);
+			}
 			
 			c.setPno(ilist.get(i));
 			c.setPro(getProject(ilist.get(i)));
