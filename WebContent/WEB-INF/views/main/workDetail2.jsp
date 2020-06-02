@@ -118,10 +118,9 @@
 		
 		$("#progBtn").click(function(){
 			var prog = $('input[name=prog]').val();
-			
 
-			
-			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
+			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 ||
+			emno == tmno && refno != tno && refno != 0 && mdiv == 6){
 				alert("진행률을 수정 할 수 없는 업무입니다.");
 			}
 			else if(prog > 100 || prog < 1){
@@ -173,7 +172,8 @@
 					$("#deForm").attr("action","${path}/task.do?method=upTdiv3");
 					$("#deForm").submit();
 				}
-			}else if (emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 4 || mdiv == 6){
+			}else if (emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 4 ||
+					emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 6){
 				if(confirm("PM업무 "+tno+"번 결재 하시겠습니까?")){
 					$("#deForm").attr("action","${path}/task.do?method=upTdiv4");
 					$("#deForm").submit();

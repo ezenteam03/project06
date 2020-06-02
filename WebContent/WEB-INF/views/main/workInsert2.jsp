@@ -148,7 +148,7 @@
 			onFocus='this.initialSelect = this.selectedIndex;'
 			onChange='this.selectedIndex = this.initialSelect;'>
 					<c:forEach items="${pnolist}" var="pno" varStatus="sts" >
-						<option value="${pno }">${pno }</option>									
+						<option value="${pno}">${pno}</option>									
 					</c:forEach>				
 			</select>	
 		</div>
