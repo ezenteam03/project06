@@ -30,9 +30,7 @@
   <link href="${path}/Dashio/css/style.css" rel="stylesheet">
   <link href="${path}/Dashio/css/style-responsive.css" rel="stylesheet">
   <script src="${path}/Dashio/lib/chart-master/Chart.js"></script>
-  
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+ 
 <script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
   <!-- =======================================================
     Template Name: Dashio
@@ -41,6 +39,8 @@
     License: https://templatemag.com/license/
   ======================================================= -->
 <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <style>
 .popup_btn a {
   display: inline-block;
@@ -163,7 +163,7 @@ th{text-align:center;}
 </style>
 
 <script type="text/javascript">
-	var pno = "${infor_M.pno}";
+	var pno = ${infor_M.pno};
 	function popup() { 
 		window.open("${path}/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
 		//http://192.168.4.230:7080/project06_git/main.do
@@ -176,10 +176,10 @@ th{text-align:center;}
 	}
 	
 	$(document).ready(function(){
-		var isLogin = ${infor_M.pass};
-		if(isLogin==null) {
-			$(location).attr("href","${path}/main.do");
-		}
+		//var isLogin = ${infor_M.pass};
+		//if(isLogin==null) {
+		//	$(location).attr("href","${path}/main.do");
+		//}
 		var check01=0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
@@ -356,6 +356,8 @@ th{text-align:center;}
 			  showCancelButton: true
 		}).then((result) => {
 			if (result.value) {
+				//$("#inforCheckForm").attr("action","${path}/PmsMember.do?method=logout");
+				//$("#inforCheckForm").submit();
 				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${infor_M.mno});
 			}
 		});
