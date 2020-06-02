@@ -161,7 +161,7 @@
 		
 		<select class="form-control" style="width:300px;float:left; " name="refno">
 					<c:forEach items="${refnolist}" var="ref" varStatus="sts" >
-						<option value="${ref.refno}">${ref.tname} ${ref.refno}</option>									
+						<option value="${ref.refno}">${ref.tname} ${ref.tno}</option>									
 					</c:forEach>				
 			</select>	
 
