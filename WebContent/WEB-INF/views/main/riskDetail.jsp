@@ -325,25 +325,15 @@
 <script type="text/javascript">
 
 function cpopup(rno) { 
-<<<<<<< HEAD
 	window.open("${path}/risk.do?method=cdetail&rno="+rno+"&mno="+"${mno}", "1", "width=780, height=400, left=500, top=150");
 	//window.open("http://localhost:5080//project06_git/risk.do?method=cdetail&rno="+rno+"&mno="+"${mno}", "1", "width=780, height=500, left=300, top=100");
-=======
-	//window.open("http://192.168.4.230:7080/project06_git/risk.do?method=cdetail&rno="+rno+"&mno="+"${mno}", "1", "width=780, height=400, left=500, top=150");
-	window.open("http://localhost:5080//project06_git/risk.do?method=cdetail&rno="+rno+"&mno="+"${mno}", "1", "width=780, height=500, left=300, top=100");
->>>>>>> 318130fe40075e810918da8d69d70af7ddca4de1
 }
 function coment(rno){
 	cpopup(rno);
 };
 function ccpopup(rno,ino) { 
-<<<<<<< HEAD
 	window.open("${path}/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=300, left=500, top=150");
 	//window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=300, left=500, top=150");
-=======
-	//window.open("http://192.168.4.230:7080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=300, left=500, top=150");
-	window.open("http://localhost:5080/project06_git/risk.do?method=cinsForm&rno="+rno+"&ino="+ino, "2", "width=780, height=300, left=500, top=150");
->>>>>>> 318130fe40075e810918da8d69d70af7ddca4de1
 }
 function ccoment(rno,ino){
 	ccpopup(rno,ino);
