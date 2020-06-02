@@ -148,7 +148,10 @@
 			onFocus='this.initialSelect = this.selectedIndex;'
 			onChange='this.selectedIndex = this.initialSelect;'>
 					<c:forEach items="${pnolist}" var="pno" varStatus="sts" >
-						<option value="${pno}">${pno}</option>									
+						<c:choose>
+							<c:when test="${task.pno==pno}"><option value="${pno}" selected>${pno}</option></c:when>
+							<c:otherwise><option value="${pno}">${pno}</option></c:otherwise>
+						</c:choose>
 					</c:forEach>				
 			</select>	
 		</div>
@@ -160,6 +163,7 @@
 		</div>
 		
 		<select class="form-control" style="width:300px;float:left; " name="refno">
+					<option value="0">최상위 업무 0</option>
 					<c:forEach items="${refnolist}" var="ref" varStatus="sts" >
 						<option value="${ref.refno}">${ref.tname} ${ref.tno}</option>									
 					</c:forEach>				

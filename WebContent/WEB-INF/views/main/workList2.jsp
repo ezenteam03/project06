@@ -68,18 +68,27 @@ $(document).ready(function(){
 	--%>
 	var mdiv = "${tsch.mdiv}";
 	
-	$("#regBtn").click(function(){
-
-		
-		
-	});
 	$("#pageSize").change(function(){
-		$("#curPage").val(1);
-
+		$("#curPage").val(0);
 		$("form").submit();
 	});
 	
-	$
+	$("#listSchBtn").click(function(){
+		var tname = $("#tname_sch").val();
+		$("#tname").val(tname);
+		$("#curPage").val(0);
+		$("form").submit();
+	});
+	
+	$("form").keydown(function(key) {
+		if (key.keyCode == 13) {
+			var tname = $("#tname_sch").val();
+			$("#tname").val(tname);
+			$("#curPage").val(0);
+			$("form").submit();
+		}
+	});
+
 });
 function insgo(no){
 	var mdiv = "${tsch.mdiv}";
@@ -132,13 +141,14 @@ function go(no){
 	    	</div>
     <form:form class="form" commandName="tsch" method="post" >
     <form:hidden path="curPage"/>
+    <form:hidden path="tname"/>
   	 <div style="width:300px; float:left;">
-	    <form:input class="form-control mr-sm-2 sch" path="tname" placeholder="업무명 검색" style="width:300px;"/>
+	    <input type="text" class="form-control mr-sm-2 sch" id="tname_sch" placeholder="업무명 검색" style="width:300px;"/>
 	    
 	    </div>
 	    
 	    <div >
-	    <button class="btn btn-success" type="submit">검색</button>
+	    <input type="button" class="btn btn-success" id="listSchBtn" value="검색">
 	    </div>
 	    
 	    
@@ -162,13 +172,12 @@ function go(no){
                
                 <hr>
                 
-   <form method="post">
-			<input type="hidden" name="curPage"/>
-	</form>
-	
   <table class="table table-hover">
        <thead>
           <tr>
+          	<c:if test="${tsch.mdiv==6}">
+          	<th class="pronum">프로젝트번호</th>
+          	</c:if>
             <th class="num">번호</th>
             <th class="title">업무 명</th>
             <th class="date">종료일</th>
@@ -178,9 +187,11 @@ function go(no){
         <tbody>
         <c:forEach var="task" items="${tlist}">
           <tr onclick="go(${task.tno})">
+         	 <c:if test="${tsch.mdiv==6}">
+          	<td style="text-align: center;">${task.pno}</td>
+          	</c:if>
             <td style="text-align: center;">${task.tno}</td>
-            <td style="text-align: center; padding-left:70px;">${task.tname}</td>
-           
+          	<td style="text-align: center;">${task.tname}</td>
            <td style="text-align: center;">${task.edate }</td>
             <td style="text-align: center;">
             <c:choose>

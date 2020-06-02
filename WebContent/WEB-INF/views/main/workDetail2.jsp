@@ -142,7 +142,9 @@
 		});
 		$("#divBtn").click(function(){
 			var prog = $('input[name=prog]').val();
-			if(prog == 100){
+			if(prog == 100 && tdiv == 23 ||
+				prog == 100 && tdiv == 21 ||
+				prog == 100 && tdiv == 22){
 				if(confirm("결재 신청 하시겠습니까?")){
 					if(tdiv == 22 ){
 						alert("이미 결재 신청되었습니다.");
@@ -151,6 +153,10 @@
 						$("#deForm").submit();
 					}
 				}
+			}else if(tdiv == 24){
+				alert("결재 완료된 업무입니다.");	
+			}else {
+				alert("진행률이 100인 업무만 신청 가능합니다.");
 			}
 		});
 		$("#divBtn2").click(function(){
@@ -165,8 +171,6 @@
 			}
 		});
 		$("#divBtn3").click(function(){
-	
-			
 			if(tdiv==22){
 				if(confirm("결재완료 하시겠습니까?")){
 					alert("결재완료 되었습니다.");
@@ -231,6 +235,15 @@
 <div class="container">
 
 	<form method="post"  enctype="multipart/form-data" id="deForm">
+	<c:if test="${mdiv==6}">
+		<div class="input-group mb-3">	
+			<div class="input-group-prepend ">
+				<span class="input-group-text bg-success text-white">프로젝트번호</span>
+			</div>
+			<input class="form-control" readonly style="background:white;"
+				value="${task.pno}"/>	
+		</div>
+	</c:if>	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text bg-success text-white">글번호</span>
