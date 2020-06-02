@@ -125,7 +125,8 @@ public class pmsempService {
 				else rep.insertMem2(updatePm);
 			}else{
 				rep.updatePm2(updatePm);
-				rep.updatePm1(updatePm);	
+				if(updatePm.getPno()==0) rep.updatePm1_1(updatePm);	
+				else rep.updatePm1(updatePm);	
 			}
 			rep.updatePm3(updatePm);
 			rep.updatePm4(updatePm);

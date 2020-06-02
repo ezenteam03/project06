@@ -41,6 +41,7 @@ public interface pmsempRep {
 	public void insertMem3(pmsemp insMem2);
 	// PM설정
 	public void updatePm1(pmsemp uptPm);
+	public void updatePm1_1(pmsemp uptPm);
 	public void updatePm2(pmsemp uptPm);
 	public void updatePm3(pmsemp uptPm);
 	public void updatePm4(pmsemp uptPm);
