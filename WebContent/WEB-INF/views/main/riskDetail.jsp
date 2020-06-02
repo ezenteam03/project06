@@ -55,7 +55,7 @@
 			$("#cform").submit();												
 		});	
 
-		var ino ="${param.ino};"
+		var ino ="${param.ino}"
 		$("#combt").click(function(){	
 	//			$(location).attr("href","${path}/risk.do?method=comment&ino="+ino);	
 				$("#form").submit();										
@@ -72,6 +72,10 @@
 		/* 수정, 해결방안 권한 */
 		var mno="${mno}"; // 로그인한 사원번호
 		var rmno="${risk.mno}"; // 작성자 사원번호
+		var method = "${chkreply}";
+		if(method=="1"){
+			$(location).attr("href","${path}/risk.do?method=comment&ino="+ino);
+		}
 	
 		if(mno==rmno){		
 			// 작성자
