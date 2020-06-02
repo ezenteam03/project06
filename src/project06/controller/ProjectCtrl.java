@@ -61,13 +61,12 @@ public class ProjectCtrl {
 		prservice.proIns(insp);
 		//방금 추가한 프로젝트를 불러오기
 		insertedp = prservice.getProjectformno(mno); 
-		
 		//inspe.setEno(mno);
 		inspe.setPno(insertedp.getPno());
 		//회원의 PM 권한변경 수행
 		peservice.updatePm(inspe);
 		
-		return "WEB-INF\\views\\main\\dashceo.jsp";
+		return "forward:/DashTeam.do?method=list";
 	}
 	
 
