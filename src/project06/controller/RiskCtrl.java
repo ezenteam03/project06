@@ -121,10 +121,10 @@ public class RiskCtrl {
 		}
 		// 댓글입력
 		@RequestMapping(params="method=cinsert")
-		public String cinsert(Comment insert) {
-
-			service.cinsert(insert);			
-			insert.setDetail("");
+		public String cinsert(Comment insert, Model d) {
+			
+			service.cinsert(insert);
+			d.addAttribute("chkreply", 1);
 			
 			return "forward:/risk.do?method=comment";
 			

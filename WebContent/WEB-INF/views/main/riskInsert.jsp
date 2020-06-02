@@ -39,20 +39,17 @@
 	$(document).ready(function(){
 		<%-- 
 		
-		--%>		
-		var isT= "${param.title}";
-			
-		if(isT!=""){				
-			alert("등록이 되었습니다");
-			$(location).attr("href","${path}/risk.do?method=list");				
-		}
-		
 		
 		$("#regBtn").click(function(){		
 			if(confirm("등록합니다.")){
 				$("form").submit();					
 			}
 		});	
+		--%>		
+		
+		
+		
+		
 		$("#goMain").click(function(){			
 			if(confirm("조회 화면 이동 합니다.")){
 				$(location).attr("href","${path}/risk.do?method=list");			
@@ -62,7 +59,21 @@
 			$(this).next(".custom-file-label").text($(this).val());
 		});
 		
-		
+		  $("#regBtn").click(function(){
+		    	if($("#title").val() == ""){
+		    		alert("제목을 입력하세요");
+		    	}else if($("#detail").val() == ""){
+		    		alert("내용을 입력하세요");
+		    	}else{
+					$("#insform").submit();	
+		    	}
+		    });
+		  var isT= "${param.title}";
+			
+			if(isT!=""){				
+				alert("등록이 되었습니다");
+				$(location).attr("href","${path}/risk.do?method=list");				
+			}
 	});
 </script>
 </head>
@@ -77,7 +88,7 @@
     </div>
 	<div class="container">
 		<form method="post" enctype="multipart/form-data"
-		 	action="${path}/risk.do?method=insert">
+		 	action="${path}/risk.do?method=insert" id="insform">
 		 	<input name="mno" type="hidden" value="${mno}"  />	
 		 <c:choose >	
 		 <c:when test="${infor_M.pno ne 0}">
@@ -100,7 +111,7 @@
 		<div class="input-group-prepend">
 			<span class="bg-success text-white input-group-text">제 목</span>
 		</div>		
-		<input name="title" class="form-control" value="${risk.title}" 
+		<input id="title" name="title" class="form-control" value="${risk.title}" 
 			placeholder="제목입력하세요" />	
 		
 	</div>  
@@ -108,7 +119,7 @@
 		<div class="input-group-prepend">
 			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>		
-		<textarea name="detail" rows="10" 
+		<textarea name="detail" rows="10"  id="detail"
 				class="form-control" style="resize:none" 
 				placeholder="내용입력하세요" ></textarea>	
 	</div>		
