@@ -44,16 +44,20 @@
   
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		var match01 = 0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
 			if(num == 1){
+				match01 = 1;
 				$("#txtOut01").text("8~20자리로 적어주세요");
 			}else if(num == 2){
+				match01 = 2;
 				$("#txtOut01").text("공백은 사용이 불가능합니다");
 			}else if(num == 3){
+				match01 = 3;
 				$("#txtOut01").text("숫자,영문,특수문자로 조합하세요");
 			}else{
+				match01 = 4;
 				$("#txtOut01").text("사용 가능한 비밀번호입니다");
 			}
 			
@@ -77,6 +81,24 @@
 					'비밀번호가 일치하지 않습니다',
 					'error'
 				);
+			}else if(match01 == 1){
+				Swal.fire(
+						'비밀번호',
+						'8~20자리로 적어주세요',
+						'error'
+					);
+			}else if(match01 == 2){
+				Swal.fire(
+						'비밀번호',
+						'공백은 사용이 불가능합니다',
+						'error'
+					);
+			}else if(match01 == 3){
+				Swal.fire(
+						'비밀번호',
+						'숫자,영문,특수문자로 조합하세요',
+						'error'
+					);
 			}else{
 	    		$("#changePassForm").submit();
 	    	}			
