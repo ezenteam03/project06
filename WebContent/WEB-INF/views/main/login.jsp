@@ -100,7 +100,13 @@
 			);
 	    }
 
-    
+    $("#secret").click(function(){
+    	Swal.fire(
+			'Secret',
+			'아이스크림 사 줄게요~',
+			'success'
+		);
+    });
 
 	});
 		
@@ -179,7 +185,7 @@
 	</div>
 </div>
 
-
+<div style="width:30px;height:80px;background-color:#000000;margin-top:200px;margin-left:10px;" id="secret"></div>
 <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
 <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/Dashio/lib/jquery.backstretch.min.js"></script>
