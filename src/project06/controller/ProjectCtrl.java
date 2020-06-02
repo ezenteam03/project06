@@ -67,7 +67,7 @@ public class ProjectCtrl {
 		//회원의 PM 권한변경 수행
 		peservice.updatePm(inspe);
 		
-		return "WEB-INF\\views\\main\\dashceo.jsp";
+		return "forward:/DashTeam.do?method=list";
 	}
 	
 
