@@ -4,8 +4,15 @@ public class NoticeSch {
 	
 // 검색 제목으로만
 	private String title;
+	private int pno;
 	
 	
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	public String getTitle() {
 		return title;
 	}

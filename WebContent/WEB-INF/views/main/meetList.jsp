@@ -85,12 +85,19 @@ function go(mnno){
 	
 	$(location).attr("href", "${path}/meet.do?method=detail&mnno="+mnno);
 }
+function search() {
+	$("#topic").val($("[name=schT]").val());
+	$("form").attr("action","${path}/meet.do?method=list");
+	$("form").submit();
+}
+
 function goPage(no){
-	//alert("이동 번호:"+no);
+	
 	$("#curPage").val(no);
 	$("form").attr("action","${path}/meet.do?method=list");
 	$("form").submit();
 }
+
 	
 </script>
 
@@ -117,15 +124,11 @@ function goPage(no){
                <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
        			<br>
                 <form:form class="form" commandName="msch" method="post" >
-  				<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
-				
+  				<form:hidden path="curPage"/>
+  				<form:hidden path="topic"/> <!-- 현재 클릭한 페이지 번호. -->
 				<br>
-				
 				<div class="input-group lb-3">	
-		<!--<div style="float:left; width:40%;" class="input-group-prepend ">
-			  <span class="input-group-text "> 총 : ${nsch.count} 건</span>
-		</div>-->
-		
+
 		<div style="float:left; width:10%; margin-left:1%;" class="input-group-append">
 			<span class="input-group-text">페이지 크기:</span>
 			<form:select path="pageSize" class="form-control">
@@ -139,9 +142,9 @@ function goPage(no){
 		
 		<div style="float:right;margin-right:1%; " class="input-group-prepend ">
 			<nav class="navbar navbar-expand-sm  navbar-dark">
-  				<form:input class="form-control mr-sm-2 sch" 
-	    			path="topic" placeholder="제목" />
-	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+  				<input class="form-control mr-sm-2 sch" 
+	    			name="schT" placeholder="제목" />
+	    		<button onclick="search()" class="btn btn-success" type="submit">Search</button>&nbsp;
 	    	</nav>
   		</div>
 	</div>  

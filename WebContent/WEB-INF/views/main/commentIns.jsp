@@ -22,6 +22,14 @@
 		
 		--%>
 	
+		 $("#cmtBtn").click(function(){
+		    	if($("#detxt").val() == ""){
+		    		alert("입력된 내용이 없습니다.");
+		    	}else{
+					$("#cform").submit();	
+		    	}
+		  });
+		
 		var isD= "${param.detail}";
 		if(isD!=""){
 			alert("등록이 되었습니다");
@@ -29,6 +37,7 @@
 			window.close();
 			
 		}
+		
 	});
 		
 </script>
@@ -50,12 +59,13 @@
 			<span class="bg-info text-white input-group-text">댓글</span>
 		</div>	
 		<textarea  rows="5" style="resize:none; "
-			class="form-control" name="detail"
+			class="form-control" name="detail" id="detxt"
 			placeholder="내용입력하세요" >${comment.detail}</textarea>	
 			 
 	</div> 
 	<div style="text-align:right;" >
-			<button class="btn bg-warning" id="cmtBtn">입력</button>
+			<input type="button" class="btn btn-info"
+			value="입력" id="cmtBtn"/>
 	</div>	
 	</div></form>
 </body>

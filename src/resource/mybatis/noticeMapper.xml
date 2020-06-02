@@ -8,7 +8,7 @@
 		<select id="totCnt" resultType="int" parameterType="nsch" >
 				select count(*) 
 				from pmsnotice 
-				where 1=1
+				where 1=1 and pno=#{pno}
 				<if test="title!=null and title!=''">
 				and title like '%'||#{title}||'%'
 				</if>
@@ -19,7 +19,7 @@
  		FROM(
 			select ROW_NUMBER() OVER(ORDER BY nno desc) cnt, p.* 
 			FROM pmsnotice p
-		WHERE 1=1
+		WHERE 1=1 and pno=#{pno}
 		<if test="title!=null and title!=''">
 		and title like '%'||#{title}||'%'
 		</if>

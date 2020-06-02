@@ -90,6 +90,12 @@
 		 WHERE tno = #{tno}
  	</delete>
  	
+ 	<delete id="deleteFile" parameterType="int">
+		DELETE FROM pmstfile
+		 WHERE tno = #{tno}
+ 	</delete>
+ 	
+ 	
  	<!-- 제목, 내용, 담당자 수정  / 결재, 반려
  	pstart = #{pstart},
 	pend = #{pend}-->

@@ -71,6 +71,7 @@ public class WorkService2 {
 		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
 
 		if(sch.getCurPage()==0) {
+			System.out.println("현제 페이지 = "+sch.getCurPage());
 			sch.setCurPage(1);
 		}
 
@@ -111,8 +112,9 @@ public class WorkService2 {
 	}
 	public void deleteTask(int no) {
 		// 해당 업무 글 삭제
+		dao.deleteFile(no);
 		dao.deleteTask(no);
-		//dao.deleteFile(no);
+		
 	}
 	
 	public void coment(Task upt) {

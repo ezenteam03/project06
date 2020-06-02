@@ -50,16 +50,14 @@
 		});
 		
 				
-		$("#cmtBtn").click(function(){		
-			alert("등록이 되었습니다");
-			$("#cform").submit();												
-		});	
+	
 
-		var ino ="${param.ino};"
+		var ino ="${param.ino}"
 		$("#combt").click(function(){	
-	//			$(location).attr("href","${path}/risk.do?method=comment&ino="+ino);	
 				$("#form").submit();										
 		});	
+						
+		
 		var ri="${ri}";
 		var co="${co}";
 		if(co == 1){
@@ -72,6 +70,10 @@
 		/* 수정, 해결방안 권한 */
 		var mno="${mno}"; // 로그인한 사원번호
 		var rmno="${risk.mno}"; // 작성자 사원번호
+		var method = "${chkreply}";
+		if(method=="1"){
+			$(location).attr("href","${path}/risk.do?method=comment&ino="+ino);
+		}
 	
 		if(mno==rmno){		
 			// 작성자
@@ -126,7 +128,14 @@
 			$("#coment").attr('readOnly',false);
 		}	
 		
-	
+		  $("#cmtBtn").click(function(){
+		    	if($("#detxt").val() == ""){
+		    		alert("입력된 내용이 없습니다.");
+		    	}else{
+		    		alert("등록이 되었습니다");
+					$("#cform").submit();	
+		    	}
+		  });
 		
 		
 	});
@@ -258,7 +267,8 @@
 			 
 	</div> 
 	<div style="text-align:right;" >
-			<button class="btn bg-warning" id="cmtBtn">입력</button>
+			<input type="button" class="btn btn-info"
+			value="입력" id="cmtBtn"/>
 	</div>	
 	<div class="col-md-12 mt" style="width:100%">
     	<div class="content-panel" style="padding: 0px; ">

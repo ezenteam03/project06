@@ -34,6 +34,7 @@ public interface WorkDao2 {
 	public void insert(Task ins);
 	
 	public void deleteTask(int no);	
+	public void deleteFile(int no);	
 	
 	public Task getTask(int no);
 	

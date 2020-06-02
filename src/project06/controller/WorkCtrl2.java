@@ -162,17 +162,9 @@ public class WorkCtrl2 {
 			
 			PmsMember pmsm =(PmsMember)session.getAttribute("infor_M");
 			pmsempSch pmssch = new pmsempSch();
-			
-			
-			
+
 			d.addAttribute("pno",pmsm.getPno());
 			d.addAttribute("mdiv",pmsm.getMdiv());
-			
-			//sch.setMno(emp.getMno()); 
-			//sch.setPno(emp.getPno());
-			
-			
-			
 
 			pmsemp emp =(pmsemp)session.getAttribute("emp");
 	
