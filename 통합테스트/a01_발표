@@ -1,0 +1,8 @@
+웹구현 : http://192.168.4.222:5080/project06/login.do?method=base
+
+테스트용 계정
+
+일반(내 업무/게시판/이슈) : 201910002/123456a!
+PM(프로젝트) : 201910001/123456a!
+ceo(전체Dashboard/상세Dashboard/게시판/이슈) : ceo/123456a!
+admin(사원관리) : admin/123456a!
