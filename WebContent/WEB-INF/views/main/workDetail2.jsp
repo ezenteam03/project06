@@ -86,9 +86,6 @@
 			
 		});
 		$("#uptBtn").click(function(){
-			var a = $("[name=mem_no]").val();
-			
-			alert(a);
 			if(confirm("수정하시겠습니까?")){
 				$("#deForm").attr("action","${path}/task.do?method=update");
 				$("#deForm").submit();

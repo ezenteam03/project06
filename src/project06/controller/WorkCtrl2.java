@@ -88,6 +88,11 @@ public class WorkCtrl2 {
 		
 		@RequestMapping(params="method=update")
 		public String update(Task upt, @RequestParam("mem_no") int mno) {
+			System.out.println("tno"+upt.getTno());
+			System.out.println("mem no "+upt.getMno());
+			System.out.println("tname "+upt.getTname());
+			System.out.println("detail "+upt.getDetail());
+			
 			service.update(upt);
 			return "forward:/task.do?method=detail";
 		}	
@@ -186,7 +191,9 @@ public class WorkCtrl2 {
 		public String insert(Task ins, Model d, HttpServletRequest request) {
 			HttpSession session = request.getSession();
 			pmsemp emp =(pmsemp)session.getAttribute("emp");
-			
+			//System.out.println("pno : "+ins.getPno());
+			//System.out.println("refno : "+ins.getRefno());
+			//System.out.println(""+);
 			service.insert(ins);
 			return "redirect:/task.do?method=list";
 		}
@@ -208,21 +215,24 @@ public class WorkCtrl2 {
 			
 			pe.setPno(pmsm.getPno());
 			
-			d.addAttribute("pmsElist",peservice.pmsElist(pe));
+			
 			
 			d.addAttribute("grade", pe.getGrade());
 			d.addAttribute("mname", pe.getName());
-			
 			d.addAttribute("minfo", pmsm.getMno());
-			
 			d.addAttribute("mdiv", pmsm.getMdiv());
 			
+			
 			sch.setRefno(Taskinfo.getRefno());
-			System.out.println("ref : "+Taskinfo.getRefno());
+			Taskinfo.setMdiv(pmsm.getMdiv());
+			sch.setMdiv(pmsm.getMdiv());
+			pe.setMdiv(pmsm.getMdiv());
+			
+			
 			
 			d.addAttribute("task", service.getTask(no));
 			d.addAttribute("ref",service.getrefno(sch));
-
+			d.addAttribute("pmsElist",peservice.pmsElist(pe));
 			return "WEB-INF\\views\\main\\workDetail2.jsp";
 		}
 		

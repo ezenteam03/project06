@@ -68,9 +68,11 @@
 		var mdiv = "${mdiv}";
 		//console.log("mdiv : "+mdiv);
 		
-		if(mdiv != 6){
-			$("#selecPno").attr('disabled',true);
-			$("#selecPno").css('background','white');
+		if(mdiv == 6){
+			$("#selecPno").attr('onFocus',true);
+			$("#selecPno").attr('onChange',true);
+			
+			//$("#selecPno").css('background','white');
 		}
 		
 		$("#regBtn").click(function(){
@@ -142,7 +144,9 @@
 			<span class="bg-info text-white input-group-text">프로젝트번호</span>
 		</div>
 		<div id="adminPno">
-			<select class="form-control" style="width:300px;float:left; " name="pno" id="selecPno">
+			<select class="form-control" style="width:300px; float:left;" name="pno" id="selecPno" 
+			onFocus='this.initialSelect = this.selectedIndex;'
+			onChange='this.selectedIndex = this.initialSelect;'>
 					<c:forEach items="${pnolist}" var="pno" varStatus="sts" >
 						<option value="${pno }">${pno }</option>									
 					</c:forEach>				
