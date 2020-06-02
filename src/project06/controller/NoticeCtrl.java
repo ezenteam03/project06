@@ -1,19 +1,14 @@
 package project06.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
 
-import project06.service.NoticeService;
-import project06.vo.Notice;
-import project06.vo.NoticeSch;
-import project06.vo.Risk;
+import project06.service.*;
+import project06.vo.*;
 
 @Controller
 @RequestMapping("/notice.do")
@@ -35,7 +30,8 @@ public class NoticeCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		
+		PmsMember m = (PmsMember) session.getAttribute("infor_M");
+		sch.setPno(m.getPno());
 		d.addAttribute("nlist", service.list(sch));
 		return "WEB-INF\\views\\main\\noticeList.jsp";
 	}
