@@ -22,7 +22,7 @@
 	</select>
 	<insert id="cinsert" parameterType="comment">
 		INSERT INTO PMSREPLY VALUES(pmsreply_seq.nextval,#{refno},
-		NVL(#{detail},'내용없음'),sysdate,#{mno},#{ino})
+		#{detail},sysdate,#{mno},#{ino})
 	</insert>
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM PMSREPLY
