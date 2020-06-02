@@ -124,7 +124,9 @@ public class RiskCtrl {
 		public String cinsert(Comment insert) {
 
 			service.cinsert(insert);			
-			insert.setDetail("");
+			System.out.println("================================");
+			System.out.println("댓글이 입력되고 있음...");
+			System.out.println("================================");
 			
 			return "forward:/risk.do?method=comment";
 			

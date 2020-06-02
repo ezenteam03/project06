@@ -55,9 +55,9 @@
 			$("#cform").submit();												
 		});	
 
-		
+		var ino ="${param.ino};"
 		$("#combt").click(function(){	
-				$(location).attr("href","${path}/risk.do?method=comment");	
+	//			$(location).attr("href","${path}/risk.do?method=comment&ino="+ino);	
 				$("#form").submit();										
 		});	
 		var ri="${ri}";
@@ -233,6 +233,7 @@
 	</div>
 	
 	<br>
+		<input type="button" value="댓글창 열기" id="combt">
 	</form>
 	
 	
@@ -244,7 +245,7 @@
 			 value="${risk.ino}" />	 		  	
 	  	 <input name="mno" type="hidden"
 			 value="${mno}" />		  	
-	<input type="button" value="댓글창 열기" id="combt">
+
 	<!-- 댓글 -->
 	<div id="comment">
 	<div class="input-group mb-3">
