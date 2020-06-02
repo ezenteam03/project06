@@ -9,6 +9,8 @@ FROM pmsemp pe, pmsmember pm, PMSCODES pc
 WHERE pe.ENO = pm.MNO 
 AND pm.MDIV = pc.cno;
 SELECT * FROM PMSPROJECT;
+SELECT * FROM pmstask
+ORDER BY tno;
 
 DELETE FROM pmsproject 
 WHERE pno = 1003 

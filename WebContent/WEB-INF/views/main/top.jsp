@@ -163,7 +163,8 @@ th{text-align:center;}
 </style>
 
 <script type="text/javascript">
-	var pno = ${infor_M.pno};
+	var pno = "${infor_M.pno}";
+	var mno = "${infor_M.mno}";
 	function popup() { 
 		window.open("${path}/logList.do?method=list&pno="+pno, "participants", "width=780, height=500, left=300, top=100");
 		//http://192.168.4.230:7080/project06_git/main.do
@@ -176,10 +177,10 @@ th{text-align:center;}
 	}
 	
 	$(document).ready(function(){
-		//var isLogin = ${infor_M.pass};
-		//if(isLogin==null) {
-		//	$(location).attr("href","${path}/main.do");
-		//}
+		if(pno==""){
+			alert("로그인이 필요합니다.");
+			$(location).attr("href","${path}/main.do");
+		}
 		var check01=0;
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
@@ -358,7 +359,7 @@ th{text-align:center;}
 			if (result.value) {
 				//$("#inforCheckForm").attr("action","${path}/PmsMember.do?method=logout");
 				//$("#inforCheckForm").submit();
-				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+${infor_M.mno});
+				$(location).attr("href","${path}/PmsMember.do?method=logout&mno="+mno);
 			}
 		});
 	}	
