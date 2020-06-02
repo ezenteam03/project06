@@ -89,10 +89,13 @@ public class WorkCtrl2 {
 		@RequestMapping(params="method=update")
 		public String update(Task upt, @RequestParam("mem_no") int mno) {
 			System.out.println("tno"+upt.getTno());
-			System.out.println("mem no "+upt.getMno());
+			
+			System.out.println("mem no "+mno);
 			System.out.println("tname "+upt.getTname());
 			System.out.println("detail "+upt.getDetail());
 			
+			upt.setMno(mno);
+			System.out.println("mem no "+upt.getMno());
 			service.update(upt);
 			return "forward:/task.do?method=detail";
 		}	
@@ -224,8 +227,8 @@ public class WorkCtrl2 {
 			
 			
 			sch.setRefno(Taskinfo.getRefno());
-			Taskinfo.setMdiv(pmsm.getMdiv());
-			sch.setMdiv(pmsm.getMdiv());
+			//Taskinfo.setMdiv(pmsm.getMdiv());
+			//sch.setMdiv(pmsm.getMdiv());
 			pe.setMdiv(pmsm.getMdiv());
 			
 			
