@@ -125,7 +125,7 @@ public class RiskCtrl {
 
 			service.cinsert(insert);			
 			insert.setDetail("");
-			return "redirect:/risk.do?method=comment";
+			return "forward:/risk.do?method=comment";
 		}
 		// 댓글 삭제
 		@RequestMapping(params="method=delete")
@@ -135,15 +135,9 @@ public class RiskCtrl {
 		}
 		// 댓글 상세
 		@RequestMapping(params="method=cdetail")
-		public String cdetail(@RequestParam("rno") int rno, Model d,HttpServletRequest request) {
+		public String cdetail(@RequestParam("rno") int rno, Model d) {
 			
-			HttpSession session = request.getSession();
-			PmsMember emp =(PmsMember)session.getAttribute("infor_M");
-			if(emp.getMdiv()==6) {
-				d.addAttribute("ri", 4);
-			}else {
-				d.addAttribute("ri", 5);
-			}
+		
 			
 			d.addAttribute("comment", service.getComment(rno));
 			return "WEB-INF\\views\\main\\comment.jsp";

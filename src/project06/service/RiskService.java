@@ -48,28 +48,20 @@ public class RiskService {
 		// 2. 페이지 초기값
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
-		}
-		
-		
+		}				
 		if(sch.getCurPage()==0) {
 			sch.setCurPage(1);
-		}
-	
+		}	
 		// 3. 총페이지 수 : 총건수/한번에 보여줄 데이터
-		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
-		
+		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));		
 		// 시작번호 : 총데이터 건수 - (현재 페이지 번호-1)*한번에 보여줄 페이지 크기-한번에 보여줄 페이지 크기+1
 		sch.setStart(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize()-sch.getPageSize()+1);
 		// 마지막번호: 총데이터 건수 - (현재 페이지 번호-1)*한번에 보여줄 페이지 크기
-		sch.setEnd(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize());
-		
-	
+		sch.setEnd(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize());			
 		// block을 위한 속성값 설정.
 		// 1. 초기 block size(한번에 보일 block의 크기) 설정.
-		sch.setBlocksize(5);
-		
-		int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());
-		
+		sch.setBlocksize(5);		
+		int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());		
 		int endBlock = blocknum*sch.getBlocksize();
 		sch.setEndBlock(endBlock>sch.getPageCount()?
 						sch.getPageCount():endBlock);
