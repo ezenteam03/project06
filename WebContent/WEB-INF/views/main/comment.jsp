@@ -35,13 +35,12 @@
 	});
 		var mno="${param.mno}"; // 로그인한 사원번호
 		var cmno="${comment.mno}"; // 작성자 사원번호
-		var ri="${ri}";
-		if(ri!=4){			
+		
 			if(mno!=cmno){
 				alert("수정권한이 없습니다.");
 				window.close();
 		}
-	}
+	
 });
 		
 </script>
@@ -58,7 +57,7 @@
 			
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="bg-info text-white input-group-text">작성자${mno}</span>
+				<span class="bg-info text-white input-group-text">작성자</span>
 			</div>
 			<input type="text" class="form-control" value="${comment.name}" readonly="readonly"/>
 		</div>
