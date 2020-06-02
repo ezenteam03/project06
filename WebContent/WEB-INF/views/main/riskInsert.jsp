@@ -106,7 +106,7 @@
 	</div>  
 	<div class="input-group mb-3">				
 		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">${risk.pno}내 용${mno}</span>
+			<span class="bg-info text-white input-group-text">내 용</span>
 		</div>		
 		<textarea name="detail" rows="10" 
 				class="form-control" style="resize:none" 

@@ -116,7 +116,7 @@ public class RiskCtrl {
 		public String clist(@ModelAttribute("rsch")RiskSch sch, Model d) {
 			d.addAttribute("clist", service.clist(sch));
 			d.addAttribute("co", 1);
-			
+						
 			return "forward:/risk.do?method=detail";
 		}
 		// 댓글입력
@@ -125,7 +125,9 @@ public class RiskCtrl {
 
 			service.cinsert(insert);			
 			insert.setDetail("");
+			
 			return "forward:/risk.do?method=comment";
+			
 		}
 		// 댓글 삭제
 		@RequestMapping(params="method=delete")
