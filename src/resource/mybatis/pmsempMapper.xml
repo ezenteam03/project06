@@ -145,6 +145,12 @@
 		SET mdiv=4, pno=#{pno}
 		WHERE mno=#{eno}
 	</update>
+	<!-- 전현규 - PM 권한 부여 -->
+	<update id="updatePm1_1" parameterType="pmsemp">
+		UPDATE pmsmember
+		SET mdiv=4, pno=null
+		WHERE mno=#{eno}
+	</update>
 	<update id="updatePm3" parameterType="pmsemp">
 		UPDATE pmstask
 		SET mno=#{eno}
