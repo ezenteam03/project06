@@ -139,10 +139,10 @@ $(document).ready(function(){
 			value="수정" id="uptBtn"/>
 		<input type="button" class="btn btn-danger"
 			value="삭제" id="delBtn"/>		
-			
+	</div>		
 		<input type="button" class="btn btn-success"
 			value="조회 화면으로" id="goMain"/>
-	</div>
+	
 	</form>
 </div>	  
        

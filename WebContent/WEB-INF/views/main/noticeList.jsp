@@ -93,6 +93,11 @@ function go(nno){
 	$(location).attr("href", "${path}/notice.do?method=detail&nno="+nno);
 }
 
+function search() {
+	$("#title").val($("[name=schT]").val());
+	$("form").attr("action","${path}/notice.do?method=list");
+	$("form").submit();
+}
 
 function goPage(no){
 	
@@ -116,13 +121,12 @@ function goPage(no){
          <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel" id="reg">
-              <form method="post">
-					<input type="hidden" name="curPage"/>
-				</form>
-	            <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
+                <h4><i class="fa fa-bullhorn"></i>&ensp;  공지사항 </h4>
                 <br>
+                
     <form:form class="form" commandName="nsch" method="post" >
   		<form:hidden path="curPage"/> <!-- 현재 클릭한 페이지 번호. -->
+  		<form:hidden path="title"/> <!-- 현재 클릭한 페이지 번호. -->
   		<br>
  	<div class="input-group lb-3">	
 		
@@ -138,10 +142,11 @@ function goPage(no){
 		</div>
 		
 		<div style="float:right;margin-right:1%; " class="input-group-prepend ">
+               
 			<nav class="navbar navbar-expand-sm  navbar-dark">
-  				<form:input class="form-control mr-sm-2 sch" 
-	    			path="title" placeholder="제목" />
-	    		<button class="btn btn-success" type="submit">Search</button>&nbsp;
+  				<input class="form-control mr-sm-2 sch" 
+	    			name="schT" placeholder="제목" />
+	    		<button onclick="search()" class="btn btn-success" type="submit">Search</button>&nbsp;
 	    	</nav>
   		</div>
 	</div>  
