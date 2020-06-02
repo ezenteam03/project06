@@ -181,10 +181,13 @@ th{text-align:center;}
 		$("#pass01").keyup(function(){
 			var num = checkPW($(this).val());
 			if(num == 1){
+				check01 = 11;
 				$("#txtOut").text("8~20자리로 적어주세요");
 			}else if(num == 2){
+				check01 = 12;
 				$("#txtOut").text("공백은 사용이 불가능합니다");
 			}else if(num == 3){
+				check01 = 13;
 				$("#txtOut").text("숫자,영문,특수문자로 조합하세요");
 			}else{
 				check01=1;
@@ -195,11 +198,17 @@ th{text-align:center;}
 		
 		var check02=0;
 		$("#pass02").keyup(function(){
-			if($("#pass01").val() == $(this).val()){
-				check02=1;
-				$("#txtOut").text("비밀번호가 일치합니다.");
+			if(check01 == 1) {
+				if($("#pass01").val() == $(this).val()){
+					check02=1;
+					$("#txtOut").text("비밀번호가 일치합니다.");
+				}else{
+					check02 = 21;
+					$("#txtOut").text("비밀번호가 일치하지 않습니다.");
+				}
 			}else{
-				$("#txtOut").text("비밀번호가 일치하지 않습니다.");
+				check02 = 22;
+				$("#txtOut").text("위의 비밀번호를 다시 입력하세요.");
 			}
 		});
 		
@@ -211,9 +220,60 @@ th{text-align:center;}
 			$("#inforCheckForm").submit();
 		});
 		
+		$("#con").change(function(){
+			check02 = 100;
+		});
+		$("[name=ck]").change(function(){
+			check02 = 100;
+		});
+		
 		$("#updateBtn").click(function(){
-			if(check01 == 1 && check02 == 1){
+			if(check01 == 11){
+				Swal.fire(
+						'비밀번호',
+						'8~20자리로 적어주세요',
+						'error'
+					);
+			}else if(check01 == 12){
+				Swal.fire(
+						'비밀번호',
+						'공백은 사용이 불가능합니다',
+						'error'
+					);
+			}else if(check01 == 13){
+				Swal.fire(
+						'비밀번호',
+						'숫자,영문,특수문자로 조합하세요',
+						'error'
+					);
+			}else if(check02 == 21){
+				Swal.fire(
+						'비밀번호',
+						'비밀번호가 일치하지 않습니다',
+						'error'
+					);
+			}else if(check02 == 22){
+				Swal.fire(
+						'비밀번호',
+						'위의 비밀번호를 다시 입력하세요',
+						'error'
+					);
+			}
+			else if(check01 == 0 && check02 == 0){
+				Swal.fire(
+						'개인정보 수정',
+						'수정된 내용이 없습니다.',
+						'info'
+					);
+			}else if(check02 == 1){
 				$("#updateInforForm").submit();
+			}else if(check02 == 100){
+				if($("#pass02").val() == ""){
+					$("#pass02").val("${infor_M.pass}");
+					$("#updateInforForm").submit();
+				}else{
+					$("#updateInforForm").submit();
+				}
 			}
 		});
 		
@@ -484,7 +544,8 @@ th{text-align:center;}
 			<div>
 				<input type="radio" value="remember-me" name="ck" id="ckPhone" style="margin-left:1%;">전화번호&nbsp;
 				<input type="radio" value="remember-me" name="ck" id="ckMail" style="margin-left:1%;">이메일
-			</div>	
+			</div>
+			<div>수정된 정보의 확인은 다시 로그인 후 반영됩니다.</div>	
 
 		</div>
 		
