@@ -42,7 +42,7 @@
 		var mdiv = "${mdiv}";
 		var tdiv = "${task.tdiv}";
 		
-		var emno = "${minfo}";
+		var emno = "${minfo}"; 
 		var tmno = "${task.mno}";
 		
 		var refno = "${task.refno}";
@@ -118,9 +118,10 @@
 		
 		$("#progBtn").click(function(){
 			var prog = $('input[name=prog]').val();
-
-			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 ||
-			emno == tmno && refno != tno && refno != 0 && mdiv == 6){
+			
+			// emno 로그인 mno // tmno 담당자mno
+			
+			if(emno == tmno && refno != tno && refno != 0 && mdiv == 4 || refno == 0){
 				alert("진행률을 수정 할 수 없는 업무입니다.");
 			}
 			else if(prog > 100 || prog < 1){
