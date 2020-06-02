@@ -65,16 +65,13 @@ public class pmsempService {
 		
 		// 기존 CEO 권한변경 후 새로운 CEO에게 권한 부여
 		public void updateCeo(pmsemp updateCeo) {
-			System.out.println("updateCeo 진입");
 			int isMem = rep.memCheck(updateCeo);
-			System.out.println(isMem);
 			if(isMem==0) {
 				// 기존 CEO권한 변경
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
 				// 새로운 CEO Member등록
 				ranNum = makePass("");
-				System.out.println(ranNum);
 				updateCeo.setPass(ranNum);				
 				rep.insertCeo1(updateCeo);
 				try {
@@ -93,18 +90,19 @@ public class pmsempService {
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
-			System.out.println("isMem : "+isMem);
 			if(isMem==0) {
 				// 기존 CTO권한 변경
 				rep.updatepmsemp2();
 				// 새로운 CTO Member등록
-				updateCto.setPass(makePass("1234qwer!"));
-				System.out.println("service eno:"+updateCto.getEno());
-				System.out.println("service pass:"+updateCto.getPass());
-				System.out.println("service phone:"+updateCto.getPhone());
-				System.out.println("service pno:"+updateCto.getPno());
-				System.out.println("service mdiv:"+updateCto.getMdiv());
+				ranNum = makePass("");
+				updateCto.setPass(ranNum);
 				rep.insertMem1(updateCto);
+				try {
+					sendMail(updateCto.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updatepmsemp2();
 				rep.updatepmsemp1(updateCto);	
@@ -112,17 +110,21 @@ public class pmsempService {
 		}
 		// 기존 PM 권한변경 후 새로운 PM에게 권한 부여
 		public void updatePm(pmsemp updatePm) {
-			System.out.println("service PM설정");
 			int isMem = rep.memCheck(updatePm);
-			System.out.println("isMem : "+isMem);
-			System.out.println("updatePmpno : "+updatePm.getPno());
 			if(isMem==0) {
 				// 기존 PM권한 변경
 				rep.updatePm2(updatePm);
 				// 새로운 PM Member등록
-				updatePm.setPass(makePass("1234qwer!"));
+				ranNum = makePass("");
+				updatePm.setPass(ranNum);
 				if(updatePm.getPno()==0) rep.insertMem3(updatePm);
 				else rep.insertMem2(updatePm);
+				try {
+					sendMail(updatePm.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updatePm2(updatePm);
 				if(updatePm.getPno()==0) rep.updatePm1_1(updatePm);	
@@ -197,15 +199,15 @@ public class pmsempService {
 		public void insPm(pmsemp insertPm) {
 			int isMem = rep.memCheck(insertPm);
 			if(isMem==0) {
-				System.out.println(makePass("1234qwer!"));
-				insertPm.setPass(makePass("1234qwer!"));
-				
-				System.out.println("get eno : "+insertPm.getEno());
-				System.out.println("get phone : "+insertPm.getPhone());
-				System.out.println("get pass : "+insertPm.getPass());
-				System.out.println("get pno : "+insertPm.getPno());
-				
+				ranNum = makePass("");
+				insertPm.setPass(ranNum);
 				rep.insPNum(insertPm);
+				try {
+					sendMail(insertPm.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updPNum(insertPm);
 			}
