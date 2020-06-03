@@ -84,7 +84,7 @@
 	</update> 	
  	
  	<insert id="insFileInfo" parameterType="java.util.HashMap"> 
- 		insert into PMSBFILE values(pmsbfile_seq.nextval,null,${mnno},
+ 		insert into PMSBFILE values(pmsbfile_seq.nextval,${mnno},null,
  			#{tar}, sysdate)
 	</insert>
  

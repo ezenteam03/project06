@@ -60,17 +60,17 @@ public class MeetService {
 		
 		dao.insert(insert);
 		// 파일 업로드 내용..
-		//for(MultipartFile report:insert.getReport()) {
+		for(MultipartFile report:insert.getReport()) {
 			// 물리적 파일 정리
-		//	upload(report);
+			upload(report);
 			
-		//}
+		}
 	}
 	public void update(Meet update) {
 		
 		dao.updateMeet(update);
 		// 파일 수정 정보 처리
-		//upload3(update);
+		upload3(update);
 	}	
 	
 /* 수정전	
