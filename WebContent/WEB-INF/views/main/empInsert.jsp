@@ -145,17 +145,17 @@
 			      <li class="page-item disabled">
 			        <a class="page-link" href="javascript:goPage(${pmsempsch.startBlock-1});">&laquo;</a>
 			      </li>
-				    <c:forEach var="cnt" begin="${pmsempsch.startBlock}" end="${pmsempsch.endBlock}">
-					  <li class="page-item ${pmsempsch.curPage==cnt?'active':''}">				  
-					  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a>
-					  </li>
+				  <c:forEach var="cnt" begin="${pmsempsch.startBlock}" end="${pmsempsch.endBlock}">
+					  <li class="page-item ${pmsempsch.curPage==cnt?'active':''}">
+					  
+					  	<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
 					</c:forEach>    
 			      <li class="page-item">
 			        <a class="page-link" href="javascript:goPage(${(pmsempsch.endBlock==pmsempsch.pageCount)?
 									pmsempsch.endBlock:pmsempsch.endBlock+1});">&raquo;</a>
 			      </li>
 			    </ul>
-			  </div>   
+			  </div>      
               <!-- end -->
             </div>
           <!-- change button -->
