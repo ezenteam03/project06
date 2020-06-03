@@ -37,6 +37,8 @@
 .date {width:15%;}
 .cnt {width:10%;}
 
+#regg{
+	float:right;}
 
 </style>
 <script type="text/javascript">
@@ -134,15 +136,18 @@ $(document).ready(function(){
 	</div> 
 	
 	<br>
-	<div id="regg" v-if="mdiv!=5" style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="수정" id="uptBtn"/>
-		<input type="button" class="btn btn-danger"
-			value="삭제" id="delBtn"/>		
-	</div>		
-		<input type="button" class="btn btn-success"
-			value="조회 화면으로" id="goMain"/>
-	
+	<div>
+		<div id="regg" v-if="mdiv!=5">
+			<input type="button" class="btn btn-info"
+				value="수정" id="uptBtn"/>
+			<input type="button" class="btn btn-danger"
+				value="삭제" id="delBtn"/>		
+		</div>
+		<div float="left">	
+			<input type="button" class="btn btn-success"
+				value="조회 화면으로" id="goMain"/>
+		</div>
+	</div>
 	</form>
 </div>	  
        
