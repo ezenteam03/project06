@@ -12,6 +12,15 @@ public class MeetSch {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
+	private int pno;
+	
+	
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	private int count; // 총데이터 건수.
 	private int pageSize; // 한번에 보여줄 페이지 크기..
 	private int pageCount; // 총 페이지 수. count/pageSize

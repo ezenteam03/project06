@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project06.service.MeetService;
 import project06.vo.Meet;
 import project06.vo.MeetSch;
-import project06.vo.Notice;
+import project06.vo.PmsMember;
 
 @Controller
 @RequestMapping("/meet.do")
@@ -33,8 +33,11 @@ public class MeetCtrl {
 		if(session.getAttribute("mno")==null) {
 			return "WEB-INF\\views\\main\\login.jsp";
 		}
-		d.addAttribute("tot", service.getTot(sch));
+		PmsMember m = (PmsMember) session.getAttribute("infor_M");
+		sch.setPno(m.getPno());
 		d.addAttribute("mlist", service.list(sch));
+		d.addAttribute("tot", service.getTot(sch));
+		//d.addAttribute("mlist", service.list(sch));
 		return "WEB-INF\\views\\main\\meetList.jsp";
 	}
 	// 상세페이지
