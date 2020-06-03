@@ -78,8 +78,6 @@
 				  if (result.value) {
 					var sdatestr = $("[name=pro_sdate]").val();
 					var deadlinestr = $("[name=pro_dline]").val();
-					//console.log(sdatestr);
-					//console.log(deadlinestr);
 					if(sdatestr != ''){
 					var sdate = new Date(sdatestr);
 					sdate = sdate.getTime();
@@ -90,7 +88,8 @@
 					deadline = deadline.getTime();
 					}
 				
-					if($("[name=pro_pname]").val()=='' || $("[name=pro_pname]").val()==null){
+					if($("[name=pro_pname]").val()=='' || 
+							$("[name=pro_pname]").val()==null){
 						Swal.fire(
 					      '입력 데이터 문제',
 					      '프로젝트 명을 입력해주세요.',
