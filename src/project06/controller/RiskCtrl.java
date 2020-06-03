@@ -55,7 +55,7 @@ public class RiskCtrl {
 	public String insertForm(@ModelAttribute("rsch")RiskSch sch, Model d) {
 		
 		d.addAttribute("pnolist",service.pnolist(sch));
-		System.out.println(service.pnolist(sch));	
+		
 		return "WEB-INF\\views\\main\\riskInsert.jsp";
 	}
 	
