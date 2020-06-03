@@ -32,15 +32,12 @@ public class pmsempService {
 			}
 			sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
 			sch.setEnd(sch.getCurPage()*sch.getPageSize());
-			System.out.println("시작번호:"+sch.getStart());
-			System.out.println("마지막번호:"+sch.getEnd());		
 			// 페이지에 보일 블럭 갯수
 			sch.setBlocksize(5);
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
 			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);	
-			System.out.println("Service pmsempList 실행");
 			return rep.pmsempList(sch);
 		}
 		// CEO, CTO 상세
