@@ -71,6 +71,7 @@ public class pmsempService {
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
 				// 새로운 CEO Member등록
+				rep.updatepmsCeo4(updateCeo);
 				ranNum = makePass("");
 				updateCeo.setPass(ranNum);				
 				rep.insertCeo1(updateCeo);
@@ -81,8 +82,10 @@ public class pmsempService {
 					e.printStackTrace();
 				}
 			}else{
+				// 기존 CEO권한 변경
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
+				// 새로운 CEO 권한 변경
 				rep.updatepmsCeo1(updateCeo);	
 				rep.updatepmsCeo4(updateCeo);	
 			}
