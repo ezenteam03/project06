@@ -177,9 +177,15 @@
 					WHERE a.eno = b.mno and b.mdiv=c.cno
 					AND c.cno =9 
 					AND b.pno is NULL
-					and name LIKE '%'||''||'%'
-					and grade LIKE '%'||''||'%'
-					and dept LIKE '%'||''||'%'
+					<if test="name!=null and name!=''">
+					and name LIKE '%'||#{name}||'%'
+					</if>
+					<if test="grade!=null and grade!=''">
+					and grade LIKE '%'||#{grade}||'%'
+					</if>
+					<if test="dept!=null and dept!=''">
+					and dept LIKE '%'||#{dept}||'%'
+					</if>
 					UNION ALL
 					select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
 							c.CNAME,b.pno
@@ -188,7 +194,8 @@
 				) 
 			ORDER BY eno ASC
 			) pmlist
-		);
+		)
+		WHERE cnt BETWEEN #{start} AND #{end}
 <!-- 	SELECT *
  	FROM(
 			SELECT *
