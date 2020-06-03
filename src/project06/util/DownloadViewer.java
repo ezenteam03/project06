@@ -21,6 +21,9 @@ public class DownloadViewer extends AbstractView {
 	
 	@Value("${upload2}")
 	private String upload2;
+	
+	@Value("${upload3}")
+	private String upload3;
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, 
@@ -31,12 +34,14 @@ public class DownloadViewer extends AbstractView {
 		//		1) 파일을 객체로 생성 처리하여 전달 준비
 		File file = new File(upload+fname);
 		File file2 = new File(upload2+fname);
+		File file3 = new File(upload3+fname);
 		// 2. 다운로드 처리를 위한 response 객체 설정
 		//	1) 파일다운을 처리하기 위한 contentType설정
 		response.setContentType("application/download; charset=UTF-8");
 		//	2) 파일의 길이와 파일명 설정
 		response.setContentLength((int)file.length());
 		response.setContentLength((int)file2.length());
+		response.setContentLength((int)file3.length());
 		//		-한글파일명을 위한 encoding처리
 		fname = URLEncoder.encode(fname,"utf-8").replaceAll("\\+", " ");
 		// 3. Header 정보 설정
