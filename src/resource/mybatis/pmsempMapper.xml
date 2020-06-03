@@ -166,24 +166,30 @@
 	</update>
  	<!-- PM 팀원 추가 리스트 -->
  	<select id="insList" resultMap="pmsempResult" parameterType="pmsempsch">
- 	<!-- SELECT *
- 	FROM(
-			SELECT *
+ 	SELECT *
+	FROM(
+		SELECT rownum cnt, pmlist.* FROM (
+			SELECT *  
 			FROM (
-			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			c.CNAME,b.pno
-			FROM pmsemp a, pmsmember b, pmscodes c
-			WHERE a.eno = b.mno and b.mdiv=c.cno
-			AND c.cno =9 
-			AND b.pno is NULL
-			UNION ALL
-			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+					SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
 					c.CNAME,b.pno
-			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-			where b.mno is NULL AND c.cno=9)
-			ORDER BY eno ASC)
-	WHERE cnt BETWEEN #{start} AND #{end} -->
-	SELECT *
+					FROM pmsemp a, pmsmember b, pmscodes c
+					WHERE a.eno = b.mno and b.mdiv=c.cno
+					AND c.cno =9 
+					AND b.pno is NULL
+					and name LIKE '%'||''||'%'
+					and grade LIKE '%'||''||'%'
+					and dept LIKE '%'||''||'%'
+					UNION ALL
+					select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
+							c.CNAME,b.pno
+					from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+					where b.mno is NULL AND c.cno=9
+				) 
+			ORDER BY eno ASC
+			) pmlist
+		);
+<!-- 	SELECT *
  	FROM(
 			SELECT *
 			FROM (
@@ -218,7 +224,7 @@
 			and dept LIKE '%'||#{dept}||'%'
 			</if>)
 			ORDER BY eno ASC)
-	WHERE cnt BETWEEN #{start} AND #{end} 
+	WHERE cnt BETWEEN #{start} AND #{end}  -->
  	</select>
  	<!-- PM선정 리스트 총인원 -->
  	<select id="selectpmCount" resultType="int" parameterType="pmsempsch">
