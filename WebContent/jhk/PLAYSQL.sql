@@ -25,6 +25,9 @@ SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/m
 		AND pp.pdiv = 11;
 
 SELECT * FROM PMStask;
+UPDATE PMSTASK 
+SET prog=100
+WHERE tno=1008;
 SELECT * FROM PMSEMP pe, PMSMEMBER pm;
 --pno를 기준으로 project정보 가져오기
 SELECT pp.*, TO_CHAR(pp.sdate,'yyyy/mm/dd') sdatestr,TO_CHAR(pp.deadline,'yyyy/mm/dd') deadlinestr,

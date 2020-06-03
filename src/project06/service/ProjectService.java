@@ -26,11 +26,6 @@ public class ProjectService {
 	}
 	
 	public void proIns(Project ins) {
-		System.out.println("pname : "+ins.getPname());
-		System.out.println("sdate : "+ins.getSdatestr());
-		System.out.println("deadline : "+ins.getDeadlinestr());
-		System.out.println("mno : "+ins.getMno());
-		System.out.println("detail : "+ins.getDetail());
 		dao.proIns(ins);
 	}
 }
