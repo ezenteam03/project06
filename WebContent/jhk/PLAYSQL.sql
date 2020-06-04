@@ -105,7 +105,8 @@ FROM
    CONNECT BY PRIOR tno = refno 
   START WITH refno =0;
  ---- 프로젝트 최종 완성본??
- SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL-1)) || prt.tname tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
+ SELECT LEVEL||pt.tdiv "LEVEL",LPAD(' ', 4*(LEVEL-1)) || prt.tname tname,
+ pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 (pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
 FROM PMSPROJECT pp, PMSTASK pt, 
 (SELECT * FROM PMSEMP pe, PMSMEMBER pm
@@ -125,10 +126,18 @@ AND pp.pno = 1001
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
  ----
+SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
+FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
+tno, tname, refno FROM pmstask WHERE pno = 1001)
+CONNECT BY PRIOR tno = refno 
+START WITH refno =0;
+----
  SELECT rank() over (partition BY refno ORDER BY tno) r,
                 tno, tname, refno
   FROM pmstask
- WHERE pno = 1001; 
+ WHERE pno = 1001
+CONNECT BY PRIOR tno = refno 
+START WITH refno =0; 
 --팀원 작업 내역(전)
 SELECT pt.tname, pt.tno, pt.refno, pp.pno, pp.pname, pt.sdate sdateorigin, pt.edate edateorigin, 
 		(pt.sdate-pp.sdate) sdate, (pt.edate-pp.sdate) edate, (pt.prog/100) prog, pem.name name
