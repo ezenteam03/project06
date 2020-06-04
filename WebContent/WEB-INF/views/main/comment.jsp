@@ -26,13 +26,18 @@
 				window.close();
 			}
 		});
-		$("#insbt").click(function(){		
-			if(confirm("수정합니다.")){
-				$("form").submit();	
-				opener.parent.location.reload();
-				window.close();
+		$("#insbt").click(function(){	
+			if($("#detxt").val() == ""){
+	    		alert("입력된 내용이 없습니다.");
+	    	}else if(confirm("수정합니다.")){			
+				$("form").attr("action","${path}/risk.do?method=cupdate&ino="+"${comment.ino}");
+				$("form").submit();					
+				
 		}	
-	});
+		
+			
+	});	
+				
 		var mno="${param.mno}"; // 로그인한 사원번호
 		var cmno="${comment.mno}"; // 작성자 사원번호
 		var md ="${infor_M.mdiv}"
@@ -73,7 +78,7 @@
 			<div class="input-group-prepend">
 				<span class="bg-info text-white input-group-text">댓글 내용</span></div>
 				<textarea  rows="2" style="resize:none" 
-					class="form-control" name="detail"
+					class="form-control" name="detail" id="detxt"
 					placeholder="내용입력하세요" >${comment.detail}</textarea>	
 		</div>	
 			<input style="float:right;margin-left:5px " class="btn btn-success" type="button" id="delbt" value="삭제"/>		

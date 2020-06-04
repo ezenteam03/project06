@@ -48,9 +48,6 @@
 			}
 			
 		});
-		
-				
-	
 
 		var ino ="${param.ino}"
 		$("#combt").click(function(){	
@@ -135,9 +132,7 @@
 		    		alert("등록이 되었습니다");
 					$("#cform").submit();	
 		    	}
-		  });
-		
-		
+		  });				
 	});
 		
 </script>
