@@ -72,7 +72,6 @@ public class RiskCtrl {
 		d.addAttribute("risk", service.getRisk(ino, request));
 
 		HttpSession session = request.getSession();
-
 		PmsMember emp =(PmsMember)session.getAttribute("infor_M");
 		if(emp.getMdiv()==4) {
 			d.addAttribute("ri", 3);
@@ -124,8 +123,7 @@ public class RiskCtrl {
 			service.cinsert(insert);
 			d.addAttribute("chkreply", 1);
 			
-			return "forward:/risk.do?method=comment";
-			
+			return "forward:/risk.do?method=comment";			
 		}
 		// 댓글 삭제
 		@RequestMapping(params="method=delete")
