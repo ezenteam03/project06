@@ -78,9 +78,11 @@
 			dataType:"json",
 			success:function(data){
 				
+				//프로젝트 시작일, 초로 환산한 시작일
+				//현재 날짜(초로 환산), day=하루(초)
 				var todayOrigin = sdatestr; 
-				var today = sdatestr;
-				var currentDay = new Date(); //현재 날짜
+				var today = sdatestr; 
+				var currentDay = new Date(); 
 			    day = 1000 * 60 * 60 * 24;
 			    
 			    today.setUTCHours(0);
@@ -97,8 +99,8 @@
 				
 				// data.모델명
 				// json으로 불러온 chartlist
-				var clist = data.chartlist;
 				// gantt chart에 입력할 데이터 객체배열
+				var clist = data.chartlist;
 				var dataInfo = [];
 				
 				// dataInfo의 첫번째 객체는 프로젝트 정보 입력
@@ -135,9 +137,10 @@
 			    }];
 				
 				// 툴팁에 들어갈 정보
+				//this는 series-data의 데이터 의미
 				var tooltipInfo = {
 				        pointFormatter: function () {
-				            var point = this, //this는 series-data의 데이터 의미
+				            var point = this, 
 				                format = '%e',
 				                completed = point.completed,
 				                status = (completed * 100) + '%',
@@ -183,10 +186,12 @@
 			    };
 				
 				// X축에 표시되는 정보(날짜정보, 필수)
+				// currentDateIndicator : 현재 날짜 표시기
+				// min : 프로젝트 첫날 max: 프로젝트 마지막날
 				var xAxisInfo = {
-				        currentDateIndicator: true, //현재 날짜 표시기
-				        min: today + 1 * day, //프로젝트 첫날
-				        max: today + ((deadlinestr-sdatestr)/day) * day, //프로젝트 마지막날
+				        currentDateIndicator: true, 
+				        min: today + 1 * day, 
+				        max: today + ((deadlinestr-sdatestr)/day) * day, 
 				};
 				
 				// Y축에 표시되는 정보(기본은 차트데이터명, 선택적 데이터 추가 가능)
@@ -317,7 +322,7 @@
 			    isObject = Highcharts.isObject,
 			    reduce = Highcharts.reduce;
 				
-				Highcharts.ganttChart('chartpm', cInfo);
+				Highcharts.ganttChart('chart', cInfo);
 			},
 			error:function(err){
 				console.log("ajax처리 에러");
@@ -327,10 +332,6 @@
 	});
 </script>
 <style>
-#chart {
-    max-width: 800px;
-    margin: 1em auto;
-}
 </style>
 </head>
 
@@ -348,7 +349,7 @@
           <div class="col-lg-12">
 	        <h4><i class="fa fa-angle-right" style="padding-left:15px; font-size:1.5em;">간트차트</i></h4>
             <div class="form-panel">
-              <div id="chartpm"></div>
+              <div id="chart"></div>
             </div>
             <!-- /form-panel -->
           </div>
