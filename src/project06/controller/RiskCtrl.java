@@ -145,7 +145,7 @@ public class RiskCtrl {
 			
 			service.cupdate(upt);
 			
-			return "forward:/risk.do?method=detail";
+			return "WEB-INF\\views\\main\\commentIns.jsp";
 		}	
 		// 대댓창 열기
 		@RequestMapping(params="method=cinsForm")

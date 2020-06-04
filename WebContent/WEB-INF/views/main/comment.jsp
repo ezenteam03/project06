@@ -31,10 +31,10 @@
 	    		alert("입력된 내용이 없습니다.");
 	    	}else if(confirm("수정합니다.")){			
 				$("form").attr("action","${path}/risk.do?method=cupdate&ino="+"${comment.ino}");
-				$("form").submit();	
-				opener.parent.location.reload();
-		//		window.close();
+				$("form").submit();					
+				
 		}	
+		
 			
 	});	
 				
