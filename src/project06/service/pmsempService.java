@@ -32,15 +32,12 @@ public class pmsempService {
 			}
 			sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
 			sch.setEnd(sch.getCurPage()*sch.getPageSize());
-			System.out.println("시작번호:"+sch.getStart());
-			System.out.println("마지막번호:"+sch.getEnd());		
 			// 페이지에 보일 블럭 갯수
-			sch.setBlocksize(3);
+			sch.setBlocksize(5);
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
 			sch.setStartBlock((blocknum-1)*sch.getBlocksize()+1);	
-			System.out.println("Service pmsempList 실행");
 			return rep.pmsempList(sch);
 		}
 		// CEO, CTO 상세
@@ -65,16 +62,14 @@ public class pmsempService {
 		
 		// 기존 CEO 권한변경 후 새로운 CEO에게 권한 부여
 		public void updateCeo(pmsemp updateCeo) {
-			System.out.println("updateCeo 진입");
 			int isMem = rep.memCheck(updateCeo);
-			System.out.println(isMem);
 			if(isMem==0) {
 				// 기존 CEO권한 변경
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
 				// 새로운 CEO Member등록
+				rep.updatepmsCeo4(updateCeo);
 				ranNum = makePass("");
-				System.out.println(ranNum);
 				updateCeo.setPass(ranNum);				
 				rep.insertCeo1(updateCeo);
 				try {
@@ -84,8 +79,10 @@ public class pmsempService {
 					e.printStackTrace();
 				}
 			}else{
+				// 기존 CEO권한 변경
 				rep.updatepmsCeo2();
 				rep.updatepmsCeo3();
+				// 새로운 CEO 권한 변경
 				rep.updatepmsCeo1(updateCeo);	
 				rep.updatepmsCeo4(updateCeo);	
 			}
@@ -93,18 +90,19 @@ public class pmsempService {
 		// 기존 CTO 권한변경 후 새로운 CTO에게 권한 부여
 		public void updateCto(pmsemp updateCto) {
 			int isMem = rep.memCheck(updateCto);
-			System.out.println("isMem : "+isMem);
 			if(isMem==0) {
 				// 기존 CTO권한 변경
 				rep.updatepmsemp2();
 				// 새로운 CTO Member등록
-				updateCto.setPass(makePass("1234qwer!"));
-				System.out.println("service eno:"+updateCto.getEno());
-				System.out.println("service pass:"+updateCto.getPass());
-				System.out.println("service phone:"+updateCto.getPhone());
-				System.out.println("service pno:"+updateCto.getPno());
-				System.out.println("service mdiv:"+updateCto.getMdiv());
+				ranNum = makePass("");
+				updateCto.setPass(ranNum);
 				rep.insertMem1(updateCto);
+				try {
+					sendMail(updateCto.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updatepmsemp2();
 				rep.updatepmsemp1(updateCto);	
@@ -112,17 +110,21 @@ public class pmsempService {
 		}
 		// 기존 PM 권한변경 후 새로운 PM에게 권한 부여
 		public void updatePm(pmsemp updatePm) {
-			System.out.println("service PM설정");
 			int isMem = rep.memCheck(updatePm);
-			System.out.println("isMem : "+isMem);
-			System.out.println("updatePmpno : "+updatePm.getPno());
 			if(isMem==0) {
 				// 기존 PM권한 변경
 				rep.updatePm2(updatePm);
 				// 새로운 PM Member등록
-				updatePm.setPass(makePass("1234qwer!"));
+				ranNum = makePass("");
+				updatePm.setPass(ranNum);
 				if(updatePm.getPno()==0) rep.insertMem3(updatePm);
 				else rep.insertMem2(updatePm);
+				try {
+					sendMail(updatePm.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updatePm2(updatePm);
 				if(updatePm.getPno()==0) rep.updatePm1_1(updatePm);	
@@ -168,14 +170,14 @@ public class pmsempService {
 			System.out.println(blocknum+"번째 블럭의 마지막 block 번호 : " + sch.getEndBlock());
 			
 			return rep.selectpm(sch);
+			
 		}
 		
 		// PM 추가리스트
 		public ArrayList<pmsemp> insList(pmsempSch sch){
-			sch.setCount(rep.totCnt(sch));
+			sch.setCount(rep.totCnt3(sch));
 			if(sch.getPageSize()==0) {
-				// 페이지에 보일 데이터 건수
-				sch.setPageSize(3);
+				sch.setPageSize(5);
 			}
 			sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
 			if(sch.getCurPage()==0) {
@@ -183,10 +185,7 @@ public class pmsempService {
 			}
 			sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
 			sch.setEnd(sch.getCurPage()*sch.getPageSize());
-			System.out.println("시작번호:"+sch.getStart());
-			System.out.println("마지막번호:"+sch.getEnd());		
-			// 페이지에 보일 블럭 갯수
-			sch.setBlocksize(3);
+			sch.setBlocksize(5);
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					
@@ -197,25 +196,24 @@ public class pmsempService {
 		public void insPm(pmsemp insertPm) {
 			int isMem = rep.memCheck(insertPm);
 			if(isMem==0) {
-				System.out.println(makePass("1234qwer!"));
-				insertPm.setPass(makePass("1234qwer!"));
-				
-				System.out.println("get eno : "+insertPm.getEno());
-				System.out.println("get phone : "+insertPm.getPhone());
-				System.out.println("get pass : "+insertPm.getPass());
-				System.out.println("get pno : "+insertPm.getPno());
-				
+				ranNum = makePass("");
+				insertPm.setPass(ranNum);
 				rep.insPNum(insertPm);
+				try {
+					sendMail(insertPm.getEno(), ranNum);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else{
 				rep.updPNum(insertPm);
 			}
 		}
 		// PM 삭제리스트
 		public ArrayList<pmsemp> pmempList(pmsempSch sch){
-			sch.setCount(rep.totCnt(sch));
+			sch.setCount(rep.totCnt2(sch));
 			if(sch.getPageSize()==0) {
-				// 페이지에 보일 데이터 건수
-				sch.setPageSize(3);
+				sch.setPageSize(5);
 			}
 			sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
 			if(sch.getCurPage()==0) {
@@ -223,10 +221,7 @@ public class pmsempService {
 			}
 			sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
 			sch.setEnd(sch.getCurPage()*sch.getPageSize());
-			System.out.println("시작번호:"+sch.getStart());
-			System.out.println("마지막번호:"+sch.getEnd());		
-			// 페이지에 보일 블럭 갯수
-			sch.setBlocksize(3);
+			sch.setBlocksize(5);
 			int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());					
 			int endBlock = blocknum*sch.getBlocksize();
 			sch.setEndBlock(endBlock>sch.getPageCount()?sch.getPageCount():endBlock);					

@@ -167,7 +167,7 @@
 	</div>
 	<input class="form-control"  readonly="readonly"  style="background-color: #ffffff;" 
 			value="${risk.name }" placeholder="작성자입력하세요"/>		
-</div>
+</div>	
 <div class="input-group mb-3">		
 	<div class="input-group-prepend">
 		<span class="bg-success text-white input-group-text">제 목</span>

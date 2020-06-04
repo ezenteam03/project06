@@ -47,7 +47,6 @@ public class ProjectCtrl {
 		Project insp = new Project();
 		pmsemp inspe = new pmsemp();
 		Project insertedp = new Project();
-		
 		inspe = peservice.getPmsemp(mno);
 		inspe.setPno(0);
 		peservice.updatePm(inspe);
@@ -58,12 +57,13 @@ public class ProjectCtrl {
 		insp.setDeadlinestr(request.getParameter("pro_dline"));
 		insp.setDetail(request.getParameter("pro_detail"));
 		//프로젝트 추가
-		prservice.proIns(insp);
 		//방금 추가한 프로젝트를 불러오기
-		insertedp = prservice.getProjectformno(mno); 
 		//inspe.setEno(mno);
-		inspe.setPno(insertedp.getPno());
 		//회원의 PM 권한변경 수행
+		
+		prservice.proIns(insp);
+		insertedp = prservice.getProjectformno(mno); 
+		inspe.setPno(insertedp.getPno());
 		peservice.updatePm(inspe);
 		
 		return "forward:/DashTeam.do?method=list";

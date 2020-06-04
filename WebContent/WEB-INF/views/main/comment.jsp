@@ -35,12 +35,13 @@
 	});
 		var mno="${param.mno}"; // 로그인한 사원번호
 		var cmno="${comment.mno}"; // 작성자 사원번호
-		
+		var md ="${infor_M.mdiv}"
+		if(md!=6){
 			if(mno!=cmno){
 				alert("수정권한이 없습니다.");
 				window.close();
+			}
 		}
-	
 });
 		
 </script>

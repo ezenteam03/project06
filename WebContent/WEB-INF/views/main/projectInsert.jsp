@@ -78,8 +78,6 @@
 				  if (result.value) {
 					var sdatestr = $("[name=pro_sdate]").val();
 					var deadlinestr = $("[name=pro_dline]").val();
-					//console.log(sdatestr);
-					//console.log(deadlinestr);
 					if(sdatestr != ''){
 					var sdate = new Date(sdatestr);
 					sdate = sdate.getTime();
@@ -90,7 +88,8 @@
 					deadline = deadline.getTime();
 					}
 				
-					if($("[name=pro_pname]").val()=='' || $("[name=pro_pname]").val()==null){
+					if($("[name=pro_pname]").val()=='' || 
+							$("[name=pro_pname]").val()==null){
 						Swal.fire(
 					      '입력 데이터 문제',
 					      '프로젝트 명을 입력해주세요.',
@@ -158,8 +157,6 @@
 	});
 	
 	function selectpm() {
-		//http://localhost:6080/project06_git/project.do?method=selectpm&mdiv="+mdiv
-		//http://192.168.4.230:7080/project06_git/project.do?method=selectpm&mdiv="+mdiv
 		window.open("${path}/project.do?method=selectpm&mdiv="+mdiv, 
 				"SelectPM", "width=780, height=520, left=300, top=100");
 	}

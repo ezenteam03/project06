@@ -421,14 +421,10 @@ th{text-align:center;}
               </a>
           </li>
           <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
-            <a href="${path }/chart.do?method=pm" v-if="mdiv==6||mdiv==4">
+            <a href="${path }/chart.do?method=chart" >
               <i class="fa fa-cogs"></i>
               <span>일정관리</span>
-              </a>
-            <a href="${path }/chart.do?method=tm" v-if="mdiv==5">
-              <i class="fa fa-cogs"></i>
-              <span>일정관리</span>
-              </a>  
+            </a>
           </li>
           <li class="sub-menu" v-if="mdiv==6||mdiv==4||mdiv==5">
             <a href="${path}/notice.do?method=list">

@@ -47,6 +47,7 @@
 				$(location).attr("href","${path}/risk.do?method=insForm");
 			
 		});
+		
 
 		var ri="${ri}";
 		if(ri==1||ri==2){
@@ -63,6 +64,7 @@
 			$("form").submit();
 		});
 		
+		
 	});
 	function go(ino){
 		$(location).attr("href","${path}/risk.do?method=detail&ino="+ino);		
@@ -73,6 +75,12 @@
 		$("form").attr("action","${path}/risk.do?method=list");
 		$("form").submit();
 	}
+	function search() {
+		$("form").attr("action","${path}/risk.do?method=list");
+		$("form").submit();
+	}
+
+	
 	
 
 </script>
@@ -135,7 +143,7 @@
 			 </div>	
 		
 			<div style="float:right;">
-			 			 <button  class="btn btn-success" type="submit" >검색</button>
+			 			 <button  class="btn btn-success" type="submit"onclick="search()" >검색</button>
 			 		</div>
 			 		<div  style="float:right;">
 				  <form:input style="width: 200px" class="form-control mr-sm-2" path="name" placeholder="작성자"/>

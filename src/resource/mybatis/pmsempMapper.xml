@@ -164,61 +164,63 @@
 		SET mno=#{eno}
 		WHERE pno=#{pno}
 	</update>
- 	<!-- PM 팀원 추가 리스트 -->
- 	<select id="insList" resultMap="pmsempResult" parameterType="pmsempsch">
- 	<!-- SELECT *
- 	FROM(
-			SELECT *
-			FROM (
-			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			c.CNAME,b.pno
+	<!-- 팀원 추가 총 데이터 -->
+	<select id="totCnt3" resultType="int" parameterType="pmsempsch">
+		SELECT count(*)
+		FROM 
+			(SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
+			c.CNAME,b.pno 
 			FROM pmsemp a, pmsmember b, pmscodes c
 			WHERE a.eno = b.mno and b.mdiv=c.cno
 			AND c.cno =9 
 			AND b.pno is NULL
+			<if test="name!=null and name!=''">
+			and name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
+			</if>
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
+			</if>
 			UNION ALL
-			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-					c.CNAME,b.pno
+			SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
+			c.CNAME,b.pno
 			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
 			where b.mno is NULL AND c.cno=9)
-			ORDER BY eno ASC)
-	WHERE cnt BETWEEN #{start} AND #{end} -->
-	SELECT *
- 	FROM(
-			SELECT *
+ 	</select> 	
+ 	<!-- PM 팀원 추가 리스트 -->
+ 	<select id="insList" resultMap="pmsempResult" parameterType="pmsempsch">
+ 	SELECT *
+	FROM(
+		SELECT rownum cnt, pmlist.* FROM (
+			SELECT *  
 			FROM (
-			SELECT rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
-			c.CNAME,b.pno
-			FROM pmsemp a, pmsmember b, pmscodes c
-			WHERE a.eno = b.mno and b.mdiv=c.cno
-			AND c.cno =9 
-			AND b.pno is NULL
-			<if test="name!=null and name!=''">
-			and name LIKE '%'||#{name}||'%'
-			</if>
-			<if test="grade!=null and grade!=''">
-			and grade LIKE '%'||#{grade}||'%'
-			</if>
-			<if test="dept!=null and dept!=''">
-			and dept LIKE '%'||#{dept}||'%'
-			</if>
-			UNION ALL
-			select rownum cnt,a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE,  
+					SELECT a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
 					c.CNAME,b.pno
-			from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
-			where b.mno is NULL 
-			AND c.cno=9
-			<if test="name!=null and name!=''">
-			and name LIKE '%'||#{name}||'%'
-			</if>
-			<if test="grade!=null and grade!=''">
-			and grade LIKE '%'||#{grade}||'%'
-			</if>
-			<if test="dept!=null and dept!=''">
-			and dept LIKE '%'||#{dept}||'%'
-			</if>)
-			ORDER BY eno ASC)
-	WHERE cnt BETWEEN #{start} AND #{end} 
+					FROM pmsemp a, pmsmember b, pmscodes c
+					WHERE a.eno = b.mno and b.mdiv=c.cno
+					AND c.cno =9 
+					AND b.pno is NULL
+					<if test="name!=null and name!=''">
+					and name LIKE '%'||#{name}||'%'
+					</if>
+					<if test="grade!=null and grade!=''">
+					and grade LIKE '%'||#{grade}||'%'
+					</if>
+					<if test="dept!=null and dept!=''">
+					and dept LIKE '%'||#{dept}||'%'
+					</if>
+					UNION ALL
+					select a.eno, a.name, a.GRADE, a.DEPT, a.EMAIL, a.PHONE, 
+							c.CNAME,b.pno
+					from (pmsemp a left outer join pmsMember b on a.eno=b.mno), pmscodes c
+					where b.mno is NULL AND c.cno=9
+				) 
+			ORDER BY eno ASC
+			) pmlist
+		)
+		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	<!-- PM선정 리스트 총인원 -->
  	<select id="selectpmCount" resultType="int" parameterType="pmsempsch">
@@ -285,6 +287,25 @@
 		 insert into pmsmember 
 		 	values(#{eno}, #{pass}, 5, #{phone}, #{pno})
 	</insert>
+	<!-- 팀원 삭제 총 데이터 -->
+	<select id="totCnt2" resultType="int" parameterType="pmsempsch">
+		SELECT count(*)
+			FROM pmsemp a, pmsmember b, pmscodes c
+			WHERE a.eno = b.mno and b.mdiv=c.cno
+			AND 1 = 1
+			AND b.pno=#{pno}
+			AND b.mdiv=5
+			<if test="name!=null and name!=''">
+			and name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="grade!=null and grade!=''">
+			and grade LIKE '%'||#{grade}||'%'
+			</if>
+			<if test="dept!=null and dept!=''">
+			and dept LIKE '%'||#{dept}||'%'
+			</if>
+			ORDER BY eno ASC
+ 	</select> 	
  	<!-- pm 프로젝트 팀원 삭제 리스트 -->
  	<select id="pmempList" resultMap="pmsempResult" parameterType="pmsempsch">
  	SELECT *
