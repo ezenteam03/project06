@@ -186,9 +186,7 @@ public class WorkCtrl2 {
 		public String insert(Task ins, Model d, HttpServletRequest request) {
 			HttpSession session = request.getSession();
 			pmsemp emp =(pmsemp)session.getAttribute("emp");
-			//System.out.println("pno : "+ins.getPno());
-			//System.out.println("refno : "+ins.getRefno());
-			//System.out.println(""+);
+
 			service.insert(ins);
 			return "redirect:/task.do?method=list";
 		}

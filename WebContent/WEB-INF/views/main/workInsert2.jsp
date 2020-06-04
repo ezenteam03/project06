@@ -62,11 +62,8 @@
 		<%-- 
 		
 		--%>
-		
-		//var pno = "${pno}";
-		//console.log("dd"+pno);
+
 		var mdiv = "${mdiv}";
-		//console.log("mdiv : "+mdiv);
 		
 		if(mdiv == 6){
 			$("#selecPno").attr('onFocus',true);
@@ -76,52 +73,19 @@
 		}
 		
 		$("#regBtn").click(function(){
-			var pno = $("[name=pno]").val();
-			var refno = $("[name=refno]").val();
-			var tname = $("[name=tname]").val();
-			var sdate = $("[name=sdate]").val();
-			var edate = $("[name=edate]").val();
-			var detail = $("[name=detail]").val();
-			var mno = $("[name=mno]").val();
-			
-			console.log("mno : "+mno);
-			console.log(pno);
-			console.log(refno);
-			console.log(tname);
-			console.log(detail);
-			console.log(sdate);
-			console.log(edate);
 			
 			if(confirm("등록합니다.")){
 				$("#fileForm").submit();				
 			}
 		});	
 		$("#goMain").click(function(){
-			//if(confirm("조회 화면 이동 합니다.")){
 			$(location).attr("href","${path}/task.do?method=list");			
-			//}
 		});	
 		
 		$(".custom-file-input").on("change",function(){
 			$(this).next(".custom-file-label").text($(this).val());
 		});
-		
-		//var refno = "${task.refno}";
-		//var isReg= "${param.tname}";
-		//&&refno==""
-		//if(isReg!=""){
-		//	if(!confirm("등록 완료하였습니다\n계속 등록하시겠습니까?")){
-		//		$(location).attr("href","${path}/task.do?method=list");	
-		//	}
-		//}
-		
-		//var is = $("[name=sdate]").val();
-		
-		
-		
-		/*$(".custom-file-input").on("change",function(){
-			$(this).next(".custom-file-label").text($(this).val());
-		});*/
+
 	});
 </script>
 </head>
@@ -162,12 +126,12 @@
 			<span class="bg-info text-white input-group-text">상위업무번호</span>
 		</div>
 		
-		<select class="form-control" style="width:300px;float:left; " name="refno">
-					<option value="0">최상위 업무 0</option>
+		<select class="form-control" style="width:300px; float:left;" name="refno">
+				<option value="0">최상위 업무 0</option>
 					<c:forEach items="${refnolist}" var="ref" varStatus="sts" >
 						<option value="${ref.refno}">${ref.tname} ${ref.tno}</option>									
 					</c:forEach>				
-			</select>	
+		</select>	
 
 	</div>  
 	<div class="input-group mb-3">
