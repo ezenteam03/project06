@@ -220,7 +220,7 @@ function go(no){
 	</div>
 
 	      	 <div>
-	          <button onclick="insgo(${pno})" type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 글쓰기 </button>
+	          <button onclick="insgo(${pno})" type="button" class="btn btn-theme" style="margin-left: 90%;" id="regBtn"><i class="fa fa-check"></i> 업무등록 </button>
 	         </div>
    
             </div>

@@ -157,8 +157,6 @@
 	});
 	
 	function selectpm() {
-		//http://localhost:6080/project06_git/project.do?method=selectpm&mdiv="+mdiv
-		//http://192.168.4.230:7080/project06_git/project.do?method=selectpm&mdiv="+mdiv
 		window.open("${path}/project.do?method=selectpm&mdiv="+mdiv, 
 				"SelectPM", "width=780, height=520, left=300, top=100");
 	}
