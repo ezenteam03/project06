@@ -42,6 +42,8 @@ public class PmsMemberCtrl {
 			} else if(infor_M.getMdiv() == 7) {
 				session.setAttribute("infor_M", infor_M);
 				session.setAttribute("emp", emp);
+				
+				m.addAttribute("chkhrlogin", infor_M.getMdiv());
 				return "forward:/PMSemp.do?method=empmList";
 			} else {
 				session.setAttribute("mno", mno);

@@ -97,6 +97,7 @@ public class pmsempCtrl {
 		service.insPm(inse);		
 		request.setAttribute("pmsempsch", pmssch);	
 		d.addAttribute("elist", service.insList(sch));
+		d.addAttribute("chkinsmem", 1);
 		return "WEB-INF\\views\\main\\empInsert.jsp";
 	}
 	// PM 팀원삭제 사원 리스트 불러오기

@@ -40,6 +40,11 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
+		  	var chkinsmem = "${chkinsmem}";
+
+		  	if(chkinsmem==1){
+		  		$(location).attr("href","${path}/PMSemp.do?method=empList")
+		  	}
 			 /* $("#insBtn").click(function(){
 				 $("form").attr("action","${path}/PMSemp.do?method=insemp");
 				 $("form").submit(); 

@@ -39,6 +39,10 @@
   <script src="${path}/a00_com/jquery-ui.js"></script>
   <script type="text/javascript">
 	  $(document).ready(function(){
+		  	 var chkhrlogin = "${chkhrlogin}";
+		  	 if(chkhrlogin == 7){
+		  		 $(location).attr("href","${path}/PMSemp.do?method=empmList")
+		  	 }
 		  
 			 $("#regBtn").click(function(){		 
 				$(location).attr("href","${path}/PMSemp.do?method=insForm") 
