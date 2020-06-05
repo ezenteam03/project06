@@ -170,8 +170,9 @@
 				alert("신청 여부를 확인 해주세요");
 			}
 		});
+		
 		$("#divBtn3").click(function(){
-			if(tdiv==22){
+			if(tdiv==22){ // 결재 신청 되었을 때
 				if(confirm("결재완료 하시겠습니까?")){
 					alert("결재완료 되었습니다.");
 					$("#deForm").attr("action","${path}/task.do?method=upTdiv3");
@@ -180,15 +181,15 @@
 			}else if (emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 4 ||
 					emno == tmno && tprog == 100 && refno != tno && refno != 0 && mdiv == 6){
 				if(confirm("PM업무 "+tno+"번 결재 하시겠습니까?")){
+					// PM 업무(상위업무)의 진행률이 100%가 됐을 때
 					$("#deForm").attr("action","${path}/task.do?method=upTdiv4");
 					$("#deForm").submit();
 				}
 			}else{
 				alert("신청 여부 혹은 진행률을 확인 해주세요");
-			}
-			
-			
+			}	
 		});
+		
 		$("#updetail").click(function(){
 			if(mdiv != 5 && mdiv != 6){
 				alert("권한이 없습니다.");
