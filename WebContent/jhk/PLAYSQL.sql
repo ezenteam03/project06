@@ -126,7 +126,7 @@ AND pp.pno = 1001
 START WITH pt.refno=0
 CONNECT BY PRIOR pt.tno = pt.refno;
  ----
-SELECT SYS_CONNECT_BY_PATH(r, '.')||'. '|| tname tname, tno
+SELECT LTRIM(SYS_CONNECT_BY_PATH(r, '.'),'.')||'. '|| tname tname, tno
 FROM (SELECT rank() over (partition BY refno ORDER BY tno) r,
 tno, tname, refno FROM pmstask WHERE pno = 1001)
 CONNECT BY PRIOR tno = refno 
