@@ -162,6 +162,7 @@ function goIssue(num) {
           <div class="col-lg-3 ds">
           	<h4 onclick="goNot()"><i class="fa fa-angle-right"></i> 공지사항 최근글</h4>
               <hr>
+              <form method="post" id="noti"><input type="hidden" name="nno"/></form>
           	<table class="table">
                 <thead>
                   <tr>
@@ -184,6 +185,7 @@ function goIssue(num) {
               </table><br><br><br>
               <h4 onclick="goMee()"><i class="fa fa-angle-right"></i> 회의록 최근글</h4>
               <hr>
+              <form method="post" id="meet"><input type="hidden" name="mnno"/></form>
           	<table class="table">
                 <thead>
                   <tr>
@@ -206,6 +208,7 @@ function goIssue(num) {
               </table><br><br><br>
               <h4 onclick="goIssu()"><i class="fa fa-angle-right"></i> 이슈리스트 최근글</h4>
               <hr>
+              <form method="post" id="issue"><input type="hidden" name="ino"/></form>
           	<table class="table">
                 <thead>
                   <tr>
