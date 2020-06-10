@@ -22,26 +22,25 @@ public class MeetService {
 	private MeetDao dao;
 	public ArrayList<Meet> list(MeetSch sch){
 		sch.setCount(dao.totCnt(sch));
-		
 		if(sch.getPageSize()==0) {
 			sch.setPageSize(5);
 		}
-		
 		sch.setPageCount((int)(Math.ceil(sch.getCount()/(double)sch.getPageSize())));
 		
+		System.out.println("curpage값:"+sch.getCurPage());
 		if(sch.getCurPage()==0) {
 			sch.setCurPage(1);
 		}
+		System.out.println("curpage값(수정):"+sch.getCurPage());
 		
-		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
-		sch.setEnd(sch.getCurPage()*sch.getPageSize());
+		sch.setStart(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize()-sch.getPageSize()+1);
+		sch.setEnd(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize());
 		System.out.println("시작번호:"+sch.getStart());
 		System.out.println("마지막번호:"+sch.getEnd());
 		
 		sch.setBlocksize(5);
 		
 		int blocknum = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlocksize());
-
 		int endBlock = blocknum*sch.getBlocksize();
 		sch.setEndBlock(endBlock>sch.getPageCount()?
 						sch.getPageCount():endBlock);
