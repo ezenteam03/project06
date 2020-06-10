@@ -23,7 +23,7 @@
 		<if test="title!=null and title!=''">
 		and title like '%'||#{title}||'%'
 		</if>
-		ORDER BY cnt desc)
+		ORDER BY nno desc)
 		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	
