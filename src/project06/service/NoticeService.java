@@ -26,8 +26,8 @@ public class NoticeService {
 				}
 				System.out.println("curpage값(수정):"+sch.getCurPage());
 				
-				sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
-				sch.setEnd(sch.getCurPage()*sch.getPageSize());
+				sch.setStart(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize()-sch.getPageSize()+1);
+				sch.setEnd(sch.getCount()-(sch.getCurPage()-1)*sch.getPageSize());
 				System.out.println("시작번호:"+sch.getStart());
 				System.out.println("마지막번호:"+sch.getEnd());
 				

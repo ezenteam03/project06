@@ -15,9 +15,9 @@
 	 	</select>
  	
  	<select id="list" resultMap="noticeResult" parameterType="nsch" >
-		SELECT *
+		SELECT cnt,nno,title,wdate,views
  		FROM(
-			select ROW_NUMBER() OVER(PARTITION BY P.PNO ORDER BY nno asc) cnt, p.* 
+			select ROW_NUMBER() OVER(ORDER BY nno asc) cnt, p.nno nno,p.title title,p.wdate wdate,p.views views 
 			FROM pmsnotice p
 		WHERE 1=1 and pno=#{pno}
 		<if test="title!=null and title!=''">
