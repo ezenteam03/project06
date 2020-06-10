@@ -17,13 +17,13 @@
  	<select id="list" resultMap="noticeResult" parameterType="nsch" >
 		SELECT *
  		FROM(
-			select ROW_NUMBER() OVER(ORDER BY nno desc) cnt, p.* 
+			select ROW_NUMBER() OVER(PARTITION BY P.PNO ORDER BY nno asc) cnt, p.* 
 			FROM pmsnotice p
 		WHERE 1=1 and pno=#{pno}
 		<if test="title!=null and title!=''">
 		and title like '%'||#{title}||'%'
 		</if>
-		ORDER BY nno DESC )
+		ORDER BY cnt desc)
 		WHERE cnt BETWEEN #{start} AND #{end}
  	</select>
  	

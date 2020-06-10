@@ -165,7 +165,7 @@ function goPage(no){
 		        <tbody>
 		        <c:forEach var="notice" items="${nlist}">
 		          <tr onclick="javascript:go(${notice.nno})">
-		            <td style="text-align: center;">${notice.nno}</td>
+		            <td style="text-align: center;">${notice.cnt}</td>
 		            <td style="padding-left:70px;">${notice.title}</td>
 		            <td style="text-align: center;"><fmt:formatDate value="${notice.wdate}" type="date"/></td>
 		            <td style="text-align: right;padding-right:70px;">${notice.views}</td>
