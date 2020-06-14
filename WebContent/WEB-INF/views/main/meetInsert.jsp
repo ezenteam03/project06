@@ -83,153 +83,161 @@ $(document).ready(function(){
 });
 </script>
 <body>
-  <section id="container">
-	<jsp:include page="top.jsp"/>
-    <!-- **********************************************************************************************************************************************************
+	<section id="container">
+		<jsp:include page="top.jsp" />
+		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-    <!--main content start-->
- 
-     
-       <section id="main-content">
-      <section class="wrapper">
-        <div id="all">
-             
-				
-      <h3 style="margin-left:10%;"><i class="fa fa-book"></i>&ensp;  회의록</h3>
-       
-                <br><br>
+		<!--main content start-->
 
-<div class="container">
-	<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
-	<form method="post" enctype="multipart/form-data" 
-		action="${path}/meet.do?method=insert">
-		<input type="hidden" value="${mno}" name="mnno">
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">안 건</span>
-		</div>
-		<input name="topic" class="form-control" 
-			value="${meet.topic}" placeholder="안건을 입력하세요" />	
-	</div> 
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">회의 참여자</span>
-		</div>
-		<input name="people" class="form-control" 
-			value="${meet.people}" placeholder="참여자를 입력하세요(,를 사용하여 구분)" />	
-	</div>
-		
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">회의 장소</span>
-		</div>
-		<input name="loc" class="form-control" 
-			value="${meet.loc}" placeholder="회의 장소를 입력하세요" />	
-	</div>
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">내 용</span>
-		</div>
-		<textarea name="detail" rows="10" 
-			class="form-control" 
-			placeholder="내용을 입력하세요" >${meet.detail}</textarea>
-	</div>
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">결 정 사 항</span>
-		</div>
-		<textarea name="decision" rows="3" 
-			class="form-control" 
-			placeholder="내용을 입력하세요" >${meet.decision}</textarea>
-	</div>
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend"> 
-			<span class="bg-info text-white input-group-text">특 이 사 항</span>
-		</div>
-		<input name="etc" class="form-control" 
-			value="${meet.etc}" placeholder="입력하세요" />	
-	</div>
-	 
 
-			
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="bg-warning text-white input-group-text">첨부 파일</span>
-		</div>
-		<div class="custom-file">
-			<input type="file" name="filenames" 
-				class="custom-file-input" id="file01"/>
-			<label class="custom-file-label" for="file01">
-			파일 선택</label>
-		</div>		
-	</div> 	
-	
-	
-					
-	<div style="text-align:right;">
-		<input type="button" class="btn btn-info"
-			value="등록" id="regBtn"/>
-		<input type="button" class="btn btn-success"
-			value="조회 화면으로" id="goMain"/>
-	</div>
- 	
-	</form>
-</div>
-</div>
-       
-       
-       
-       
-       
-       
-       
-     
-        
-</section>
-    </section>
-    <!-- /MAIN CONTENT -->
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
+		<section id="main-content">
+			<section class="wrapper">
+				<div id="all">
+
+
+					<h3 style="margin-left: 10%;">
+						<i class="fa fa-book"></i>&ensp; 회의록
+					</h3>
+
+					<br>
+					<br>
+
+					<div class="container">
+						<!-- 파일을 업로드 할 수 있는 type으로 변경 -->
+						<form method="post" enctype="multipart/form-data"
+							action="${path}/meet.do?method=insert">
+							<input type="hidden" value="${mno}" name="mnno">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">안 건</span>
+								</div>
+								<input name="topic" class="form-control" value="${meet.topic}"
+									placeholder="안건을 입력하세요" />
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">회의 참여자</span>
+								</div>
+								<input name="people" class="form-control" value="${meet.people}"
+									placeholder="참여자를 입력하세요(,를 사용하여 구분)" />
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">회의 장소</span>
+								</div>
+								<input name="loc" class="form-control" value="${meet.loc}"
+									placeholder="회의 장소를 입력하세요" />
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">내 용</span>
+								</div>
+								<textarea name="detail" rows="10" class="form-control"
+									placeholder="내용을 입력하세요">${meet.detail}</textarea>
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">결 정 사
+										항</span>
+								</div>
+								<textarea name="decision" rows="3" class="form-control"
+									placeholder="내용을 입력하세요">${meet.decision}</textarea>
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-info text-white input-group-text">특 이 사
+										항</span>
+								</div>
+								<input name="etc" class="form-control" value="${meet.etc}"
+									placeholder="입력하세요" />
+							</div>
+
+
+
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="bg-warning text-white input-group-text">첨부
+										파일</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" name="filenames" class="custom-file-input"
+										id="file01" /> <label class="custom-file-label" for="file01">
+										파일 선택</label>
+								</div>
+							</div>
+
+
+
+							<div style="text-align: right;">
+								<input type="button" class="btn btn-info" value="등록" id="regBtn" />
+								<input type="button" class="btn btn-success" value="조회 화면으로"
+									id="goMain" />
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+			</section>
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				<p>
+					&copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+				</p>
+				<div class="credits">
+					<!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="${path}/Dashio/panels.jsp#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    <!--footer end-->
-  </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
-  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
-  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/advanced-datatable/js/DT_bootstrap.js"></script>
-  <!--common script for all pages-->
-  <script src="${path}/Dashio/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script type="text/javascript">
+					Created with Dashio template by <a
+						href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+				</div>
+				<a href="${path}/Dashio/panels.jsp#" class="go-top"> <i
+					class="fa fa-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+	<!-- js placed at the end of the document so the pages load faster -->
+	<script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
+	<script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
+	<script src="${path}/Dashio/lib/jquery.nicescroll.js"
+		type="text/javascript"></script>
+	<script type="text/javascript" language="javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+	<!--common script for all pages-->
+	<script src="${path}/Dashio/lib/common-scripts.js"></script>
+	<!--script for this page-->
+	<script type="text/javascript">
     /* Formating function for row details */
     function fnFormatDetails(oTable, nTr) {
       var aData = oTable.fnGetData(nTr);

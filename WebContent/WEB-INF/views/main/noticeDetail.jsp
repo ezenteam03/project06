@@ -71,121 +71,122 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-  <section id="container">
-	<jsp:include page="top.jsp"/>
-    <!-- **********************************************************************************************************************************************************
+	<section id="container">
+		<jsp:include page="top.jsp" />
+		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        
-       
-     <h3 style="margin-left:10%;"><i class="fa fa-bullhorn"></i>&ensp;  공지사항</h3>
-       
-                <br><br>
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
 
-<div class="container">
-	<form method="post"  enctype="multipart/form-data" >
-	
-	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="bg-success text-white input-group-text">제 목</span>
-		</div>
-		<input name="title" class="form-control"
-			value="${notice.title}"  
-			placeholder="제목입력하세요" />	
-	</div>
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="bg-info text-white input-group-text">글번호</span>
-		</div>
-		<input name="nno" class="form-control" readonly="readonly"
-			value="${notice.nno}"/>	
-	</div>	
-	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">조회수 </span>
-		</div>
-		<input  class="form-control" readonly="readonly" style="background:white;"
-			 value="${notice.views}" />	
-	</div>		
-	 
-	 	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend">
-			<span class="bg-warning text-white input-group-text">등록일</span>
-		</div>
-		<input class="form-control" readonly="readonly"
-			value="<fmt:formatDate type='both' value='${notice.wdate }'/>"/>	
-		<div class="input-group-prepend">
-			<span class="bg-warning text-white input-group-text">수정일</span>
-		</div>
-		<input class="form-control" readonly="readonly"
-			value="<fmt:formatDate type='both' value='${notice.chdate }'/>" />	
-	</div>			
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="bg-info text-white input-group-text">내 용</span>
-		</div>
-		<textarea name="detail" rows="10" 
-			class="form-control" 
-			placeholder="내용입력하세요" >${notice.detail}</textarea>		 
-	</div> 
-	
-	<br>
-	<div>
-		<div id="regg" v-if="mdiv!=5">
-			<input type="button" class="btn btn-info"
-				value="수정" id="uptBtn"/>
-			<input type="button" class="btn btn-danger"
-				value="삭제" id="delBtn"/>		
-		</div>
-		<div float="left">	
-			<input type="button" class="btn btn-success"
-				value="조회 화면으로" id="goMain"/>
-		</div>
-	</div>
-	</form>
-</div>	  
-       
-       
-       
-       
-       
-       
-       
-        
-   </section>
-      <!-- /wrapper -->
-    </section>
-    <!-- /MAIN CONTENT -->
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
+
+				<h3 style="margin-left: 10%;">
+					<i class="fa fa-bullhorn"></i>&ensp; 공지사항
+				</h3>
+
+				<br>
+				<br>
+
+				<div class="container">
+					<form method="post" enctype="multipart/form-data">
+
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="bg-success text-white input-group-text">제 목</span>
+							</div>
+							<input name="title" class="form-control" value="${notice.title}"
+								placeholder="제목입력하세요" />
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend ">
+								<span class="bg-info text-white input-group-text">글번호</span>
+							</div>
+							<input name="nno" class="form-control" readonly="readonly"
+								value="${notice.nno}" />
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="bg-info text-white input-group-text">조회수 </span>
+							</div>
+							<input class="form-control" readonly="readonly"
+								style="background: white;" value="${notice.views}" />
+						</div>
+
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="bg-warning text-white input-group-text">등록일</span>
+							</div>
+							<input class="form-control" readonly="readonly"
+								value="<fmt:formatDate type='both' value='${notice.wdate }'/>" />
+							<div class="input-group-prepend">
+								<span class="bg-warning text-white input-group-text">수정일</span>
+							</div>
+							<input class="form-control" readonly="readonly"
+								value="<fmt:formatDate type='both' value='${notice.chdate }'/>" />
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="bg-info text-white input-group-text">내 용</span>
+							</div>
+							<textarea name="detail" rows="10" class="form-control"
+								placeholder="내용입력하세요">${notice.detail}</textarea>
+						</div>
+
+						<br>
+						<div>
+							<div id="regg" v-if="mdiv!=5">
+								<input type="button" class="btn btn-info" value="수정" id="uptBtn" />
+								<input type="button" class="btn btn-danger" value="삭제"
+									id="delBtn" />
+							</div>
+							<div float="left">
+								<input type="button" class="btn btn-success" value="조회 화면으로"
+									id="goMain" />
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+
+
+
+
+
+
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				<p>
+					&copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+				</p>
+				<div class="credits">
+					<!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="${path}/Dashio/panels.jsp#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    <!--footer end-->
-  </section>
-  <!-- js placed at the end of the document so the pages load faster -->
+					Created with Dashio template by <a
+						href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+				</div>
+				<a href="${path}/Dashio/panels.jsp#" class="go-top"> <i
+					class="fa fa-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+	<!-- js placed at the end of the document so the pages load faster -->
   <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
   <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>

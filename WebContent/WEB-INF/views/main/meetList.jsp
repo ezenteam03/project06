@@ -104,151 +104,173 @@ function goPage(no){
 
 
 <body>
-  <section id="container">
-	<jsp:include page="top.jsp"/>
-    <!-- **********************************************************************************************************************************************************
+	<section id="container">
+		<jsp:include page="top.jsp" />
+		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        
-       <div id="all">
-        <div class="row">
-         <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div id="goIS" class="content-panel">
-              <form method="post">
-					<input type="hidden" name="curPage"/>
-				</form>
-               <h4><i class="fa fa-book"></i>&ensp;  희의록 </h4>
-       			<br>
-                <form:form class="form" commandName="msch" method="post" >
-  				<form:hidden path="curPage"/>
-  				<form:hidden path="topic"/> <!-- 현재 클릭한 페이지 번호. -->
-				<br>
-				<div class="input-group lb-3">	
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
 
-		<div style="float:left; width:10%; margin-left:1%;" class="input-group-append">
-			<span class="input-group-text">페이지 크기:</span>
-			<form:select path="pageSize" class="form-control">
-				<form:option value="3">3</form:option >
-				<form:option value="5">5</form:option >
-				<form:option value="10">10</form:option >
-				<form:option value="20">20</form:option >
-				<form:option value="30">30</form:option >
-			</form:select> 
-		</div>
-		
-		<div style="float:right;margin-right:1%; " class="input-group-prepend ">
-			<nav class="navbar navbar-expand-sm  navbar-dark">
-  				<input class="form-control mr-sm-2 sch" 
-	    			name="schT" placeholder="제목" />
-	    		<button onclick="search()" class="btn btn-success" type="submit">Search</button>&nbsp;
-	    	</nav>
-  		</div>
-	</div>  
-			
-			<hr>
-			
-			<table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th class="num">번호</th>
-                    <th class="title">제목</th>
-                    <th class="date">작성일</th>
-                    <th class="writer">작성자</th>
-                    <th class="cnt">조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="meet" items="${mlist}">
-                  <tr onclick="javascript:go(${meet.mnno})">
-                    <td style="text-align: center;">${meet.cnt}</td>
-                    <td style="padding-left:70px;">${meet.topic}</td>
-                    <td style="text-align: center;"><fmt:formatDate value="${meet.wdate}" type="date"/></td>
-                    <td style="text-align: center;">${meet.writer}</td>
-                    <td style="text-align: right;padding-right:70px;">${meet.views}</td>
-                  </tr>
-                 </c:forEach>
-                </tbody>
-              </table>
-              
-	
-  	
- 	<div style="text-align:center; margin-left:auto; margin-right:auto;">
-	  <ul class="pagination justify-content-center" style="margin:20px 0">
-      	<li class="page-item">
-	   		<a class="page-link" href="javascript:goPage(${msch.startBlock-1});">Previous</a></li>
-	   		<c:forEach var="cnt" begin="${msch.startBlock }" end="${msch.endBlock}">
-	  			<li class="page-item ${msch.curPage==cnt?'active':''}">
-	  			<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
-			</c:forEach>
-		<li class="page-item">
-			<a class="page-link" href="javascript:goPage(${(msch.endBlock==msch.pageCount)?msch.endBlock:msch.endBlock+1});">Next</a></li>
-	  </ul>
-	</div>   
-    <br>
-                
-   
-    </form:form> 
-    
- 
-          <button id="regBtn" type="button" class="btn btn-theme" v-if="mdiv!==2&&mdiv!==3"
-          style="margin-left: 90%;"><i class="fa fa-check"></i> 글쓰기 </button>
-            <br><br><br> 
-            </div>
-           
-          </div>
-          
-          <!-- /col-md-12 -->
-        </div>
-        <!-- row -->
-        
-        
-    </div>
-     
-        
-   </section>
-      <!-- /wrapper -->
-    </section>
-    <!-- /MAIN CONTENT -->
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
+				<div id="all">
+					<div class="row">
+						<!-- /col-md-12 -->
+						<div class="col-md-12 mt">
+							<div id="goIS" class="content-panel">
+								<form method="post">
+									<input type="hidden" name="curPage" />
+								</form>
+								<h4>
+									<i class="fa fa-book"></i>&ensp; 희의록
+								</h4>
+								<br>
+								<form:form class="form" commandName="msch" method="post">
+									<form:hidden path="curPage" />
+									<form:hidden path="topic" />
+									<!-- 현재 클릭한 페이지 번호. -->
+									<br>
+									<div class="input-group lb-3">
+
+										<div style="float: left; width: 10%; margin-left: 1%;"
+											class="input-group-append">
+											<span class="input-group-text">페이지 크기:</span>
+											<form:select path="pageSize" class="form-control">
+												<form:option value="3">3</form:option>
+												<form:option value="5">5</form:option>
+												<form:option value="10">10</form:option>
+												<form:option value="20">20</form:option>
+												<form:option value="30">30</form:option>
+											</form:select>
+										</div>
+
+										<div style="float: right; margin-right: 1%;"
+											class="input-group-prepend ">
+											<nav class="navbar navbar-expand-sm  navbar-dark">
+												<input class="form-control mr-sm-2 sch" name="schT"
+													placeholder="제목" />
+												<button onclick="search()" class="btn btn-success"
+													type="submit">Search</button>
+												&nbsp;
+											</nav>
+										</div>
+									</div>
+
+									<hr>
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th class="num">번호</th>
+												<th class="title">제목</th>
+												<th class="date">작성일</th>
+												<th class="writer">작성자</th>
+												<th class="cnt">조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="meet" items="${mlist}">
+												<tr onclick="javascript:go(${meet.mnno})">
+													<td style="text-align: center;">${meet.cnt}</td>
+													<td style="padding-left: 70px;">${meet.topic}</td>
+													<td style="text-align: center;"><fmt:formatDate
+															value="${meet.wdate}" type="date" /></td>
+													<td style="text-align: center;">${meet.writer}</td>
+													<td style="text-align: right; padding-right: 70px;">${meet.views}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+
+
+
+									<div
+										style="text-align: center; margin-left: auto; margin-right: auto;">
+										<ul class="pagination justify-content-center"
+											style="margin: 20px 0">
+											<li class="page-item"><a class="page-link"
+												href="javascript:goPage(${msch.startBlock-1});">Previous</a></li>
+											<c:forEach var="cnt" begin="${msch.startBlock }"
+												end="${msch.endBlock}">
+												<li class="page-item ${msch.curPage==cnt?'active':''}">
+													<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a>
+												</li>
+											</c:forEach>
+											<li class="page-item"><a class="page-link"
+												href="javascript:goPage(${(msch.endBlock==msch.pageCount)?msch.endBlock:msch.endBlock+1});">Next</a></li>
+										</ul>
+									</div>
+									<br>
+
+
+								</form:form>
+
+
+								<button id="regBtn" type="button" class="btn btn-theme"
+									v-if="mdiv!==2&&mdiv!==3" style="margin-left: 90%;">
+									<i class="fa fa-check"></i> 글쓰기
+								</button>
+								<br>
+								<br>
+								<br>
+							</div>
+
+						</div>
+
+						<!-- /col-md-12 -->
+					</div>
+					<!-- row -->
+
+
+				</div>
+
+
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				<p>
+					&copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+				</p>
+				<div class="credits">
+					<!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="${path}/Dashio/panels.jsp#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    <!--footer end-->
-  </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
-  <script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
-  <script src="${path}/Dashio/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="${path}/Dashio/lib/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="${path}/Dashio/lib/advanced-datatable/js/DT_bootstrap.js"></script>
-  <!--common script for all pages-->
-  <script src="${path}/Dashio/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script type="text/javascript">
+					Created with Dashio template by <a
+						href="${path}/Dashio/https://templatemag.com/">TemplateMag</a>
+				</div>
+				<a href="${path}/Dashio/panels.jsp#" class="go-top"> <i
+					class="fa fa-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+	<!-- js placed at the end of the document so the pages load faster -->
+	<script src="${path}/Dashio/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/jquery.js"></script>
+	<script src="${path}/Dashio/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="${path}/Dashio/lib/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="${path}/Dashio/lib/jquery.scrollTo.min.js"></script>
+	<script src="${path}/Dashio/lib/jquery.nicescroll.js"
+		type="text/javascript"></script>
+	<script type="text/javascript" language="javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="${path}/Dashio/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+	<!--common script for all pages-->
+	<script src="${path}/Dashio/lib/common-scripts.js"></script>
+	<!--script for this page-->
+	<script type="text/javascript">
     /* Formating function for row details */
     function fnFormatDetails(oTable, nTr) {
       var aData = oTable.fnGetData(nTr);
